@@ -38,6 +38,7 @@
   <p>
     <input class="text title required" name="post-title" id="post-title" type="text" value="<?php echo $title; ?>" placeholder="<?php i18n('news_manager/POST_TITLE'); ?>" />
   </p>
+  <noscript><style>#metadata_window {display:block !important} </style></noscript>
   <div style="display:none;" id="metadata_window">
     <div class="leftopt">
       <p>
