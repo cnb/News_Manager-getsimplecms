@@ -4,9 +4,10 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.2.4
+Version: 2.2.5 beta
 Author: Rogier Koppejan
-Author URI: http://rxgr.nl/newsmanager/
+Updated by: Carlos Navarro
+
 */
 
 
@@ -17,9 +18,9 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.2.4',
-  'Rogier Koppejan',
-  'http://rxgr.nl/newsmanager/',
+  '2.2.5 beta',
+  'Rogier Koppejan, Carlos Navarro',
+  '#',
   'A blog/news plugin for GetSimple',
   'pages',
   'nm_admin'
