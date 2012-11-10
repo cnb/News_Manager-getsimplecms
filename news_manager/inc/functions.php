@@ -231,6 +231,9 @@ function nm_display_message($msg, $error=false, $backup=null) {
         $(".updated, .error").fadeOut(500).fadeIn(500);
       });
     </script>
+	<noscript>
+	  <div class="<?php echo $error ? 'error' : 'updated'; ?>" style="display:block;"><?php echo $msg; ?></div>
+	</noscript>
     <?php
   }
 }
