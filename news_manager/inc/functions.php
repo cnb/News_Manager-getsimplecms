@@ -131,6 +131,10 @@ function nm_create_dir($path) {
  * @return a url friendly version of $str
  */
 function nm_create_slug($str) {
+  global $i18n;
+  if (isset($i18n['TRANSLITERATION']) && is_array($translit=$i18n['TRANSLITERATION']) && count($translit>0)) {
+    $str = str_replace(array_keys($translit),array_values($translit),$str);
+  }
   $str = to7bit($str, 'UTF-8');
   $str = clean_url($str);
   return $str;
