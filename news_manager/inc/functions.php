@@ -103,7 +103,7 @@ function nm_get_url($query=false) {
     elseif ($NMPAGEURL == 'index')
       $url = $SITEURL . "index.php?$query=";
     else
-      $url = $SITEURL . "index.php?id=$NMPAGEURL&$query=";
+      $url = $SITEURL . "index.php?id=$NMPAGEURL&amp;$query=";
   }
   return $url;
 }
