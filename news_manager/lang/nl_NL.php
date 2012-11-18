@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Instellingen",
-"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://rxgr.nl/newsmanager/\" target=\"_blank\">documentatie pagina</a>.",
+"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">documentatie pagina</a>.",
 "PAGE_URL"            =>  "Berichtenpagina",
 "LANGUAGE"            =>  "Taal die gebruikt wordt op de Nieuwspagina",
 "SHOW_POSTS_AS"       =>  "Berichten Weergeven Als",

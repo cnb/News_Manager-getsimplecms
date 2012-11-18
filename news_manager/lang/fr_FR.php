@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Param&eacute;tres de News Manager",
-"DOCUMENTATION"       =>  "Pour plus d'informations sur ces param&egrave;tres, visitez la <a href=\"http://rxgr.nl/newsmanager/\" target=\"_blank\">page de documentation</a>.",
+"DOCUMENTATION"       =>  "Pour plus d'informations sur ces param&egrave;tres, visitez la <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">page de documentation</a>.",
 "PAGE_URL"            =>  "Page o&ugrave; afficher les Billets",
 "LANGUAGE"            =>  "Language used on News Page",
 "SHOW_POSTS_AS"       =>  "Les billets sur la page News sont pr&eacute;sent&eacute;s comme",
