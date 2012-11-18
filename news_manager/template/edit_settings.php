@@ -78,7 +78,7 @@
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
     <label for="pretty-urls"><?php i18n('news_manager/PRETTY_URLS'); ?></label> -
-    <span class="hint"><?php i18n('news_manager/PRETTY_URLS_NOTE'); ?></span>
+    <span class="hint"><?php i18n('news_manager/PRETTY_URLS_NOTE'); ?> <a href="load.php?id=news_manager&htaccess"><?php i18n('MORE'); ?></a></span>
   </p>
   <?php } ?>
   <p>
