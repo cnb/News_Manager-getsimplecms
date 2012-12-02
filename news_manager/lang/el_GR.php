@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "The post has been restored.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"load.php?id=news_manager&htaccess\">.htaccess</a> !",
+"UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> !",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Ρυθμίσεις",
