@@ -18,7 +18,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.2.5',
+  '2.2.6 beta',
   'Rogier Koppejan, Carlos Navarro',
   '#',
   'A blog/news plugin for GetSimple',
@@ -39,6 +39,13 @@ require_once('news_manager/inc/common.php');
 # language
 i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 
+# scripts (GetSimple 3.1+)
+if (function_exists('register_script')) {
+  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
+    register_script('jquery-validate','http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
+    queue_script('jquery-validate', GSBACK);
+  }
+}
 
 /*******************************************************
  * @function nm_admin

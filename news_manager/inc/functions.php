@@ -203,8 +203,12 @@ function nm_sitemap_include() {
  * @action insert necessary script/style sections into site header
  */
 function nm_header_include() {
+  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
+    if (!function_exists('register_script')) {
+	  // for GetSimple 3.0
+      echo '<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
+    }
   ?>
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
   <style>
     .invalid {
       color: #D94136;
@@ -213,6 +217,7 @@ function nm_header_include() {
     }
   </style>
   <?php
+  }
 }
 
 
