@@ -206,7 +206,7 @@ function nm_header_include() {
   if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
     if (!function_exists('register_script')) {
 	  // for GetSimple 3.0
-      echo '<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
+      echo '<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
     }
   ?>
   <style>
