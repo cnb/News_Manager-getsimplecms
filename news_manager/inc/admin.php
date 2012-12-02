@@ -16,8 +16,8 @@ function nm_admin_panel() {
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
   <div class="edit-nav clearfix">
     <a href="#" id="filter-button" ><?php i18n('FILTER'); ?></a>
-    <a href="load.php?id=news_manager&edit"><?php i18n('news_manager/NEW_POST'); ?></a>
-    <a href="load.php?id=news_manager&settings"><?php i18n('news_manager/SETTINGS'); ?></a>
+    <a href="load.php?id=news_manager&amp;edit"><?php i18n('news_manager/NEW_POST'); ?></a>
+    <a href="load.php?id=news_manager&amp;settings"><?php i18n('news_manager/SETTINGS'); ?></a>
   </div>
   <?php
   if (!empty($posts)) {
@@ -45,7 +45,7 @@ function nm_admin_panel() {
       ?>
       <tr>
         <td class="posttitle">
-          <a href="load.php?id=news_manager&edit=<?php echo $post->slug; ?>" title="<?php i18n('news_manager/EDIT_POST'); ?>: <?php echo $title; ?>">
+          <a href="load.php?id=news_manager&amp;edit=<?php echo $post->slug; ?>" title="<?php i18n('news_manager/EDIT_POST'); ?>: <?php echo $title; ?>">
             <?php echo $title; ?>
           </a>
         </td>
@@ -64,7 +64,7 @@ function nm_admin_panel() {
           </a>
         </td>
         <td class="delete">
-          <a href="load.php?id=news_manager&delete=<?php echo $post->slug; ?>" class="delconfirm" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
+          <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" class="delconfirm" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
             X
           </a>
         </td>

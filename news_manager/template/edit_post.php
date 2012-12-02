@@ -73,12 +73,12 @@
   <p>
     <input name="post" type="submit" class="submit" value="<?php i18n('news_manager/SAVE_POST'); ?>" />
     &nbsp;&nbsp;<?php i18n('news_manager/OR'); ?>&nbsp;&nbsp;
-    <a href="load.php?id=news_manager&cancel" class="cancel"><?php i18n('news_manager/CANCEL'); ?></a>
+    <a href="load.php?id=news_manager&amp;cancel" class="cancel"><?php i18n('news_manager/CANCEL'); ?></a>
     <?php
     if (file_exists($file)) {
       ?>
       /
-      <a href="load.php?id=news_manager&delete=<?php echo $slug; ?>" class="cancel">
+      <a href="load.php?id=news_manager&amp;delete=<?php echo $slug; ?>" class="cancel">
         <?php i18n('news_manager/DELETE'); ?>
       </a>
       <?php

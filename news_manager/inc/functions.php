@@ -231,7 +231,7 @@ function nm_header_include() {
 function nm_display_message($msg, $error=false, $backup=null) {
   if (isset($msg)) {
     if (isset($backup))
-      $msg .= " <a href=\"load.php?id=news_manager&restore=$backup\">" . i18n_r('UNDO') . '</a>';
+      $msg .= " <a href=\"load.php?id=news_manager&amp;restore=$backup\">" . i18n_r('UNDO') . '</a>';
     ?>
     <script type="text/javascript">
       $(function() {

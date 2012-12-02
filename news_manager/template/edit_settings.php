@@ -78,7 +78,7 @@
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
     <label for="pretty-urls"><?php i18n('news_manager/PRETTY_URLS'); ?></label> -
-    <span class="hint"><?php i18n('news_manager/PRETTY_URLS_NOTE'); ?> <a href="load.php?id=news_manager&htaccess"><?php i18n('MORE'); ?></a></span>
+    <span class="hint"><?php i18n('news_manager/PRETTY_URLS_NOTE'); ?> <a href="load.php?id=news_manager&amp;htaccess"><?php i18n('MORE'); ?></a></span>
   </p>
   <?php } ?>
   <p>
@@ -86,7 +86,7 @@
       <input class="submit" type="submit" name="settings" value="<?php i18n('news_manager/SAVE_SETTINGS'); ?>" />
     </span>
     &nbsp;&nbsp;<?php i18n('news_manager/OR'); ?>&nbsp;&nbsp;
-    <a href="load.php?id=news_manager&cancel" class="cancel"><?php i18n('news_manager/CANCEL'); ?></a>
+    <a href="load.php?id=news_manager&amp;cancel" class="cancel"><?php i18n('news_manager/CANCEL'); ?></a>
   </p>
 </form>
 
