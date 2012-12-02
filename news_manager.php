@@ -42,7 +42,11 @@ i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
   if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
-    register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
+    if (!defined('GSNOCDN') || !GSNOCDN) {
+      register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
+    } else {
+      register_script('jquery-validate',$SITEURL.'plugins/news_manager/js/jquery.validate.min.js', '1.10.0', false);
+    }
     queue_script('jquery-validate', GSBACK);
   }
 }
