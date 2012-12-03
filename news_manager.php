@@ -1,6 +1,5 @@
 <?php
 
-
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
@@ -29,9 +28,11 @@ register_plugin(
 
 # hooks
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, 'News Manager'));
-add_action('sitemap-additem', 'nm_sitemap_include');
 add_action('header', 'nm_header_include');
 add_filter('content', 'nm_site');
+if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
+  add_action('sitemap-additem', 'nm_sitemap_include');
+}
 
 # includes
 require_once('news_manager/inc/common.php');
