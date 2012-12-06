@@ -122,16 +122,18 @@ function nm_restore_post($backup) {
     list($current, $backup) = explode(':', $backup);
     $current .= '.xml';
     $backup .= '.xml';
-    if (file_exists(NMPOSTPATH . $current) && file_exists(NMBACKUPPATH . $backup))
-      $status = unlink(NMPOSTPATH . $current) &&
-                rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
-                nm_update_cache();
+    if (dirname(realpath(NMPOSTPATH.$current)) == realpath(NMPOSTPATH) && dirname(realpath(NMBACKUPPATH.$backup)) == realpath(NMBACKUPPATH)) // no path traversal
+        if (file_exists(NMPOSTPATH . $current) && file_exists(NMBACKUPPATH . $backup))
+          $status = unlink(NMPOSTPATH . $current) &&
+                    rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
+                    nm_update_cache();
   } else {
     # restore the deleted post
     $backup .= '.xml';
-    if (file_exists(NMBACKUPPATH . $backup))
-      $status = rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
-                nm_update_cache();
+    if (dirname(realpath(NMBACKUPPATH.$backup)) == realpath(NMBACKUPPATH)) // no path traversal
+        if (file_exists(NMBACKUPPATH . $backup))
+          $status = rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
+                    nm_update_cache();
   }
   if (@$status)
     nm_display_message(i18n_r('news_manager/SUCCESS_RESTORE'));
