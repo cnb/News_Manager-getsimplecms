@@ -43,7 +43,7 @@ function nm_save_post() {
     @rename(NMPOSTPATH . $file, NMBACKUPPATH . $file);
   }
   # empty titles are not allowed
-  if (empty($_POST['post-title']) or trim($_POST['post-title']) == '')
+  if (empty($_POST['post-title']) || trim($_POST['post-title']) == '')
     $_POST['post-title'] = '[No Title]';
   # set initial slug and filename
   if (!empty($_POST['post-slug']))
