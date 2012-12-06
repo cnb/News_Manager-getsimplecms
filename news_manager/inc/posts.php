@@ -96,11 +96,17 @@ function nm_save_post() {
  */
 function nm_delete_post($slug) {
   $file = "$slug.xml";
-  if (file_exists(NMPOSTPATH . $file)) {
-    if (rename(NMPOSTPATH . $file, NMBACKUPPATH . $file) && nm_update_cache())
-      nm_display_message(i18n_r('news_manager/SUCCESS_DELETE'), false, $slug);
-    else
-      nm_display_message(i18n_r('news_manager/ERROR_DELETE'), true);
+  # path traversal?
+  if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) {
+    nm_display_message('<b>Error:</b> incorrect path', true); // not translated
+  } else {
+      # delete post
+      if (file_exists(NMPOSTPATH . $file)) {
+        if (rename(NMPOSTPATH . $file, NMBACKUPPATH . $file) && nm_update_cache())
+          nm_display_message(i18n_r('news_manager/SUCCESS_DELETE'), false, $slug);
+        else
+          nm_display_message(i18n_r('news_manager/ERROR_DELETE'), true);
+      }
   }
 }
 
