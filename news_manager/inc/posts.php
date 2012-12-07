@@ -12,7 +12,7 @@
  */
 function nm_edit_post($slug) {
   $file = NMPOSTPATH . "$slug.xml";
-  if (dirname(realpath($file)) != realpath(NMPOSTPATH)) die(); // path traversal
+  if ($slug != '' && dirname(realpath($file)) != realpath(NMPOSTPATH)) die(''); // path traversal
   # get post data, if it exists
   $data    = @getXML($file);
   $title   = @stripslashes($data->title);
