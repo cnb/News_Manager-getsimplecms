@@ -39,7 +39,7 @@ function nm_admin_panel() {
     </tr>
     <?php
     foreach ($posts as $post) {
-      $title = cl($post->title);
+      $title = stripslashes($post->title);
       $date = shtDate($post->date);
       $url = nm_get_url('post') . $post->slug;
       ?>
