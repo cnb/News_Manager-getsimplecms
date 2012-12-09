@@ -5,3 +5,7 @@ News Manager - A blog/news plugin for GetSimple CMS
 
  Instructions in support thread:
  http://get-simple.info/forums/showthread.php?tid=1056
+ 
+ Support forum thread for updated version:
+ http://get-simple.info/forums/showthread.php?tid=3972
+ 
