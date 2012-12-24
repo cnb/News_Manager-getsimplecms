@@ -24,7 +24,7 @@ function nm_admin_panel() {
     ?>
     <div id="filter-search">
       <form>
-        <input type="text" class="text" id="tokens" placeholder="<?php echo lowercase(i18n_r('FILTER')); ?>..." />
+        <input type="text" class="text" id="tokens" placeholder="<?php echo lowercase(strip_tags(i18n_r('FILTER'))); ?>..." />
         &nbsp;
         <a href="load.php?id=news_manager" class="cancel"><?php i18n('news_manager/CANCEL'); ?></a>
       </form>
