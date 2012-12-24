@@ -90,7 +90,8 @@ function nm_show_search_results() {
  */
 function nm_show_post($slug, $excerpt=false) {
   $file = NMPOSTPATH . "$slug.xml";
-  $post = @getXML($file);
+  if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
+    $post = @getXML($file);
   if (!empty($post) && $post->private != 'Y') {
     $url     = nm_get_url('post') . $slug;
     $title   = stripslashes($post->title);
