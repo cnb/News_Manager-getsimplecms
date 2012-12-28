@@ -64,8 +64,8 @@ function nm_admin_panel() {
           </a>
         </td>
         <td class="delete">
-          <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" class="delconfirm" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
-            &times;
+          <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
+            X
           </a>
         </td>
       </tr>
