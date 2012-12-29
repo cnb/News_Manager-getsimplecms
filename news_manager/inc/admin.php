@@ -64,7 +64,7 @@ function nm_admin_panel() {
           </a>
         </td>
         <td class="delete">
-          <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
+          <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" class="nm_delconfirm" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
             &times;
           </a>
         </td>
@@ -115,6 +115,10 @@ function nm_admin_panel() {
            $("#posts tr:visible .indexColumn:not(:contains('"
               + this + "'))").parent().hide();
         });
+      });
+      // confirm delete 
+      $('.nm_delconfirm').on('click', function () {
+        return confirm($(this).attr("title"));
       });
     });
     </script>
