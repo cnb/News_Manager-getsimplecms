@@ -102,6 +102,6 @@
       }
     })
 
-    $("#post-title").focus();
+    $("#<?php echo (empty($data)) ? 'post-title' : 'metadata_toggle'; ?>").focus();
   });
 </script>
