@@ -6,7 +6,7 @@
 
 
 /*******************************************************
- * @function nm_admin_main
+ * @function nm_admin_panel
  * @action back-end main panel (post overview)
  */
 function nm_admin_panel() {
