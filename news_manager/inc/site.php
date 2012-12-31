@@ -162,4 +162,31 @@ function nm_show_navigation($index, $total) {
 }
 
 
+/***********************************************************************************
+ * SINCE Version 2.3
+***********************************************************************************/
+
+/*******************************************************
+ * @function nm_post_title
+ * param $before Text to place before the title. Defaults to ''
+ * param $after Text to place after the title. Defaults to ''
+ * param $echo Display (true) or return (false)
+ * @action Display or return the post title. Returns false if not on front-end post page
+ */
+function nm_post_title($before='', $after='', $echo=true) {
+  global $NMPAGEURL;
+  $title = false;
+  if (isset($_GET['post']) && strval(get_page_slug(false)) == $NMPAGEURL) {
+    $file = NMPOSTPATH . $_GET['post'] . '.xml';
+    if (dirname(realpath($file)) == realpath(NMPOSTPATH)) { // no path traversal
+      $post = @getXML($file);
+      if (!empty($post) && $post->private != 'Y') {
+        $title = $before . stripslashes($post->title) . $after;
+        if ($echo) echo $title;
+      }
+    }
+  }
+  return $title;
+}
+
 ?>
