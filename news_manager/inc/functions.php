@@ -94,9 +94,8 @@ function nm_get_date($format, $timestamp) {
  * @return url of front-end newspage, with optional query
  */
 function nm_get_url($query=false) {
-  global $SITEURL, $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
-  $data = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
-  $url = find_url($NMPAGEURL, $data->parent);
+  global $SITEURL, $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  $url = find_url($NMPAGEURL, $NMPARENTURL);
   if ($query) {
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y')
       $url .= $query . '/';
