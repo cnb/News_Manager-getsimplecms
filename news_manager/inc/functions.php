@@ -94,17 +94,20 @@ function nm_get_date($format, $timestamp) {
  * @return url of front-end newspage, with optional query
  */
 function nm_get_url($query=false) {
-  global $SITEURL, $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  $str = '';
   $url = find_url($NMPAGEURL, $NMPARENTURL);
   if ($query) {
-    if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y')
-      $url .= $query . '/';
-    elseif ($NMPAGEURL == 'index')
-      $url = $SITEURL . "index.php?$query=";
-    else
-      $url = $SITEURL . "index.php?id=$NMPAGEURL&amp;$query=";
+    if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
+      $str = $query . '/';
+      if ($str[0] !== '/')
+        $str = '/' . $str;
+    } else {
+      $str = (strpos($url,'?') === false)? '?' : '&amp;';
+      $str .= $query.'='; 
+    }
   }
-  return $url;
+  return $url . $str;
 }
 
 
