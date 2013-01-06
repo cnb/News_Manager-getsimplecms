@@ -16,7 +16,7 @@ function nm_edit_post($slug) {
   # get post data, if it exists
   $data    = @getXML($file);
   $title   = @stripslashes($data->title);
-  $date    = !empty($data) ? date('m/d/Y', strtotime($data->date)) : '';
+  $date    = !empty($data) ? date('Y-m-d', strtotime($data->date)) : '';
   $time    = !empty($data) ? date('H:i', strtotime($data->date)) : '';
   $tags    = @str_replace(',', ', ', ($data->tags));
   $private = @$data->private != '' ? 'checked' : '';

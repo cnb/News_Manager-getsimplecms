@@ -97,7 +97,7 @@
     $("#edit").validate({
       errorClass: "invalid",
       rules: {
-        "post-date": { date: true },
+        "post-date": { dateISO: true },
         "post-time": { time: true }
       }
     })
