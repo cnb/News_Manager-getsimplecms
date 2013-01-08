@@ -100,7 +100,7 @@ function nm_get_url($query=false) {
   if ($query) {
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
-      if ($str[0] !== '/')
+      if (substr($url, -1) != '/')
         $str = '/' . $str;
     } else {
       $str = (strpos($url,'?') === false)? '?' : '&amp;';
