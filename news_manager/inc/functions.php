@@ -77,7 +77,7 @@ function nm_get_languages() {
  * @function nm_get_date
  * @param $format date format
  * @param $timestamp UNIX timestamp
- * @return date formatted according to $NNLANG
+ * @return date formatted according to $NMLANG
  */
 function nm_get_date($format, $timestamp) {
   global $NMLANG;
