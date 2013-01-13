@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('IN_GS')) {die('you cannot load this page directly.');}
 
 /**
  * Common variables used by the GetSimple News Manager Plugin.
