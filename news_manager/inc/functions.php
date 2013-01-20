@@ -87,7 +87,12 @@ function nm_get_date($format, $timestamp) {
   $lg = substr($NMLANG,0,2);
   setlocale(LC_TIME, $NMLANG.'UTF8', $lg.'UTF8', $NMLANG.'UTF-8', $lg.'UTF-8', $NMLANG);
   # end temp fix
-  $date = strftime($format, $timestamp);
+  if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+    // workaround for Windows, as strftime returns ISO-8859-1 encoded string
+    $date = utf8_encode(strftime($format, $timestamp));
+  } else {
+    $date = strftime($format, $timestamp);
+  }
   setlocale(LC_TIME, $locale);
   return $date;
 }
