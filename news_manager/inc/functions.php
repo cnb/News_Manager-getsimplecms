@@ -82,7 +82,11 @@ function nm_get_languages() {
 function nm_get_date($format, $timestamp) {
   global $NMLANG;
   $locale = setlocale(LC_TIME, null);
-  setlocale(LC_TIME, $NMLANG);
+  // setlocale(LC_TIME, $NMLANG);
+  # temp fix:
+  $lg = substr($NMLANG,0,2);
+  setlocale(LC_TIME, $NMLANG.'UTF8', $lg.'UTF8', $NMLANG.'UTF-8', $lg.'UTF-8', $NMLANG);
+  # end temp fix
   $date = strftime($format, $timestamp);
   setlocale(LC_TIME, $locale);
   return $date;
