@@ -39,7 +39,7 @@ function nm_save_post() {
   # create a backup if necessary
   if (isset($_POST['current-slug'])) {
     $file = $_POST['current-slug'] . '.xml';
-    if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) die(); // path traversal
+    if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) die(''); // path traversal
     @rename(NMPOSTPATH . $file, NMBACKUPPATH . $file);
   }
   # empty titles are not allowed

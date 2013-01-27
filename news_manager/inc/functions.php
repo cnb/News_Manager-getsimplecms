@@ -178,7 +178,8 @@ function nm_create_excerpt($content) {
 function nm_i18n_merge() {
   global $NMLANG;
   if (isset($NMLANG) && $NMLANG != '') {
-    include(NMLANGPATH . "$NMLANG.php");
+    if (dirname(realpath(NMLANGPATH.$NMLANG.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
+    include(NMLANGPATH.$NMLANG.'.php');
     $nm_i18n = $i18n;
     global $i18n;
     foreach ($nm_i18n as $code=>$text)
