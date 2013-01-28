@@ -135,6 +135,24 @@ function nm_create_dir($path) {
   return false;
 }
 
+/*******************************************************
+ * @function nm_rename_file
+ * @since 2.3.2
+ * @param $oldfile origin file
+ * @param $newfile destination file
+ * @action rename or move a file - like rename() but safer (Windows)
+ * @link http://www.php.net/manual/en/function.rename.php#56576
+ */
+function nm_rename_file($oldfile,$newfile) {
+  if (!rename($oldfile,$newfile)) {
+   if (copy ($oldfile,$newfile)) {
+	   unlink($oldfile);
+	   return TRUE;
+    }
+    return FALSE;
+  }
+  return TRUE;
+}
 
 /*******************************************************
  * @function nm_create_slug
