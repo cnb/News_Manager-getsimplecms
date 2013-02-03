@@ -28,7 +28,7 @@ function nm_env_check() {
  * @action edit plugin configuration settings
  */
 function nm_edit_settings() {
-  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
+  global $PRETTYURLS, $PERMALINK, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
          $NMEXCERPTLENGTH, $NMPOSTSPERPAGE, $NMRECENTPOSTS;
   include(NMTEMPLATEPATH . 'edit_settings.php');
 }
