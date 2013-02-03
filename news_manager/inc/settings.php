@@ -93,9 +93,8 @@ function nm_generate_htaccess() {
   $page =  '';
   # format prefix and page directions
   if ($NMPAGEURL != 'index') {
-    $data = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
-    $parent = $data->parent;
-    $prefix = $parent != '' ? "$parent/$NMPAGEURL/" : "$NMPAGEURL/";
+    global $NMPARENTURL;
+    $prefix = $NMPARENTURL != '' ? "$NMPARENTURL/$NMPAGEURL/" : "$NMPAGEURL/";
     $page = "id=$NMPAGEURL&";
   }
   # generate .htaccess contents
