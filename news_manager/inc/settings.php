@@ -87,15 +87,19 @@ function nm_settings_to_xml() {
  * @action generate a .htaccess sample config based on current settings
  */
 function nm_generate_htaccess() {
-  global $NMPAGEURL;
+  global $NMPAGEURL, $PERMALINK;
   $path = tsl(suggest_site_path(true));
   $prefix = '';
   $page =  '';
   # format prefix and page directions
   if ($NMPAGEURL != 'index') {
     global $NMPARENTURL;
-    $prefix = $NMPARENTURL != '' ? "$NMPARENTURL/$NMPAGEURL/" : "$NMPAGEURL/";
-    $page = "id=$NMPAGEURL&";
+    if ( $NMPARENTURL != '' && ($PERMALINK == '' || strpos($PERMALINK,'%parent%') !== false) ) {
+      $prefix = $NMPARENTURL.'/'.$NMPAGEURL.'/';
+    } else {
+      $prefix = $NMPAGEURL.'/';
+    }
+    $page = 'id='.$NMPAGEURL.'&';
   }
   # generate .htaccess contents
   $htaccess = file_get_contents(GSPLUGINPATH . 'news_manager/temp.htaccess');
