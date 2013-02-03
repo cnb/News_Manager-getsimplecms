@@ -19,11 +19,14 @@ RewriteEngine on
 # replace it with your subdirectory path
 RewriteBase **PATH**
 
+# News Manager:
 RewriteRule ^**PREFIX**tag/([^/.]+)/?$ index.php?**PAGE**tag=$1 [L]
 RewriteRule ^**PREFIX**post/([^/.]+)/?$ index.php?**PAGE**post=$1 [L]
 RewriteRule ^**PREFIX**page/([^/.]+)/?$ index.php?**PAGE**page=$1 [L]
 RewriteRule ^**PREFIX**archive/([^/.]+)/?$ index.php?**PAGE**archive=$1 [L]
+# end News Manager
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule /?([A-Za-z0-9_-]+)/?$ index.php?id=$1 [QSA,L]
+
