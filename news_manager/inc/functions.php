@@ -163,6 +163,7 @@ function nm_rename_file($oldfile,$newfile) {
  */
 function nm_create_slug($str) {
   global $i18n;
+  $str = trim($str);
   if (isset($i18n['TRANSLITERATION']) && is_array($translit=$i18n['TRANSLITERATION']) && count($translit>0)) {
     $str = str_replace(array_keys($translit),array_values($translit),$str);
   }
