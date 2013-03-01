@@ -11,9 +11,9 @@
  * @return array with posts
  */
 function nm_get_posts($all=false) {
+  $data = @getXML(NMPOSTCACHE);
   $now = time();
   $posts = array();
-  $data = @getXML(NMPOSTCACHE);
   foreach ($data->item as $item) {
     if ($all || $item->private != 'Y' && strtotime($item->date) < $now)
       $posts[] = $item;
