@@ -11,6 +11,8 @@
  * @return array with posts
  */
 function nm_get_posts($all=false) {
+  if (!file_exists(NMPOSTCACHE))
+    nm_update_cache();
   $data = @getXML(NMPOSTCACHE);
   $now = time();
   $posts = array();
