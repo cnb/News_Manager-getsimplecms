@@ -36,9 +36,11 @@ function nm_show_page($index=0) {
  */
 function nm_show_archive($archive) {
   $archives = nm_get_archives();
-  $posts = $archives[$archive];
-  foreach ($posts as $slug)
-    nm_show_post($slug, true);
+  if (array_key_exists($archive, $archives)) {
+    $posts = $archives[$archive];
+    foreach ($posts as $slug)
+      nm_show_post($slug, true);
+   }
 }
 
 
