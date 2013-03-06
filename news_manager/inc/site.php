@@ -49,9 +49,11 @@ function nm_show_archive($archive) {
  */
 function nm_show_tag($tag) {
   $tags = nm_get_tags();
-  $posts = $tags[$tag];
-  foreach ($posts as $slug)
-    nm_show_post($slug, true);
+  if (array_key_exists($tag, $tags)) {
+    $posts = $tags[$tag];
+    foreach ($posts as $slug)
+      nm_show_post($slug, true);
+  }
 }
 
 
