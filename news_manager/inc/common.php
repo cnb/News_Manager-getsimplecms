@@ -31,7 +31,7 @@ require_once(NMINCPATH . 'sidebar.php');
 
 # load settings
 $data = @getXML(NMSETTINGS);
-$NMPAGEURL       = isset($data->page_url) ? $data->page_url : 'index';
+$NMPAGEURL       = isset($data->page_url) ? $data->page_url : ''; // default: no slug selected
 $NMPRETTYURLS    = isset($data->pretty_urls) ? $data->pretty_urls : '';
 $NMLANG          = isset($data->language) ? $data->language : 'en_US';
 $NMSHOWEXCERPT   = isset($data->show_excerpt) ? $data->show_excerpt : '';

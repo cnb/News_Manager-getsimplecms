@@ -15,6 +15,7 @@
       <label for="page-url"><?php i18n('news_manager/PAGE_URL'); ?>:</label>
       <select class="text" name="page-url">
       <?php
+      if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
       $pages = get_available_pages();
       foreach ($pages as $page) {
         $slug = $page['slug'];
