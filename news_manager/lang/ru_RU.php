@@ -2,6 +2,7 @@
 
 /**
  * News Manager Russian language file by reff http://reff.pp.ua/
+   Updated thanks to Oleg06
  */
 
 
@@ -14,12 +15,12 @@ $i18n = array(
 "ERROR_ENV"           =>  "Произошла ошибка доступа к папке записей и/или к конфигурационному файлу. Установите права <em>CHMOD 777</em> по отношению к папке /data, /backups и вложенным в нее подпапкам и повторите попытку.",
 "ERROR_SAVE"          =>  "<b>Ошибка:</b> Невозможно сохранить запись. Установите права <em>CHMOD 777</em> по отношению к папке /data, /backups и вложенным в нее подпапкам и повторите попытку.",
 "ERROR_DELETE"        =>  "<b>Ошибка:</b> Невозможно удалить запись. Установите права <em>CHMOD 777</em> по отношению к папке /data, /backups и вложенным в нее подпапкам и повторите попытку.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Unable to restore the post. <em>CHMOD 777</em> the folders /data, /backups and their sub-folders and retry.",
+"ERROR_RESTORE"       =>  "<b>Ошибка:</b> Не удается восстановить запись. Установите права <em>CHMOD 777</em> для папок /data, /backups и вложенные в них папки и повторите.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Запись была успешно сохранена.",
 "SUCCESS_DELETE"      =>  "Запись была успешно удалена.",
-"SUCCESS_RESTORE"     =>  "The post has been restored.",
+"SUCCESS_RESTORE"     =>  "Сообщение было восстановлено.",
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Внимание:</b> Вам возможно потребуется обновить файл <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> вручную!",
@@ -84,7 +85,7 @@ $i18n = array(
 "GO_BACK"             =>  "Вернуться на предыдущую страницу",
 
 # date settings
-"DATE_FORMAT"         =>  "%b %e, %Y"
+"DATE_FORMAT"         =>  "%d %b %Y"
 
 );
 
