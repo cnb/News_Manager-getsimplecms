@@ -13,7 +13,7 @@ function nm_list_recent() {
   global $NMRECENTPOSTS;
   $posts = nm_get_posts();
   if (!empty($posts)) {
-    echo '<ul>';
+    echo '<ul class="nm_recent">';
     $posts = array_slice($posts, 0, $NMRECENTPOSTS, true);
     foreach ($posts as $post) {
       $url = nm_get_url('post') . $post->slug;
@@ -32,7 +32,7 @@ function nm_list_recent() {
 function nm_list_archives() {
   $archives = array_keys(nm_get_archives());
   if (!empty($archives)) {
-    echo '<ul>';
+    echo '<ul class="nm_archives">';
     foreach ($archives as $archive) {
       list($y, $m) = str_split($archive, 4);
       $title = nm_get_date('%B %Y', mktime(0, 0, 0, $m, 1, $y));
