@@ -25,6 +25,11 @@ register_plugin(
   'nm_admin'
 );
 
+# includes
+require_once('news_manager/inc/common.php');
+
+# language
+i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 
 # hooks
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, 'News Manager'));
@@ -33,12 +38,6 @@ add_filter('content', 'nm_site');
 if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
   add_action('sitemap-additem', 'nm_sitemap_include');
 }
-
-# includes
-require_once('news_manager/inc/common.php');
-
-# language
-i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
