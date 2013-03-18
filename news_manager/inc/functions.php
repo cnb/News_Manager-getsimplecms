@@ -90,7 +90,7 @@ function nm_get_date($format, $timestamp) {
   } else {
     # temp fix:
     $lg = substr($NMLANG,0,2);
-    setlocale(LC_TIME, $NMLANG.'UTF8', $lg.'UTF8', $NMLANG.'UTF-8', $lg.'UTF-8', $NMLANG, $lg);
+    setlocale(LC_TIME, $NMLANG.'.UTF8', $lg.'.UTF8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
     # end temp fix
   }
   if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
