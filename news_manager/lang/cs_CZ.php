@@ -1,8 +1,7 @@
 <?php
 
 /**
- * News Manager English language file by Rogier Koppejan
- * @translated by Tomáš Janeček / TeeJay 
+ * News Manager Czech language file by Tomáš Janeček / TeeJay 
  */
 
 
