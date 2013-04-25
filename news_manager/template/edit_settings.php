@@ -75,7 +75,7 @@
     </p>
   </div>
   <div class="clear"></div>
-  <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || in_array($PERMALINK, array('','%parent%/%slug%','%parent%/%slug%/','%slug%','%slug%/'))) )  { ?>
+  <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || strpos($PERMALINK,'?') === false) )  { ?>
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
     <label for="pretty-urls"><?php i18n('news_manager/PRETTY_URLS'); ?></label> -
