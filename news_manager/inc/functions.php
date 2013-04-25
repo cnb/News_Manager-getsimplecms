@@ -112,6 +112,9 @@ function nm_get_url($query=false) {
   global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
   $str = '';
   $url = find_url($NMPAGEURL, $NMPARENTURL);
+  if (basename($_SERVER['PHP_SELF']) != 'index.php') // back end only
+    if (function_exists('find_i18n_url')) // I18N?
+      $url = find_i18n_url($NMPAGEURL, $NMPARENTURL, return_i18n_default_language());
   if ($query) {
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
