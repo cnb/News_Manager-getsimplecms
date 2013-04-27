@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Beállítások",
-"DOCUMENTATION"       =>  "További beállításokkal kapcsolatos információkért látogasd meg a <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">dokumentációs oldalt</a>.",
+"DOCUMENTATION"       =>  "További beállításokkal kapcsolatos információkért látogasd meg a <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">dokumentációs oldalt</a>.",
 "PAGE_URL"            =>  "Hír oldal helye",
 "LANGUAGE"            =>  "Hír oldalon használt nyelv",
 "SHOW_POSTS_AS"       =>  "Bejegyzések megjelenítési módja a Hír oldalon",

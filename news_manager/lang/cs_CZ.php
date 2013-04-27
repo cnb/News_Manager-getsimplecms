@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Nastavení News Manageru",
-"DOCUMENTATION"       =>  "Pro více informaci o těchto nastaveních navštivte <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">documentation page</a>.",
+"DOCUMENTATION"       =>  "Pro více informaci o těchto nastaveních navštivte <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentation page</a>.",
 "PAGE_URL"            =>  "Webová stránka k zobrazování příspěvků/novinek",
 "LANGUAGE"            =>  "Jazyk použitý na stránkách příspěvků/novinek",
 "SHOW_POSTS_AS"       =>  "Příspěvky na stránce s novinkami jsou zobrazeny jako",

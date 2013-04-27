@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Configuración Gestor de Noticias",
-"DOCUMENTATION"       =>  "Para obtener más información sobre estas opciones, visite la pagina de <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">documentación</a>.",
+"DOCUMENTATION"       =>  "Para obtener más información sobre estas opciones, visite la pagina de <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentación</a>.",
 "PAGE_URL"            =>  "Página para mostrar posts",
 "LANGUAGE"            =>  "Idioma utilizado en la página de noticias",
 "SHOW_POSTS_AS"       =>  "Posts en la página de noticias se muestran como",

@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Haber Yönetim Ayarları",
-"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
+"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
 "PAGE_URL"            =>  "Haberleri görüntüleme şablonu",
 "LANGUAGE"            =>  "Haber sayfası dili:",
 "SHOW_POSTS_AS"       =>  "Haberler şu şekilde görüntülenecek",
