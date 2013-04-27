@@ -19,8 +19,9 @@ function nm_show_page($index=0) {
   else
     $posts = array();
   if (!empty($posts)) {
+    $showexcerpt = ($NMSHOWEXCERPT == 'Y');
     foreach ($posts as $post)
-      nm_show_post($post->slug, $NMSHOWEXCERPT == 'Y');
+      nm_show_post($post->slug, $showexcerpt);
     if (sizeof($pages) > 1)
       nm_show_navigation($index, sizeof($pages));
   } else {
