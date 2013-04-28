@@ -83,6 +83,9 @@ $i18n = array(
 "SEARCH"              =>  "Keresés",
 "GO_BACK"             =>  "Vissza az előző oldalra",
 
+# language localization
+"LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",
+
 # date settings
 "DATE_FORMAT"         =>  "%Y %b %e"
 

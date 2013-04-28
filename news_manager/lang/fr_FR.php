@@ -83,6 +83,9 @@ $i18n = array(
 "SEARCH"              =>  "Recherche",
 "GO_BACK"             =>  "Retourner &agrave; la page pr&eacute;c&eacute;dente",
 
+# language localization
+"LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",
+
 # date settings
 "DATE_FORMAT"         =>  "%e %b %Y"
 

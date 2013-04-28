@@ -83,6 +83,9 @@ $i18n = array(
 "SEARCH"              =>  "Hledat",
 "GO_BACK"             =>  "Zpět na předchozí stránku",
 
+# language localization
+"LOCALE"              =>  "cs_CZ.utf8,cs.utf8,cs_CZ.UTF-8,cs.UTF-8,cs_CZ,cs",
+
 # date settings
 "DATE_FORMAT"         =>  "%d.%m.%Y - %H:%M"
 

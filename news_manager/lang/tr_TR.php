@@ -83,6 +83,9 @@ $i18n = array(
 "SEARCH"              =>  "Arama",
 "GO_BACK"             =>  "Geri Dön",
 
+# language localization
+"LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",
+
 # date settings
 "DATE_FORMAT"         =>  "%d.%m.%Y"
 
