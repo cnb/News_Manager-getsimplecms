@@ -82,16 +82,15 @@ function nm_get_languages() {
  * @return date formatted according to $NMLANG
  */
 function nm_get_date($format, $timestamp) {
-  global $NMLANG;
-  $locale = setlocale(LC_TIME, null);
+  global $NMLANG, $i18n;
+  $locale = setlocale(LC_TIME, 0);
   // setlocale(LC_TIME, $NMLANG);
-  if ($NMLANG == 'es_ES') { // patch Spanish/Windows
-    setlocale(LC_TIME, 'es_ES.UTF8', 'es.UTF8', 'es_ES.UTF-8', 'es.UTF-8', 'es_ES', 'esp');
+  if (array_key_exists('news_manager/LOCALE', $i18n)) {
+    setlocale(LC_TIME, preg_split('/s*,s*/', $i18n['news_manager/LOCALE']));
   } else {
-    # temp fix:
+    # no locale in language file
     $lg = substr($NMLANG,0,2);
-    setlocale(LC_TIME, $NMLANG.'.UTF8', $lg.'.UTF8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
-    # end temp fix
+    setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
   }
   if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
     // workaround for Windows, as strftime returns ISO-8859-1 encoded string
