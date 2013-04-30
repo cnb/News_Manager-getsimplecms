@@ -41,7 +41,7 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
           <?php
         }
         ?>
-        entities : true,
+        entities : false,
         uiColor : '#FFFFFF',
         height: '<?php echo $EDHEIGHT; ?>',
         baseHref : '<?php echo $SITEURL; ?>',
