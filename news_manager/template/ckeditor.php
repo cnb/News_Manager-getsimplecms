@@ -58,7 +58,7 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
       });
     </script>
     <?php
-    ckeditor_add_page_link();
+    //ckeditor_add_page_link(); // "Link to local page" (Link Type dropdown)
   }
 }
 
