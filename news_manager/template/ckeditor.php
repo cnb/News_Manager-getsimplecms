@@ -5,10 +5,10 @@
  */
 
 
-$EDHEIGHT = defined('GSEDITORHEIGHT') ? GSEDITORHEIGHT . 'px' : '300px';
+$EDHEIGHT = defined('GSEDITORHEIGHT') ? GSEDITORHEIGHT.'px' : '300px';
 $EDTOOL = defined('GSEDITORTOOL') ? GSEDITORTOOL : 'basic';
 $EDLANG = defined('GSEDITORLANG') ? GSEDITORLANG : i18n_r('CKEDITOR_LANG');
-$EDOPTIONS = defined('GSEDITOROPTIONS') && trim(GSEDITOROPTIONS) != '' ? ', ' . GSEDITOROPTIONS : '';
+$EDOPTIONS = defined('GSEDITOROPTIONS') && trim(GSEDITOROPTIONS) != '' ? ', '.GSEDITOROPTIONS : '';
 
 if ($EDTOOL == 'advanced') {
   $TOOLBAR = "
