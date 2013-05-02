@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Příspěvek je soukromý",
 "LAST_SAVED"          =>  "Naposledy uloženo",
 
+# validation
+"FIELD_IS_REQUIRED"   => "Toto pole je nutné vyplnit",
+"ENTER_VALID_DATE"    => "Prosím zadejte správné datum / Nechte prázdné pro dnešní datum",
+"ENTER_VALID_TIME"    => "Prosím zadejte správný čas / Nechte prázdné pro aktuální čas",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Abyste povolili Fancy URLs pro příspěvky, archivy, atd., nahraďte obsah vašeho <code>.htaccess</code> souboru řádky níže.",
 "GO_BACK_WHEN_DONE"   =>  "Až budete s touto stránkou hotovi, klikněte na tlačítko níže, abyste se vrátili na hlavní panel.",
