@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Entrada privada",
 "LAST_SAVED"          =>  "Guardada por última vez",
 
+# validation
+"FIELD_IS_REQUIRED"   => "Este campo es obligatorio",
+"ENTER_VALID_DATE"    => "Introducir una fecha válida / Dejar vacío para fecha actual",
+"ENTER_VALID_TIME"    => "Introducir una hora válida / Dejar vacío para hora actual",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Para activar las URLs amigables para entradas, archivos, etc., reemplazar el contenido del archivo <code>.htaccess</code> por las líneas siguientes:",
 "GO_BACK_WHEN_DONE"   =>  "Hacer clic en el botón de abajo para volver al panel principal.",
