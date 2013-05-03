@@ -14,12 +14,12 @@ $i18n = array(
 "ERROR_ENV"           =>  "Gönderilere erişimde bir sorun var. Lütfen /data, /backups klasörünü ve alt klasörlerini <em>CHMOD 777</em> yaparak tekrar deneyin.",
 "ERROR_SAVE"          =>  "<b>Hata:</b> Değişiklikleriniz kaydedilemiyor. Lütfen /data, /backups klasörünü ve alt klasörlerini <em>CHMOD 777</em> yaparak tekrar deneyin.",
 "ERROR_DELETE"        =>  "<b>Hata:</b> Haber silinemiyor. Lütfen /data, /backups klasörünü ve alt klasörlerini <em>CHMOD 777</em> yaparak tekrar deneyin.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Unable to restore the post. <em>CHMOD 777</em> the folders /data, /backups and their sub-folders and retry.",
+"ERROR_RESTORE"       =>  "<b>Hata:</b> Yazı geri yüklenemiyor. Lütfen /data ve /backups klasörlerinin ve içlerindeki tüm alt klasörlerin yazdırma seçeneğini <em>CHMOD 777</em> olarak ayarlayın ve tekrar deneyin.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Değişiklikleriniz kaydedildi.",
 "SUCCESS_DELETE"      =>  "Haber başarıyla silindi.",
-"SUCCESS_RESTORE"     =>  "The post has been restored.",
+"SUCCESS_RESTORE"     =>  "Yazı geri yüklendi.", 
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Uyarı:</b> Büyük olasılıkla <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> dosyasını güncellemeniz gerekiyor.",
@@ -58,6 +58,11 @@ $i18n = array(
 "POST_TIME"           =>  "Yayın zamanı (<i>saat:dakika</i>)",
 "POST_PRIVATE"        =>  "Gizli haber",
 "LAST_SAVED"          =>  "Son Kaydedilme Tarihi",
+
+# validation
+"FIELD_IS_REQUIRED"   =>  "Bu alanın girilmesi zorunlu",
+"ENTER_VALID_DATE"    =>  "Lütfen geçerli bir tarih girin / Bugün için boş bırakın",
+"ENTER_VALID_TIME"    =>  "Lütfen geçerli bir zaman girin / Şimdiki zaman için boş bırakın", 
 
 # htaccess
 "HTACCESS_HELP"       =>  "Haberler ve arşivler için düzgün URL kullanmak isterseniz, kök dizindeki <code>.htaccess</code> kodlarını aşağıdakilerle değiştirin.",
