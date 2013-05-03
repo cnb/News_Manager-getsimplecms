@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Ρυθμίσεις του News Manager",
-"DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">σελίδα documentation</a>.",
+"DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">σελίδα documentation</a>.",
 "PAGE_URL"            =>  "Σελίδα που θα εμφανίζονται τα Άρθρα",
 "LANGUAGE"            =>  "Language used on News Page",
 "SHOW_POSTS_AS"       =>  "Τα Άρθρα στη σελίδα Άρθρων εμφανίζονται ως",
@@ -54,7 +54,7 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Επιλογές Άρθρου",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (χωρίστε τα tags με κόμμα)",
-"POST_DATE"           =>  "Publish date (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Το Άρθρο είναι Ιδιωτικό (κρυφό)",
 "LAST_SAVED"          =>  "Τελευτία Αποθήκευση",
@@ -82,6 +82,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Νεώτερα Άρθρα",
 "SEARCH"              =>  "Αναζήτηση",
 "GO_BACK"             =>  "Πίσω στην προηγούμενη σελίδα",
+
+# language localization
+"LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",
 
 # date settings
 "DATE_FORMAT"         =>  "%e %b %Y"

@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Einstellungen",
-"DOCUMENTATION"       =>  "Mehr Informationen zu den Einstellungen finden Sie in der <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">Dokumentation</a>.",
+"DOCUMENTATION"       =>  "Mehr Informationen zu den Einstellungen finden Sie in der <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">Dokumentation</a>.",
 "PAGE_URL"            =>  "Seite, auf der die Beiträge angezeigt werden sollen",
 "LANGUAGE"            =>  "Sprache auf der News-Seite",
 "SHOW_POSTS_AS"       =>  "Beiträge in NEWS-Übersichten anzeigen als ",
@@ -54,7 +54,7 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Beitrags-Optionen",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (kommagetrennt eingeben)",
-"POST_DATE"           =>  "Datum der Veröffentlichung: (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Datum der Veröffentlichung: (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Zeit der Veröffentlichung: (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Beitrag ist privat",
 "LAST_SAVED"          =>  "Zuletzt gesichert",
@@ -82,6 +82,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Neuere Beiträge",
 "SEARCH"              =>  "Suche",
 "GO_BACK"             =>  "Zurück zur vorherigen Seite",
+
+# language localization
+"LOCALE"              =>  "de_DE.utf8,de.utf8,de_DE.UTF-8,de.UTF-8,de_DE,de",
 
 # date settings
 "DATE_FORMAT"         =>  "%e.%b %Y"

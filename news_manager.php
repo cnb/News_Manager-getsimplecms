@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.3.0 beta
+Version: 2.4.0 beta
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,28 +17,28 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.3.0 beta',
+  '2.4.0 beta',
   'Rogier Koppejan, Carlos Navarro',
-  '#',
+  'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
   'pages',
   'nm_admin'
 );
-
-
-# hooks
-add_action('pages-sidebar', 'createSideMenu', array($thisfile, 'News Manager'));
-add_action('header', 'nm_header_include');
-add_filter('content', 'nm_site');
-if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
-  add_action('sitemap-additem', 'nm_sitemap_include');
-}
 
 # includes
 require_once('news_manager/inc/common.php');
 
 # language
 i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
+
+# hooks
+add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
+add_action('header', 'nm_header_include');
+add_action('index-pretemplate', 'nm_frontend_init');
+//add_filter('content', 'nm_site'); // deprecated
+if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
+  add_action('sitemap-additem', 'nm_sitemap_include');
+}
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
@@ -85,16 +85,18 @@ function nm_admin() {
 }
 
 /*******************************************************
- * @function nm_site
+ * @function nm_frontend_init
  * @action front-end main function
+ * @since 2.4
  */
-function nm_site($content)
-{
-  nm_i18n_merge();
+function nm_frontend_init() {
   global $NMPAGEURL;
+  nm_i18n_merge();
   $url = strval(get_page_slug(false));
   if ($url == $NMPAGEURL) {
+    global $content;
     $content = '';
+    ob_start();
     if (isset($_POST['search'])) {
       nm_show_search_results();
     } elseif (isset($_GET['archive'])) {
@@ -112,9 +114,16 @@ function nm_site($content)
     } else {
       nm_show_page();
     }
+    $content = ob_get_contents();
+    ob_end_clean();
+    $content = addslashes(htmlspecialchars($content, ENT_NOQUOTES, 'UTF-8'));
   }
-  return $content;
 }
 
+/*******************************************************
+ * @deprecated as of 2.4+
+ */
+function nm_site($content) {
+  return '[deprecated]';
+}
 
-?>

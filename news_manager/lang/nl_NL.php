@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Instellingen",
-"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">documentatie pagina</a>.",
+"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentatie pagina</a>.",
 "PAGE_URL"            =>  "Berichtenpagina",
 "LANGUAGE"            =>  "Taal die gebruikt wordt op de Nieuwspagina",
 "SHOW_POSTS_AS"       =>  "Berichten Weergeven Als",
@@ -54,7 +54,7 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Bericht Opties",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (meerdere tags scheiden met komma's)",
-"POST_DATE"           =>  "Publicatiedatum (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Publicatiedatum (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publicatietijd (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Bericht Is Priv&#233;",
 "LAST_SAVED"          =>  "Laatst Bijgewerkt",
@@ -82,6 +82,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Nieuwere Berichten",
 "SEARCH"              =>  "Zoek",
 "GO_BACK"             =>  "Ga terug naar de vorige pagina",
+
+# language localization
+"LOCALE"              =>  "nl_NL.utf8,nl.utf8,nl_NL.UTF-8,nl.UTF-8,nl_NL,nl",
 
 # date settings
 "DATE_FORMAT"         =>  "%e %b %Y"

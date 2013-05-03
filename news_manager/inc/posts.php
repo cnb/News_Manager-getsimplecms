@@ -16,7 +16,7 @@ function nm_edit_post($slug) {
   # get post data, if it exists
   $data    = @getXML($file);
   $title   = @stripslashes($data->title);
-  $date    = !empty($data) ? date('m/d/Y', strtotime($data->date)) : '';
+  $date    = !empty($data) ? date('Y-m-d', strtotime($data->date)) : '';
   $time    = !empty($data) ? date('H:i', strtotime($data->date)) : '';
   $tags    = @str_replace(',', ', ', ($data->tags));
   $private = @$data->private != '' ? 'checked' : '';
@@ -39,8 +39,8 @@ function nm_save_post() {
   # create a backup if necessary
   if (isset($_POST['current-slug'])) {
     $file = $_POST['current-slug'] . '.xml';
-    if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) die(); // path traversal
-    @rename(NMPOSTPATH . $file, NMBACKUPPATH . $file);
+    if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) die(''); // path traversal
+    @nm_rename_file(NMPOSTPATH . $file, NMBACKUPPATH . $file);
   }
   # empty titles are not allowed
   if (empty($_POST['post-title']) || trim($_POST['post-title']) == '')
@@ -104,7 +104,7 @@ function nm_delete_post($slug) {
   } else {
       # delete post
       if (file_exists(NMPOSTPATH . $file)) {
-        if (rename(NMPOSTPATH . $file, NMBACKUPPATH . $file) && nm_update_cache())
+        if (nm_rename_file(NMPOSTPATH.$file, NMBACKUPPATH.$file) && nm_update_cache())
           nm_display_message(i18n_r('news_manager/SUCCESS_DELETE'), false, $slug);
         else
           nm_display_message(i18n_r('news_manager/ERROR_DELETE'), true);
@@ -127,14 +127,14 @@ function nm_restore_post($backup) {
     if (dirname(realpath(NMPOSTPATH.$current)) == realpath(NMPOSTPATH) && dirname(realpath(NMBACKUPPATH.$backup)) == realpath(NMBACKUPPATH)) // no path traversal
         if (file_exists(NMPOSTPATH . $current) && file_exists(NMBACKUPPATH . $backup))
           $status = unlink(NMPOSTPATH . $current) &&
-                    rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
+                    nm_rename_file(NMBACKUPPATH.$backup, NMPOSTPATH.$backup) &&
                     nm_update_cache();
   } else {
     # restore the deleted post
     $backup .= '.xml';
     if (dirname(realpath(NMBACKUPPATH.$backup)) == realpath(NMBACKUPPATH)) // no path traversal
         if (file_exists(NMBACKUPPATH . $backup))
-          $status = rename(NMBACKUPPATH . $backup, NMPOSTPATH . $backup) &&
+          $status = nm_rename_file(NMBACKUPPATH.$backup, NMPOSTPATH.$backup) &&
                     nm_update_cache();
   }
   if (@$status)

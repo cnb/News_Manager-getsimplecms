@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Haber Yönetim Ayarları",
-"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
+"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
 "PAGE_URL"            =>  "Haberleri görüntüleme şablonu",
 "LANGUAGE"            =>  "Haber sayfası dili:",
 "SHOW_POSTS_AS"       =>  "Haberler şu şekilde görüntülenecek",
@@ -54,7 +54,7 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Seçenekler",
 "POST_SLUG"           =>  "Kısa Ad / URL",
 "POST_TAGS"           =>  "Etiketler (virgülle ayırın)",
-"POST_DATE"           =>  "Yayın tarihi (<i>gün/ay/yıl</i>)",
+"POST_DATE"           =>  "Yayın tarihi (<i>yıl-ay-gün</i>)",
 "POST_TIME"           =>  "Yayın zamanı (<i>saat:dakika</i>)",
 "POST_PRIVATE"        =>  "Gizli haber",
 "LAST_SAVED"          =>  "Son Kaydedilme Tarihi",
@@ -82,6 +82,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Yeni Haberler",
 "SEARCH"              =>  "Arama",
 "GO_BACK"             =>  "Geri Dön",
+
+# language localization
+"LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",
 
 # date settings
 "DATE_FORMAT"         =>  "%d.%m.%Y"

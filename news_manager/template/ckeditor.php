@@ -5,10 +5,10 @@
  */
 
 
-$EDHEIGHT = defined('GSEDITORHEIGHT') ? GSEDITORHEIGHT . 'px' : '300px';
+$EDHEIGHT = defined('GSEDITORHEIGHT') ? GSEDITORHEIGHT.'px' : '300px';
 $EDTOOL = defined('GSEDITORTOOL') ? GSEDITORTOOL : 'basic';
 $EDLANG = defined('GSEDITORLANG') ? GSEDITORLANG : i18n_r('CKEDITOR_LANG');
-$EDOPTIONS = defined('GSEDITOROPTIONS') && trim(GSEDITOROPTIONS) != '' ? ', ' . GSEDITOROPTIONS : '';
+$EDOPTIONS = defined('GSEDITOROPTIONS') && trim(GSEDITOROPTIONS) != '' ? ', '.GSEDITOROPTIONS : '';
 
 if ($EDTOOL == 'advanced') {
   $TOOLBAR = "
@@ -41,7 +41,7 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
           <?php
         }
         ?>
-        entities : true,
+        entities : false,
         uiColor : '#FFFFFF',
         height: '<?php echo $EDHEIGHT; ?>',
         baseHref : '<?php echo $SITEURL; ?>',
@@ -58,7 +58,7 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
       });
     </script>
     <?php
-    ckeditor_add_page_link();
+    //ckeditor_add_page_link(); // "Link to local page" (Link Type dropdown)
   }
 }
 

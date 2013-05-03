@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "The post has been restored.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Note:</b> Vous devez probablement mettre à jour votre fichier <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a>!",
+"UPDATE_HTACCESS"     =>  "<b>Note:</b> Vous devez probablement mettre Ã  jour votre fichier <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a>!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Param&egrave;tres",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Param&eacute;tres de News Manager",
-"DOCUMENTATION"       =>  "Pour plus d'informations sur ces param&egrave;tres, visitez la <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">page de documentation</a>.",
+"DOCUMENTATION"       =>  "Pour plus d'informations sur ces param&egrave;tres, visitez la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">page de documentation</a>.",
 "PAGE_URL"            =>  "Page o&ugrave; afficher les Billets",
 "LANGUAGE"            =>  "Language used on News Page",
 "SHOW_POSTS_AS"       =>  "Les billets sur la page News sont pr&eacute;sent&eacute;s comme",
@@ -54,7 +54,7 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Options du Billet",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (S&eacute;parez les tags avec des virgules)",
-"POST_DATE"           =>  "Publish date (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Billet Priv&eacute;",
 "LAST_SAVED"          =>  "Derni&egrave;re sauvegarde",
@@ -82,6 +82,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Billets plus r&eacute;cents",
 "SEARCH"              =>  "Recherche",
 "GO_BACK"             =>  "Retourner &agrave; la page pr&eacute;c&eacute;dente",
+
+# language localization
+"LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",
 
 # date settings
 "DATE_FORMAT"         =>  "%e %b %Y"

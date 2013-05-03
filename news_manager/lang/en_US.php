@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Settings",
-"DOCUMENTATION"       =>  "For more information on these settings, visit the <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">documentation page</a>.",
+"DOCUMENTATION"       =>  "For more information on these settings, visit the <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentation page</a>.",
 "PAGE_URL"            =>  "Page to display posts",
 "LANGUAGE"            =>  "Language used on News Page",
 "SHOW_POSTS_AS"       =>  "Posts on News Page are shown as",
@@ -54,10 +54,15 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Post Options",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (separate tags with commas)",
-"POST_DATE"           =>  "Publish date (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Post is private",
 "LAST_SAVED"          =>  "Last Saved",
+
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",
@@ -82,6 +87,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Newer Posts",
 "SEARCH"              =>  "Search",
 "GO_BACK"             =>  "Go back to the previous page",
+
+# language localization
+"LOCALE"              =>  "en_US.utf8,en.utf8,en_US.UTF-8,en.UTF-8,en_US,en",
 
 # date settings
 "DATE_FORMAT"         =>  "%b %e, %Y"

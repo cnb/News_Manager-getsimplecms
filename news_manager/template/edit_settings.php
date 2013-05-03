@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('IN_GS')) {die('you cannot load this page directly.');}
 
 /**
  * News Manager edit settings template
@@ -15,6 +15,7 @@
       <label for="page-url"><?php i18n('news_manager/PAGE_URL'); ?>:</label>
       <select class="text" name="page-url">
       <?php
+      if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
       $pages = get_available_pages();
       foreach ($pages as $page) {
         $slug = $page['slug'];
@@ -74,7 +75,7 @@
     </p>
   </div>
   <div class="clear"></div>
-  <?php if ($PRETTYURLS == 1) { ?>
+  <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || strpos($PERMALINK,'?') === false) )  { ?>
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
     <label for="pretty-urls"><?php i18n('news_manager/PRETTY_URLS'); ?></label> -

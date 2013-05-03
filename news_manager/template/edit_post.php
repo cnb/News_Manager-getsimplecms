@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('IN_GS')) {die('you cannot load this page directly.');}
 
 /**
  * News Manager edit post template
@@ -88,16 +88,21 @@
 </form>
 
 <script>
+  jQuery.extend(jQuery.validator.messages, {
+    required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>",
+    dateISO: "<?php i18n('news_manager/ENTER_VALID_DATE'); ?>"
+  });
+
   $(document).ready(function(){
     $.validator.addMethod("time", function(value, element) {
         return this.optional(element) || /^([01]?[0-9]|2[0-3]):[0-5][0-9]/.test(value);
     },
-    "Please enter a valid time.")
+    "<?php i18n('news_manager/ENTER_VALID_TIME'); ?>")
 
     $("#edit").validate({
       errorClass: "invalid",
       rules: {
-        "post-date": { date: true },
+        "post-date": { dateISO: true },
         "post-time": { time: true }
       }
     })

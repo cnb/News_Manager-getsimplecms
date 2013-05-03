@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('IN_GS')) {die('you cannot load this page directly.');}
 
 /**
  * Common variables used by the GetSimple News Manager Plugin.
@@ -31,7 +31,7 @@ require_once(NMINCPATH . 'sidebar.php');
 
 # load settings
 $data = @getXML(NMSETTINGS);
-$NMPAGEURL       = isset($data->page_url) ? $data->page_url : 'index';
+$NMPAGEURL       = isset($data->page_url) ? $data->page_url : ''; // default: no slug selected
 $NMPRETTYURLS    = isset($data->pretty_urls) ? $data->pretty_urls : '';
 $NMLANG          = isset($data->language) ? $data->language : 'en_US';
 $NMSHOWEXCERPT   = isset($data->show_excerpt) ? $data->show_excerpt : '';
@@ -39,5 +39,8 @@ $NMEXCERPTLENGTH = isset($data->excerpt_length) ? $data->excerpt_length : '350';
 $NMPOSTSPERPAGE  = isset($data->posts_per_page) ? $data->posts_per_page : '8';
 $NMRECENTPOSTS   = isset($data->recent_posts) ? $data->recent_posts : '5';
 
+# load parent
+$gsdata = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
+$NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
 
 ?>

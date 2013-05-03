@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Configuración de News Manager",
-"DOCUMENTATION"       =>  "Para mayor información sobre la configuración, visitar la <a href=\"http://get-simple.info/forums/showthread.php?tid=1056\" target=\"_blank\">página de documentación</a>.",
+"DOCUMENTATION"       =>  "Para mayor información sobre la configuración, visitar la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">página de documentación</a>.",
 "PAGE_URL"            =>  "Página para mostrar entradas",
 "LANGUAGE"            =>  "Idioma utilizado en la página de noticias",
 "SHOW_POSTS_AS"       =>  "Mostrar las entradas como",
@@ -54,10 +54,15 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Opciones de la entrada",
 "POST_SLUG"           =>  "Identificador/slug/URL",
 "POST_TAGS"           =>  "Etiquetas (separadas por comas)",
-"POST_DATE"           =>  "Fecha de publicación (<i>mm/dd/yyyy</i>)",
+"POST_DATE"           =>  "Fecha de publicación (<i>aaaa-mm-dd</i>)",
 "POST_TIME"           =>  "Hora de publicación (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Entrada privada",
 "LAST_SAVED"          =>  "Guardada por última vez",
+
+# validation
+"FIELD_IS_REQUIRED"   => "Este campo es obligatorio",
+"ENTER_VALID_DATE"    => "Introducir una fecha válida / Dejar vacío para fecha actual",
+"ENTER_VALID_TIME"    => "Introducir una hora válida / Dejar vacío para hora actual",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Para activar las URLs amigables para entradas, archivos, etc., reemplazar el contenido del archivo <code>.htaccess</code> por las líneas siguientes:",
@@ -82,6 +87,9 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Entradas más recientes",
 "SEARCH"              =>  "Buscar",
 "GO_BACK"             =>  "Volver a la página anterior",
+
+# language localization
+"LOCALE"              =>  "es_ES.utf8,es.utf8,es_ES.UTF-8,es.UTF-8,es_ES,esp",
 
 # date settings
 "DATE_FORMAT"         =>  "%d.%m.%Y"

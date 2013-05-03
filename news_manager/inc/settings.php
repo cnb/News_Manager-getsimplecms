@@ -28,7 +28,7 @@ function nm_env_check() {
  * @action edit plugin configuration settings
  */
 function nm_edit_settings() {
-  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
+  global $PRETTYURLS, $PERMALINK, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
          $NMEXCERPTLENGTH, $NMPOSTSPERPAGE, $NMRECENTPOSTS;
   include(NMTEMPLATEPATH . 'edit_settings.php');
 }
@@ -87,16 +87,19 @@ function nm_settings_to_xml() {
  * @action generate a .htaccess sample config based on current settings
  */
 function nm_generate_htaccess() {
-  global $NMPAGEURL;
+  global $NMPAGEURL, $PERMALINK;
   $path = tsl(suggest_site_path(true));
   $prefix = '';
   $page =  '';
   # format prefix and page directions
   if ($NMPAGEURL != 'index') {
-    $data = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
-    $parent = $data->parent;
-    $prefix = $parent != '' ? "$parent/$NMPAGEURL/" : "$NMPAGEURL/";
-    $page = "id=$NMPAGEURL&";
+    global $NMPARENTURL;
+    if ( $NMPARENTURL != '' && ($PERMALINK == '' || strpos($PERMALINK,'%parent%') !== false) ) {
+      $prefix = $NMPARENTURL.'/'.$NMPAGEURL.'/';
+    } else {
+      $prefix = $NMPAGEURL.'/';
+    }
+    $page = 'id='.$NMPAGEURL.'&';
   }
   # generate .htaccess contents
   $htaccess = file_get_contents(GSPLUGINPATH . 'news_manager/temp.htaccess');

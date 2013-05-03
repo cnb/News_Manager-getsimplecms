@@ -11,9 +11,11 @@
  * @return array with posts
  */
 function nm_get_posts($all=false) {
+  if (!file_exists(NMPOSTCACHE))
+    nm_update_cache();
+  $data = @getXML(NMPOSTCACHE);
   $now = time();
   $posts = array();
-  $data = @getXML(NMPOSTCACHE);
   foreach ($data->item as $item) {
     if ($all || $item->private != 'Y' && strtotime($item->date) < $now)
       $posts[] = $item;
@@ -77,13 +79,25 @@ function nm_get_languages() {
  * @function nm_get_date
  * @param $format date format
  * @param $timestamp UNIX timestamp
- * @return date formatted according to $NNLANG
+ * @return date formatted according to $NMLANG
  */
 function nm_get_date($format, $timestamp) {
-  global $NMLANG;
-  $locale = setlocale(LC_TIME, null);
-  setlocale(LC_TIME, $NMLANG);
-  $date = strftime($format, $timestamp);
+  global $NMLANG, $i18n;
+  $locale = setlocale(LC_TIME, 0);
+  // setlocale(LC_TIME, $NMLANG);
+  if (array_key_exists('news_manager/LOCALE', $i18n)) {
+    setlocale(LC_TIME, preg_split('/s*,s*/', $i18n['news_manager/LOCALE']));
+  } else {
+    # no locale in language file
+    $lg = substr($NMLANG,0,2);
+    setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
+  }
+  if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+    // workaround for Windows, as strftime returns ISO-8859-1 encoded string
+    $date = utf8_encode(strftime($format, $timestamp));
+  } else {
+    $date = strftime($format, $timestamp);
+  }
   setlocale(LC_TIME, $locale);
   return $date;
 }
@@ -94,18 +108,23 @@ function nm_get_date($format, $timestamp) {
  * @return url of front-end newspage, with optional query
  */
 function nm_get_url($query=false) {
-  global $SITEURL, $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
-  $data = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
-  $url = find_url($NMPAGEURL, $data->parent);
+  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  $str = '';
+  $url = find_url($NMPAGEURL, $NMPARENTURL);
+  if (basename($_SERVER['PHP_SELF']) != 'index.php') // back end only
+    if (function_exists('find_i18n_url')) // I18N?
+      $url = find_i18n_url($NMPAGEURL, $NMPARENTURL, return_i18n_default_language());
   if ($query) {
-    if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y')
-      $url .= $query . '/';
-    elseif ($NMPAGEURL == 'index')
-      $url = $SITEURL . "index.php?$query=";
-    else
-      $url = $SITEURL . "index.php?id=$NMPAGEURL&amp;$query=";
+    if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
+      $str = $query . '/';
+      if (substr($url, -1) != '/')
+        $str = '/' . $str;
+    } else {
+      $str = (strpos($url,'?') === false)? '?' : '&amp;';
+      $str .= $query.'='; 
+    }
   }
-  return $url;
+  return $url . $str;
 }
 
 
@@ -124,6 +143,24 @@ function nm_create_dir($path) {
   return false;
 }
 
+/*******************************************************
+ * @function nm_rename_file
+ * @since 2.3.2
+ * @param $oldfile origin file
+ * @param $newfile destination file
+ * @action rename or move a file - like rename() but safer (Windows)
+ * @link http://www.php.net/manual/en/function.rename.php#56576
+ */
+function nm_rename_file($oldfile,$newfile) {
+  if (!rename($oldfile,$newfile)) {
+   if (copy ($oldfile,$newfile)) {
+	   unlink($oldfile);
+	   return TRUE;
+    }
+    return FALSE;
+  }
+  return TRUE;
+}
 
 /*******************************************************
  * @function nm_create_slug
@@ -132,6 +169,7 @@ function nm_create_dir($path) {
  */
 function nm_create_slug($str) {
   global $i18n;
+  $str = trim($str);
   if (isset($i18n['TRANSLITERATION']) && is_array($translit=$i18n['TRANSLITERATION']) && count($translit>0)) {
     $str = str_replace(array_keys($translit),array_values($translit),$str);
   }
@@ -167,7 +205,8 @@ function nm_create_excerpt($content) {
 function nm_i18n_merge() {
   global $NMLANG;
   if (isset($NMLANG) && $NMLANG != '') {
-    include(NMLANGPATH . "$NMLANG.php");
+    if (dirname(realpath(NMLANGPATH.$NMLANG.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
+    include(NMLANGPATH.$NMLANG.'.php');
     $nm_i18n = $i18n;
     global $i18n;
     foreach ($nm_i18n as $code=>$text)
