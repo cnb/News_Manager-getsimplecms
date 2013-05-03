@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Privát bejegyzés",
 "LAST_SAVED"          =>  "Utoljára elmentve",
 
+# validation
+"FIELD_IS_REQUIRED"   => "A mező kitöltése kötelező",
+"ENTER_VALID_DATE"    => "Kérlek, adj meg egy érvényes dátumot / Hagyd üresen az aktuális dátumhoz",
+"ENTER_VALID_TIME"    => "Kérlek, adj meg egy érvényes időpontot / Hagyd üresen az aktuális időponthoz",
+
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",
 "GO_BACK_WHEN_DONE"   =>  "When you are done with this page, click the button below to go back to the main panel.",
