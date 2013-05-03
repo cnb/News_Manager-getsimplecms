@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Bericht Is Priv&#233;",
 "LAST_SAVED"          =>  "Laatst Bijgewerkt",
 
+# validation
+"FIELD_IS_REQUIRED"   => "Dit veld is verplicht"
+"ENTER_VALID_DATE"    => "Vul een geldige datum in / Laat leeg voor de huidige datum"
+"ENTER_VALID_TIME"    => "Vul een geldige tijd in / Laat leeg voor de huidige tijd"
+
 # htaccess
 "HTACCESS_HELP"       =>  "Vervang voor het gebruik van Fancy URLs voor berichten, archieven, etc. de inhoud van het <code>.htaccess</code> bestand met onderstaande regels.",
 "GO_BACK_WHEN_DONE"   =>  "Klik op onderstaande knop om terug te gaan naar het berichten paneel.",
