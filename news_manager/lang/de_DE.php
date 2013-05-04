@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Beitrag ist privat",
 "LAST_SAVED"          =>  "Zuletzt gesichert",
 
+# validation
+"FIELD_IS_REQUIRED"   => "Dieses Feld muß ausgefüllt werden",
+"ENTER_VALID_DATE"    => "Geben Sie bitte ein gültiges Datum ein / Leerlassen für aktuelles Datum",
+"ENTER_VALID_TIME"    => "Geben Sie bitte eine gültige Zeit ein / Leerlassen für aktuelle Zeit",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Um Fancy URLs für Beiträge, Archive etc. zu aktivieren, ersetzen Sie den Inhalt der aktiven <code>.htaccess</code> -Datei mit dem unten angezeigten Inhalt.",
 "GO_BACK_WHEN_DONE"   =>  "Klicken Sie dann auf den untenstehenden Button um zur vorigen Seite zurückzukehren.",
