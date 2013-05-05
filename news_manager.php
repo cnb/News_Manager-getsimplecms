@@ -39,6 +39,7 @@ add_action('index-pretemplate', 'nm_frontend_init');
 if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
   add_action('sitemap-additem', 'nm_sitemap_include');
 }
+add_action('plugin-hook', 'nm_patch_plugin_management');
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {

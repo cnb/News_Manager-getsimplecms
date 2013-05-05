@@ -286,5 +286,15 @@ function nm_display_message($msg, $error=false, $backup=null) {
   }
 }
 
+/*******************************************************
+ * @function nm_patch_plugin_management
+ * @action hack: replace link to Extend plugin page in Plugin Management
+ * @since 2.4
+ */
+function nm_patch_plugin_management() {
+  global $table;
+  if ($table)
+    $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
+}
 
 ?>
