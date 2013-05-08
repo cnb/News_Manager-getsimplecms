@@ -172,9 +172,9 @@ function nm_create_dir($path) {
  */
 function nm_rename_file($oldfile,$newfile) {
   if (!rename($oldfile,$newfile)) {
-   if (copy ($oldfile,$newfile)) {
-	   unlink($oldfile);
-	   return TRUE;
+    if (copy ($oldfile,$newfile)) {
+      unlink($oldfile);
+      return TRUE;
     }
     return FALSE;
   }
@@ -263,7 +263,7 @@ function nm_sitemap_include() {
 function nm_header_include() {
   if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
     if (!function_exists('register_script')) {
-	  // for GetSimple 3.0
+      // for GetSimple 3.0
       echo '<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
     }
   ?>
@@ -298,9 +298,9 @@ function nm_display_message($msg, $error=false, $backup=null) {
         $(".updated, .error").fadeOut(500).fadeIn(500);
       });
     </script>
-	<noscript>
-	  <div class="<?php echo $error ? 'error' : 'updated'; ?>" style="display:block;"><?php echo $msg; ?></div>
-	</noscript>
+    <noscript>
+      <div class="<?php echo $error ? 'error' : 'updated'; ?>" style="display:block;"><?php echo $msg; ?></div>
+    </noscript>
     <?php
   }
 }
