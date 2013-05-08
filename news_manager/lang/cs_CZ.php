@@ -83,10 +83,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Nenalezeny žádné příspěvky.",
 "PUBLISHED"           =>  "Publikováno",
 "TAGS"                =>  "Tagy",
-"OLDER_POSTS"         =>  "Starší příspěvky",
-"NEWER_POSTS"         =>  "Novější příspěvky",
+"OLDER_POSTS"         =>  "&larr; Starší příspěvky",
+"NEWER_POSTS"         =>  "Novější příspěvky &rarr;",
 "SEARCH"              =>  "Hledat",
-"GO_BACK"             =>  "Zpět na předchozí stránku",
+"GO_BACK"             =>  "&lt;&lt; Zpět na předchozí stránku",
 
 # language localization
 "LOCALE"              =>  "cs_CZ.utf8,cs.utf8,cs_CZ.UTF-8,cs.UTF-8,cs_CZ,cs",

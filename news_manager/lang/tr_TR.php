@@ -83,10 +83,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Henüz bir haber yayınlanmadı.",
 "PUBLISHED"           =>  "Gönderim Tarihi:",
 "TAGS"                =>  "Etiketler",
-"OLDER_POSTS"         =>  "Eski Haberler",
-"NEWER_POSTS"         =>  "Yeni Haberler",
+"OLDER_POSTS"         =>  "&larr; Eski Haberler",
+"NEWER_POSTS"         =>  "Yeni Haberler &rarr;",
 "SEARCH"              =>  "Arama",
-"GO_BACK"             =>  "Geri Dön",
+"GO_BACK"             =>  "&lt;&lt; Geri Dön",
 
 # language localization
 "LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",

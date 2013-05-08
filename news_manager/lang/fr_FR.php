@@ -78,10 +78,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Aucun billet n'a encore &eacute;t&eacute; publi&eacute;.",
 "PUBLISHED"           =>  "Publi&eacute; le",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Billets moins r&eacute;cents",
-"NEWER_POSTS"         =>  "Billets plus r&eacute;cents",
+"OLDER_POSTS"         =>  "&larr; Billets moins r&eacute;cents",
+"NEWER_POSTS"         =>  "Billets plus r&eacute;cents &rarr;",
 "SEARCH"              =>  "Recherche",
-"GO_BACK"             =>  "Retourner &agrave; la page pr&eacute;c&eacute;dente",
+"GO_BACK"             =>  "&lt;&lt; Retourner &agrave; la page pr&eacute;c&eacute;dente",
 
 # language localization
 "LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",

@@ -78,10 +78,10 @@ $i18n = array(
 "NO_POSTS"            =>  "No hay post publicado todavia.",
 "PUBLISHED"           =>  "Publicado el",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "anterior",
-"NEWER_POSTS"         =>  "siguiente",
+"OLDER_POSTS"         =>  "&larr; anterior",
+"NEWER_POSTS"         =>  "siguiente &rarr;",
 "SEARCH"              =>  "Buscar",
-"GO_BACK"             =>  "Volver a la página anterior",
+"GO_BACK"             =>  "&lt;&lt; Volver a la página anterior",
 
 # language localization
 "LOCALE"              =>  "es_ES.utf8,es.utf8,es_ES.UTF-8,es.UTF-8,es_ES,esp",

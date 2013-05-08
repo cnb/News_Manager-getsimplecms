@@ -83,10 +83,10 @@ $i18n = array(
 "NO_POSTS"            =>  "No se han encontrado entradas.",
 "PUBLISHED"           =>  "Publicada el",
 "TAGS"                =>  "Etiquetas",
-"OLDER_POSTS"         =>  "Entradas más antiguas",
-"NEWER_POSTS"         =>  "Entradas más recientes",
+"OLDER_POSTS"         =>  "&larr; Más antiguas",
+"NEWER_POSTS"         =>  "Más recientes &rarr;",
 "SEARCH"              =>  "Buscar",
-"GO_BACK"             =>  "Volver a la página anterior",
+"GO_BACK"             =>  "&lt;&lt; Volver a la página anterior",
 
 # language localization
 "LOCALE"              =>  "es_ES.utf8,es.utf8,es_ES.UTF-8,es.UTF-8,es_ES,esp",

@@ -83,10 +83,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Er zijn geen berichten gevonden.",
 "PUBLISHED"           =>  "Gepubliceerd op",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Oudere Berichten",
-"NEWER_POSTS"         =>  "Nieuwere Berichten",
+"OLDER_POSTS"         =>  "&larr; Oudere Berichten",
+"NEWER_POSTS"         =>  "Nieuwere Berichten &rarr;",
 "SEARCH"              =>  "Zoek",
-"GO_BACK"             =>  "Ga terug naar de vorige pagina",
+"GO_BACK"             =>  "&lt;&lt; Ga terug naar de vorige pagina",
 
 # language localization
 "LOCALE"              =>  "nl_NL.utf8,nl.utf8,nl_NL.UTF-8,nl.UTF-8,nl_NL,nl",

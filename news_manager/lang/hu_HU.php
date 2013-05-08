@@ -83,10 +83,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Nincsenek bejegyzések.",
 "PUBLISHED"           =>  "Közzétéve ekkor",
 "TAGS"                =>  "Cimkék",
-"OLDER_POSTS"         =>  "Régebbi bejegyzések",
-"NEWER_POSTS"         =>  "Újabb bejegyzések",
+"OLDER_POSTS"         =>  "&larr; Régebbi bejegyzések",
+"NEWER_POSTS"         =>  "Újabb bejegyzések &rarr;",
 "SEARCH"              =>  "Keresés",
-"GO_BACK"             =>  "Vissza az előző oldalra",
+"GO_BACK"             =>  "&lt;&lt; Vissza az előző oldalra",
 
 # language localization
 "LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",

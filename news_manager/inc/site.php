@@ -127,7 +127,7 @@ function nm_show_post($slug, $excerpt=false) {
       }
       # show "go back" link, if required
       if (strstr($_SERVER['QUERY_STRING'], "post=$slug")) {
-        echo '<p class="nm_post_back"><a href="javascript:history.back()">&lt;&lt; ';
+        echo '<p class="nm_post_back"><a href="javascript:history.back()">';
         i18n('news_manager/GO_BACK');
         echo '</a></p>';
       }
@@ -153,7 +153,7 @@ function nm_show_navigation($index, $total) {
     ?>
     <div class="left">
       <a href="<?php echo $url . ($index+1); ?>">
-        &larr; <?php i18n('news_manager/OLDER_POSTS'); ?>
+        <?php i18n('news_manager/OLDER_POSTS'); ?>
       </a>
     </div>
     <?php
@@ -162,7 +162,7 @@ function nm_show_navigation($index, $total) {
     ?>
     <div class="right">
       <a href="<?php echo ($index > 1) ? $url . ($index-1) : substr($url, 0, -6); ?>">
-        <?php i18n('news_manager/NEWER_POSTS'); ?> &rarr;
+        <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>
     <?php

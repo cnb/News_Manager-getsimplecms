@@ -84,10 +84,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Нет опубликованных записей.",
 "PUBLISHED"           =>  "Опубликовано:",
 "TAGS"                =>  "Теги",
-"OLDER_POSTS"         =>  "Назад",
-"NEWER_POSTS"         =>  "Вперед",
+"OLDER_POSTS"         =>  "&larr; Назад",
+"NEWER_POSTS"         =>  "Вперед &rarr;",
 "SEARCH"              =>  "Найти",
-"GO_BACK"             =>  "Вернуться на предыдущую страницу",
+"GO_BACK"             =>  "&lt;&lt; Вернуться на предыдущую страницу",
 
 # language localization
 "LOCALE"              =>  "ru_RU.utf8,ru.utf8,ru_RU.UTF-8,ru.UTF-8,ru_RU,ru",

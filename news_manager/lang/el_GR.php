@@ -78,10 +78,10 @@ $i18n = array(
 "NO_POSTS"            =>  "Δεν έχουν δημοσιευτίε άρθρα ακόμη.",
 "PUBLISHED"           =>  "Δημοσιεύτηκε την ",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Παλαιότερα Άρθρα",
-"NEWER_POSTS"         =>  "Νεώτερα Άρθρα",
+"OLDER_POSTS"         =>  "&larr; Παλαιότερα Άρθρα",
+"NEWER_POSTS"         =>  "Νεώτερα Άρθρα &rarr;",
 "SEARCH"              =>  "Αναζήτηση",
-"GO_BACK"             =>  "Πίσω στην προηγούμενη σελίδα",
+"GO_BACK"             =>  "&lt;&lt; Πίσω στην προηγούμενη σελίδα",
 
 # language localization
 "LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",
