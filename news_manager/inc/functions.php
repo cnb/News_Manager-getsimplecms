@@ -206,14 +206,19 @@ function nm_create_slug($str) {
 function nm_create_excerpt($content) {
   global $NMEXCERPTLENGTH;
   $len = intval($NMEXCERPTLENGTH);
-  $content = strip_tags($content);
-  if (strlen($content) > $len) {
-    if (function_exists('mb_substr'))
-      $content = trim(mb_substr($content, 0, $len, 'UTF-8')) . ' [...]';
-    else
-      $content = trim(substr($content, 0, $len)) . ' [...]';
+  if ($len == 0) {
+    return '';
+  } else {
+    $content = strip_tags($content);
+    if (strlen($content) > $len) {
+      if (function_exists('mb_substr'))
+        $content = trim(mb_substr($content, 0, $len, 'UTF-8'));
+      else
+        $content = trim(substr($content, 0, $len));
+      $content .= ' [...]';
+    }
+    return "<p>$content</p>";
   }
-  return "<p>$content</p>";
 }
 
 
