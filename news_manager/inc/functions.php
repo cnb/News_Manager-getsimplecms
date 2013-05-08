@@ -108,12 +108,12 @@ function nm_get_date($format, $timestamp) {
  * @return url of front-end newspage, with optional query
  */
 function nm_get_url($query=false) {
-  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
   $str = '';
-  $url = find_url($NMPAGEURL, $NMPARENTURL);
+  $url = find_url($NMPAGEURL, nm_get_parent());
   if (basename($_SERVER['PHP_SELF']) != 'index.php') // back end only
     if (function_exists('find_i18n_url')) // I18N?
-      $url = find_i18n_url($NMPAGEURL, $NMPARENTURL, return_i18n_default_language());
+      $url = find_i18n_url($NMPAGEURL, nm_get_parent(), return_i18n_default_language());
   if ($query) {
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
@@ -125,6 +125,25 @@ function nm_get_url($query=false) {
     }
   }
   return $url . $str;
+}
+
+/*******************************************************
+ * @function nm_get_parent
+ * @return front-end newspage's parent slug
+ * @since 2.4.0
+ */
+function nm_get_parent() {
+  global $NMPARENTURL, $NMPAGEURL;
+  if ($NMPARENTURL == '?') {
+    global $pagesArray;
+    if ($pagesArray) {
+      $NMPARENTURL = returnPageField($NMPAGEURL, 'parent');
+    } else {
+      $gsdata = getXML(GSDATAPAGESPATH.$NMPAGEURL.'.xml');
+      $NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
+    }
+  }
+  return $NMPARENTURL;
 }
 
 
@@ -289,7 +308,7 @@ function nm_display_message($msg, $error=false, $backup=null) {
 /*******************************************************
  * @function nm_patch_plugin_management
  * @action hack: replace link to Extend plugin page in Plugin Management
- * @since 2.4
+ * @since 2.4.0
  */
 function nm_patch_plugin_management() {
   global $table;
