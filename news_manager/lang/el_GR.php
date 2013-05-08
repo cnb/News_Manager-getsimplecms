@@ -82,6 +82,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Νεώτερα Άρθρα &rarr;",
 "SEARCH"              =>  "Αναζήτηση",
 "GO_BACK"             =>  "&lt;&lt; Πίσω στην προηγούμενη σελίδα",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",

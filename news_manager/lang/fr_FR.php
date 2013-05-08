@@ -82,6 +82,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Billets plus r&eacute;cents &rarr;",
 "SEARCH"              =>  "Recherche",
 "GO_BACK"             =>  "&lt;&lt; Retourner &agrave; la page pr&eacute;c&eacute;dente",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",

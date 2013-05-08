@@ -215,7 +215,7 @@ function nm_create_excerpt($content) {
         $content = trim(mb_substr($content, 0, $len, 'UTF-8'));
       else
         $content = trim(substr($content, 0, $len));
-      $content .= ' [...]';
+      $content .= i18n_r('news_manager/ELLIPSIS');
     }
     return "<p>$content</p>";
   }

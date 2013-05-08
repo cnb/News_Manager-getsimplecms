@@ -87,6 +87,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Novější příspěvky &rarr;",
 "SEARCH"              =>  "Hledat",
 "GO_BACK"             =>  "&lt;&lt; Zpět na předchozí stránku",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "cs_CZ.utf8,cs.utf8,cs_CZ.UTF-8,cs.UTF-8,cs_CZ,cs",

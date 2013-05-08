@@ -87,6 +87,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Yeni Haberler &rarr;",
 "SEARCH"              =>  "Arama",
 "GO_BACK"             =>  "&lt;&lt; Geri Dön",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",

@@ -87,6 +87,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Nieuwere Berichten &rarr;",
 "SEARCH"              =>  "Zoek",
 "GO_BACK"             =>  "&lt;&lt; Ga terug naar de vorige pagina",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "nl_NL.utf8,nl.utf8,nl_NL.UTF-8,nl.UTF-8,nl_NL,nl",

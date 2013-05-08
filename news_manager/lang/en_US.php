@@ -87,6 +87,7 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Newer Posts &rarr;",
 "SEARCH"              =>  "Search",
 "GO_BACK"             =>  "&lt;&lt; Go back to the previous page",
+"ELLIPSIS"            =>  " [...]",
 
 # language localization
 "LOCALE"              =>  "en_US.utf8,en.utf8,en_US.UTF-8,en.UTF-8,en_US,en",
