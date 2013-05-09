@@ -19,7 +19,7 @@ $i18n = array(
 # success messages
 "SUCCESS_SAVE"        =>  "Die Änderungen wurden gespeichert.",
 "SUCCESS_DELETE"      =>  "Der Beitrag wurde gelöscht.",
-"SUCCESS_RESTORE"     =>  "The post has been restored.",
+"SUCCESS_RESTORE"     =>  "Der Beitrag wurde gespeichert.",
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Achtung:</b> Sie sollten die Datei <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> aktualisieren!",
