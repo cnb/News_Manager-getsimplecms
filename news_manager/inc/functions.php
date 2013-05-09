@@ -224,14 +224,19 @@ function nm_create_excerpt($content) {
 
 /*******************************************************
  * @function nm_i18n_merge
- * @action update the $i18n language array
+ * @action update the $i18n language array (frontend)
  */
 function nm_i18n_merge() {
   global $NMLANG;
   if (isset($NMLANG) && $NMLANG != '') {
     if (dirname(realpath(NMLANGPATH.$NMLANG.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
     include(NMLANGPATH.$NMLANG.'.php');
-    $nm_i18n = $i18n;
+    global $nm_i18n;
+    if ($nm_i18n) {
+      $nm_i18n = array_merge($i18n, $nm_i18n); // merge custom array
+    } else {    
+      $nm_i18n = $i18n;
+    }
     global $i18n;
     foreach ($nm_i18n as $code=>$text)
       $i18n['news_manager/' . $code] = $text;
