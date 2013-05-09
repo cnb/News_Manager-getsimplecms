@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Το Άρθρο είναι Ιδιωτικό (κρυφό)",
 "LAST_SAVED"          =>  "Τελευτία Αποθήκευση",
 
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Για να ερνεργοποιήσετε τα Fancy URLs για τα Άρθρα, Αrchives, κλπ., αντικαταστήστε τα περιεχόμενα του αρχείου <code>.htaccess</code> με τις γραμμές παρκάτω.",
 "GO_BACK_WHEN_DONE"   =>  "Όταν τελειώσετε με αυτή τη σελίδα, πατήστε το κουμπί παρακάτων για να πάτε στο main panel.",

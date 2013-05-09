@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Post zaznaczony jako prywatny",
 "LAST_SAVED"          =>  "Ostatnio zapisane",
 
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Aby włączyć używanie przyjaznych adresów dla postów, archiwum itp. zmień zawartość pliku <code>.htaccess</code> zna poniższe linie.",
 "GO_BACK_WHEN_DONE"   =>  "Gdy skończysz kliknij przycisk poniżej aby wrócić do głównego panelu.",

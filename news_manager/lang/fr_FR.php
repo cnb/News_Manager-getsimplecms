@@ -59,6 +59,11 @@ $i18n = array(
 "POST_PRIVATE"        =>  "Billet Priv&eacute;",
 "LAST_SAVED"          =>  "Derni&egrave;re sauvegarde",
 
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Pour activer la redirection d'URLs pour les billets, archives, etc, remplacez le contenu de votre fichier <code>.htaccess</code> avec les lignes ci-dessous.",
 "GO_BACK_WHEN_DONE"   =>  "Lorsque vous avez termin&eacute; avec cette page, cliquez sur le bouton ci-dessous pour retourner au panneau principal.",
