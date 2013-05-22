@@ -117,7 +117,7 @@ function nm_frontend_init() {
     }
     $content = ob_get_contents();
     ob_end_clean();
-    $content = addslashes(htmlspecialchars($content, ENT_NOQUOTES, 'UTF-8'));
+    $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
   }
 }
 
