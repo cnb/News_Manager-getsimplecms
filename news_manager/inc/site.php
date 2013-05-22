@@ -38,11 +38,9 @@ function nm_show_page($index=0) {
 function nm_show_archive($archive) {
   $archives = nm_get_archives();
   if (array_key_exists($archive, $archives)) {
-    global $NMSHOWEXCERPT;
-    $showexcerpt = ($NMSHOWEXCERPT == 'Y');
     $posts = $archives[$archive];
     foreach ($posts as $slug)
-      nm_show_post($slug, $showexcerpt);
+      nm_show_post($slug, true);
    }
 }
 
@@ -55,11 +53,9 @@ function nm_show_archive($archive) {
 function nm_show_tag($tag) {
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
-    global $NMSHOWEXCERPT;
-    $showexcerpt = ($NMSHOWEXCERPT == 'Y');
     $posts = $tags[$tag];
     foreach ($posts as $slug)
-      nm_show_post($slug, $showexcerpt);
+      nm_show_post($slug, true);
   }
 }
 
