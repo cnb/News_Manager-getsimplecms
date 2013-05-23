@@ -209,6 +209,8 @@ function nm_create_excerpt($content) {
   if ($len == 0) {
     return '';
   } else {
+    $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
+    $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
     $content = strip_tags($content);
     if (strlen($content) > $len) {
       if (function_exists('mb_substr'))
