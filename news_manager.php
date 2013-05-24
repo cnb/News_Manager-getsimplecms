@@ -96,7 +96,6 @@ function nm_frontend_init() {
   $url = strval(get_page_slug(false));
   if ($url == $NMPAGEURL) {
     global $content;
-    $content = '';
     ob_start();
     if (isset($_POST['search'])) {
       nm_show_search_results();
