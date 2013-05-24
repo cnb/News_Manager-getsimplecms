@@ -95,7 +95,9 @@ function nm_frontend_init() {
   nm_i18n_merge();
   $url = strval(get_page_slug(false));
   if ($url == $NMPAGEURL) {
-    global $content;
+    global $content, $metad;
+    $metad_orig = ($metad == '' ? ' ' : $metad);
+    $metad = ' ';
     ob_start();
     if (isset($_POST['search'])) {
       nm_show_search_results();
@@ -112,6 +114,7 @@ function nm_frontend_init() {
       $index = $_GET['page'];
       nm_show_page($index);
     } else {
+      $metad = $metad_orig;
       nm_show_page();
     }
     $content = ob_get_contents();
