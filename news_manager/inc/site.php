@@ -121,8 +121,13 @@ function nm_show_post($slug, $excerpt=false) {
         }
         echo '</p>';
       }
-      # show "go back" link, if required
+      
+      # single post page?
       if (strstr($_SERVER['QUERY_STRING'], "post=$slug")) {
+        # store post title
+        global $NMPOSTTITLE;
+        $NMPOSTTITLE = $title;
+        # show "go back" link
         echo '<p class="nm_post_back"><a href="javascript:history.back()">';
         i18n('news_manager/GO_BACK');
         echo '</a></p>';
@@ -176,19 +181,17 @@ function nm_show_navigation($index, $total) {
  * param $before Text to place before the title. Defaults to ''
  * param $after Text to place after the title. Defaults to ''
  * param $echo Display (true) or return (false)
- * @action Display or return the post title. Returns false if not on front-end post page
+ * @action Display or return the post title. Returns false if not on single post page
  */
 function nm_post_title($before='', $after='', $echo=true) {
   global $NMPAGEURL;
   $title = false;
   if (isset($_GET['post']) && strval(get_page_slug(false)) == $NMPAGEURL) {
-    $file = NMPOSTPATH . $_GET['post'] . '.xml';
-    if (dirname(realpath($file)) == realpath(NMPOSTPATH)) { // no path traversal
-      $post = @getXML($file);
-      if (!empty($post) && $post->private != 'Y') {
-        $title = $before . stripslashes($post->title) . $after;
-        if ($echo) echo $title;
-      }
+    global $NMPOSTTITLE;
+    if ($NMPOSTTITLE) {
+      # use previously read post title
+      $title = $before.$NMPOSTTITLE.$after;
+      if ($echo) echo $title;
     }
   }
   return $title;
