@@ -75,6 +75,8 @@ function nm_search() {
   ?>
   <form id="search" action="<?php echo $url; ?>" method="post">
     <input type="text" class="text" name="keywords" />
+    <!--[if IE]><input type="text" style="display: none;" disabled="disabled"
+    size="20" value="Ignore field. IE bug fix" /><![endif]-->
     <input type="submit" class="submit" name="search" value="<?php i18n('news_manager/SEARCH'); ?>" />
   </form>
   <?php
