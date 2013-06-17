@@ -66,6 +66,17 @@
       </p>
     </div>
     <div class="clear"></div>
+    <?php 
+      global $NMIMAGEINPUT;
+      if ($NMIMAGEINPUT) { ?>
+    <p>
+      <label for="post-image">Image<?php /* i18n('news_manager/POST_IMAGE'); */ ?>:</label>
+      <input class="text short" id="post-image" name="post-image" type="text" value="<?php echo $image; ?>" />
+    </p>
+    <div class="clear"></div>
+    <?php } else { ?>
+    <p><input name="post-image" type="hidden" value="<?php echo $image; ?>" /></p>
+    <?php } ?>
   </div>
   <p>
     <textarea name="post-content"><?php echo $content; ?></textarea>
