@@ -20,6 +20,7 @@ function nm_edit_post($slug) {
   $time    = !empty($data) ? date('H:i', strtotime($data->date)) : '';
   $tags    = @str_replace(',', ', ', ($data->tags));
   $private = @$data->private != '' ? 'checked' : '';
+  $image   = @stripslashes($data->image);
   $content = @stripslashes($data->content);
   # show edit post form
   include(NMTEMPLATEPATH . 'edit_post.php');
@@ -70,6 +71,7 @@ function nm_save_post() {
   $date      = $timestamp ? date('r', $timestamp) : date('r');
   $tags      = str_replace(array(' ', ',,'), array('', ','), safe_slash_html($_POST['post-tags']));
   $private   = isset($_POST['post-private']) ? 'Y' : '';
+  $image     = safe_slash_html($_POST['post-image']);
   $content   = safe_slash_html($_POST['post-content']);
   # create xml object
   $xml = new SimpleXMLExtended('<?xml version="1.0" encoding="UTF-8"?><item></item>');
@@ -81,6 +83,8 @@ function nm_save_post() {
   $obj->addCData($tags);
   $obj = $xml->addChild('private');
   $obj->addCData($private);
+  $obj = $xml->addChild('image');
+  $obj->addCData($image);
   $obj = $xml->addChild('content');
   $obj->addCData($content);
   # write data to file

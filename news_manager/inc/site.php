@@ -102,13 +102,21 @@ function nm_show_post($slug, $excerpt=false) {
     $title   = stripslashes($post->title);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
-    if ($excerpt) $content = nm_create_excerpt($content);
+    if ($excerpt) {
+      $content = nm_create_excerpt($content);
+      $image   = nm_get_image_url(stripslashes($post->image));
+    } else {
+      $image = '';
+    }
     # print post data ?>
     <div class="nm_post">
       <h3 class="nm_post_title">
         <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
       </h3>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED') . " $date"; ?></p>
+      <?php if ($image) { 
+      ?><p class="nm_post_image"><img src="<?php echo htmlspecialchars($image); ?>" /></p>
+      <?php } ?>
       <div class="nm_post_content"><?php echo $content; ?></div>
       <?php
       # print tags, if any
