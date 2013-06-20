@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Billet Priv&eacute;",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Derni&egrave;re sauvegarde",
 
 # validation
@@ -87,7 +88,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Billets plus r&eacute;cents &rarr;",
 "SEARCH"              =>  "Recherche",
 "GO_BACK"             =>  "&lt;&lt; Retourner &agrave; la page pr&eacute;c&eacute;dente",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",

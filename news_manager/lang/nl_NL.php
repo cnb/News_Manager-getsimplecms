@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Publicatiedatum (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publicatietijd (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Bericht Is Priv&#233;",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Laatst Bijgewerkt",
 
 # validation
@@ -87,7 +88,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Nieuwere Berichten &rarr;",
 "SEARCH"              =>  "Zoek",
 "GO_BACK"             =>  "&lt;&lt; Ga terug naar de vorige pagina",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "nl_NL.utf8,nl.utf8,nl_NL.UTF-8,nl.UTF-8,nl_NL,nl",

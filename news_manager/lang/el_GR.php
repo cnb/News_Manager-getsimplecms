@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Το Άρθρο είναι Ιδιωτικό (κρυφό)",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Τελευτία Αποθήκευση",
 
 # validation
@@ -87,7 +88,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Νεώτερα Άρθρα &rarr;",
 "SEARCH"              =>  "Αναζήτηση",
 "GO_BACK"             =>  "&lt;&lt; Πίσω στην προηγούμενη σελίδα",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",

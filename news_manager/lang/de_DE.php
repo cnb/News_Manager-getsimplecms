@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Datum der Veröffentlichung: (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Zeit der Veröffentlichung: (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Beitrag ist privat",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Zuletzt gesichert",
 
 # validation
@@ -87,7 +88,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Neuere Beiträge &rarr;",
 "SEARCH"              =>  "Suche",
 "GO_BACK"             =>  "&lt;&lt; Zurück zur vorherigen Seite",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "de_DE.utf8,de.utf8,de_DE.UTF-8,de.UTF-8,de_DE,de",

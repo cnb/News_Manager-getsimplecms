@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Datum publikování (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Čas publikování (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Příspěvek je soukromý",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Naposledy uloženo",
 
 # validation
@@ -87,7 +88,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Novější příspěvky &rarr;",
 "SEARCH"              =>  "Hledat",
 "GO_BACK"             =>  "&lt;&lt; Zpět na předchozí stránku",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "cs_CZ.utf8,cs.utf8,cs_CZ.UTF-8,cs.UTF-8,cs_CZ,cs",

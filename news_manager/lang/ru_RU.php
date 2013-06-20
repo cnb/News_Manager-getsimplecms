@@ -58,6 +58,7 @@ $i18n = array(
 "POST_DATE"           =>  "Дата публикации (<i>гггг-мм-дд</i>)",
 "POST_TIME"           =>  "время публикации (<i>чч:мм</i>)",
 "POST_PRIVATE"        =>  "Скрытая запись (черновик)",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Дата последнего сохранения",
 
 # validation
@@ -88,7 +89,8 @@ $i18n = array(
 "NEWER_POSTS"         =>  "Вперед &rarr;",
 "SEARCH"              =>  "Найти",
 "GO_BACK"             =>  "&lt;&lt; Вернуться на предыдущую страницу",
-"ELLIPSIS"            =>  " [...]",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "ru_RU.utf8,ru.utf8,ru_RU.UTF-8,ru.UTF-8,ru_RU,ru",
