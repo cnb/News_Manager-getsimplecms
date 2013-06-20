@@ -231,7 +231,7 @@ function nm_create_slug($str) {
  * @param $content the post content
  * @return a truncated version of the post content
  */
-function nm_create_excerpt($content) {
+function nm_create_excerpt($content, $url=false) {
   global $NMEXCERPTLENGTH;
   $len = intval($NMEXCERPTLENGTH);
   if ($len == 0) {
@@ -246,6 +246,8 @@ function nm_create_excerpt($content) {
       else
         $content = trim(substr($content, 0, $len));
       $content .= i18n_r('news_manager/ELLIPSIS');
+      if ($url)
+        $content .= '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
     }
     return "<p>$content</p>";
   }
