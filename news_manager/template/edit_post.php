@@ -70,7 +70,7 @@
       global $NMIMAGEINPUT;
       if ($NMIMAGEINPUT) { ?>
     <p>
-      <label for="post-image">Image<?php /* i18n('news_manager/POST_IMAGE'); */ ?>:</label>
+      <label for="post-image"><?php i18n('news_manager/POST_IMAGE'); ?>:</label>
       <input class="text short" id="post-image" name="post-image" type="text" value="<?php echo $image; ?>" />
     </p>
     <div class="clear"></div>
