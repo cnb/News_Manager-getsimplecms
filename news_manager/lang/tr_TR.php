@@ -57,7 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Yayın tarihi (<i>yıl-ay-gün</i>)",
 "POST_TIME"           =>  "Yayın zamanı (<i>saat:dakika</i>)",
 "POST_PRIVATE"        =>  "Gizli haber",
-"POST_IMAGE"          =>  "Image",
+"POST_IMAGE"          =>  "Resim",
 "LAST_SAVED"          =>  "Son Kaydedilme Tarihi",
 
 # validation
@@ -89,7 +89,7 @@ $i18n = array(
 "SEARCH"              =>  "Arama",
 "GO_BACK"             =>  "&lt;&lt; Geri Dön",
 "ELLIPSIS"            =>  " [...] ",
-"READ_MORE"           =>  "Read more",
+"READ_MORE"           =>  "Devamını Oku",
 
 # language localization
 "LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",
