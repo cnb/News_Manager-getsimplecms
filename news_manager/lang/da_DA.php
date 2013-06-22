@@ -57,7 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Udgivelsesdato (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Udgivelsestidspunkt (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Vent med at udgive nyhedsposten",
-"POST_IMAGE"          =>  "Image",
+"POST_IMAGE"          =>  "Billede",
 "LAST_SAVED"          =>  "Seneste udgave",
 
 # validation
@@ -89,7 +89,7 @@ $i18n = array(
 "SEARCH"              =>  "Søg",
 "GO_BACK"             =>  "&lt;&lt; Forrige side",
 "ELLIPSIS"            =>  " [...] ",
-"READ_MORE"           =>  "Read more",
+"READ_MORE"           =>  "Læs mere",
 
 # language localization
 "LOCALE"              =>  "da_DA.utf8,da.utf8,da_DA.UTF-8,da.UTF-8,da_DA,da",
