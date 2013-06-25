@@ -4,6 +4,28 @@
  * News Manager edit post template
  */
 
+ 
+# image input field (since 2.5)
+global $NMIMAGEINPUT;
+if ($NMIMAGEINPUT === true) {
+  $NMIMAGEINPUT = 2;
+} else {
+  $NMIMAGEINPUT = intval($NMIMAGEINPUT);
+  if ($NMIMAGEINPUT < 0 || $NMIMAGEINPUT > 4)
+    $NMIMAGEINPUT = 2;
+}
+if ($NMIMAGEINPUT) {
+  $imageinput = '<p>
+  <label for="post-image">'.i18n_r('news_manager/POST_IMAGE').':</label>
+  <input class="text short" id="post-image" name="post-image" type="text" value="'.$image.'" />
+  </p>
+  <div class="clear"></div>
+';
+} else {
+  $imageinput = '<input name="post-image" type="hidden" value="'.$image.'" />
+';
+}
+
 ?>
 
 <h3 class="floated">
@@ -40,6 +62,7 @@
   </p>
   <noscript><style>#metadata_window {display:block !important} </style></noscript>
   <div style="display:none;" id="metadata_window">
+  <?php if (!$NMIMAGEINPUT || $NMIMAGEINPUT == 1) echo $imageinput; ?>
     <div class="leftopt">
       <p>
         <label for="post-slug"><?php i18n('news_manager/POST_SLUG'); ?>:</label>
@@ -66,21 +89,13 @@
       </p>
     </div>
     <div class="clear"></div>
-    <?php 
-      global $NMIMAGEINPUT;
-      if ($NMIMAGEINPUT) { ?>
-    <p>
-      <label for="post-image"><?php i18n('news_manager/POST_IMAGE'); ?>:</label>
-      <input class="text short" id="post-image" name="post-image" type="text" value="<?php echo $image; ?>" />
-    </p>
-    <div class="clear"></div>
-    <?php } else { ?>
-    <p><input name="post-image" type="hidden" value="<?php echo $image; ?>" /></p>
-    <?php } ?>
+    <?php if ($NMIMAGEINPUT == 2) echo $imageinput; ?>
   </div>
+  <?php if ($NMIMAGEINPUT == 3) echo $imageinput; ?>
   <p>
     <textarea name="post-content"><?php echo $content; ?></textarea>
   </p>
+  <?php if ($NMIMAGEINPUT == 4) echo $imageinput; ?>
   <p>
     <input name="post" type="submit" class="submit" value="<?php i18n('news_manager/SAVE_POST'); ?>" />
     &nbsp;&nbsp;<?php i18n('news_manager/OR'); ?>&nbsp;&nbsp;
