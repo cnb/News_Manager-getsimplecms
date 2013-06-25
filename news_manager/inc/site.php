@@ -11,7 +11,7 @@
  * @action show posts on news page
  */
 function nm_show_page($index=0) {
-  global $NMPOSTSPERPAGE, $NMSHOWEXCERPT, $NMREADMORE;
+  global $NMPOSTSPERPAGE, $NMSHOWEXCERPT, $NMREADMORE, $NMTITLENOLINK;
   $posts = nm_get_posts();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
   if (is_numeric($index) && $index >= 0 && $index < sizeof($pages))
@@ -19,9 +19,10 @@ function nm_show_page($index=0) {
   else
     $posts = array();
   if (!empty($posts)) {
+    $titlenolink = (strpos($NMTITLENOLINK, 'main') !== false);
     $showexcerpt = ($NMSHOWEXCERPT == 'Y');
     foreach ($posts as $post)
-      nm_show_post($post->slug, $showexcerpt, $NMREADMORE);
+      nm_show_post($post->slug, $showexcerpt, $NMREADMORE, $titlenolink);
     if (sizeof($pages) > 1)
       nm_show_navigation($index, sizeof($pages));
   } else {
@@ -36,12 +37,13 @@ function nm_show_page($index=0) {
  * @action show posts by archive
  */
 function nm_show_archive($archive) {
-  global $NMREADMORE;
+  global $NMREADMORE, $NMTITLENOLINK;
   $archives = nm_get_archives();
   if (array_key_exists($archive, $archives)) {
     $posts = $archives[$archive];
+    $titlenolink = (strpos($NMTITLENOLINK, 'archive') !== false);
     foreach ($posts as $slug)
-      nm_show_post($slug, true, $NMREADMORE);
+      nm_show_post($slug, true, $NMREADMORE, $titlenolink);
    }
 }
 
@@ -52,12 +54,13 @@ function nm_show_archive($archive) {
  * @action show posts by tag
  */
 function nm_show_tag($tag) {
-  global $NMREADMORE;
+  global $NMREADMORE, $NMTITLENOLINK;
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
+    $titlenolink = (strpos($NMTITLENOLINK, 'tag') !== false);
     $posts = $tags[$tag];
     foreach ($posts as $slug)
-      nm_show_post($slug, true, $NMREADMORE);
+      nm_show_post($slug, true, $NMREADMORE, $titlenolink);
   }
 }
 
@@ -67,7 +70,7 @@ function nm_show_tag($tag) {
  * @action search posts by keyword(s)
  */
 function nm_show_search_results() {
-  global $NMREADMORE;
+  global $NMREADMORE, $NMTITLENOLINK;
   $keywords = @explode(' ', $_POST['keywords']);
   $posts = nm_get_posts();
   foreach ($keywords as $keyword) {
@@ -81,9 +84,10 @@ function nm_show_search_results() {
     $posts = $match;
   }
   if (!empty($posts)) {
+    $titlenolink = (strpos($NMTITLENOLINK, 'search') !== false);
     echo '<p>' . i18n_r('news_manager/FOUND') . '</p>';
     foreach ($posts as $post)
-      nm_show_post($post->slug, true, $NMREADMORE);
+      nm_show_post($post->slug, true, $NMREADMORE, $titlenolink);
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>';
   }
@@ -95,9 +99,10 @@ function nm_show_search_results() {
  * param $slug post slug
  * param $excerpt - if TRUE, print only a short summary
  * param $readmore - if TRUE, insert link to post after the excerpt
+ * param $titlenolink - if TRUE, display post title without link
  * @action show the requested post on front-end news page
  */
-function nm_show_post($slug, $excerpt=false, $readmore=false) {
+function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false) {
   $file = NMPOSTPATH . "$slug.xml";
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
@@ -115,7 +120,12 @@ function nm_show_post($slug, $excerpt=false, $readmore=false) {
     # print post data ?>
     <div class="nm_post">
       <h3 class="nm_post_title">
-        <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
+        <?php 
+        if ($titlenolink)
+          echo $title;
+        else
+          echo '<a href="',$url,'">',$title,'</a>';
+        ?>
       </h3>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED') . " $date"; ?></p>
       <?php if ($image) { 
