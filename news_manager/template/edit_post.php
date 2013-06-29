@@ -4,7 +4,7 @@
  * News Manager edit post template
  */
 
- 
+
 # image input field (since 2.5)
 global $NMIMAGEINPUT;
 if ($NMIMAGEINPUT === true) {
@@ -25,13 +25,13 @@ if ($NMIMAGEINPUT) {
       function fill_image(url) {
         $('#post-image').val(url);
       }
-      $(function() { 
+      $(function() {
         $('#browse-image').click(function(e) {
           e.preventDefault();
           window.open('".$SITEURL."plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
         });
       });
-    </script>  
+    </script>
 ";
 } else {
   $imageinput = '<input name="post-image" type="hidden" value="'.$image.'" />
@@ -103,7 +103,7 @@ if ($NMIMAGEINPUT) {
     <div class="clear"></div>
     <?php if ($NMIMAGEINPUT == 2) echo $imageinput; ?>
   </div>
-  <?php if ($NMIMAGEINPUT == 3) echo $imageinput; ?>        
+  <?php if ($NMIMAGEINPUT == 3) echo $imageinput; ?>
   <p>
     <textarea name="post-content"><?php echo $content; ?></textarea>
   </p>
