@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.5 beta 6
+Version: 2.5 beta 7
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.5 beta 6',
+  '2.5 beta 7',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -61,26 +61,26 @@ function nm_admin() {
   if (nm_env_check()) {
     # post management
     if (isset($_GET['edit'])) {
-      nm_edit_post($_GET['edit']);
+        nm_edit_post($_GET['edit']);
     } elseif (isset($_POST['post'])) {
-      nm_save_post();
-      nm_admin_panel();
+        nm_save_post();
+        nm_admin_panel();
     } elseif (isset($_GET['delete'])) {
-      nm_delete_post($_GET['delete']);
-      nm_admin_panel();
+        nm_delete_post($_GET['delete']);
+        nm_admin_panel();
     } elseif (isset($_GET['restore'])) {
-      nm_restore_post($_GET['restore']);
-      nm_admin_panel();
+        nm_restore_post($_GET['restore']);
+        nm_admin_panel();
     # settings management
     } elseif (isset($_GET['settings'])) {
-      nm_edit_settings();
+        nm_edit_settings();
     } elseif (isset($_POST['settings'])) {
-      nm_save_settings();
-      nm_admin_panel();
+        nm_save_settings();
+        nm_admin_panel();
     } elseif (isset($_GET['htaccess'])) {
-      nm_generate_htaccess();
+        nm_generate_htaccess();
     } else {
-      nm_admin_panel();
+        nm_admin_panel();
     }
   }
 }
@@ -100,24 +100,24 @@ function nm_frontend_init() {
     $metad = ' ';
     ob_start();
     if (isset($_POST['search'])) {
-      nm_show_search_results();
+        nm_show_search_results();
     } elseif (isset($_GET['archive'])) {
       $archive = $_GET['archive'];
-      nm_show_archive($archive);
+        nm_show_archive($archive);
     } elseif (isset($_GET['tag'])) {
-      $tag = $_GET['tag'];
-      nm_show_tag($tag);
+        $tag = $_GET['tag'];
+        nm_show_tag($tag);
     } elseif (isset($_GET['post'])) {
-      $slug = $_GET['post'];
-      global $NMTITLENOLINK;
-      $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
-      nm_show_post($slug, false, false, $titlenolink);
+        $slug = $_GET['post'];
+        global $NMTITLENOLINK;
+        $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
+        nm_show_post($slug, false, false, $titlenolink);
     } elseif (isset($_GET['page'])) {
-      $index = $_GET['page'];
-      nm_show_page($index);
+        $index = $_GET['page'];
+        nm_show_page($index);
     } else {
-      $metad = $metad_orig;
-      nm_show_page();
+        $metad = $metad_orig;
+        nm_show_page();
     }
     $content = ob_get_contents();
     ob_end_clean();
