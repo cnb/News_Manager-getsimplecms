@@ -26,13 +26,15 @@ function nm_get_posts($all=false) {
 
 /*******************************************************
  * @function nm_get_archives
- * @return array with monthly archives (keys) and posts (values)
+ * @return array with monthly or yearly archives (keys) and post slugs (values)
+ * @param $by month ('m') or year ('y'), default 'm' for monthly archives
  */
-function nm_get_archives() {
+function nm_get_archives($by='m') {
   $archives = array();
   $posts = nm_get_posts();
+  $datefmt = ($by == 'y') ? 'Y' : 'Ym';
   foreach ($posts as $post) {
-    $archive = date('Ym', strtotime($post->date));
+    $archive = date($datefmt, strtotime($post->date));
     $archives[$archive][] = $post->slug;
   }
   return $archives;

@@ -37,8 +37,8 @@ function nm_show_page($index=0) {
  * @action show posts by archive
  */
 function nm_show_archive($archive) {
-  global $NMREADMORE, $NMTITLENOLINK;
-  $archives = nm_get_archives();
+  global $NMREADMORE, $NMTITLENOLINK, $NMARCHIVESBY;
+  $archives = nm_get_archives($NMARCHIVESBY);
   if (array_key_exists($archive, $archives)) {
     $posts = $archives[$archive];
     $titlenolink = (strpos($NMTITLENOLINK, 'archive') !== false);
