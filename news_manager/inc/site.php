@@ -137,10 +137,11 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       if (!empty($post->tags)) {
         echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b>';
         $tags = explode(',', $post->tags);
-        foreach ($tags as $tag) {
-          $url = nm_get_url('tag') . $tag;
-          echo " <a href=\"$url\">$tag</a>";
-        }
+        foreach ($tags as $tag) 
+          if (substr($tag, 0, 1) != '_') {
+            $url = nm_get_url('tag') . $tag;
+            echo ' <a href="',$url,'">',$tag,'</a>';
+          }
         echo '</p>';
       }
       

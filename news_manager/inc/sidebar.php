@@ -63,7 +63,8 @@ function nm_list_archives() {
 function nm_list_tags() {
   $tags = array();
   foreach (nm_get_tags() as $tag=>$posts)
-    $tags[$tag] = count($posts);
+    if (substr($tag, 0, 1) != '_')
+      $tags[$tag] = count($posts);
   if (!empty($tags)) {
     $min = min($tags);
     $max = max($tags);
