@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.5 beta 7
+Version: 2.5 beta 8
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.5 beta 7',
+  '2.5 beta 8',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -43,7 +43,7 @@ add_action('plugin-hook', 'nm_patch_plugin_management');
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
-  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
+  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit']) || isset($_GET['settings']))) {
     if (!defined('GSNOCDN') || !GSNOCDN) {
       register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
     } else {
