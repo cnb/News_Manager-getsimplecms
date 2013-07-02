@@ -146,5 +146,8 @@ if ($NMIMAGEINPUT) {
     })
 
     $("#<?php echo (empty($data)) ? 'post-title' : 'metadata_toggle'; ?>").focus();
+
+    $('.submit').clone().appendTo('#sidebar');
+    $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#edit.largeform input.submit').trigger('click'); });
   });
 </script>
