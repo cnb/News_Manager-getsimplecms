@@ -92,6 +92,10 @@
 </form>
 
 <script>
+  jQuery.extend(jQuery.validator.messages, {
+    required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>"
+  });
+
   $(document).ready(function(){
     $("#settings").validate({
       errorClass: "invalid",
