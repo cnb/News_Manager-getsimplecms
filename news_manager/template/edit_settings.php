@@ -101,5 +101,8 @@
         "recent-posts": { min: 1 }
       }
     })
+    
+    $('.submit').clone().appendTo('#sidebar');
+    $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#settings.largeform input.submit').trigger('click'); });
   });
 </script>
