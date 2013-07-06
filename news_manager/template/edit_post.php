@@ -14,7 +14,12 @@ if ($NMIMAGEINPUT === true) {
   if ($NMIMAGEINPUT < 0 || $NMIMAGEINPUT > 4) $NMIMAGEINPUT = 2;
 }
 if ($NMIMAGEINPUT) {
-  global $SITEURL;
+  global $SITEURL, $NMIMAGEDIR;
+  if ($NMIMAGEDIR) {
+    $imagepath = '&path='.trim($NMIMAGEDIR, '/');
+  } else {
+    $imagepath = '';
+  }
   $imageinput = '  <p>
       <label for="post-image">'.i18n_r('news_manager/POST_IMAGE').':</label>
       <input class="text short" id="post-image" name="post-image" type="text" style="width:450px" value="'.$image.'" />
@@ -28,7 +33,7 @@ if ($NMIMAGEINPUT) {
       $(function() {
         $('#browse-image').click(function(e) {
           e.preventDefault();
-          window.open('".$SITEURL."plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
+          window.open('".$SITEURL."plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images".$imagepath."', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
         });
       });
     </script>
