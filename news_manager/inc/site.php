@@ -7,7 +7,7 @@
 
 /*******************************************************
  * @function nm_show_page
- * param $index - page index (pagination)
+ * @param $index - page index (pagination)
  * @action show posts on news page
  */
 function nm_show_page($index=0) {
@@ -33,7 +33,7 @@ function nm_show_page($index=0) {
 
 /*******************************************************
  * @function nm_show_archive
- * param $id - unique archive id
+ * @param $id - unique archive id
  * @action show posts by archive
  */
 function nm_show_archive($archive) {
@@ -50,7 +50,7 @@ function nm_show_archive($archive) {
 
 /*******************************************************
  * @function nm_show_tag
- * param $id - unique tag id
+ * @param $id - unique tag id
  * @action show posts by tag
  */
 function nm_show_tag($tag) {
@@ -96,10 +96,10 @@ function nm_show_search_results() {
 
 /*******************************************************
  * @function nm_show_post
- * param $slug post slug
- * param $excerpt - if TRUE, print only a short summary
- * param $readmore - if TRUE, insert link to post after the excerpt
- * param $titlenolink - if TRUE, display post title without link
+ * @param $slug post slug
+ * @param $excerpt - if TRUE, print only a short summary
+ * @param $readmore - if TRUE, insert link to post after the excerpt
+ * @param $titlenolink - if TRUE, display post title without link
  * @action show the requested post on front-end news page
  */
 function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false) {
@@ -166,8 +166,8 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
 
 /*******************************************************
  * @function nm_show_navigation
- * param $index - current page index
- * param $total - total number of subpages
+ * @param $index - current page index
+ * @param $total - total number of subpages
  * @action provides links to navigate between subpages
  */
 function nm_show_navigation($index, $total) {
@@ -201,9 +201,9 @@ function nm_show_navigation($index, $total) {
 
 /*******************************************************
  * @function nm_post_title
- * param $before Text to place before the title. Defaults to ''
- * param $after Text to place after the title. Defaults to ''
- * param $echo Display (true) or return (false)
+ * @param $before Text to place before the title. Defaults to ''
+ * @param $after Text to place after the title. Defaults to ''
+ * @param $echo Display (true) or return (false)
  * @action Display or return the post title. Returns false if not on single post page
  */
 function nm_post_title($before='', $after='', $echo=true) {
