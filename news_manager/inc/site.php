@@ -114,6 +114,16 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
     if ($excerpt) {
       $content = $readmore ? nm_create_excerpt($content, $url) : nm_create_excerpt($content);
       $image   = nm_get_image_url(stripslashes($post->image));
+      if ($image) {
+        global $NMIMAGES;
+        if ($NMIMAGES) {
+          $imgattr = '';
+          if (isset($NMIMAGES['alt']) && $NMIMAGES['alt'])
+            $imgattr .= ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"';
+          if (isset($NMIMAGES['title']) && $NMIMAGES['title'])
+            $imgattr .= ' title="'.htmlspecialchars($title, ENT_COMPAT).'"';
+        }
+      }
     } else {
       $image = '';
     }
@@ -129,7 +139,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       </h3>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED') . " $date"; ?></p>
       <?php if ($image) { 
-      ?><p class="nm_post_image"><img src="<?php echo htmlspecialchars($image); ?>" /></p>
+      ?><p class="nm_post_image"><img src="<?php echo htmlspecialchars($image); ?>"<?php echo $imgattr; ?> /></p>
       <?php } ?>
       <div class="nm_post_content"><?php echo $content; ?></div>
       <?php
