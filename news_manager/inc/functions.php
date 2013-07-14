@@ -244,9 +244,9 @@ function nm_create_excerpt($content, $url=false) {
     $content = strip_tags($content);
     if (strlen($content) > $len) {
       if (function_exists('mb_substr'))
-        $content = trim(mb_substr($content, 0, $len, 'UTF-8'));
+        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len), ' '));
       else
-        $content = trim(substr($content, 0, $len));
+        $content = substr($content, 0, strrpos(substr($content, 0, $len), ' '));
       $content .= i18n_r('news_manager/ELLIPSIS');
       if ($url)
         $content .= '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
