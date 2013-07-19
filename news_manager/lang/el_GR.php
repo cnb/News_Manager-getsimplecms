@@ -57,7 +57,13 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Το Άρθρο είναι Ιδιωτικό (κρυφό)",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Τελευτία Αποθήκευση",
+
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Για να ερνεργοποιήσετε τα Fancy URLs για τα Άρθρα, Αrchives, κλπ., αντικαταστήστε τα περιεχόμενα του αρχείου <code>.htaccess</code> με τις γραμμές παρκάτω.",
@@ -78,10 +84,12 @@ $i18n = array(
 "NO_POSTS"            =>  "Δεν έχουν δημοσιευτίε άρθρα ακόμη.",
 "PUBLISHED"           =>  "Δημοσιεύτηκε την ",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Παλαιότερα Άρθρα",
-"NEWER_POSTS"         =>  "Νεώτερα Άρθρα",
+"OLDER_POSTS"         =>  "&larr; Παλαιότερα Άρθρα",
+"NEWER_POSTS"         =>  "Νεώτερα Άρθρα &rarr;",
 "SEARCH"              =>  "Αναζήτηση",
-"GO_BACK"             =>  "Πίσω στην προηγούμενη σελίδα",
+"GO_BACK"             =>  "&lt;&lt; Πίσω στην προηγούμενη σελίδα",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",

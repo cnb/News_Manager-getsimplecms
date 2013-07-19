@@ -39,8 +39,7 @@ $NMEXCERPTLENGTH = isset($data->excerpt_length) ? $data->excerpt_length : '350';
 $NMPOSTSPERPAGE  = isset($data->posts_per_page) ? $data->posts_per_page : '8';
 $NMRECENTPOSTS   = isset($data->recent_posts) ? $data->recent_posts : '5';
 
-# load parent
-$gsdata = getXML(GSDATAPAGESPATH . $NMPAGEURL . '.xml');
-$NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
+# other globals
+$NMPARENTURL = '?'; // to be assigned elsewhere
 
 ?>

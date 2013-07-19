@@ -57,6 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Post is private",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Last Saved",
 
 # validation
@@ -83,10 +84,12 @@ $i18n = array(
 "NO_POSTS"            =>  "No posts have been found.",
 "PUBLISHED"           =>  "Published on",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Older Posts",
-"NEWER_POSTS"         =>  "Newer Posts",
+"OLDER_POSTS"         =>  "&larr; Older Posts",
+"NEWER_POSTS"         =>  "Newer Posts &rarr;",
 "SEARCH"              =>  "Search",
-"GO_BACK"             =>  "Go back to the previous page",
+"GO_BACK"             =>  "&lt;&lt; Go back to the previous page",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"            =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "en_US.utf8,en.utf8,en_US.UTF-8,en.UTF-8,en_US,en",

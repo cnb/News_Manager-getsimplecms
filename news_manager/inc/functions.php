@@ -26,13 +26,15 @@ function nm_get_posts($all=false) {
 
 /*******************************************************
  * @function nm_get_archives
- * @return array with monthly archives (keys) and posts (values)
+ * @return array with monthly or yearly archives (keys) and post slugs (values)
+ * @param $by month ('m') or year ('y'), default 'm' for monthly archives
  */
-function nm_get_archives() {
+function nm_get_archives($by='m') {
   $archives = array();
   $posts = nm_get_posts();
+  $datefmt = ($by == 'y') ? 'Y' : 'Ym';
   foreach ($posts as $post) {
-    $archive = date('Ym', strtotime($post->date));
+    $archive = date($datefmt, strtotime($post->date));
     $archives[$archive][] = $post->slug;
   }
   return $archives;
@@ -108,12 +110,12 @@ function nm_get_date($format, $timestamp) {
  * @return url of front-end newspage, with optional query
  */
 function nm_get_url($query=false) {
-  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS, $NMPARENTURL;
+  global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
   $str = '';
-  $url = find_url($NMPAGEURL, $NMPARENTURL);
+  $url = find_url($NMPAGEURL, nm_get_parent());
   if (basename($_SERVER['PHP_SELF']) != 'index.php') // back end only
     if (function_exists('find_i18n_url')) // I18N?
-      $url = find_i18n_url($NMPAGEURL, $NMPARENTURL, return_i18n_default_language());
+      $url = find_i18n_url($NMPAGEURL, nm_get_parent(), return_i18n_default_language());
   if ($query) {
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
@@ -127,6 +129,53 @@ function nm_get_url($query=false) {
   return $url . $str;
 }
 
+/*******************************************************
+ * @function nm_get_parent
+ * @return front-end newspage's parent slug
+ * @since 2.4.0
+ */
+function nm_get_parent() {
+  global $NMPARENTURL, $NMPAGEURL;
+  if ($NMPARENTURL == '?') {
+    global $pagesArray;
+    if ($pagesArray) {
+      $NMPARENTURL = returnPageField($NMPAGEURL, 'parent');
+    } else {
+      $gsdata = getXML(GSDATAPAGESPATH.$NMPAGEURL.'.xml');
+      $NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
+    }
+  }
+  return $NMPARENTURL;
+}
+
+/*******************************************************
+ * @function nm_get_image_url
+ * @param $pic image URL, full or relative to data/uploads/
+ * @return absolute URL of thumbnail/image as defined by $NMIMAGES settings
+ * @since 2.5
+ */
+function nm_get_image_url($pic) {
+  global $SITEURL, $NMIMAGES;
+  $url = '';
+  if (!isset($NMIMAGES['show']) || $NMIMAGES['show']) {
+    if (empty($pic) && isset($NMIMAGES['default']))
+      $pic = $NMIMAGES['default'];
+    if (!empty($pic)) {
+      $pos = strpos($pic, 'data/uploads/');
+      if ($pos === false && strpos($pic, '://')) {
+        if (!isset($NMIMAGES['external']) || $NMIMAGES['external'])
+          $url = $pic;
+      } else {
+        if ($pos !== false) $pic = substr($pic, $pos+13);
+        $w = isset($NMIMAGES['width']) ? '&w='.$NMIMAGES['width'] : '';
+        $h = isset($NMIMAGES['height']) ? '&h='.$NMIMAGES['height'] : '';
+        $c = (isset($NMIMAGES['crop']) && $NMIMAGES['crop']) ? '&c=1' : '';
+        $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
+      }
+    }
+  }
+  return $url;
+}
 
 /*******************************************************
  * @function nm_create_dir
@@ -153,9 +202,9 @@ function nm_create_dir($path) {
  */
 function nm_rename_file($oldfile,$newfile) {
   if (!rename($oldfile,$newfile)) {
-   if (copy ($oldfile,$newfile)) {
-	   unlink($oldfile);
-	   return TRUE;
+    if (copy ($oldfile,$newfile)) {
+      unlink($oldfile);
+      return TRUE;
     }
     return FALSE;
   }
@@ -184,30 +233,44 @@ function nm_create_slug($str) {
  * @param $content the post content
  * @return a truncated version of the post content
  */
-function nm_create_excerpt($content) {
+function nm_create_excerpt($content, $url=false) {
   global $NMEXCERPTLENGTH;
   $len = intval($NMEXCERPTLENGTH);
-  $content = strip_tags($content);
-  if (strlen($content) > $len) {
-    if (function_exists('mb_substr'))
-      $content = trim(mb_substr($content, 0, $len, 'UTF-8')) . ' [...]';
-    else
-      $content = trim(substr($content, 0, $len)) . ' [...]';
+  if ($len == 0) {
+    return '';
+  } else {
+    $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
+    $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
+    $content = strip_tags($content);
+    if (strlen($content) > $len) {
+      if (function_exists('mb_substr'))
+        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1), ' '));
+      else
+        $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
+      $content .= i18n_r('news_manager/ELLIPSIS');
+      if ($url)
+        $content .= '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
+    }
+    return "<p>$content</p>";
   }
-  return "<p>$content</p>";
 }
 
 
 /*******************************************************
  * @function nm_i18n_merge
- * @action update the $i18n language array
+ * @action update the $i18n language array (frontend)
  */
 function nm_i18n_merge() {
   global $NMLANG;
   if (isset($NMLANG) && $NMLANG != '') {
     if (dirname(realpath(NMLANGPATH.$NMLANG.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
     include(NMLANGPATH.$NMLANG.'.php');
-    $nm_i18n = $i18n;
+    global $nm_i18n;
+    if ($nm_i18n) {
+      $nm_i18n = array_merge($i18n, $nm_i18n); // merge custom array
+    } else {    
+      $nm_i18n = $i18n;
+    }
     global $i18n;
     foreach ($nm_i18n as $code=>$text)
       $i18n['news_manager/' . $code] = $text;
@@ -244,7 +307,7 @@ function nm_sitemap_include() {
 function nm_header_include() {
   if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
     if (!function_exists('register_script')) {
-	  // for GetSimple 3.0
+      // for GetSimple 3.0
       echo '<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
     }
   ?>
@@ -279,12 +342,22 @@ function nm_display_message($msg, $error=false, $backup=null) {
         $(".updated, .error").fadeOut(500).fadeIn(500);
       });
     </script>
-	<noscript>
-	  <div class="<?php echo $error ? 'error' : 'updated'; ?>" style="display:block;"><?php echo $msg; ?></div>
-	</noscript>
+    <noscript>
+      <div class="<?php echo $error ? 'error' : 'updated'; ?>" style="display:block;"><?php echo $msg; ?></div>
+    </noscript>
     <?php
   }
 }
 
+/*******************************************************
+ * @function nm_patch_plugin_management
+ * @action hack: replace link to Extend plugin page in Plugin Management
+ * @since 2.4.0
+ */
+function nm_patch_plugin_management() {
+  global $table;
+  if ($table)
+    $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
+}
 
 ?>

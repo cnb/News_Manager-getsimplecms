@@ -58,7 +58,13 @@ $i18n = array(
 "POST_DATE"           =>  "Дата публикации (<i>гггг-мм-дд</i>)",
 "POST_TIME"           =>  "время публикации (<i>чч:мм</i>)",
 "POST_PRIVATE"        =>  "Скрытая запись (черновик)",
+"POST_IMAGE"          =>  "Изображение",
 "LAST_SAVED"          =>  "Дата последнего сохранения",
+
+# validation
+"FIELD_IS_REQUIRED"   => "Это поле обязательно",
+"ENTER_VALID_DATE"    => "Пожалуйста, укажите желаемую дату, либо оставьте пустым для отображения теущей даты",
+"ENTER_VALID_TIME"    => "Пожалуйста, укажите желаемое время, либо оставьте пустым для отображения теущего времени",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Для включения ЧПУ (<a href='http://ru.wikipedia.org/wiki/%D0%A7%D0%9F%D0%A3_(%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82)'>человеко-понятный</a> URL) замените содержимое файла <code>.htaccess</code> следующим текстом.",
@@ -79,10 +85,12 @@ $i18n = array(
 "NO_POSTS"            =>  "Нет опубликованных записей.",
 "PUBLISHED"           =>  "Опубликовано:",
 "TAGS"                =>  "Теги",
-"OLDER_POSTS"         =>  "Назад",
-"NEWER_POSTS"         =>  "Вперед",
+"OLDER_POSTS"         =>  "&larr; Назад",
+"NEWER_POSTS"         =>  "Вперед &rarr;",
 "SEARCH"              =>  "Найти",
-"GO_BACK"             =>  "Вернуться на предыдущую страницу",
+"GO_BACK"             =>  "&lt;&lt; Вернуться на предыдущую страницу",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Читать дальше",
 
 # language localization
 "LOCALE"              =>  "ru_RU.utf8,ru.utf8,ru_RU.UTF-8,ru.UTF-8,ru_RU,ru",

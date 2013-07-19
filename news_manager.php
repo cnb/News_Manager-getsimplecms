@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.4.0 beta
+Version: 2.5 beta 8
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.4.0 beta',
+  '2.5 beta 8',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -39,10 +39,11 @@ add_action('index-pretemplate', 'nm_frontend_init');
 if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
   add_action('sitemap-additem', 'nm_sitemap_include');
 }
+add_action('plugin-hook', 'nm_patch_plugin_management');
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
-  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && isset($_GET['edit'])) {
+  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit']) || isset($_GET['settings']))) {
     if (!defined('GSNOCDN') || !GSNOCDN) {
       register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
     } else {
@@ -60,26 +61,26 @@ function nm_admin() {
   if (nm_env_check()) {
     # post management
     if (isset($_GET['edit'])) {
-      nm_edit_post($_GET['edit']);
+        nm_edit_post($_GET['edit']);
     } elseif (isset($_POST['post'])) {
-      nm_save_post();
-      nm_admin_panel();
+        nm_save_post();
+        nm_admin_panel();
     } elseif (isset($_GET['delete'])) {
-      nm_delete_post($_GET['delete']);
-      nm_admin_panel();
+        nm_delete_post($_GET['delete']);
+        nm_admin_panel();
     } elseif (isset($_GET['restore'])) {
-      nm_restore_post($_GET['restore']);
-      nm_admin_panel();
+        nm_restore_post($_GET['restore']);
+        nm_admin_panel();
     # settings management
     } elseif (isset($_GET['settings'])) {
-      nm_edit_settings();
+        nm_edit_settings();
     } elseif (isset($_POST['settings'])) {
-      nm_save_settings();
-      nm_admin_panel();
+        nm_save_settings();
+        nm_admin_panel();
     } elseif (isset($_GET['htaccess'])) {
-      nm_generate_htaccess();
+        nm_generate_htaccess();
     } else {
-      nm_admin_panel();
+        nm_admin_panel();
     }
   }
 }
@@ -94,29 +95,33 @@ function nm_frontend_init() {
   nm_i18n_merge();
   $url = strval(get_page_slug(false));
   if ($url == $NMPAGEURL) {
-    global $content;
-    $content = '';
+    global $content, $metad;
+    $metad_orig = ($metad == '' ? ' ' : $metad);
+    $metad = ' ';
     ob_start();
     if (isset($_POST['search'])) {
-      nm_show_search_results();
+        nm_show_search_results();
     } elseif (isset($_GET['archive'])) {
       $archive = $_GET['archive'];
-      nm_show_archive($archive);
+        nm_show_archive($archive);
     } elseif (isset($_GET['tag'])) {
-      $tag = $_GET['tag'];
-      nm_show_tag($tag);
+        $tag = $_GET['tag'];
+        nm_show_tag($tag);
     } elseif (isset($_GET['post'])) {
-      $slug = $_GET['post'];
-      nm_show_post($slug);
+        $slug = $_GET['post'];
+        global $NMTITLENOLINK;
+        $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
+        nm_show_post($slug, false, false, $titlenolink);
     } elseif (isset($_GET['page'])) {
-      $index = $_GET['page'];
-      nm_show_page($index);
+        $index = $_GET['page'];
+        nm_show_page($index);
     } else {
-      nm_show_page();
+        $metad = $metad_orig;
+        nm_show_page();
     }
     $content = ob_get_contents();
     ob_end_clean();
-    $content = addslashes(htmlspecialchars($content, ENT_NOQUOTES, 'UTF-8'));
+    $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
   }
 }
 
@@ -126,4 +131,3 @@ function nm_frontend_init() {
 function nm_site($content) {
   return '[deprecated]';
 }
-

@@ -57,7 +57,13 @@ $i18n = array(
 "POST_DATE"           =>  "Publicatiedatum (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publicatietijd (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Bericht Is Priv&#233;",
+"POST_IMAGE"          =>  "Afbeelding",
 "LAST_SAVED"          =>  "Laatst Bijgewerkt",
+
+# validation
+"FIELD_IS_REQUIRED"   => "Dit veld is verplicht"
+"ENTER_VALID_DATE"    => "Vul een geldige datum in / Laat leeg voor de huidige datum"
+"ENTER_VALID_TIME"    => "Vul een geldige tijd in / Laat leeg voor de huidige tijd"
 
 # htaccess
 "HTACCESS_HELP"       =>  "Vervang voor het gebruik van Fancy URLs voor berichten, archieven, etc. de inhoud van het <code>.htaccess</code> bestand met onderstaande regels.",
@@ -78,10 +84,12 @@ $i18n = array(
 "NO_POSTS"            =>  "Er zijn geen berichten gevonden.",
 "PUBLISHED"           =>  "Gepubliceerd op",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Oudere Berichten",
-"NEWER_POSTS"         =>  "Nieuwere Berichten",
+"OLDER_POSTS"         =>  "&larr; Oudere Berichten",
+"NEWER_POSTS"         =>  "Nieuwere Berichten &rarr;",
 "SEARCH"              =>  "Zoek",
-"GO_BACK"             =>  "Ga terug naar de vorige pagina",
+"GO_BACK"             =>  "&lt;&lt; Ga terug naar de vorige pagina",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Lees meer",
 
 # language localization
 "LOCALE"              =>  "nl_NL.utf8,nl.utf8,nl_NL.UTF-8,nl.UTF-8,nl_NL,nl",

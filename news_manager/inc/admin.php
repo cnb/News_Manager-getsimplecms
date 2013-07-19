@@ -50,7 +50,12 @@ function nm_admin_panel() {
           </a>
         </td>
         <td style="text-align: right;">
-          <span><?php echo $date; ?></span>
+          <?php 
+            if (strtotime($post->date) > time())
+              echo '<span style="color:#aaa">',$date,'</span>';
+            else
+              echo '<span>',$date,'</span>';
+          ?>
         </td>
         <td style="width: 20px;text-align: center;">
           <?php

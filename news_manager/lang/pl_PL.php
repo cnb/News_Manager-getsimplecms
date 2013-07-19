@@ -57,7 +57,13 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Post zaznaczony jako prywatny",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Ostatnio zapisane",
+
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Aby włączyć używanie przyjaznych adresów dla postów, archiwum itp. zmień zawartość pliku <code>.htaccess</code> zna poniższe linie.",
@@ -78,10 +84,12 @@ $i18n = array(
 "NO_POSTS"            =>  "Nie opublikowano jeszcze żadnych postów.",
 "PUBLISHED"           =>  "Opublikowano",
 "TAGS"                =>  "Tagi",
-"OLDER_POSTS"         =>  "Starsze posty",
-"NEWER_POSTS"         =>  "Nowsze posty",
+"OLDER_POSTS"         =>  "&larr; Starsze posty",
+"NEWER_POSTS"         =>  "Nowsze posty &rarr;",
 "SEARCH"              =>  "Szukaj",
-"GO_BACK"             =>  "Wróć do poprzedniej strony",
+"GO_BACK"             =>  "&lt;&lt; Wróć do poprzedniej strony",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "pl_PL.utf8,pl.utf8,pl_PL.UTF-8,pl.UTF-8,pl_PL,pl",

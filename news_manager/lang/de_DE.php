@@ -19,7 +19,7 @@ $i18n = array(
 # success messages
 "SUCCESS_SAVE"        =>  "Die Änderungen wurden gespeichert.",
 "SUCCESS_DELETE"      =>  "Der Beitrag wurde gelöscht.",
-"SUCCESS_RESTORE"     =>  "The post has been restored.",
+"SUCCESS_RESTORE"     =>  "Der Beitrag wurde gespeichert.",
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Achtung:</b> Sie sollten die Datei <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> aktualisieren!",
@@ -57,7 +57,13 @@ $i18n = array(
 "POST_DATE"           =>  "Datum der Veröffentlichung: (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Zeit der Veröffentlichung: (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Beitrag ist privat",
+"POST_IMAGE"          =>  "Bild",
 "LAST_SAVED"          =>  "Zuletzt gesichert",
+
+# validation
+"FIELD_IS_REQUIRED"   => "Dieses Feld muß ausgefüllt werden",
+"ENTER_VALID_DATE"    => "Geben Sie bitte ein gültiges Datum ein / Leerlassen für aktuelles Datum",
+"ENTER_VALID_TIME"    => "Geben Sie bitte eine gültige Zeit ein / Leerlassen für aktuelle Zeit",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Um Fancy URLs für Beiträge, Archive etc. zu aktivieren, ersetzen Sie den Inhalt der aktiven <code>.htaccess</code> -Datei mit dem unten angezeigten Inhalt.",
@@ -78,16 +84,18 @@ $i18n = array(
 "NO_POSTS"            =>  "Es wurden noch keine Beiträge veröffentlicht.",
 "PUBLISHED"           =>  "Veröffentlicht am",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Ältere Beiträge",
-"NEWER_POSTS"         =>  "Neuere Beiträge",
+"OLDER_POSTS"         =>  "&larr; Ältere Beiträge",
+"NEWER_POSTS"         =>  "Neuere Beiträge &rarr;",
 "SEARCH"              =>  "Suche",
-"GO_BACK"             =>  "Zurück zur vorherigen Seite",
+"GO_BACK"             =>  "&lt;&lt; Zurück zur vorherigen Seite",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "weiterlesen",
 
 # language localization
 "LOCALE"              =>  "de_DE.utf8,de.utf8,de_DE.UTF-8,de.UTF-8,de_DE,de",
 
 # date settings
-"DATE_FORMAT"         =>  "%e.%b %Y"
+"DATE_FORMAT"         =>  "%e. %b %Y"
 
 );
 

@@ -4,6 +4,45 @@
  * News Manager edit post template
  */
 
+
+# image input field (since 2.5)
+global $NMIMAGEINPUT;
+if ($NMIMAGEINPUT === true) {
+  $NMIMAGEINPUT = 2;
+} else {
+  $NMIMAGEINPUT = intval($NMIMAGEINPUT);
+  if ($NMIMAGEINPUT < 0 || $NMIMAGEINPUT > 4) $NMIMAGEINPUT = 2;
+}
+if ($NMIMAGEINPUT) {
+  global $SITEURL, $NMIMAGEDIR;
+  if ($NMIMAGEDIR) {
+    $imagepath = '&path='.trim($NMIMAGEDIR, '/');
+  } else {
+    $imagepath = '';
+  }
+  $imageinput = '  <p>
+      <label for="post-image">'.i18n_r('news_manager/POST_IMAGE').':</label>
+      <input class="text short" id="post-image" name="post-image" type="text" style="width:450px" value="'.$image.'" />
+      <span class="edit-nav"><a href="#" id="browse-image">'.i18n_r('SELECT_FILE').'</a></span>
+    </p>
+    <div class="clear"></div>
+    <script type="text/javascript">'."
+      function fill_image(url) {
+        $('#post-image').val(url);
+      }
+      $(function() {
+        $('#browse-image').click(function(e) {
+          e.preventDefault();
+          window.open('".$SITEURL."plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images".$imagepath."', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
+        });
+      });
+    </script>
+";
+} else {
+  $imageinput = '<input name="post-image" type="hidden" value="'.$image.'" />
+';
+}
+
 ?>
 
 <h3 class="floated">
@@ -40,6 +79,7 @@
   </p>
   <noscript><style>#metadata_window {display:block !important} </style></noscript>
   <div style="display:none;" id="metadata_window">
+  <?php if (!$NMIMAGEINPUT || $NMIMAGEINPUT == 1) echo $imageinput; ?>
     <div class="leftopt">
       <p>
         <label for="post-slug"><?php i18n('news_manager/POST_SLUG'); ?>:</label>
@@ -66,10 +106,13 @@
       </p>
     </div>
     <div class="clear"></div>
+    <?php if ($NMIMAGEINPUT == 2) echo $imageinput; ?>
   </div>
+  <?php if ($NMIMAGEINPUT == 3) echo $imageinput; ?>
   <p>
     <textarea name="post-content"><?php echo $content; ?></textarea>
   </p>
+  <?php if ($NMIMAGEINPUT == 4) echo $imageinput; ?>
   <p>
     <input name="post" type="submit" class="submit" value="<?php i18n('news_manager/SAVE_POST'); ?>" />
     &nbsp;&nbsp;<?php i18n('news_manager/OR'); ?>&nbsp;&nbsp;
@@ -108,5 +151,8 @@
     })
 
     $("#<?php echo (empty($data)) ? 'post-title' : 'metadata_toggle'; ?>").focus();
+
+    $('.submit').clone().appendTo('#sidebar');
+    $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#edit.largeform input.submit').trigger('click'); });
   });
 </script>

@@ -57,7 +57,13 @@ $i18n = array(
 "POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Billet Priv&eacute;",
+"POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Derni&egrave;re sauvegarde",
+
+# validation
+"FIELD_IS_REQUIRED"   => "This field is required",
+"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
+"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Pour activer la redirection d'URLs pour les billets, archives, etc, remplacez le contenu de votre fichier <code>.htaccess</code> avec les lignes ci-dessous.",
@@ -78,10 +84,12 @@ $i18n = array(
 "NO_POSTS"            =>  "Aucun billet n'a encore &eacute;t&eacute; publi&eacute;.",
 "PUBLISHED"           =>  "Publi&eacute; le",
 "TAGS"                =>  "Tags",
-"OLDER_POSTS"         =>  "Billets moins r&eacute;cents",
-"NEWER_POSTS"         =>  "Billets plus r&eacute;cents",
+"OLDER_POSTS"         =>  "&larr; Billets moins r&eacute;cents",
+"NEWER_POSTS"         =>  "Billets plus r&eacute;cents &rarr;",
 "SEARCH"              =>  "Recherche",
-"GO_BACK"             =>  "Retourner &agrave; la page pr&eacute;c&eacute;dente",
+"GO_BACK"             =>  "&lt;&lt; Retourner &agrave; la page pr&eacute;c&eacute;dente",
+"ELLIPSIS"            =>  " [...] ",
+"READ_MORE"           =>  "Read more",
 
 # language localization
 "LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",
