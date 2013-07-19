@@ -57,7 +57,7 @@ $i18n = array(
 "POST_DATE"           =>  "Bejegyzés dátuma (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Bejegyzés időpontja (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Privát bejegyzés",
-"POST_IMAGE"          =>  "Image",
+"POST_IMAGE"          =>  "Kép",
 "LAST_SAVED"          =>  "Utoljára elmentve",
 
 # validation
@@ -89,7 +89,7 @@ $i18n = array(
 "SEARCH"              =>  "Keresés",
 "GO_BACK"             =>  "&lt;&lt; Vissza az előző oldalra",
 "ELLIPSIS"            =>  " [...] ",
-"READ_MORE"           =>  "Read more",
+"READ_MORE"           =>  "Tovább",
 
 # language localization
 "LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",
