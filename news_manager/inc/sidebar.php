@@ -18,7 +18,7 @@ function nm_list_recent() {
     foreach ($posts as $post) {
       $url = nm_get_url('post') . $post->slug;
       $title = stripslashes($post->title);
-      echo "<li><a href=\"$url\">$title</a></li>",PHP_EOL;
+      echo '<li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
     }
     echo '</ul>',PHP_EOL;
   }
@@ -42,7 +42,7 @@ function nm_list_archives($fmt='') {
         $y = $archive;
         $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
         $url = nm_get_url('archive') . $archive;
-        echo "<li><a href=\"$url\">$title</a></li>",PHP_EOL;
+        echo '<li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
       }
     } else {
       # monthly
@@ -51,7 +51,7 @@ function nm_list_archives($fmt='') {
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
         $url = nm_get_url('archive') . $archive;
-        echo "<li><a href=\"$url\">$title</a></li>",PHP_EOL;
+        echo '<li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
       }
     }
     echo '</ul>',PHP_EOL;
@@ -74,9 +74,9 @@ function nm_list_tags() {
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag') . $tag;
       if ($min < $max && $count/$max > 0.5)
-        echo "<a class=\"large\" href=\"$url\">$tag</a> ";
+        echo '<a class="large" href="',$url,'">',$tag,'</a> ';
       else
-        echo "<a href=\"$url\">$tag</a> ";
+        echo '<a href="',$url,'">',$tag,'</a> ';
     }
   }
 }

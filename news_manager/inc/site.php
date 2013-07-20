@@ -76,7 +76,7 @@ function nm_show_search_results() {
   foreach ($keywords as $keyword) {
     $match = array();
     foreach ($posts as $post) {
-      $data = getXML(NMPOSTPATH . "$post->slug.xml");
+      $data = getXML(NMPOSTPATH.$post->slug.'.xml');
       $content = $data->title . $data->content;
       if (stripos($content, $keyword) !== false)
         $match[] = $post;
@@ -103,7 +103,7 @@ function nm_show_search_results() {
  * @action show the requested post on front-end news page
  */
 function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false) {
-  $file = NMPOSTPATH . "$slug.xml";
+  $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
   if (!empty($post) && $post->private != 'Y') {
@@ -137,7 +137,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
           echo '<a href="',$url,'">',$title,'</a>';
         ?>
       </h3>
-      <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED') . " $date"; ?></p>
+      <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
       <?php if ($image) { 
       ?><p class="nm_post_image"><img src="<?php echo htmlspecialchars($image); ?>"<?php echo $imgattr; ?> /></p>
       <?php } ?>
@@ -156,7 +156,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       }
       
       # single post page?
-      if (strstr($_SERVER['QUERY_STRING'], "post=$slug")) {
+      if (strstr($_SERVER['QUERY_STRING'], 'post='.$slug)) {
         # store post title
         global $NMPOSTTITLE;
         $NMPOSTTITLE = $title;
@@ -195,7 +195,7 @@ function nm_show_navigation($index, $total) {
   if ($index > 0) {
     ?>
     <div class="right">
-      <a href="<?php echo ($index > 1) ? $url . ($index-1) : substr($url, 0, -6); ?>">
+      <a href="<?php echo ($index > 1) ? $url.($index-1) : substr($url, 0, -6); ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>

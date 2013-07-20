@@ -251,7 +251,7 @@ function nm_create_excerpt($content, $url=false) {
       if ($url)
         $content .= '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
     }
-    return "<p>$content</p>";
+    return '<p>'.$content.'</p>';
   }
 }
 
@@ -287,9 +287,9 @@ function nm_sitemap_include() {
   if (strval($page['url']) == $NMPAGEURL) {
     $posts = nm_get_posts();
     foreach ($posts as $post) {
-      $url = nm_get_url('post') . $post->slug;
-      $file = NMPOSTPATH . "$post->slug.xml";
-      $date = makeIso8601TimeStamp(date("Y-m-d H:i:s", filemtime($file)));
+      $url = nm_get_url('post').$post->slug;
+      $file = NMPOSTPATH.$post->slug.xml;
+      $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', filemtime($file)));
       $item = $xml->addChild('url');
       $item->addChild('loc', $url);
       $item->addChild('lastmod', $date);
@@ -333,7 +333,7 @@ function nm_header_include() {
 function nm_display_message($msg, $error=false, $backup=null) {
   if (isset($msg)) {
     if (isset($backup))
-      $msg .= " <a href=\"load.php?id=news_manager&amp;restore=$backup\">" . i18n_r('UNDO') . '</a>';
+      $msg .= ' <a href="load.php?id=news_manager&amp;restore='.$backup.'">'.i18n_r('UNDO').'</a>';
     ?>
     <script type="text/javascript">
       $(function() {

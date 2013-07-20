@@ -11,7 +11,7 @@
  * @action edit or create posts
  */
 function nm_edit_post($slug) {
-  $file = NMPOSTPATH . "$slug.xml";
+  $file = NMPOSTPATH.$slug.'.xml';
   if ($slug != '' && dirname(realpath($file)) != realpath(NMPOSTPATH)) die(''); // path traversal
   # get post data, if it exists
   $data    = @getXML($file);
@@ -26,7 +26,7 @@ function nm_edit_post($slug) {
   include(NMTEMPLATEPATH . 'edit_post.php');
   if (file_exists($file)) {
     $mtime = date(i18n_r('DATE_AND_TIME_FORMAT'), filemtime($file));
-    echo '<small>' . i18n_r('news_manager/LAST_SAVED') . ": $mtime</small>";
+    echo '<small>',i18n_r('news_manager/LAST_SAVED'),': ',$mtime,'</small>';
   }
   include(NMTEMPLATEPATH . 'ckeditor.php');
 }
@@ -53,13 +53,13 @@ function nm_save_post() {
     $slug = nm_create_slug($_POST['post-title']);
     if ($slug == '') $slug = 'post';
   }
-  $file = NMPOSTPATH . "$slug.xml";
+  $file = NMPOSTPATH.$slug.'.xml';
   # do not overwrite other posts
   if (file_exists($file)) {
     $count = 1;
-    $file = NMPOSTPATH . "$slug-$count.xml";
+    $file = NMPOSTPATH.$slug.'-'.$count.'.xml';
     while (file_exists($file))
-      $file = NMPOSTPATH . "$slug-" . ++$count . '.xml';
+      $file = NMPOSTPATH.$slug.'-'.++$count.'.xml';
     $slug = basename($file, '.xml');
   }
   # create undo target if there's a backup available
@@ -101,7 +101,7 @@ function nm_save_post() {
  * @action deletes the requested post
  */
 function nm_delete_post($slug) {
-  $file = "$slug.xml";
+  $file = $slug.'.xml';
   # path traversal?
   if (dirname(realpath(NMPOSTPATH.$file)) != realpath(NMPOSTPATH)) {
     nm_display_message('<b>Error:</b> incorrect path', true); // not translated
