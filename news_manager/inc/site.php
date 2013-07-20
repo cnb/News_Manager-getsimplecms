@@ -111,10 +111,10 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
     $title   = stripslashes($post->title);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
+    $image = '';
     if ($excerpt) {
       $content = $readmore ? nm_create_excerpt($content, $url) : nm_create_excerpt($content);
       global $NMIMAGES;
-      $image = '';
       if (($NMIMAGES) && (!isset($NMIMAGES['show']) || $NMIMAGES['show'])) {
         $image = nm_get_image_url(stripslashes($post->image));
         if ($image) {
