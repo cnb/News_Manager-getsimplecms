@@ -115,9 +115,9 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       $content = $readmore ? nm_create_excerpt($content, $url) : nm_create_excerpt($content);
       $image   = nm_get_image_url(stripslashes($post->image));
       if ($image) {
+        $imgattr = '';
         global $NMIMAGES;
         if ($NMIMAGES) {
-          $imgattr = '';
           if (isset($NMIMAGES['alt']) && $NMIMAGES['alt'])
             $imgattr .= ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"';
           if (isset($NMIMAGES['title']) && $NMIMAGES['title'])
