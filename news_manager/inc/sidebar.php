@@ -87,10 +87,12 @@ function nm_list_tags() {
  * @action provide form to search posts by keyword(s)
  */
 function nm_search() {
+  global $i18n;
+  $placeholder = (isset($i18n['news_manager/SEARCH_PLACEHOLDER'])) ? $i18n['news_manager/SEARCH_PLACEHOLDER'] : '';
   $url = nm_get_url();
   ?>
   <form id="search" action="<?php echo $url; ?>" method="post">
-    <input type="text" class="text" name="keywords" />
+    <input type="text" class="text" name="keywords" value="" placeholder="<?php echo $placeholder; ?>" />
     <!--[if IE]><input type="text" style="display: none;" disabled="disabled"
     size="20" value="Ignore field. IE bug fix" /><![endif]-->
     <input type="submit" class="submit" name="search" value="<?php i18n('news_manager/SEARCH'); ?>" />
