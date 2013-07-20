@@ -28,25 +28,28 @@ function nm_list_recent() {
 /*******************************************************
  * @function nm_list_archives
  * @action print a list of archives ordered by month or year
+ * @param $fmt optional custom format (strftime), default '%B %Y' or '%Y'
  */
-function nm_list_archives() {
+function nm_list_archives($fmt='') {
   global $NMARCHIVESBY;
   $archives = array_keys(nm_get_archives($NMARCHIVESBY));
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',PHP_EOL;
     if ($NMARCHIVESBY == 'y') {
       # annual
+      if (!$fmt) $fmt = '%Y';
       foreach ($archives as $archive) {
         $y = $archive;
-        $title = nm_get_date('%Y', mktime(0, 0, 0, 1, 1, $y));
+        $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
         $url = nm_get_url('archive') . $archive;
         echo "<li><a href=\"$url\">$title</a></li>",PHP_EOL;
       }
     } else {
       # monthly
+      if (!$fmt) $fmt = '%B %Y';
       foreach ($archives as $archive) {
         list($y, $m) = str_split($archive, 4);
-        $title = nm_get_date('%B %Y', mktime(0, 0, 0, $m, 1, $y));
+        $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
         $url = nm_get_url('archive') . $archive;
         echo "<li><a href=\"$url\">$title</a></li>",PHP_EOL;
       }
