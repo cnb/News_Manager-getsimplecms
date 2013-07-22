@@ -115,17 +115,23 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       $content = $readmore ? nm_create_excerpt($content, $url) : nm_create_excerpt($content);
       $image   = nm_get_image_url(stripslashes($post->image));
       if ($image) {
-        $imgattr = '';
+        $imghtml = '';
         global $NMIMAGES;
         if ($NMIMAGES) {
           if (isset($NMIMAGES['alt']) && $NMIMAGES['alt'])
-            $imgattr .= ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"';
+            $imghtml .= ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"';
           if (isset($NMIMAGES['title']) && $NMIMAGES['title'])
-            $imgattr .= ' title="'.htmlspecialchars($title, ENT_COMPAT).'"';
+            $imghtml .= ' title="'.htmlspecialchars($title, ENT_COMPAT).'"';
+          $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
+          if (isset($NMIMAGES['link']) && $NMIMAGES['link'])
+            $imghtml = '<a href="'.$url.'">'.$imghtml.'</a>';
         }
+        $imghtml = '<p class="nm_post_image">'.$imghtml.'</p>'.PHP_EOL;
+      } else {
+        $imghtml = '';
       }
     } else {
-      $image = '';
+      $imghtml = '';
     }
     # print post data ?>
     <div class="nm_post">
@@ -138,9 +144,9 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
         ?>
       </h3>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
-      <?php if ($image) { 
-      ?><p class="nm_post_image"><img src="<?php echo htmlspecialchars($image); ?>"<?php echo $imgattr; ?> /></p>
-      <?php } ?>
+      <?php
+        echo $imghtml;
+      ?>
       <div class="nm_post_content"><?php echo $content; ?></div>
       <?php
       # print tags, if any
