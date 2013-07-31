@@ -231,14 +231,17 @@ function nm_create_slug($str) {
 /*******************************************************
  * @function nm_create_excerpt
  * @param $content the post content
+ * @param $url if not FALSE, URL to add "read more" link
+ * @param $forcereadmore always add "read more" link, even if not truncated
  * @return a truncated version of the post content
  */
-function nm_create_excerpt($content, $url=false) {
+function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
   global $NMEXCERPTLENGTH;
   $len = intval($NMEXCERPTLENGTH);
   if ($len == 0) {
     return '';
   } else {
+    $readmorehtml = $url ? '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>' : '';
     $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
     $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
     $content = strip_tags($content);
@@ -248,8 +251,9 @@ function nm_create_excerpt($content, $url=false) {
       else
         $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
       $content .= i18n_r('news_manager/ELLIPSIS');
-      if ($url)
-        $content .= '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
+      if ($url) $content .= $readmorehtml;
+    } else {
+      if ($forcereadmore) $content .= ' '.$readmorehtml;
     }
     return '<p>'.$content.'</p>';
   }

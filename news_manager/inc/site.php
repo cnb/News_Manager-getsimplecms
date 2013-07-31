@@ -98,7 +98,7 @@ function nm_show_search_results() {
  * @function nm_show_post
  * @param $slug post slug
  * @param $excerpt - if TRUE, print only a short summary
- * @param $readmore - if TRUE, insert link to post after the excerpt
+ * @param $readmore - if TRUE, insert link to post after the excerpt ('a' for always)
  * @param $titlenolink - if TRUE, display post title without link
  * @action show the requested post on front-end news page
  */
@@ -112,7 +112,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     if ($excerpt) {
-      $content = $readmore ? nm_create_excerpt($content, $url) : nm_create_excerpt($content);
+      $content = $readmore ? nm_create_excerpt($content, $url, ($readmore === 'a')) : nm_create_excerpt($content);
       $image   = nm_get_image_url(stripslashes($post->image));
       if ($image) {
         $imghtml = '';
