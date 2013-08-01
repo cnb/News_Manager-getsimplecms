@@ -164,12 +164,15 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       # single post page?
       if (strstr($_SERVER['QUERY_STRING'], 'post='.$slug)) {
         # store post title
-        global $NMPOSTTITLE;
+        global $NMPOSTTITLE, $NMGOBACKLINK;
         $NMPOSTTITLE = $title;
-        # show "go back" link
-        echo '<p class="nm_post_back"><a href="javascript:history.back()">';
-        i18n('news_manager/GO_BACK');
-        echo '</a></p>';
+        if (!isset($NMGOBACKLINK) || $NMGOBACKLINK) {
+          # show "go back" link
+          $goback = ($NMGOBACKLINK == 'main') ? nm_get_url() : 'javascript:history.back()';
+          echo '<p class="nm_post_back"><a href="'.$goback.'">';
+          i18n('news_manager/GO_BACK');
+          echo '</a></p>';
+        }
       }
       ?>
     </div>
