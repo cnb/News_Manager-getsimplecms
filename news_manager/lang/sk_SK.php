@@ -11,10 +11,10 @@ $i18n = array(
 "PLUGIN_NAME"         =>  "News Manager",
 
 # error messages
-"ERROR_ENV"           =>  "Chyba prístupu do priečinka DATA. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a ackiu zopakujte.",
-"ERROR_SAVE"          =>  "<b>Error:</b> Nie je možné uložiť zmeny. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a ackiu zopakujte.",
-"ERROR_DELETE"        =>  "<b>Error:</b> Nie je možné zmazať príspevok. Nastavte <em>CHMOD 777</em> the folders /data, /backups a ich podpriečinky a ackiu zopakujte.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Nie je možné obnoviť príspevok. Nastavte <em>CHMOD 777</em> the folders /data, /backups a ich podpriečinky a ackiu zopakujte.",
+"ERROR_ENV"           =>  "Chyba prístupu do priečinka DATA. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a akciu zopakujte.",
+"ERROR_SAVE"          =>  "<b>Chyba:</b> Nie je možné uložiť zmeny. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a akciu zopakujte.",
+"ERROR_DELETE"        =>  "<b>Chyba:</b> Nie je možné zmazať príspevok. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a akciu zopakujte.",
+"ERROR_RESTORE"       =>  "<b>Chyba:</b> Nie je možné obnoviť príspevok. Nastavte <em>CHMOD 777</em> pre priečinky /data, /backups a ich podpriečinky a akciu zopakujte.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Vaše zmeny boli uložené.",
@@ -44,8 +44,8 @@ $i18n = array(
 "SHOW_POSTS_AS"       =>  "Príspevky sú zobrazené ako",
 "FULL_TEXT"           =>  "Celý text",
 "EXCERPT"             =>  "Výňatok",
-"PRETTY_URLS"         =>  "Použiť Fancy URLs pre príspevky, archívy, a pod.",
-"PRETTY_URLS_NOTE"    =>  "Ak máte povolené Fancy URLs, budete musieť aktualizovať svoj .htaccess súbor po uložení týchto nastavení.",
+"PRETTY_URLS"         =>  "Použiť Fancy URL adresy pre príspevky, archívy, a pod.",
+"PRETTY_URLS_NOTE"    =>  "Ak máte povolené Fancy URL adresy, budete musieť po uložení týchto nastavení aktualizovať svoj .htaccess súbor.",
 "EXCERPT_LENGTH"      =>  "Dĺžka výňatku (počet znakov)",
 "POSTS_PER_PAGE"      =>  "Počet príspevkov na stránke Novinky",
 "RECENT_POSTS"        =>  "Počet nedávnych príspevkov(na postrannej lište)",
@@ -67,7 +67,7 @@ $i18n = array(
 
 # htaccess
 "HTACCESS_HELP"       =>  "Ak chcete povoliť Fancy URL adresy príspevkov, archívov, atď., nahraďte obsah vášho <code>.htaccess</code> súboru riadkami uvedenými nižšie.",
-"GO_BACK_WHEN_DONE"   =>  "Ak budete s touto stránkou hotový, kliknite na tlačítko nižšie a vrátite sa do hlavného panelu.",
+"GO_BACK_WHEN_DONE"   =>  "Ak budete s touto stránkou hotový, kliknite na tlačidlo nižšie a vrátite sa do hlavného panelu.",
 
 # save/cancel/delete
 "SAVE_SETTINGS"       =>  "Uložiť nastavenia",
