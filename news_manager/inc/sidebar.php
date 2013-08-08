@@ -92,10 +92,10 @@ function nm_search() {
   $url = nm_get_url();
   ?>
   <form id="search" action="<?php echo $url; ?>" method="post">
-    <input type="text" class="text" name="keywords" value="" <?php if ($placeholder) echo 'placeholder="',htmlspecialchars($placeholder),'"'; ?> />
-    <!--[if IE]><input type="text" style="display: none;" disabled="disabled"
-    size="20" value="Ignore field. IE bug fix" /><![endif]-->
-    <input type="submit" class="submit" name="search" value="<?php i18n('news_manager/SEARCH'); ?>" />
+    <input type="text" class="text" name="keywords" value="" <?php
+    if ($placeholder) echo 'placeholder="',htmlspecialchars($placeholder),'"';
+    ?> /><!--[if IE]><input type="text" style="display: none;" disabled="disabled" size="20" value="Ignore field. IE bug fix"
+    /><![endif]--><input type="submit" class="submit" name="search" value="<?php i18n('news_manager/SEARCH'); ?>" />
   </form>
   <?php
 }
