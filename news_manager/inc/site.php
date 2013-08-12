@@ -66,7 +66,7 @@ function nm_show_tag($tag) {
 
 
 /*******************************************************
- * @function get_search_results()
+ * @function nm_show_search_results()
  * @action search posts by keyword(s)
  */
 function nm_show_search_results() {
