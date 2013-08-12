@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.5 beta 10',
+  '2.5 beta 11',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -109,9 +109,7 @@ function nm_frontend_init() {
         nm_show_tag($tag);
     } elseif (isset($_GET['post'])) {
         $slug = $_GET['post'];
-        global $NMTITLENOLINK;
-        $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
-        nm_show_post($slug, false, false, $titlenolink);
+        nm_show_single($slug);
     } elseif (isset($_GET['page'])) {
         $index = $_GET['page'];
         nm_show_page($index);

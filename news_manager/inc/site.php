@@ -93,6 +93,16 @@ function nm_show_search_results() {
   }
 }
 
+/*******************************************************
+ * @function nm_show_single
+ * @param $slug post slug
+ * @action show single post on news page
+ */
+function nm_show_single($slug) {
+  global $NMTITLENOLINK;
+  $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
+  nm_show_post($slug, false, false, $titlenolink);
+}
 
 /*******************************************************
  * @function nm_show_post
