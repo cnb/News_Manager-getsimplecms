@@ -223,17 +223,13 @@ function nm_show_navigation($index, $total) {
   echo '</div>';
 }
 
-
-/***********************************************************************************
- * SINCE Version 2.3
-***********************************************************************************/
-
 /*******************************************************
  * @function nm_post_title
  * @param $before Text to place before the title. Defaults to ''
  * @param $after Text to place after the title. Defaults to ''
  * @param $echo Display (true) or return (false)
  * @action Display or return the post title. Returns false if not on single post page
+ * @since 2.3
  */
 function nm_post_title($before='', $after='', $echo=true) {
   global $NMPAGEURL;
