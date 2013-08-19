@@ -11,7 +11,7 @@
  * @action show posts on news page
  */
 function nm_show_page($index=0) {
-  global $NMPOSTSPERPAGE, $NMSHOWEXCERPT, $NMREADMORE, $NMTITLENOLINK;
+  global $NMPOSTSPERPAGE, $NMSHOWEXCERPT;
   $posts = nm_get_posts();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
   if (is_numeric($index) && $index >= 0 && $index < sizeof($pages))
@@ -19,10 +19,10 @@ function nm_show_page($index=0) {
   else
     $posts = array();
   if (!empty($posts)) {
-    $titlenolink = (strpos($NMTITLENOLINK, 'main') !== false);
+    nm_set_temp('main');
     $showexcerpt = ($NMSHOWEXCERPT == 'Y');
     foreach ($posts as $post)
-      nm_show_post($post->slug, $showexcerpt, $NMREADMORE, $titlenolink);
+      nm_show_post($post->slug, $showexcerpt);
     if (sizeof($pages) > 1)
       nm_show_navigation($index, sizeof($pages));
   } else {
@@ -37,13 +37,13 @@ function nm_show_page($index=0) {
  * @action show posts by archive
  */
 function nm_show_archive($archive) {
-  global $NMREADMORE, $NMTITLENOLINK, $NMARCHIVESBY;
+  global $NMARCHIVESBY;
   $archives = nm_get_archives($NMARCHIVESBY);
   if (array_key_exists($archive, $archives)) {
+    nm_set_temp('archive');
     $posts = $archives[$archive];
-    $titlenolink = (strpos($NMTITLENOLINK, 'archive') !== false);
     foreach ($posts as $slug)
-      nm_show_post($slug, true, $NMREADMORE, $titlenolink);
+      nm_show_post($slug, true);
    }
 }
 
@@ -54,13 +54,12 @@ function nm_show_archive($archive) {
  * @action show posts by tag
  */
 function nm_show_tag($tag) {
-  global $NMREADMORE, $NMTITLENOLINK;
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
-    $titlenolink = (strpos($NMTITLENOLINK, 'tag') !== false);
+    nm_set_temp('tag');
     $posts = $tags[$tag];
     foreach ($posts as $slug)
-      nm_show_post($slug, true, $NMREADMORE, $titlenolink);
+      nm_show_post($slug, true);
   }
 }
 
@@ -70,7 +69,6 @@ function nm_show_tag($tag) {
  * @action search posts by keyword(s)
  */
 function nm_show_search_results() {
-  global $NMREADMORE, $NMTITLENOLINK;
   $keywords = @explode(' ', $_POST['keywords']);
   $posts = nm_get_posts();
   foreach ($keywords as $keyword) {
@@ -84,10 +82,10 @@ function nm_show_search_results() {
     $posts = $match;
   }
   if (!empty($posts)) {
-    $titlenolink = (strpos($NMTITLENOLINK, 'search') !== false);
+    nm_set_temp('search');
     echo '<p>' . i18n_r('news_manager/FOUND') . '</p>';
     foreach ($posts as $post)
-      nm_show_post($post->slug, true, $NMREADMORE, $titlenolink);
+      nm_show_post($post->slug, true);
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>';
   }
@@ -99,20 +97,39 @@ function nm_show_search_results() {
  * @action show single post on news page
  */
 function nm_show_single($slug) {
-  global $NMTITLENOLINK;
-  $titlenolink = (strpos($NMTITLENOLINK, 'single') !== false);
-  nm_show_post($slug, false, false, $titlenolink);
+  nm_set_temp('single');
+  nm_show_post($slug);
 }
+
+
+/*******************************************************
+ * @function nm_set_temp
+ * @param $pagetype page type, can be 'single', 'main', 'archive', 'tag' or 'search'
+ * @action define post layout values depending on page type
+ * @since 2.5
+ */
+function nm_set_temp($pagetype) {
+  global $nmtemp, $NMREADMORE, $NMTITLENOLINK, $NMGOBACKLINK;
+  $nmtemp = array();
+  $nmtemp['titlenolink'] = (strpos($NMTITLENOLINK, $pagetype) !== false);
+  if ($pagetype == 'single') {
+    $nmtemp['gobacklink'] = (isset($NMGOBACKLINK)) ? $NMGOBACKLINK : true;
+    $nmtemp['readmore'] = false;
+  } else {
+    $nmtemp['gobacklink'] = false;
+    $nmtemp['readmore'] = ($NMREADMORE) ? $NMREADMORE : false;
+  }
+}
+
 
 /*******************************************************
  * @function nm_show_post
  * @param $slug post slug
  * @param $excerpt - if TRUE, print only a short summary
- * @param $readmore - if TRUE, insert link to post after the excerpt ('a' for always)
- * @param $titlenolink - if TRUE, display post title without link
- * @action show the requested post on front-end news page
+ * @action show the requested post on front-end news page, based on global $nmtemp values
  */
-function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false) {
+function nm_show_post($slug, $excerpt=false) {
+  global $nmtemp;
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
@@ -122,7 +139,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     if ($excerpt) {
-      $content = $readmore ? nm_create_excerpt($content, $url, ($readmore === 'a')) : nm_create_excerpt($content);
+      $content = $nmtemp['readmore'] ? nm_create_excerpt($content, $url, ($nmtemp['readmore'] === 'a')) : nm_create_excerpt($content);
       $image   = nm_get_image_url(stripslashes($post->image));
       if ($image) {
         $imghtml = '';
@@ -147,7 +164,7 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
     <div class="nm_post">
       <h3 class="nm_post_title">
         <?php 
-        if ($titlenolink)
+        if ($nmtemp['titlenolink'])
           echo $title;
         else
           echo '<a href="',$url,'">',$title,'</a>';
@@ -174,11 +191,11 @@ function nm_show_post($slug, $excerpt=false, $readmore=false, $titlenolink=false
       # single post page?
       if (strstr($_SERVER['QUERY_STRING'], 'post='.$slug)) {
         # store post title
-        global $NMPOSTTITLE, $NMGOBACKLINK;
+        global $NMPOSTTITLE;
         $NMPOSTTITLE = $title;
-        if (!isset($NMGOBACKLINK) || $NMGOBACKLINK) {
+        if ($nmtemp['gobacklink']) {
           # show "go back" link
-          $goback = ($NMGOBACKLINK == 'main') ? nm_get_url() : 'javascript:history.back()';
+          $goback = ($nmtemp['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
           echo '<p class="nm_post_back"><a href="'.$goback.'">';
           i18n('news_manager/GO_BACK');
           echo '</a></p>';
