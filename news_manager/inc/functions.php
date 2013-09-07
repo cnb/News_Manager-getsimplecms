@@ -151,27 +151,26 @@ function nm_get_parent() {
 /*******************************************************
  * @function nm_get_image_url
  * @param $pic image URL, full or relative to data/uploads/
- * @return absolute URL of thumbnail/image as defined by $NMIMAGES settings
+ * @return absolute URL of thumbnail/image as defined by $nmoption settings
  * @since 2.5
  */
 function nm_get_image_url($pic) {
-  global $SITEURL, $NMIMAGES;
+  global $SITEURL, $nmoption;
+  $nmimages = $nmoption['images'];
   $url = '';
-  if (!isset($NMIMAGES['show']) || $NMIMAGES['show']) {
-    if (empty($pic) && isset($NMIMAGES['default']))
-      $pic = $NMIMAGES['default'];
-    if (!empty($pic)) {
-      $pos = strpos($pic, 'data/uploads/');
-      if ($pos === false && strpos($pic, '://')) {
-        if (!isset($NMIMAGES['external']) || $NMIMAGES['external'])
-          $url = $pic;
-      } else {
-        if ($pos !== false) $pic = substr($pic, $pos+13);
-        $w = isset($NMIMAGES['width']) ? '&w='.$NMIMAGES['width'] : '';
-        $h = isset($NMIMAGES['height']) ? '&h='.$NMIMAGES['height'] : '';
-        $c = (isset($NMIMAGES['crop']) && $NMIMAGES['crop']) ? '&c=1' : '';
-        $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
-      }
+  if (empty($pic) && isset($nmimages['default']))
+    $pic = $nmimages['default'];
+  if (!empty($pic)) {
+    $pos = strpos($pic, 'data/uploads/');
+    if ($pos === false && strpos($pic, '://')) {
+      if (!isset($nmimages['external']) || $nmimages['external'])
+        $url = $pic;
+    } else {
+      if ($pos !== false) $pic = substr($pic, $pos+13);
+      $w = isset($nmimages['width']) ? '&w='.$nmimages['width'] : '';
+      $h = isset($nmimages['height']) ? '&h='.$nmimages['height'] : '';
+      $c = (isset($nmimages['crop']) && $nmimages['crop']) ? '&c=1' : '';
+      $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
     }
   }
   return $url;

@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.5 beta 10
+Version: 2.5 beta 11
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
