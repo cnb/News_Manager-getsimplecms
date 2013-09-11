@@ -187,7 +187,7 @@ function nm_show_post($slug, $showexcerpt=false) {
       $imghtml = '';
     }
     # print post data ?>
-    <div class="nm_post">
+    <div class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
       <h3 class="nm_post_title">
         <?php 
         if ($nmoption['titlelink'])
