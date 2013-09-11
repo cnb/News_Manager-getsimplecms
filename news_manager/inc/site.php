@@ -182,7 +182,7 @@ function nm_show_post($slug, $showexcerpt=false) {
       $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
       if ($nmoption['images']['link'])
         $imghtml = '<a href="'.$url.'">'.$imghtml.'</a>';
-      $imghtml = '<p class="nm_post_image">'.$imghtml.'</p>'.PHP_EOL;
+      $imghtml = '<div class="nm_post_image">'.$imghtml.'</div>'.PHP_EOL;
     } else {
       $imghtml = '';
     }
