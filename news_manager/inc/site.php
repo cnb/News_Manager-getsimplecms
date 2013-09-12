@@ -177,7 +177,7 @@ function nm_show_post($slug, $showexcerpt=false) {
     $image = $nmoption['showimages'] ? nm_get_image_url(stripslashes($post->image)) : false;
     if ($image) {
       $imghtml = '';
-      $imghtml .= $nmoption['images']['alt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
+      $imghtml .= $nmoption['images']['alt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
       $imghtml .= $nmoption['images']['title'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
       $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
       if ($nmoption['images']['link'])
