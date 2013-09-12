@@ -95,8 +95,9 @@ function nm_get_date($format, $timestamp) {
     setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
   }
   if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-    // workaround for Windows, as strftime returns ISO-8859-1 encoded string
-    $date = utf8_encode(strftime($format, $timestamp));
+    # fixes for Windows
+    $format = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $format); // strftime %e parameter not supported
+    $date = utf8_encode(strftime($format, $timestamp)); // strftime returns ISO-8859-1 encoded string
   } else {
     $date = strftime($format, $timestamp);
   }
