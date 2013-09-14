@@ -69,7 +69,7 @@ function nm_save_post() {
   $title     = safe_slash_html($_POST['post-title']);
   $timestamp = strtotime($_POST['post-date'] . ' ' . $_POST['post-time']);
   $date      = $timestamp ? date('r', $timestamp) : date('r');
-  $tags      = str_replace(array(' ', ',,'), array('', ','), safe_slash_html($_POST['post-tags']));
+  $tags      = nm_lowercase_tags(str_replace(array(' ', ',,'), array('', ','), safe_slash_html($_POST['post-tags'])));
   $private   = isset($_POST['post-private']) ? 'Y' : '';
   $image     = safe_slash_html($_POST['post-image']);
   $content   = safe_slash_html($_POST['post-content']);

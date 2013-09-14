@@ -50,7 +50,7 @@ function nm_get_tags() {
   $posts = nm_get_posts();
   foreach ($posts as $post) {
     if (!empty($post->tags)) {
-      foreach (explode(',', $post->tags) as $tag)
+      foreach (explode(',', nm_lowercase_tags($post->tags)) as $tag)
         $tags[$tag][] = $post->slug;
     }
   }
@@ -362,6 +362,20 @@ function nm_patch_plugin_management() {
   global $table;
   if ($table)
     $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
+}
+
+/*******************************************************
+ * @function nm_lowercase_tags
+ * @param $str a string containing post tags
+ * @action convert string to lowercase if "lowercasetags" enabled
+ * @since 2.5
+ */
+function nm_lowercase_tags($str) {
+  global $NMLOWERCASETAGS;
+  if ($NMLOWERCASETAGS)
+    return lowercase($str);
+  else
+    return $str;
 }
 
 ?>

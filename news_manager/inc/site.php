@@ -63,6 +63,7 @@ function nm_show_archive($archive) {
  * @action show posts by tag
  */
 function nm_show_tag($tag) {
+  $tag = nm_lowercase_tags($tag);
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
     nm_set_pagetype_options('tag');
@@ -204,8 +205,8 @@ function nm_show_post($slug, $showexcerpt=false) {
       <?php
       # print tags, if any
       if (!empty($post->tags)) {
+        $tags = explode(',', nm_lowercase_tags($post->tags));
         echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b>';
-        $tags = explode(',', $post->tags);
         foreach ($tags as $tag) 
           if (substr($tag, 0, 1) != '_') {
             $url = nm_get_url('tag') . $tag;
