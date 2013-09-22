@@ -72,7 +72,7 @@ if ($NMIMAGEINPUT) {
 <form class="largeform" id="edit" action="load.php?id=news_manager" method="post" accept-charset="utf-8">
   <?php
   if (!empty($slug))
-    echo "<p><input name=\"current-slug\" type=\"hidden\" value=\"$slug\" /></p>";
+    echo '<input name="current-slug" type="hidden" value="',$slug,'" />';
   ?>
   <p>
     <input class="text title required" name="post-title" id="post-title" type="text" value="<?php echo $title; ?>" placeholder="<?php i18n('news_manager/POST_TITLE'); ?>" />
