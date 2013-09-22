@@ -2,62 +2,77 @@
 
 /**
  * News Manager Czech language file by Tomáš Janeček / TeeJay 
- *                                     http://tomasjanecek.cz 
  */
 
 
 $i18n = array(
 
 # general
-"PLUGIN_NAME"         =>  "Správce článků",
+"PLUGIN_NAME"         =>  "News Manager",
 
 # error messages
 "ERROR_ENV"           =>  "Chyba v přístupu do adresářů dat. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
 "ERROR_SAVE"          =>  "<b>Error:</b> Nelze uložit vaše změny. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
-"ERROR_DELETE"        =>  "<b>Error:</b> Článek nelze smazat. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Článek nelze obnovit. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
+"ERROR_DELETE"        =>  "<b>Error:</b> Nelze smazat příspěvek. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
+"ERROR_RESTORE"       =>  "<b>Error:</b> Nelze obnovit příspěvek. Nastavte <em>CHMOD 777</em> na složky /data, /backups a jejich podsložky a akci opakujte.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Vaše změny byly uloženy.",
-"SUCCESS_DELETE"      =>  "Článek byl smazán.",
-"SUCCESS_RESTORE"     =>  "článek byl obnoven.",
+"SUCCESS_DELETE"      =>  "Příspěvek byl smazán.",
+"SUCCESS_RESTORE"     =>  "Příspěvek byl obnoven.",
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Poznámka:</b> Pravděpodobně musíte zaktualizovat soubor <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a>!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Nastavení",
-"NEW_POST"            =>  "Napsat článek",
+"NEW_POST"            =>  "Vytvořit nový příspěvek",
 
 # admin panel
-"POST_TITLE"          =>  "Titulek článku",
+"POST_TITLE"          =>  "Titulek příspěvku",
 "DATE"                =>  "Datum",
-"EDIT_POST"           =>  "Upravit článek",
-"VIEW_POST"           =>  "Náhled článku",
-"DELETE_POST"         =>  "Smazat článek",
+"EDIT_POST"           =>  "Upravit příspěvek",
+"VIEW_POST"           =>  "Podívat se na příspěvek",
+"DELETE_POST"         =>  "Smazat příspěvek",
 "POSTS"               =>  "příspěvek/ky",
 
 # edit settings
-"NM_SETTINGS"         =>  "Nastavení Správce novinek",
+"NM_SETTINGS"         =>  "Nastavení News Manageru",
 "DOCUMENTATION"       =>  "Pro více informaci o těchto nastaveních navštivte <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentation page</a>.",
-"PAGE_URL"            =>  "Stránka k zobrazování článků",
-"LANGUAGE"            =>  "Jazyk použitý na stránkách článků",
-"SHOW_POSTS_AS"       =>  "Články na stránce s novinkami jsou zobrazeny jako",
+"PAGE_URL"            =>  "Webová stránka k zobrazování příspěvků/novinek",
+"LANGUAGE"            =>  "Jazyk použitý na stránkách příspěvků/novinek",
+"SHOW_POSTS_AS"       =>  "Příspěvky na stránce s novinkami jsou zobrazeny jako",
 "FULL_TEXT"           =>  "Celý text",
-"EXCERPT"             =>  "Úvodní text",
-"PRETTY_URLS"         =>  "Použít Fancy URLs na články, archivy, atd.",
+"EXCERPT"             =>  "Výňatek",
+"PRETTY_URLS"         =>  "Použít Fancy URLs na příspěvky, archivy, atd.",
 "PRETTY_URLS_NOTE"    =>  "Máte-li Fancy URLs povolené, možna budete muset zaktualizovat váš .htaccess soubor po uložení těchto nastavení.",
-"EXCERPT_LENGTH"      =>  "Délka úvodního textu (počet znaků)",
-"POSTS_PER_PAGE"      =>  "Počet článků na stránce s články",
-"RECENT_POSTS"        =>  "Počet nedávných článků (v postranní liště)",
+"EXCERPT_LENGTH"      =>  "Délka výňatku (počet znaků)",
+"POSTS_PER_PAGE"      =>  "Počet novinek/příspěvků na stránce s novinkami/příspěvky",
+"RECENT_POSTS"        =>  "Počet nedávných příspěvků (v postranní liště)",
+"ARCHIVES_BY"         =>  "Archives by",
+"MONTH"               =>  "Month",
+"YEAR"                =>  "Year",
+"READ_MORE_LINK"      =>  "\"Read more\" link after excerpt",
+"ALWAYS"              =>  "Always",
+"NOT_SINGLE"          =>  "Except for single posts",
+"GO_BACK_LINK"        =>  "\"Go back\" link under single post",
+"TITLE_LINK"          =>  "Link to post in title",
+"BROWSER_BACK"        =>  "Previously visited page",
+"MAIN_NEWS_PAGE"      =>  "Main News Page",
+"POST_IMAGES"         =>  "Post images",
+"IMAGE_LINKS"         =>  "Link images to posts",
+"IMAGE_WIDTH"         =>  "Post image width (pixels)",
+"IMAGE_HEIGHT"        =>  "Post image height (pixels)",
+"IMAGE_CROP"          =>  "Crop post images to fit dimensions",
+"IMAGE_ALT"           =>  "Insert post title in post image <em>alt</em> attribute",
 
 # edit post
-"POST_OPTIONS"        =>  "Nastavení článku",
+"POST_OPTIONS"        =>  "Nastavení příspěvku",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tagy (jednotlivé tagy oddělujte čárkou)",
 "POST_DATE"           =>  "Datum publikování (<i>yyyy-mm-dd</i>)",
 "POST_TIME"           =>  "Čas publikování (<i>hh:mm</i>)",
-"POST_PRIVATE"        =>  "Článek je soukromý",
+"POST_PRIVATE"        =>  "Příspěvek je soukromý",
 "POST_IMAGE"          =>  "Obrázek",
 "LAST_SAVED"          =>  "Naposledy uloženo",
 
@@ -67,26 +82,26 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Prosím zadejte správný čas / Nechte prázdné pro aktuální čas",
 
 # htaccess
-"HTACCESS_HELP"       =>  "Abyste povolili Fancy URLs pro články, archivy, atd., nahraďte obsah vašeho <code>.htaccess</code> souboru řádky níže.",
-"GO_BACK_WHEN_DONE"   =>  "Až budete s touto stránkou hotovi, klikněte na tlačítko níže pro navrácení na hlavní panel.",
+"HTACCESS_HELP"       =>  "Abyste povolili Fancy URLs pro příspěvky, archivy, atd., nahraďte obsah vašeho <code>.htaccess</code> souboru řádky níže.",
+"GO_BACK_WHEN_DONE"   =>  "Až budete s touto stránkou hotovi, klikněte na tlačítko níže, abyste se vrátili na hlavní panel.",
 
 # save/cancel/delete
 "SAVE_SETTINGS"       =>  "Uložit nastavení",
-"SAVE_POST"           =>  "Uložit článek",
+"SAVE_POST"           =>  "Uložit příspěvek",
 "FINISHED"            =>  "Hotovo",
 "CANCEL"              =>  "Zrušit",
 "DELETE"              =>  "Smazat",
 "OR"                  =>  "nebo",
 
 # front-end/site
-"FOUND"               =>  "Byly nalezeny následující články:",
+"FOUND"               =>  "Byly nalezeny následující příspěvky:",
 "NOT_FOUND"           =>  "Omlouváme se, ale vaše vyhledávání nevede k žádným výsledkům.",
-"NOT_EXIST"           =>  "Požadovaný článek neexistuje.",
-"NO_POSTS"            =>  "Nenalezeny žádné články.",
+"NOT_EXIST"           =>  "Požadovaný příspěvek neexistuje.",
+"NO_POSTS"            =>  "Nenalezeny žádné příspěvky.",
 "PUBLISHED"           =>  "Publikováno",
 "TAGS"                =>  "Tagy",
-"OLDER_POSTS"         =>  "&larr; Starší články",
-"NEWER_POSTS"         =>  "Novější články &rarr;",
+"OLDER_POSTS"         =>  "&larr; Starší příspěvky",
+"NEWER_POSTS"         =>  "Novější příspěvky &rarr;",
 "SEARCH"              =>  "Hledat",
 "GO_BACK"             =>  "&lt;&lt; Zpět na předchozí stránku",
 "ELLIPSIS"            =>  " [...] ",

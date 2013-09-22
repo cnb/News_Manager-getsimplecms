@@ -29,7 +29,7 @@ function nm_env_check() {
  */
 function nm_edit_settings() {
   global $PRETTYURLS, $PERMALINK, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
-         $NMEXCERPTLENGTH, $NMPOSTSPERPAGE, $NMRECENTPOSTS;
+         $NMEXCERPTLENGTH, $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
   include(NMTEMPLATEPATH . 'edit_settings.php');
 }
 
@@ -40,7 +40,7 @@ function nm_edit_settings() {
  */
 function nm_save_settings() {
   global $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT, $NMEXCERPTLENGTH,
-         $NMPOSTSPERPAGE, $NMRECENTPOSTS;
+         $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
   $backup = array('page_url' => $NMPAGEURL, 'pretty_urls' => $NMPRETTYURLS);
   # parse $_POST
   $NMPAGEURL       = $_POST['page-url'];
@@ -50,6 +50,17 @@ function nm_save_settings() {
   $NMEXCERPTLENGTH = intval($_POST['excerpt-length']);
   $NMPOSTSPERPAGE  = intval($_POST['posts-per-page']);
   $NMRECENTPOSTS   = intval($_POST['recent-posts']);
+  $NMSETTING = array();
+  $NMSETTING['archivesby'] = $_POST['archivesby'];
+  $NMSETTING['readmore'] = $_POST['readmore'];
+  $NMSETTING['titlelink'] = $_POST['titlelink'];
+  $NMSETTING['gobacklink'] = $_POST['gobacklink'];
+  $NMSETTING['images'] = $_POST['images'];
+  $NMSETTING['imagewidth'] = $_POST['imagewidth'];
+  $NMSETTING['imageheight'] = $_POST['imageheight'];
+  $NMSETTING['imagecrop'] = isset($_POST['imagecrop']);
+  $NMSETTING['imagealt'] = isset($_POST['imagealt']);
+  $NMSETTING['imagelink'] = isset($_POST['imagelink']);
   # write settings to file
   if (nm_settings_to_xml())
     nm_display_message(i18n_r('news_manager/SUCCESS_SAVE'));
@@ -69,7 +80,7 @@ function nm_save_settings() {
  */
 function nm_settings_to_xml() {
   global $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT, $NMEXCERPTLENGTH,
-         $NMPOSTSPERPAGE, $NMRECENTPOSTS;
+         $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
   $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item></item>');
   $obj = $xml->addChild('page_url', $NMPAGEURL);
   $obj = $xml->addChild('pretty_urls', $NMPRETTYURLS);
@@ -78,6 +89,16 @@ function nm_settings_to_xml() {
   $obj = $xml->addChild('excerpt_length', $NMEXCERPTLENGTH);
   $obj = $xml->addChild('posts_per_page', $NMPOSTSPERPAGE);
   $obj = $xml->addChild('recent_posts', $NMRECENTPOSTS);
+  $obj = $xml->addChild('archivesby', $NMSETTING['archivesby']);
+  $obj = $xml->addChild('readmore', $NMSETTING['readmore']);
+  $obj = $xml->addChild('titlelink', $NMSETTING['titlelink']);
+  $obj = $xml->addChild('gobacklink', $NMSETTING['gobacklink']);
+  $obj = $xml->addChild('images', $NMSETTING['images']);
+  $obj = $xml->addChild('imagewidth', $NMSETTING['imagewidth']);
+  $obj = $xml->addChild('imageheight', $NMSETTING['imageheight']);
+  $obj = $xml->addChild('imagecrop', $NMSETTING['imagecrop']);
+  $obj = $xml->addChild('imagealt', $NMSETTING['imagealt']);
+  $obj = $xml->addChild('imagelink', $NMSETTING['imagelink']);
   return @XMLsave($xml, NMSETTINGS);
 }
 

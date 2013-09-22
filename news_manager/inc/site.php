@@ -41,8 +41,8 @@ function nm_show_page($index=0) {
  * @action show posts by archive
  */
 function nm_show_archive($archive) {
-  global $NMARCHIVESBY;
-  $archives = nm_get_archives($NMARCHIVESBY);
+  global $NMSETTING;
+  $archives = nm_get_archives($NMSETTING['archivesby']);
   if (array_key_exists($archive, $archives)) {
     nm_set_pagetype_options('archive');
     nm_get_layout_block('nm-init');
@@ -133,19 +133,50 @@ function nm_show_single($slug) {
  * @since 2.5
  */
 function nm_set_pagetype_options($pagetype) {
-  global $nmoption, $NMSHOWEXCERPT;
+  global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
+  
   $nmoption = array();
   # general options
-  $nmoption['excerpt'] = ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag')));
-  $nmoption['titlelink'] = true;
-  $nmoption['gobacklink'] = true; // only supported in single post pages
+  
+  if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
+    if ($NMSETTING['readmore'] == 'R')
+      $nmoption['excerpt'] = 'readmore';
+    elseif ($NMSETTING['readmore'] == 'F')
+      $nmoption['excerpt'] = 'forcereadmore';
+    else
+      $nmoption['excerpt'] = true;
+  } else {
+    $nmoption['excerpt'] = false; // full post
+  }
+  
+  $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
+
+  if ($pagetype == 'single') {
+    if ($NMSETTING['gobacklink'] == 'N') 
+      $nmoption['gobacklink'] = false;
+    elseif ($NMSETTING['gobacklink'] == 'M') 
+      $nmoption['gobacklink'] = 'main';
+    else
+      $nmoption['gobacklink'] = true;
+  }
+  
   # images:
-  $nmoption['showimages'] = true;
-  $nmoption['images']['alt']= false;
-  $nmoption['images']['title']= false;
-  $nmoption['images']['link']= false;
-  $nmoption['images']['external']= false;
-  $nmoption['images']['default']= '';
+  if ( $NMSETTING['images'] == 'N' 
+    || ($pagetype == 'single' && $NMSETTING['images'] == 'P')
+    || ($pagetype != 'main' && $NMSETTING['images'] == 'M') ) {
+    $nmoption['showimages'] = false;
+  } else {
+    $nmoption['showimages'] = true;
+  }
+  $nmoption['images']['width'] = $NMSETTING['imagewidth'];
+  $nmoption['images']['height'] = $NMSETTING['imageheight'];
+  $nmoption['images']['crop'] = ($NMSETTING['imagecrop'] == '1');
+  $nmoption['images']['alt'] = ($NMSETTING['imagealt'] == '1');
+  $nmoption['images']['link'] = ($pagetype != 'single' && $NMSETTING['imagelink'] == '1');
+  $nmoption['images']['title'] = false;
+  $nmoption['images']['external'] = false;
+  $nmoption['images']['default'] = '';
+  
   # news page type
   $nmoption['pagetype'] = $pagetype;
 }

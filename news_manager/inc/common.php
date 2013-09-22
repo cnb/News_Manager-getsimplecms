@@ -38,6 +38,18 @@ $NMSHOWEXCERPT   = isset($data->show_excerpt) ? $data->show_excerpt : '';
 $NMEXCERPTLENGTH = isset($data->excerpt_length) ? $data->excerpt_length : '350';
 $NMPOSTSPERPAGE  = isset($data->posts_per_page) ? $data->posts_per_page : '8';
 $NMRECENTPOSTS   = isset($data->recent_posts) ? $data->recent_posts : '5';
+# new settings (since 2.5)
+$NMSETTING = array();
+$NMSETTING['archivesby'] = isset($data->archivesby) ? $data->archivesby : 'm';
+$NMSETTING['readmore'] = isset($data->readmore) ? $data->readmore : 'N';
+$NMSETTING['titlelink'] = isset($data->titlelink) ? $data->titlelink : 'Y';
+$NMSETTING['gobacklink'] = isset($data->gobacklink) ? $data->gobacklink : 'B';
+$NMSETTING['images'] = isset($data->images) ? $data->images : 'N';
+$NMSETTING['imagewidth'] = isset($data->imagewidth) ? $data->imagewidth : '';
+$NMSETTING['imageheight'] = isset($data->imageheight) ? $data->imageheight : '';
+$NMSETTING['imagecrop'] = isset($data->imagecrop) ? $data->imagecrop : '';
+$NMSETTING['imagealt'] = isset($data->imagealt) ? $data->imagealt : '';
+$NMSETTING['imagelink'] = isset($data->imagelink) ? $data->imagelink : '';
 
 # other globals
 $NMPARENTURL = '?'; // to be assigned elsewhere

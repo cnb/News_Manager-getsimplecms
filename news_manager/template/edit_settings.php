@@ -30,8 +30,8 @@
   </div>
   <div class="rightsec">
     <p>
-      <label for="excerpt-length"><?php i18n('news_manager/EXCERPT_LENGTH'); ?>:</label>
-      <input class="text required" type="text" name="excerpt-length" value="<?php echo $NMEXCERPTLENGTH; ?>" />
+      <label for="posts-per-page"><?php i18n('news_manager/POSTS_PER_PAGE'); ?>:</label>
+      <input class="text required" type="text" name="posts-per-page" value="<?php echo $NMPOSTSPERPAGE; ?>" />
     </p>
   </div>
   <div class="clear"></div>
@@ -53,8 +53,8 @@
   </div>
   <div class="rightsec">
     <p>
-      <label for="posts-per-page"><?php i18n('news_manager/POSTS_PER_PAGE'); ?>:</label>
-      <input class="text required" type="text" name="posts-per-page" value="<?php echo $NMPOSTSPERPAGE; ?>" />
+      <label for="recent-posts"><?php i18n('news_manager/RECENT_POSTS'); ?>:</label>
+      <input class="text required" type="text" name="recent-posts" value="<?php echo $NMRECENTPOSTS; ?>" />
     </p>
   </div>
   <div class="clear"></div>
@@ -70,11 +70,99 @@
   </div>
   <div class="rightsec">
     <p>
-      <label for="recent-posts"><?php i18n('news_manager/RECENT_POSTS'); ?>:</label>
-      <input class="text required" type="text" name="recent-posts" value="<?php echo $NMRECENTPOSTS; ?>" />
+      <label for="archivesby"><?php i18n('news_manager/ARCHIVES_BY'); ?>:</label>
+      <select class="text" name="archivesby">
+        <option value="m"<?php if ($NMSETTING['archivesby']=='m') echo ' selected="selected"'; ?>><?php i18n('news_manager/MONTH'); ?></option>
+        <option value="y"<?php if ($NMSETTING['archivesby']=='y') echo ' selected="selected"'; ?>><?php i18n('news_manager/YEAR'); ?></option>
+      </select>
     </p>
   </div>
   <div class="clear"></div>
+  <div class="leftsec">
+    <p>
+      <label for="excerpt-length"><?php i18n('news_manager/EXCERPT_LENGTH'); ?>:</label>
+      <input class="text required" type="text" name="excerpt-length" value="<?php echo $NMEXCERPTLENGTH; ?>" />
+    </p>
+  </div>
+  <div class="rightsec">
+    <p>
+      <label for="readmore"><?php i18n('news_manager/READ_MORE_LINK'); ?>:</label>
+      <select class="text" name="readmore">
+        <option value="N"<?php if ($NMSETTING['readmore']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
+        <option value="R"<?php if ($NMSETTING['readmore']=='R') echo ' selected="selected"'; ?>><?php i18n('YES'); ?></option>
+        <option value="F"<?php if ($NMSETTING['readmore']=='F') echo ' selected="selected"'; ?>><?php i18n('news_manager/ALWAYS'); ?></option>
+      </select>
+    </p>
+  </div>
+  <div class="clear"></div>
+  <div class="leftsec">
+    <p>
+      <label for="titlelink"><?php i18n('news_manager/TITLE_LINK'); ?>:</label>
+      <select class="text" name="titlelink">
+        <option value="Y"<?php if ($NMSETTING['titlelink']=='Y') echo ' selected="selected"'; ?>><?php i18n('YES'); ?></option>
+        <option value="N"<?php if ($NMSETTING['titlelink']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
+        <option value="P"<?php if ($NMSETTING['titlelink']=='P') echo ' selected="selected"'; ?>><?php i18n('news_manager/NOT_SINGLE'); ?></option>
+      </select>
+    </p>
+  </div>
+  <div class="rightsec">
+    <p>
+      <label for="gobacklink"><?php i18n('news_manager/GO_BACK_LINK'); ?>:</label>
+      <select class="text" name="gobacklink">
+        <option value="B"<?php if ($NMSETTING['gobacklink']=='B') echo ' selected="selected"'; ?>><?php i18n('news_manager/BROWSER_BACK'); ?></option>
+        <option value="M"<?php if ($NMSETTING['gobacklink']=='M') echo ' selected="selected"'; ?>><?php i18n('news_manager/MAIN_NEWS_PAGE'); ?></option>
+        <option value="N"<?php if ($NMSETTING['gobacklink']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
+      </select>
+    </p>
+  </div>
+  <div class="clear"></div>
+  <div class="leftsec">
+    <p>
+      <label for="images"><?php i18n('news_manager/POST_IMAGES'); ?>:</label>
+      <select class="text" name="images" id="images">
+        <option value="N"<?php if ($NMSETTING['images']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
+        <option value="Y"<?php if ($NMSETTING['images']=='Y') echo ' selected="selected"'; ?>><?php i18n('YES'); ?></option>
+        <option value="P"<?php if ($NMSETTING['images']=='P') echo ' selected="selected"'; ?>><?php i18n('news_manager/NOT_SINGLE'); ?></option>
+        <option value="M"<?php if ($NMSETTING['images']=='M') echo ' selected="selected"'; ?>><?php i18n('news_manager/MAIN_NEWS_PAGE'); ?></option>
+      </select>
+    </p>
+  </div>
+  <div class="rightsec" id="imagelink">
+    <p class="inline">
+      <br />
+      <input name="imagelink" type="checkbox" <?php if ($NMSETTING['imagelink'] == '1') echo 'checked'; ?> />&nbsp;
+      <label for="imagelink"><?php i18n('news_manager/IMAGE_LINKS'); ?></label>
+    </p>
+  </div>
+  <div class="clear"></div>
+  <div id="imageoptions">
+    <div class="leftsec">
+      <p>
+        <label for="imagewidth"><?php i18n('news_manager/IMAGE_WIDTH'); ?>:</label>
+        <input class="text" type="text" name="imagewidth" value="<?php echo $NMSETTING['imagewidth']; ?>" placeholder="Original" />
+      </p>
+    </div>
+    <div class="rightsec">
+      <p>
+        <label for="imageheight"><?php i18n('news_manager/IMAGE_HEIGHT'); ?>:</label>
+        <input class="text" type="text" name="imageheight" value="<?php echo $NMSETTING['imageheight']; ?>" placeholder="Original" />
+      </p>
+    </div>
+    <div class="clear"></div>
+    <div class="leftsec">
+      <p class="inline">
+        <input name="imagecrop" type="checkbox" <?php if ($NMSETTING['imagecrop'] == '1') echo 'checked'; ?> />&nbsp;
+        <label for="imagecrop"><?php i18n('news_manager/IMAGE_CROP'); ?></label>
+      </p>
+    </div>
+    <div class="rightsec">
+      <p class="inline">
+        <input name="imagealt" type="checkbox" <?php if ($NMSETTING['imagealt'] == '1') echo 'checked'; ?> />&nbsp;
+        <label for="imagealt"><?php i18n('news_manager/IMAGE_ALT'); ?></label>
+      </p>
+    </div>
+    <div class="clear"></div>
+  </div><!-- imageoptions -->
   <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || strpos($PERMALINK,'?') === false) )  { ?>
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
@@ -95,7 +183,7 @@
   jQuery.extend(jQuery.validator.messages, {
     required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>"
   });
-
+  
   $(document).ready(function(){
     $("#settings").validate({
       errorClass: "invalid",
@@ -108,5 +196,21 @@
     
     $('.submit').clone().appendTo('#sidebar');
     $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#settings.largeform input.submit').trigger('click'); });
+    
+    if ($('#images option:selected').val() == "N"){
+      $('#imagelink').hide();
+      $('#imageoptions').hide();
+    }
+
+  });
+  
+  $('#images').change(function(){
+    if ($('#images option:selected').val() == "N"){
+      $('#imagelink').hide();
+      $('#imageoptions').hide();
+    } else {
+      $('#imagelink').show();
+      $('#imageoptions').show();
+    }
   });
 </script>

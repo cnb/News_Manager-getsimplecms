@@ -6,8 +6,8 @@
 
 
 # image input field (since 2.5)
-global $NMIMAGEINPUT;
-if ($NMIMAGEINPUT === true) {
+global $NMIMAGEINPUT, $NMSETTING;
+if ($NMSETTING['images'] != 'N' || $NMIMAGEINPUT === true) {
   $NMIMAGEINPUT = 2;
 } else {
   $NMIMAGEINPUT = intval($NMIMAGEINPUT);

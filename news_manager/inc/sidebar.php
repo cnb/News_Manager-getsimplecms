@@ -31,11 +31,11 @@ function nm_list_recent() {
  * @param $fmt optional custom format (strftime), default '%B %Y' or '%Y'
  */
 function nm_list_archives($fmt='') {
-  global $NMARCHIVESBY;
-  $archives = array_keys(nm_get_archives($NMARCHIVESBY));
+  global $NMSETTING;
+  $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',PHP_EOL;
-    if ($NMARCHIVESBY == 'y') {
+    if ($NMSETTING['archivesby'] == 'y') {
       # annual
       if (!$fmt) $fmt = '%Y';
       foreach ($archives as $archive) {
