@@ -73,6 +73,8 @@ if ($NMIMAGEINPUT) {
   <?php
   if (!empty($slug))
     echo '<input name="current-slug" type="hidden" value="',$slug,'" />';
+  if (!empty($author))
+    echo '<input name="author" type="hidden" value="',$author,'" />';
   ?>
   <p>
     <input class="text title required" name="post-title" id="post-title" type="text" value="<?php echo $title; ?>" placeholder="<?php i18n('news_manager/POST_TITLE'); ?>" />

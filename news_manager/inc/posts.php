@@ -22,6 +22,8 @@ function nm_edit_post($slug) {
   $private = @$data->private != '' ? 'checked' : '';
   $image   = @stripslashes($data->image);
   $content = @stripslashes($data->content);
+  if (isset($data->author))
+    $author = stripslashes($data->author);
   # show edit post form
   include(NMTEMPLATEPATH . 'edit_post.php');
   if (file_exists($file)) {
@@ -73,6 +75,14 @@ function nm_save_post() {
   $private   = isset($_POST['post-private']) ? 'Y' : '';
   $image     = safe_slash_html($_POST['post-image']);
   $content   = safe_slash_html($_POST['post-content']);
+  if (defined('NMSAVEAUTHOR') && NMSAVEAUTHOR) {
+    if (isset($_POST['author'])) {
+      $author  = safe_slash_html($_POST['author']);
+    } else {
+      global $USR;
+      $author = $USR ? $USR : '';
+    }
+  }
   # create xml object
   $xml = new SimpleXMLExtended('<?xml version="1.0" encoding="UTF-8"?><item></item>');
   $obj = $xml->addChild('title');
@@ -87,6 +97,10 @@ function nm_save_post() {
   $obj->addCData($image);
   $obj = $xml->addChild('content');
   $obj->addCData($content);
+  if (isset($author)) {
+    $obj = $xml->addChild('author');
+    $obj->addCData($author);
+  }
   # write data to file
   if (@XMLsave($xml, $file) && nm_update_cache())
     nm_display_message(i18n_r('news_manager/SUCCESS_SAVE'), false, @$backup);
