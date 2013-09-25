@@ -292,7 +292,7 @@ function nm_sitemap_include() {
     $posts = nm_get_posts();
     foreach ($posts as $post) {
       $url = nm_get_url('post').$post->slug;
-      $file = NMPOSTPATH.$post->slug.xml;
+      $file = NMPOSTPATH.$post->slug.'.xml';
       $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', filemtime($file)));
       $item = $xml->addChild('url');
       $item->addChild('loc', $url);
