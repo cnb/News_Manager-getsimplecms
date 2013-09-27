@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Späť na predošlú stránku",
 "ELLIPSIS"            =>  " [...]",
 "READ_MORE"           =>  "Prečítať si viac",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "sk_SK.utf8,sk.utf8,sk_SK.UTF-8,sk.UTF-8,sk_SK,sk",

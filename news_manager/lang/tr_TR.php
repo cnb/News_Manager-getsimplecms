@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Geri Dön",
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Devamını Oku",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",

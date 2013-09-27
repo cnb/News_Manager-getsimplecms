@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Vissza az előző oldalra",
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Tovább",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",

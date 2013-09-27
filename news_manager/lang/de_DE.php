@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Zurück zur vorherigen Seite",
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "weiterlesen",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "de_DE.utf8,de.utf8,de_DE.UTF-8,de.UTF-8,de_DE,de",

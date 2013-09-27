@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Forrige side",
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Læs mere",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "da_DA.utf8,da.utf8,da_DA.UTF-8,da.UTF-8,da_DA,da",

@@ -106,6 +106,7 @@ $i18n = array(
 "GO_BACK"             =>  "&lt;&lt; Πίσω στην προηγούμενη σελίδα",
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Read more",
+"AUTHOR"              =>  "Author:",
 
 # language localization
 "LOCALE"              =>  "el_GR.utf8,el.utf8,el_GR.UTF-8,el.UTF-8,el_GR,el",
