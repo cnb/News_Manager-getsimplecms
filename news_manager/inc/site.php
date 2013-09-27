@@ -160,6 +160,9 @@ function nm_set_pagetype_options($pagetype) {
       $nmoption['gobacklink'] = true;
   }
   
+  $nmoption['showauthor'] = false;
+  $nmoption['defaultauthor'] = '';
+  
   # images:
   if ( $NMSETTING['images'] == 'N' 
     || ($pagetype == 'single' && $NMSETTING['images'] == 'P')
@@ -218,6 +221,14 @@ function nm_show_post($slug, $showexcerpt=false) {
     } else {
       $imghtml = '';
     }
+    if ($nmoption['showauthor']) {
+      $author = stripslashes($post->author);
+      if (empty($author) && $nmoption['defaultauthor'])
+        $author = $nmoption['defaultauthor'];
+      $authorhtml = !empty($author) ? '<p class="nm_post_author">'.i18n_r('news_manager/AUTHOR').' '.$author.'</p>'.PHP_EOL : '';
+    } else {
+      $authorhtml = '';
+    }
     # print post data ?>
     <div class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
       <h3 class="nm_post_title">
@@ -230,6 +241,7 @@ function nm_show_post($slug, $showexcerpt=false) {
       </h3>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
       <?php
+        echo $authorhtml;
         echo $imghtml;
       ?>
       <div class="nm_post_content"><?php echo $content; ?></div>
