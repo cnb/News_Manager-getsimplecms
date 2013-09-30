@@ -263,8 +263,11 @@ function nm_show_post($slug, $showexcerpt=false) {
         # store post title
         global $NMPOSTTITLE;
         $NMPOSTTITLE = $title;
+        # store post data
+        $nmoption['slug'] = $slug;
+        $nmoption['url'] = $url;
+        # show "go back" link?
         if ($nmoption['gobacklink']) {
-          # show "go back" link
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
           echo '<p class="nm_post_back"><a href="'.$goback.'">';
           i18n('news_manager/GO_BACK');
@@ -376,6 +379,20 @@ function nm_get_option($option, $default=false) {
     else
       return $default;
   }
+}
+
+// template tags (single post view)
+
+function nm_post_slug($echo=true) {
+  $slug = nm_get_option('slug');
+  if ($echo) echo $slug;
+  return $slug;
+}
+
+function nm_post_url($echo=true) {
+  $url = nm_get_option('url');
+  if ($echo) echo $url;
+  return $url;
 }
 
 // images
