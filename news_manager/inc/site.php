@@ -225,7 +225,7 @@ function nm_show_post($slug, $showexcerpt=false) {
       $author = stripslashes($post->author);
       if (empty($author) && $nmoption['defaultauthor'])
         $author = $nmoption['defaultauthor'];
-      $authorhtml = !empty($author) ? '<p class="nm_post_author">'.i18n_r('news_manager/AUTHOR').' '.$author.'</p>'.PHP_EOL : '';
+      $authorhtml = !empty($author) ? '<p class="nm_post_author">'.i18n_r('news_manager/AUTHOR').' <em>'.$author.'</em></p>'.PHP_EOL : '';
     } else {
       $authorhtml = '';
     }
