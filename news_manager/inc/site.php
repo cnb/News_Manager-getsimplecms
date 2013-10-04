@@ -171,14 +171,14 @@ function nm_set_pagetype_options($pagetype) {
   } else {
     $nmoption['showimages'] = true;
   }
-  $nmoption['images']['width'] = $NMSETTING['imagewidth'];
-  $nmoption['images']['height'] = $NMSETTING['imageheight'];
-  $nmoption['images']['crop'] = ($NMSETTING['imagecrop'] == '1');
-  $nmoption['images']['alt'] = ($NMSETTING['imagealt'] == '1');
-  $nmoption['images']['link'] = ($pagetype != 'single' && $NMSETTING['imagelink'] == '1');
-  $nmoption['images']['title'] = false;
-  $nmoption['images']['external'] = false;
-  $nmoption['images']['default'] = '';
+  $nmoption['imagewidth'] = $NMSETTING['imagewidth'];
+  $nmoption['imageheight'] = $NMSETTING['imageheight'];
+  $nmoption['imagecrop'] = ($NMSETTING['imagecrop'] == '1');
+  $nmoption['imagealt'] = ($NMSETTING['imagealt'] == '1');
+  $nmoption['imagelink'] = ($pagetype != 'single' && $NMSETTING['imagelink'] == '1');
+  $nmoption['imagetitle'] = false;
+  $nmoption['imageexternal'] = false;
+  $nmoption['imagedefault'] = '';
   
   # news page type
   $nmoption['pagetype'] = $pagetype;
@@ -212,10 +212,10 @@ function nm_show_post($slug, $showexcerpt=false) {
     $image = $nmoption['showimages'] ? nm_get_image_url(stripslashes($post->image)) : false;
     if ($image) {
       $imghtml = '';
-      $imghtml .= $nmoption['images']['alt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
-      $imghtml .= $nmoption['images']['title'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
+      $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
+      $imghtml .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
       $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
-      if ($nmoption['images']['link'])
+      if ($nmoption['imagelink'])
         $imghtml = '<a href="'.$url.'">'.$imghtml.'</a>';
       $imghtml = '<div class="nm_post_image">'.$imghtml.'</div>'.PHP_EOL;
     } else {
@@ -410,14 +410,14 @@ function nm_disable_images() {
 function nm_set_image_option($option, $value=true) {
   global $nmoption;
   if ($option)
-    $nmoption['images'][$option] = $value;
+    $nmoption['image'.$option] = $value;
 }
 
 function nm_set_image_size($width=null, $height=null, $crop=false) {
   global $nmoption;
-  $nmoption['images']['width'] = $width;
-  $nmoption['images']['height'] = $height;
-  $nmoption['images']['crop'] = $crop;
+  $nmoption['imagewidth'] = $width;
+  $nmoption['imageheight'] = $height;
+  $nmoption['imagecrop'] = $crop;
 }
 
 // custom text/language strings

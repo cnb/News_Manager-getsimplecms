@@ -157,20 +157,19 @@ function nm_get_parent() {
  */
 function nm_get_image_url($pic) {
   global $SITEURL, $nmoption;
-  $nmimages = $nmoption['images'];
   $url = '';
-  if (empty($pic) && isset($nmimages['default']))
-    $pic = $nmimages['default'];
+  if (empty($pic) && $nmoption['imagedefault'])
+    $pic = $nmoption['imagedefault'];
   if (!empty($pic)) {
     $pos = strpos($pic, 'data/uploads/');
     if ($pos === false && strpos($pic, '://')) {
-      if (!isset($nmimages['external']) || $nmimages['external'])
+      if ($nmoption['imageexternal'])
         $url = $pic;
     } else {
       if ($pos !== false) $pic = substr($pic, $pos+13);
-      $w = isset($nmimages['width']) ? '&w='.$nmimages['width'] : '';
-      $h = isset($nmimages['height']) ? '&h='.$nmimages['height'] : '';
-      $c = (isset($nmimages['crop']) && $nmimages['crop']) ? '&c=1' : '';
+      $w = $nmoption['imagewidth'] ? '&w='.$nmoption['imagewidth'] : '';
+      $h = $nmoption['imageheight'] ? '&h='.$nmoption['imageheight'] : '';
+      $c = $nmoption['imagecrop'] ? '&c=1' : '';
       $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
     }
   }
