@@ -179,6 +179,8 @@ function nm_set_pagetype_options($pagetype) {
   $nmoption['imagetitle'] = false;
   $nmoption['imageexternal'] = false;
   $nmoption['imagedefault'] = '';
+  $nmoption['imagesizeattr'] = (isset($nmoption['imagesizeattr']) && $nmoption['imagesizeattr'] &&
+                                $nmoption['imagewidth'] && $nmoption['imageheight']);
   
   # news page type
   $nmoption['pagetype'] = $pagetype;
@@ -212,6 +214,7 @@ function nm_show_post($slug, $showexcerpt=false) {
     $image = $nmoption['showimages'] ? nm_get_image_url(stripslashes($post->image)) : false;
     if ($image) {
       $imghtml = '';
+      $imghtml .= $nmoption['imagesizeattr'] ? ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"' : '';
       $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
       $imghtml .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
       $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
