@@ -171,16 +171,15 @@ function nm_set_pagetype_options($pagetype) {
   } else {
     $nmoption['showimages'] = true;
   }
-  $nmoption['imagewidth'] = $NMSETTING['imagewidth'];
-  $nmoption['imageheight'] = $NMSETTING['imageheight'];
+  $nmoption['imagewidth'] = intval($NMSETTING['imagewidth']);
+  $nmoption['imageheight'] = intval($NMSETTING['imageheight']);
   $nmoption['imagecrop'] = ($NMSETTING['imagecrop'] == '1');
   $nmoption['imagealt'] = ($NMSETTING['imagealt'] == '1');
   $nmoption['imagelink'] = ($pagetype != 'single' && $NMSETTING['imagelink'] == '1');
   $nmoption['imagetitle'] = false;
   $nmoption['imageexternal'] = false;
   $nmoption['imagedefault'] = '';
-  $nmoption['imagesizeattr'] = (isset($nmoption['imagesizeattr']) && $nmoption['imagesizeattr'] &&
-                                $nmoption['imagewidth'] && $nmoption['imageheight']);
+  $nmoption['imagesizeattr'] = false;
   
   # news page type
   $nmoption['pagetype'] = $pagetype;
@@ -214,7 +213,8 @@ function nm_show_post($slug, $showexcerpt=false) {
     $image = $nmoption['showimages'] ? nm_get_image_url(stripslashes($post->image)) : false;
     if ($image) {
       $imghtml = '';
-      $imghtml .= $nmoption['imagesizeattr'] ? ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"' : '';
+      if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
+        $imghtml .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
       $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
       $imghtml .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
       $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
