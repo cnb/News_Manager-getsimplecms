@@ -70,10 +70,10 @@
   </div>
   <div class="rightsec">
     <p>
-      <label for="archivesby"><?php i18n('news_manager/ARCHIVES_BY'); ?>:</label>
+      <label for="archivesby"><?php i18n('news_manager/ENABLE_ARCHIVES'); ?>:</label>
       <select class="text" name="archivesby">
-        <option value="m"<?php if ($NMSETTING['archivesby']=='m') echo ' selected="selected"'; ?>><?php i18n('news_manager/MONTH'); ?></option>
-        <option value="y"<?php if ($NMSETTING['archivesby']=='y') echo ' selected="selected"'; ?>><?php i18n('news_manager/YEAR'); ?></option>
+        <option value="m"<?php if ($NMSETTING['archivesby']=='m') echo ' selected="selected"'; ?>><?php i18n('news_manager/BY_MONTH'); ?></option>
+        <option value="y"<?php if ($NMSETTING['archivesby']=='y') echo ' selected="selected"'; ?>><?php i18n('news_manager/BY_YEAR'); ?></option>
       </select>
     </p>
   </div>
@@ -118,7 +118,7 @@
   <div class="clear"></div>
   <div class="leftsec">
     <p>
-      <label for="images"><?php i18n('news_manager/POST_IMAGES'); ?>:</label>
+      <label for="images"><?php i18n('news_manager/ENABLE_IMAGES'); ?>:</label>
       <select class="text" name="images" id="images">
         <option value="N"<?php if ($NMSETTING['images']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
         <option value="Y"<?php if ($NMSETTING['images']=='Y') echo ' selected="selected"'; ?>><?php i18n('YES'); ?></option>
