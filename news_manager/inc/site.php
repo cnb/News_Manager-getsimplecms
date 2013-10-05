@@ -342,29 +342,34 @@ function nm_post_title($before='', $after='', $echo=true) {
 
 // conditionals
 
+function nm_is_site() {
+  global $nmoption;
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype']);
+}
+
 function nm_is_single() {
   global $nmoption;
-  return ($nmoption['pagetype'] == 'single');
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'single');
 }
 
 function nm_is_main() {
   global $nmoption;
-  return ($nmoption['pagetype'] == 'main');
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'main');
 }
 
 function nm_is_tag() {
   global $nmoption;
-  return ($nmoption['pagetype'] == 'tag');
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'tag');
 }
 
 function nm_is_archive() {
   global $nmoption;
-  return ($nmoption['pagetype'] == 'archive');
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'archive');
 }
 
 function nm_is_search() {
   global $nmoption;
-  return ($nmoption['pagetype'] == 'search');
+  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'search');
 }
 
 // set general option
