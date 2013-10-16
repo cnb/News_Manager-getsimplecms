@@ -134,10 +134,9 @@ function nm_show_single($slug) {
  */
 function nm_set_pagetype_options($pagetype) {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
-  
   $nmoption = array();
-  # general options
   
+  # full/excerpt, readmore
   if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
     if ($NMSETTING['readmore'] == 'R')
       $nmoption['excerpt'] = 'readmore';
@@ -149,8 +148,10 @@ function nm_set_pagetype_options($pagetype) {
     $nmoption['excerpt'] = false; // full post
   }
   
+  # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
-
+  
+  # go back link
   if ($pagetype == 'single') {
     if ($NMSETTING['gobacklink'] == 'N') 
       $nmoption['gobacklink'] = false;
@@ -160,10 +161,11 @@ function nm_set_pagetype_options($pagetype) {
       $nmoption['gobacklink'] = true;
   }
   
+  # author
   $nmoption['showauthor'] = false;
   $nmoption['defaultauthor'] = '';
   
-  # images:
+  # images
   if ( $NMSETTING['images'] == 'N' 
     || ($pagetype == 'single' && $NMSETTING['images'] == 'P')
     || ($pagetype != 'main' && $NMSETTING['images'] == 'M') ) {
