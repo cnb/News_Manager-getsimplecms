@@ -63,8 +63,9 @@ $i18n = array(
 "IMAGE_LINKS"         =>  "Link images to posts",
 "IMAGE_WIDTH"         =>  "Post image width (pixels)",
 "IMAGE_HEIGHT"        =>  "Post image height (pixels)",
-"IMAGE_CROP"          =>  "Crop post images to fit width/height",
+"IMAGE_CROP"          =>  "Crop post images to fit width/height ratio",
 "IMAGE_ALT"           =>  "Insert post title in post image <em>alt</em> attribute",
+"CUSTOM_SETTINGS"     =>  "Custom settings",
 
 # edit post
 "POST_OPTIONS"        =>  "Επιλογές Άρθρου",
