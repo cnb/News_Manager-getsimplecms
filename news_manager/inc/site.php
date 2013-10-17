@@ -185,6 +185,39 @@ function nm_set_pagetype_options($pagetype) {
   
   # news page type
   $nmoption['pagetype'] = $pagetype;
+  
+  # custom settings
+  if ($NMSETTING['enablecustomsettings'] == '1') {
+    # extract settings
+    foreach(preg_split('~\R~', $NMSETTING['customsettings']) as $line) {
+      $line = trim($line);
+      if ($line && strpos($line,'#') !== 0 && strpos($line,'//') !== 0) { // exclude empty and commented lines
+        $arr = explode(' ',preg_replace("/[[:blank:]]+/"," ",$line));
+        if (count($arr) > 1) {
+          if (in_array($arr[0], array('main','single','archive','tag','search')))
+            $customsettings[$arr[0]][$arr[1]] = implode(' ',array_slice($arr,2));
+          else
+            $customsettings['site'][$arr[0]] = implode(' ',array_slice($arr,1));
+        }
+      }
+    }
+    # process settings and strings
+    foreach(array('site', $nmoption['pagetype']) as $type) {
+      if (isset($customsettings[$type])) {
+        foreach($customsettings[$type] as $key=>$value) {
+          if (substr($value,0,1) == '"' || substr($value,0,1) == "'") $value = substr($value,1,strlen($value)-2);
+          if (strtoupper($key) == $key) {
+            # language string
+            nm_set_text($key, $value);
+          } else {
+            # setting
+            $nmoption[$key] = $value;
+          }
+        }
+      }
+    }
+  }
+
 }
 
 

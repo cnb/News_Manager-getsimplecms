@@ -61,6 +61,8 @@ function nm_save_settings() {
   $NMSETTING['imagecrop'] = isset($_POST['imagecrop']);
   $NMSETTING['imagealt'] = isset($_POST['imagealt']);
   $NMSETTING['imagelink'] = isset($_POST['imagelink']);
+  $NMSETTING['enablecustomsettings'] = isset($_POST['enablecustomsettings']);
+  $NMSETTING['customsettings'] = $_POST['customsettings'];
   # write settings to file
   if (nm_settings_to_xml())
     nm_display_message(i18n_r('news_manager/SUCCESS_SAVE'));
@@ -81,7 +83,7 @@ function nm_save_settings() {
 function nm_settings_to_xml() {
   global $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT, $NMEXCERPTLENGTH,
          $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
-  $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item></item>');
+  $xml = new SimpleXMLExtended('<?xml version="1.0" encoding="UTF-8"?><item></item>');
   $obj = $xml->addChild('page_url', $NMPAGEURL);
   $obj = $xml->addChild('pretty_urls', $NMPRETTYURLS);
   $obj = $xml->addChild('language', $NMLANG);
@@ -99,6 +101,9 @@ function nm_settings_to_xml() {
   $obj = $xml->addChild('imagecrop', $NMSETTING['imagecrop']);
   $obj = $xml->addChild('imagealt', $NMSETTING['imagealt']);
   $obj = $xml->addChild('imagelink', $NMSETTING['imagelink']);
+  $obj = $xml->addChild('enablecustomsettings', $NMSETTING['enablecustomsettings']);
+  $obj = $xml->addChild('customsettings');
+  $obj->addCData($NMSETTING['customsettings']);
   return @XMLsave($xml, NMSETTINGS);
 }
 

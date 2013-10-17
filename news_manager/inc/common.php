@@ -50,6 +50,8 @@ $NMSETTING['imageheight'] = isset($data->imageheight) ? $data->imageheight : '';
 $NMSETTING['imagecrop'] = isset($data->imagecrop) ? $data->imagecrop : '';
 $NMSETTING['imagealt'] = isset($data->imagealt) ? $data->imagealt : '';
 $NMSETTING['imagelink'] = isset($data->imagelink) ? $data->imagelink : '';
+$NMSETTING['enablecustomsettings'] = isset($data->enablecustomsettings) ? $data->enablecustomsettings : '';
+$NMSETTING['customsettings'] = isset($data->customsettings) ? $data->customsettings : '';
 
 # other globals
 $NMPARENTURL = '?'; // to be assigned elsewhere

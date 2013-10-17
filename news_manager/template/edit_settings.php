@@ -163,6 +163,12 @@
     </div>
     <div class="clear"></div>
   </div><!-- imageoptions -->
+  <p class="inline">
+    <input name="enablecustomsettings" id="enablecustomsettings" type="checkbox" <?php if ($NMSETTING['enablecustomsettings'] == '1') echo 'checked'; ?> />&nbsp;
+    <label for="customsettings"><?php i18n('news_manager/CUSTOM_SETTINGS'); ?></label>
+    <textarea style="height:150px" name="customsettings" id="customsettings"><?php echo $NMSETTING['customsettings']; ?></textarea>
+  </p>
+  
   <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || strpos($PERMALINK,'?') === false) )  { ?>
   <p class="inline">
     <input name="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
@@ -202,6 +208,11 @@
       $('#imageoptions').hide();
     }
 
+    if ($('#enablecustomsettings').is(':checked')) {
+      $('#customsettings').show();
+    } else {
+      $('#customsettings').hide();
+    }
   });
   
   $('#images').change(function(){
@@ -211,6 +222,14 @@
     } else {
       $('#imagelink').show();
       $('#imageoptions').show();
+    }
+  });
+  
+  $('#enablecustomsettings').change(function(){
+    if ($('#enablecustomsettings').is(':checked')) {
+      $('#customsettings').show();
+    } else {
+      $('#customsettings').hide();
     }
   });
 </script>
