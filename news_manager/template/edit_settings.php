@@ -139,13 +139,13 @@
     <div class="leftsec">
       <p>
         <label for="imagewidth"><?php i18n('news_manager/IMAGE_WIDTH'); ?>:</label>
-        <input class="text" type="text" name="imagewidth" value="<?php echo $NMSETTING['imagewidth']; ?>" placeholder="Original" />
+        <input class="text" type="text" name="imagewidth" value="<?php echo $NMSETTING['imagewidth']; ?>" placeholder="0 = <?php i18n('news_manager/FULL'); ?>" />
       </p>
     </div>
     <div class="rightsec">
       <p>
         <label for="imageheight"><?php i18n('news_manager/IMAGE_HEIGHT'); ?>:</label>
-        <input class="text" type="text" name="imageheight" value="<?php echo $NMSETTING['imageheight']; ?>" placeholder="Original" />
+        <input class="text" type="text" name="imageheight" value="<?php echo $NMSETTING['imageheight']; ?>" placeholder="0 = <?php i18n('news_manager/FULL'); ?>" />
       </p>
     </div>
     <div class="clear"></div>
