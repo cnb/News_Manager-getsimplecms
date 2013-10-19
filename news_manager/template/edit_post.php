@@ -14,9 +14,9 @@ if ($NMSETTING['images'] != 'N' || $NMIMAGEINPUT === true) {
   if ($NMIMAGEINPUT < 0 || $NMIMAGEINPUT > 4) $NMIMAGEINPUT = 2;
 }
 if ($NMIMAGEINPUT) {
-  global $SITEURL, $NMIMAGEDIR;
-  if ($NMIMAGEDIR) {
-    $imagepath = '&path='.trim($NMIMAGEDIR, '/');
+  global $SITEURL;
+  if (defined('NMIMAGEDIR')) {
+    $imagepath = '&path='.trim(NMIMAGEDIR, '/');
   } else {
     $imagepath = '';
   }
