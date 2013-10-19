@@ -370,8 +370,7 @@ function nm_patch_plugin_management() {
  * @since 2.5
  */
 function nm_lowercase_tags($str) {
-  global $NMLOWERCASETAGS;
-  if ($NMLOWERCASETAGS)
+  if (defined('NMLOWERCASETAGS') && NMLOWERCASETAGS)
     return lowercase($str);
   else
     return $str;
