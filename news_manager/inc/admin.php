@@ -10,7 +10,6 @@
  * @action back-end main panel (post overview)
  */
 function nm_admin_panel() {
-  global $PRETTYURLS, $NMPRETTYURLS;
   $posts = nm_get_posts(true);
   ?>
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
