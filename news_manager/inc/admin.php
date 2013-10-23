@@ -10,6 +10,7 @@
  * @action back-end main panel (post overview)
  */
 function nm_admin_panel() {
+  global $NMPAGEURL;
   $posts = nm_get_posts(true);
   ?>
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
@@ -63,9 +64,11 @@ function nm_admin_panel() {
           ?>
         </td>
         <td class="secondarylink">
-          <a href="<?php echo $url; ?>" target="_blank" title="<?php i18n('news_manager/VIEW_POST'); ?>: <?php echo $title; ?>">
-            #
-          </a>
+          <?php if ($NMPAGEURL) { ?>
+            <a href="<?php echo $url; ?>" target="_blank" title="<?php i18n('news_manager/VIEW_POST'); ?>: <?php echo $title; ?>">
+              #
+            </a>
+          <?php } ?>
         </td>
         <td class="delete">
           <a href="load.php?id=news_manager&amp;delete=<?php echo $post->slug; ?>" class="nm_delconfirm" title="<?php i18n('news_manager/DELETE_POST'); ?>: <?php echo $title; ?>?">
