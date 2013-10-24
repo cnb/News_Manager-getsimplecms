@@ -64,7 +64,7 @@ function nm_admin_panel() {
           ?>
         </td>
         <td class="secondarylink">
-          <?php if ($NMPAGEURL) { ?>
+          <?php if ($NMPAGEURL && $NMPAGEURL != '') { ?>
             <a href="<?php echo $url; ?>" target="_blank" title="<?php i18n('news_manager/VIEW_POST'); ?>: <?php echo $title; ?>">
               #
             </a>

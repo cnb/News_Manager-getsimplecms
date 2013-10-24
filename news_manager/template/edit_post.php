@@ -4,6 +4,7 @@
  * News Manager edit post template
  */
 
+global $NMPAGEURL;
 
 # image input field (since 2.5)
 global $NMSETTING;
@@ -55,7 +56,7 @@ if ($imageinputpos > 0) {
 </h3>
 <div class="edit-nav" >
   <?php
-  if (file_exists($file) && $private == '') {
+  if (!empty($NMPAGEURL) && $NMPAGEURL != '' && file_exists($file) && $private == '') {
     $url = nm_get_url('post') . $slug;
     ?>
     <a href="<?php echo $url; ?>" target="_blank">
