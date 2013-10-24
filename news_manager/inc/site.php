@@ -19,8 +19,6 @@ function nm_show_page($index=0) {
   else
     $posts = array();
   nm_set_pagetype_options('main');
-  nm_get_layout_block('nm-init');
-  nm_get_layout_block('nm-top-main') || nm_get_layout_block('nm-top');
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
     foreach ($posts as $post)
@@ -30,8 +28,6 @@ function nm_show_page($index=0) {
   } else {
     echo '<p>' . i18n_r('news_manager/NO_POSTS') . '</p>';
   }
-  nm_get_layout_block('nm-bottom-main') || nm_get_layout_block('nm-bottom');
-  nm_get_layout_block('nm-end');
 }
 
 
@@ -45,15 +41,11 @@ function nm_show_archive($archive) {
   $archives = nm_get_archives($NMSETTING['archivesby']);
   if (array_key_exists($archive, $archives)) {
     nm_set_pagetype_options('archive');
-    nm_get_layout_block('nm-init');
-    nm_get_layout_block('nm-top-archive') || nm_get_layout_block('nm-top');
     $showexcerpt = nm_get_option('excerpt');
     $posts = $archives[$archive];
     foreach ($posts as $slug)
       nm_show_post($slug, $showexcerpt);
    }
-  nm_get_layout_block('nm-bottom-archive') || nm_get_layout_block('nm-bottom');
-  nm_get_layout_block('nm-end');
 }
 
 
@@ -67,14 +59,10 @@ function nm_show_tag($tag) {
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
     nm_set_pagetype_options('tag');
-    nm_get_layout_block('nm-init');
-    nm_get_layout_block('nm-top-tag') || nm_get_layout_block('nm-top');
     $showexcerpt = nm_get_option('excerpt');
     $posts = $tags[$tag];
     foreach ($posts as $slug)
       nm_show_post($slug, $showexcerpt);
-    nm_get_layout_block('nm-bottom-tag') || nm_get_layout_block('nm-bottom');
-    nm_get_layout_block('nm-end');
   }
 }
 
@@ -97,8 +85,6 @@ function nm_show_search_results() {
     $posts = $match;
   }
   nm_set_pagetype_options('search');
-  nm_get_layout_block('nm-init');
-  nm_get_layout_block('nm-top-search') || nm_get_layout_block('nm-top');
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
     echo '<p>' . i18n_r('news_manager/FOUND') . '</p>';
@@ -107,8 +93,6 @@ function nm_show_search_results() {
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>';
   }
-  nm_get_layout_block('nm-bottom-search') || nm_get_layout_block('nm-bottom');
-  nm_get_layout_block('nm-end');
 }
 
 /*******************************************************
@@ -118,11 +102,7 @@ function nm_show_search_results() {
  */
 function nm_show_single($slug) {
   nm_set_pagetype_options('single');
-  nm_get_layout_block('nm-init');
-  nm_get_layout_block('nm-top-single') || nm_get_layout_block('nm-top');
   nm_show_post($slug);
-  nm_get_layout_block('nm-bottom-single') || nm_get_layout_block('nm-bottom');
-  nm_get_layout_block('nm-end');
 }
 
 
@@ -471,39 +451,5 @@ function nm_set_text($i18nkey=null, $i18nvalue=null) {
     $i18n['news_manager/'.$i18nkey] = $i18nvalue;
 }
 
-// used by nm_get_layout_block
-if (!function_exists('component_exists')) {
-  function component_exists($id) {
-    global $components;
-    if (!$components) {
-       if (file_exists(GSDATAOTHERPATH.'components.xml')) {
-        $data = getXML(GSDATAOTHERPATH.'components.xml');
-        $components = $data->item;
-      } else {
-        $components = array();
-      }
-    }
-    $exists = FALSE;
-    if (count($components) > 0) {
-      foreach ($components as $component) {
-        if ($id == $component->slug) {
-          $exists = TRUE;
-          break;
-        }
-      }
-    }
-    return $exists;
-  }
-}
-
-// get template component, return false if not exists
-function nm_get_layout_block($templ) {
-  if (component_exists($templ)) {
-    get_component($templ);
-    return true;
-  } else {
-    return false;
-  }
-}
 
 ?>
