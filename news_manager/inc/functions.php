@@ -137,13 +137,17 @@ function nm_get_url($query=false) {
  */
 function nm_get_parent() {
   global $NMPARENTURL, $NMPAGEURL;
-  if ($NMPARENTURL == '?') {
-    global $pagesArray;
-    if ($pagesArray) {
-      $NMPARENTURL = returnPageField($NMPAGEURL, 'parent');
-    } else {
-      $gsdata = getXML(GSDATAPAGESPATH.$NMPAGEURL.'.xml');
-      $NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
+  if ($NMPAGEURL == '') {
+    $NMPARENTURL = '';
+  } else {
+    if ($NMPARENTURL == '?') {
+      global $pagesArray;
+      if ($pagesArray) {
+        $NMPARENTURL = returnPageField($NMPAGEURL, 'parent');
+      } else {
+        $gsdata = getXML(GSDATAPAGESPATH.$NMPAGEURL.'.xml');
+        $NMPARENTURL = isset($gsdata->parent) ? $gsdata->parent : '';
+      }
     }
   }
   return $NMPARENTURL;
