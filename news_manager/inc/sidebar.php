@@ -10,7 +10,8 @@
  * @action print a list with the latest posts (titles only)
  */
 function nm_list_recent() {
-  global $NMRECENTPOSTS;
+  global $NMPAGEURL, $NMRECENTPOSTS;
+  if ($NMPAGEURL == '') return;
   $posts = nm_get_posts();
   if (!empty($posts)) {
     echo '<ul class="nm_recent">',PHP_EOL;
@@ -31,7 +32,8 @@ function nm_list_recent() {
  * @param $fmt optional custom format (strftime), default '%B %Y' or '%Y'
  */
 function nm_list_archives($fmt='') {
-  global $NMSETTING;
+  global $NMPAGEURL, $NMSETTING;
+  if ($NMPAGEURL == '') return;
   $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',PHP_EOL;
@@ -64,6 +66,8 @@ function nm_list_archives($fmt='') {
  * @action print unique tags, popular tags are bigger.
  */
 function nm_list_tags() {
+  global $NMPAGEURL;
+  if ($NMPAGEURL == '') return;
   $tags = array();
   foreach (nm_get_tags() as $tag=>$posts)
     if (substr($tag, 0, 1) != '_')
@@ -87,7 +91,8 @@ function nm_list_tags() {
  * @action provide form to search posts by keyword(s)
  */
 function nm_search() {
-  global $i18n;
+  global $NMPAGEURL, $i18n;
+  if ($NMPAGEURL == '') return;
   $placeholder = (isset($i18n['news_manager/SEARCH_PLACEHOLDER'])) ? $i18n['news_manager/SEARCH_PLACEHOLDER'] : '';
   $url = nm_get_url();
   ?>
