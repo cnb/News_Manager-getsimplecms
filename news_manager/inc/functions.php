@@ -166,15 +166,15 @@ function nm_get_image_url($pic) {
     $pic = $nmoption['imagedefault'];
   if (!empty($pic)) {
     $pos = strpos($pic, 'data/uploads/');
-    if ($pos === false && strpos($pic, '://')) {
-      if ($nmoption['imageexternal'])
-        $url = $pic;
-    } else {
+    if ($pos !== false || strpos($pic, '/data/thumbs/') !== false || !strpos($pic, '://')) {
       if ($pos !== false) $pic = substr($pic, $pos+13);
       $w = $nmoption['imagewidth'] ? '&w='.$nmoption['imagewidth'] : '';
       $h = $nmoption['imageheight'] ? '&h='.$nmoption['imageheight'] : '';
       $c = $nmoption['imagecrop'] ? '&c=1' : '';
       $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
+    } else {
+      if ($nmoption['imageexternal'])
+        $url = $pic;
     }
   }
   return $url;

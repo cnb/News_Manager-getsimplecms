@@ -3,6 +3,8 @@
 # | Copyright (c) 2013 Martin Vlcek                                    |
 # | License: GPLv3 (http://www.gnu.org/licenses/gpl-3.0.html)          |
 # +--------------------------------------------------------------------+
+# | Modified by Carlos Navarro                                         |
+# +--------------------------------------------------------------------+
 
 define('CACHE_SECONDS', 3600*24); // for how long images should be cached
 
@@ -11,7 +13,12 @@ $maxWidth = @$_GET['w'];
 $maxHeight = @$_GET['h'];
 $crop = @$_GET['c'] && $maxWidth && $maxHeight;
 $datadir = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), DIRECTORY_SEPARATOR.'plugins')) . '/data/';
-$imagedir = $datadir . 'uploads/';
+if (strpos($infile,'/data/thumbs/')) {
+  $imagedir = $datadir . 'thumbs/';
+  $infile = substr($infile,strpos($infile,'/data/thumbs/')+13);
+} else {
+  $imagedir = $datadir . 'uploads/';
+}
 if (!$maxWidth && !$maxHeight) {
   $info = @getimagesize($imagedir.$infile);
   if (!$info) die('File not found or not an image!');
