@@ -11,7 +11,7 @@
  * @action show posts on news page
  */
 function nm_show_page($index=0) {
-  global $NMPOSTSPERPAGE;
+  global $NMPOSTSPERPAGE, $nmoption;
   $posts = nm_get_posts();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
   if (is_numeric($index) && $index >= 0 && $index < sizeof($pages))
@@ -19,6 +19,7 @@ function nm_show_page($index=0) {
   else
     $posts = array();
   nm_set_pagetype_options('main');
+  $nmoption['ishome'] = ($index == 0);
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
     foreach ($posts as $post)
@@ -385,6 +386,11 @@ function nm_is_archive() {
 function nm_is_search() {
   global $nmoption;
   return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'search');
+}
+
+function nm_is_home() {
+  global $nmoption;
+  return (isset($nmoption['ishome']) && $nmoption['ishome']);
 }
 
 // set general option
