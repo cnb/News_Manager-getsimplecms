@@ -50,7 +50,7 @@ function nm_get_tags() {
   $posts = nm_get_posts();
   foreach ($posts as $post) {
     if (!empty($post->tags)) {
-      foreach (explode(',', nm_lowercase_tags($post->tags)) as $tag)
+      foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag)
         $tags[$tag][] = $post->slug;
     }
   }

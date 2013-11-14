@@ -267,11 +267,11 @@ function nm_show_post($slug, $showexcerpt=false) {
       <?php
       # print tags, if any
       if (!empty($post->tags)) {
-        $tags = explode(',', nm_lowercase_tags($post->tags));
+        $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
         echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b>';
         foreach ($tags as $tag) 
           if (substr($tag, 0, 1) != '_') {
-            $url = nm_get_url('tag') . $tag;
+            $url = nm_get_url('tag').rawurlencode($tag);
             echo ' <a href="',$url,'">',$tag,'</a>';
           }
         echo '</p>';

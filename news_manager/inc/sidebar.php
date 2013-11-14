@@ -76,7 +76,7 @@ function nm_list_tags() {
     $min = min($tags);
     $max = max($tags);
     foreach ($tags as $tag=>$count) {
-      $url = nm_get_url('tag') . $tag;
+      $url = nm_get_url('tag').rawurlencode($tag);
       if ($min < $max && $count/$max > 0.5)
         echo '<a class="large" href="',$url,'">',$tag,'</a> ';
       else

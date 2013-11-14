@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.5 beta 13
+Version: 2.5 beta 13b
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.5 beta 13',
+  '2.5 beta 13b',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -105,7 +105,7 @@ function nm_frontend_init() {
       $archive = $_GET['archive'];
         nm_show_archive($archive);
     } elseif (isset($_GET['tag'])) {
-        $tag = $_GET['tag'];
+        $tag = rawurldecode($_GET['tag']);
         nm_show_tag($tag);
     } elseif (isset($_GET['post'])) {
         $slug = $_GET['post'];
