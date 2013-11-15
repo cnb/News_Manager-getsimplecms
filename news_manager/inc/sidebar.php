@@ -85,6 +85,27 @@ function nm_list_tags() {
   }
 }
 
+/*******************************************************
+ * @function nm_tag_list
+ * @action display list of unique tags
+ */
+function nm_tag_list() {
+  global $NMPAGEURL;
+  if ($NMPAGEURL == '') return;
+  $tags = array();
+  foreach (nm_get_tags() as $tag=>$posts)
+    if (substr($tag, 0, 1) != '_')
+      $tags[$tag] = count($posts);
+  if (!empty($tags)) {
+    echo '<ul class="nm_tag_list">',PHP_EOL;
+    foreach ($tags as $tag=>$count) {
+      $url = nm_get_url('tag').rawurlencode($tag);
+      echo '<li><a href="',$url,'">',$tag,'</a></li>',PHP_EOL;
+    }
+    echo '</ul>',PHP_EOL;
+  }
+}
+
 
 /*******************************************************
  * @function nm_search
