@@ -202,6 +202,10 @@ function nm_set_pagetype_options($pagetype) {
     }
   }
 
+  # html tags
+  $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
+  $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
+  
 }
 
 
@@ -252,15 +256,15 @@ function nm_show_post($slug, $showexcerpt=false) {
       $authorhtml = '';
     }
     # print post data ?>
-    <div class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
-      <h3 class="nm_post_title">
+    <<?php echo $nmoption['markuppost']; ?> class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
+      <<?php echo $nmoption['markuptitle']; ?> class="nm_post_title">
         <?php 
         if ($nmoption['titlelink'])
           echo '<a href="',$url,'">',$title,'</a>';
         else
           echo $title;
         ?>
-      </h3>
+      </<?php echo $nmoption['markuptitle']; ?>>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
       <?php
         echo $authorhtml;
@@ -299,7 +303,7 @@ function nm_show_post($slug, $showexcerpt=false) {
         }
       }
       ?>
-    </div>
+    </<?php echo $nmoption['markuppost']; ?>>
     <?php
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>';
@@ -408,7 +412,7 @@ function nm_set_option($option, $value=true) {
 function nm_get_option($option, $default=false) {
   global $nmoption;
   if ($option) {
-    if (isset ($nmoption[$option]))
+    if (isset($nmoption[$option]))
       return $nmoption[$option];
     else
       return $default;
