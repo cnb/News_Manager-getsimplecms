@@ -142,6 +142,9 @@ function nm_set_pagetype_options($pagetype) {
       $nmoption['gobacklink'] = true;
   }
   
+  # tag separator
+  $nmoption['tagseparator'] = ' ';
+  
   # author
   $nmoption['showauthor'] = false;
   $nmoption['defaultauthor'] = '';
@@ -268,11 +271,13 @@ function nm_show_post($slug, $showexcerpt=false) {
       # print tags, if any
       if (!empty($post->tags)) {
         $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
-        echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b>';
+        echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
+        $sep = '';
         foreach ($tags as $tag) 
           if (substr($tag, 0, 1) != '_') {
             $url = nm_get_url('tag').rawurlencode($tag);
-            echo ' <a href="',$url,'">',$tag,'</a>';
+            echo $sep,'<a href="',$url,'">',$tag,'</a>';
+            if ($sep == '') $sep = $nmoption['tagseparator'];
           }
         echo '</p>';
       }
