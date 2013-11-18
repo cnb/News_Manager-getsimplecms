@@ -287,12 +287,11 @@ function nm_show_post($slug, $showexcerpt=false) {
       
       # single post page?
       if ($nmoption['pagetype'] == 'single') {
-        # store post title
-        global $NMPOSTTITLE;
-        $NMPOSTTITLE = $title;
         # store post data
-        $nmoption['slug'] = $slug;
-        $nmoption['url'] = $url;
+        global $nmvar;
+        $nmvar['slug'] = $slug;
+        $nmvar['url'] = $url;
+        $nmvar['title'] = $title;
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
@@ -349,18 +348,16 @@ function nm_show_navigation($index, $total) {
  * @since 2.3
  */
 function nm_post_title($before='', $after='', $echo=true) {
-  global $NMPAGEURL;
-  $title = false;
-  if (isset($_GET['post']) && strval(get_page_slug(false)) == $NMPAGEURL) {
-    global $NMPOSTTITLE;
-    if ($NMPOSTTITLE) {
-      # use previously read post title
-      $title = $before.$NMPOSTTITLE.$after;
-      if ($echo) echo $title;
-    }
+  global $nmvar;
+  if (isset($nmvar['title']) && $nmvar['title']) {
+    $title = $before.$nmvar['title'].$after;
+    if ($echo) echo $title;
+    return $title;
+  } else {
+    return false;
   }
-  return $title;
 }
+
 
 /*** frontend functions, since 2.5 ***/
 
@@ -421,15 +418,25 @@ function nm_get_option($option, $default=false) {
 // template tags (single post view)
 
 function nm_post_slug($echo=true) {
-  $slug = nm_get_option('slug');
-  if ($echo) echo $slug;
-  return $slug;
+  global $nmvar;
+  if (isset($nmvar['slug']) && $nmvar['slug']) {
+    $slug = $nmvar['slug'];
+    if ($echo) echo $slug;
+    return $slug;
+  } else {
+    return false;
+  }
 }
 
 function nm_post_url($echo=true) {
-  $url = nm_get_option('url');
-  if ($echo) echo $url;
-  return $url;
+  global $nmvar;
+  if (isset($nmvar['url']) && $nmvar['url']) {
+    $url = $nmvar['url'];
+    if ($echo) echo $url;
+    return $url;
+  } else {
+    return false;
+  }
 }
 
 // images
