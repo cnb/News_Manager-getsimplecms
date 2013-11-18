@@ -279,8 +279,7 @@ function nm_show_post($slug, $showexcerpt=false) {
         $sep = '';
         foreach ($tags as $tag) 
           if (substr($tag, 0, 1) != '_') {
-            $url = nm_get_url('tag').rawurlencode($tag);
-            echo $sep,'<a href="',$url,'">',$tag,'</a>';
+            echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',$tag,'</a>';
             if ($sep == '') $sep = $nmoption['tagseparator'];
           }
         echo '</p>';
