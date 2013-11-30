@@ -244,24 +244,42 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
   if ($len == 0) {
     return '';
   } else {
-    $readmorehtml = $url ? '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>' : '';
-    $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
-    $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
-    $content = strip_tags($content);
-    if (strlen($content) > $len) {
-      if (function_exists('mb_substr'))
-        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1), ' '));
+    $ellipsis = i18n_r('news_manager/ELLIPSIS');
+    if ($url) {
+      $readmorehtml = '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
+      if ($forcereadmore)
+        $content = nm_make_excerpt($content, $len, $ellipsis).' '.$readmorehtml;
       else
-        $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
-      $content .= i18n_r('news_manager/ELLIPSIS');
-      if ($url) $content .= $readmorehtml;
+        $content = nm_make_excerpt($content, $len, $ellipsis.$readmorehtml);
     } else {
-      if ($forcereadmore) $content .= ' '.$readmorehtml;
+      $content = nm_make_excerpt($content, $len, $ellipsis);
     }
     return '<p>'.$content.'</p>';
   }
 }
 
+
+/*******************************************************
+ * @function nm_make_excerpt
+ * @param $content source string (html/text)
+ * @param $len maximum excerpt length
+ * @param $ellipsis optional string to be appended at the end (e.g. '...')
+ * @return excerpt without html tags and placeholders; words are not truncated
+ * @since 2.5
+ */
+function nm_make_excerpt($content, $len=200, $ellipsis='') {
+  $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
+  $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
+  $content = strip_tags($content);
+  if (strlen($content) > $len) {
+    if (function_exists('mb_substr'))
+      $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' '), 'UTF-8');
+    else
+      $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
+    $content .= $ellipsis;
+  }
+  return $content;
+}
 
 /*******************************************************
  * @function nm_i18n_merge
