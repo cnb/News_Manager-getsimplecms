@@ -438,6 +438,20 @@ function nm_post_url($echo=true) {
   }
 }
 
+function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
+  global $nmvar, $NMEXCERPTLENGTH;
+  if (isset($nmvar['content']) && $nmvar['content']) {
+    if (!$len) $len = $NMEXCERPTLENGTH;
+    if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
+    $excerpt = nm_make_excerpt($nmvar['content'], $len, $ellipsis);
+    if ($echo) echo $excerpt;
+    return $excerpt;
+  } else {
+    return '';
+  }
+}
+
+
 // images
 
 function nm_enable_images() {
