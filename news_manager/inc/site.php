@@ -257,14 +257,12 @@ function nm_show_post($slug, $showexcerpt=false) {
     }
     # print post data ?>
     <<?php echo $nmoption['markuppost']; ?> class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
-      <<?php echo $nmoption['markuptitle']; ?> class="nm_post_title">
-        <?php 
+      <<?php echo $nmoption['markuptitle']; ?> class="nm_post_title"><?php 
         if ($nmoption['titlelink'])
           echo '<a href="',$url,'">',$title,'</a>';
         else
           echo $title;
-        ?>
-      </<?php echo $nmoption['markuptitle']; ?>>
+        ?></<?php echo $nmoption['markuptitle']; ?>>
       <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
       <?php
         echo $authorhtml;
@@ -292,6 +290,7 @@ function nm_show_post($slug, $showexcerpt=false) {
         $nmvar['slug'] = $slug;
         $nmvar['url'] = $url;
         $nmvar['title'] = $title;
+        $nmvar['content'] = $content;
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
