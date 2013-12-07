@@ -225,6 +225,7 @@ function nm_show_post($slug, $showexcerpt=false) {
     $title   = stripslashes($post->title);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
+    $image   = stripslashes($post->image);
     if ($showexcerpt) {
       if ($showexcerpt === 'readmore')
         $content = nm_create_excerpt($content, $url);
@@ -233,14 +234,14 @@ function nm_show_post($slug, $showexcerpt=false) {
       else
         $content = nm_create_excerpt($content);
     }
-    $image = $nmoption['showimages'] ? nm_get_image_url(stripslashes($post->image)) : false;
-    if ($image) {
+    $imageurl = $nmoption['showimages'] ? nm_get_image_url($image) : false;
+    if ($imageurl) {
       $imghtml = '';
       if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
         $imghtml .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
       $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
       $imghtml .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
-      $imghtml = '<img src="'.htmlspecialchars($image).'"'.$imghtml.' />';
+      $imghtml = '<img src="'.htmlspecialchars($imageurl).'"'.$imghtml.' />';
       if ($nmoption['imagelink'])
         $imghtml = '<a href="'.$url.'">'.$imghtml.'</a>';
       $imghtml = '<div class="nm_post_image">'.$imghtml.'</div>'.PHP_EOL;
