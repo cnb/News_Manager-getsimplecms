@@ -399,6 +399,11 @@ function nm_is_home() {
   return (isset($nmoption['ishome']) && $nmoption['ishome']);
 }
 
+function nm_post_has_image() {
+  global $nmvar;
+  return (isset($nmvar['image']) && $nmvar['image']);
+}
+
 // set general option
 function nm_set_option($option, $value=true) {
   global $nmoption;
