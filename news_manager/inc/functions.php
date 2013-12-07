@@ -159,18 +159,26 @@ function nm_get_parent() {
  * @return absolute URL of thumbnail/image as defined by $nmoption settings
  * @since 2.5
  */
-function nm_get_image_url($pic) {
+function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=null) {
   global $SITEURL, $nmoption;
   $url = '';
-  if (empty($pic) && $nmoption['imagedefault'])
-    $pic = $nmoption['imagedefault'];
+  if (empty($pic)) {
+    if ($default)
+      $pic = $default;
+    else
+      if ($default !== '' && $nmoption['imagedefault'])
+        $pic = $nmoption['imagedefault'];
+  }
   if (!empty($pic)) {
+    if (!isset($width)) $width = $nmoption['imagewidth'];
+    if (!isset($height)) $height = $nmoption['imageheight'];
+    if (!isset($crop)) $crop = $nmoption['imagecrop'];
     $pos = strpos($pic, 'data/uploads/');
     if ($pos !== false || strpos($pic, '/data/thumbs/') !== false || !strpos($pic, '://')) {
       if ($pos !== false) $pic = substr($pic, $pos+13);
-      $w = $nmoption['imagewidth'] ? '&w='.$nmoption['imagewidth'] : '';
-      $h = $nmoption['imageheight'] ? '&h='.$nmoption['imageheight'] : '';
-      $c = $nmoption['imagecrop'] ? '&c=1' : '';
+      $w = $width ? '&w='.$width : '';
+      $h = $height ? '&h='.$height : '';
+      $c = $crop ? '&c=1' : '';
       $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
     } else {
       if ($nmoption['imageexternal'])
