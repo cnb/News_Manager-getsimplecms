@@ -292,6 +292,7 @@ function nm_show_post($slug, $showexcerpt=false) {
         $nmvar['url'] = $url;
         $nmvar['title'] = $title;
         $nmvar['content'] = $content;
+        $nmvar['image'] = $image;
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
@@ -452,6 +453,16 @@ function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
   }
 }
 
+function nm_post_image_url($width=null, $height=null, $crop=null, $default=null, $echo=true) {
+  global $nmvar;
+  if (isset($nmvar['image']) && $nmvar['image']) {
+    $url = htmlspecialchars(nm_get_image_url($nmvar['image'], $width, $height, $crop, $default));
+    if ($echo) echo $url;
+    return $url;
+  } else {
+    return '';
+  }
+}
 
 // images
 
