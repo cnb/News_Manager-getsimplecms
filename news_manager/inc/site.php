@@ -216,7 +216,7 @@ function nm_set_pagetype_options($pagetype) {
  * @action show the requested post on front-end news page, as defined by $nmoption values
  */
 function nm_show_post($slug, $showexcerpt=false) {
-  global $nmoption;
+  global $nmoption, $nmdata;
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
@@ -226,6 +226,13 @@ function nm_show_post($slug, $showexcerpt=false) {
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
+    # store post data
+    $nmdata = array();
+    $nmdata['slug'] = $slug;
+    $nmdata['url'] = $url;
+    $nmdata['title'] = $title;
+    $nmdata['content'] = $content;
+    $nmdata['image'] = $image;
     if ($showexcerpt) {
       if ($showexcerpt === 'readmore')
         $content = nm_create_excerpt($content, $url);
@@ -286,13 +293,6 @@ function nm_show_post($slug, $showexcerpt=false) {
       
       # single post page?
       if ($nmoption['pagetype'] == 'single') {
-        # store post data
-        global $nmdata;
-        $nmdata['slug'] = $slug;
-        $nmdata['url'] = $url;
-        $nmdata['title'] = $title;
-        $nmdata['content'] = $content;
-        $nmdata['image'] = $image;
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
@@ -304,6 +304,8 @@ function nm_show_post($slug, $showexcerpt=false) {
       ?>
     </<?php echo $nmoption['markuppost']; ?>>
     <?php
+      if ($nmoption['pagetype'] != 'single')
+        $nmdata = array(); // clear post data
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>';
   }
