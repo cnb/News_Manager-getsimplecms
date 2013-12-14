@@ -287,12 +287,12 @@ function nm_show_post($slug, $showexcerpt=false) {
       # single post page?
       if ($nmoption['pagetype'] == 'single') {
         # store post data
-        global $nmvar;
-        $nmvar['slug'] = $slug;
-        $nmvar['url'] = $url;
-        $nmvar['title'] = $title;
-        $nmvar['content'] = $content;
-        $nmvar['image'] = $image;
+        global $nmdata;
+        $nmdata['slug'] = $slug;
+        $nmdata['url'] = $url;
+        $nmdata['title'] = $title;
+        $nmdata['content'] = $content;
+        $nmdata['image'] = $image;
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
@@ -349,9 +349,9 @@ function nm_show_navigation($index, $total) {
  * @since 2.3
  */
 function nm_post_title($before='', $after='', $echo=true) {
-  global $nmvar;
-  if (isset($nmvar['title']) && $nmvar['title']) {
-    $title = $before.$nmvar['title'].$after;
+  global $nmdata;
+  if (isset($nmdata['title']) && $nmdata['title']) {
+    $title = $before.$nmdata['title'].$after;
     if ($echo) echo $title;
     return $title;
   } else {
@@ -400,8 +400,8 @@ function nm_is_home() {
 }
 
 function nm_post_has_image() {
-  global $nmvar;
-  return (isset($nmvar['image']) && $nmvar['image']);
+  global $nmdata;
+  return (isset($nmdata['image']) && $nmdata['image']);
 }
 
 // set general option
@@ -424,9 +424,9 @@ function nm_get_option($option, $default=false) {
 // template tags (single post view)
 
 function nm_post_slug($echo=true) {
-  global $nmvar;
-  if (isset($nmvar['slug']) && $nmvar['slug']) {
-    $slug = $nmvar['slug'];
+  global $nmdata;
+  if (isset($nmdata['slug']) && $nmdata['slug']) {
+    $slug = $nmdata['slug'];
     if ($echo) echo $slug;
     return $slug;
   } else {
@@ -435,9 +435,9 @@ function nm_post_slug($echo=true) {
 }
 
 function nm_post_url($echo=true) {
-  global $nmvar;
-  if (isset($nmvar['url']) && $nmvar['url']) {
-    $url = $nmvar['url'];
+  global $nmdata;
+  if (isset($nmdata['url']) && $nmdata['url']) {
+    $url = $nmdata['url'];
     if ($echo) echo $url;
     return $url;
   } else {
@@ -446,11 +446,11 @@ function nm_post_url($echo=true) {
 }
 
 function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
-  global $nmvar, $NMEXCERPTLENGTH;
-  if (isset($nmvar['content']) && $nmvar['content']) {
+  global $nmdata, $NMEXCERPTLENGTH;
+  if (isset($nmdata['content']) && $nmdata['content']) {
     if (!$len) $len = $NMEXCERPTLENGTH;
     if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
-    $excerpt = nm_make_excerpt($nmvar['content'], $len, $ellipsis);
+    $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis);
     if ($echo) echo $excerpt;
     return $excerpt;
   } else {
@@ -459,9 +459,9 @@ function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
 }
 
 function nm_post_image_url($width=null, $height=null, $crop=null, $default=null, $echo=true) {
-  global $nmvar;
-  if (isset($nmvar['image']) && $nmvar['image']) {
-    $url = htmlspecialchars(nm_get_image_url($nmvar['image'], $width, $height, $crop, $default));
+  global $nmdata;
+  if (isset($nmdata['image']) && $nmdata['image']) {
+    $url = htmlspecialchars(nm_get_image_url($nmdata['image'], $width, $height, $crop, $default));
     if ($echo) echo $url;
     return $url;
   } else {
