@@ -301,9 +301,17 @@ function nm_show_post($slug, $showexcerpt=false) {
           echo '</a></p>';
         }
       }
+      if (isset($nmoption['componentbottompost'])) {
+        get_component($nmoption['componentbottompost']);
+        echo PHP_EOL;
+      }
       ?>
     </<?php echo $nmoption['markuppost']; ?>>
     <?php
+      if (isset($nmoption['componentafterpost'])) {
+        get_component($nmoption['componentafterpost']);
+        echo PHP_EOL;
+      }
       if ($nmoption['pagetype'] != 'single')
         $nmdata = array(); // clear post data
   } else {
