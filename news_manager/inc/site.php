@@ -244,6 +244,8 @@ function nm_show_post($slug, $showexcerpt=false) {
     $imageurl = $nmoption['showimages'] ? nm_get_image_url($image) : false;
     if ($imageurl) {
       $imghtml = '';
+      if (isset($nmoption['imageclass']))
+        $imghtml .= ' class="'.$nmoption['imageclass'].'"';
       if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
         $imghtml .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
       $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
