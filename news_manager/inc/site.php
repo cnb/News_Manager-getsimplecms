@@ -292,7 +292,10 @@ function nm_show_post($slug, $showexcerpt=false) {
           }
         echo '</p>';
       }
-      
+      if (isset($nmoption['componentbottompost'])) {
+        get_component($nmoption['componentbottompost']);
+        echo PHP_EOL;
+      }
       # single post page?
       if ($nmoption['pagetype'] == 'single') {
         # show "go back" link?
@@ -302,10 +305,6 @@ function nm_show_post($slug, $showexcerpt=false) {
           i18n('news_manager/GO_BACK');
           echo '</a></p>';
         }
-      }
-      if (isset($nmoption['componentbottompost'])) {
-        get_component($nmoption['componentbottompost']);
-        echo PHP_EOL;
       }
       ?>
     </<?php echo $nmoption['markuppost']; ?>>
