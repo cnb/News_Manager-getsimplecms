@@ -217,7 +217,6 @@ function nm_set_pagetype_options($pagetype) {
       $nmoption['imagewidth'] = isset($imageparams[0]) ? $imageparams[0] : 0;
       $nmoption['imageheight'] = isset($imageparams[1]) ? $imageparams[1] : 0;
       $nmoption['imagecrop'] = isset($imageparams[2]) ? $imageparams[2] : 0;
-      echo '{',$nmoption['imagewidth'],';',$nmoption['imageheight'],';',$nmoption['imagecrop'],'}';
     }
   }
 }
