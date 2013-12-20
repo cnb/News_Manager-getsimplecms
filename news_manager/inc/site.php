@@ -206,6 +206,20 @@ function nm_set_pagetype_options($pagetype) {
   $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
   $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
   
+  # imagesize shorthand
+  if (isset($nmoption['imagesize'])) {
+    if ($nmoption['imagesize'] == 0 || $nmoption['imagesize'] == 'full') {
+      $nmoption['imagewidth'] = 0;
+      $nmoption['imageheight'] = 0;
+      $nmoption['imagecrop'] = 0;
+    } else {
+      $imageparams = explode(' ',preg_replace('/  +/', ' ',trim(str_replace(',',' ',$nmoption['imagesize']))));
+      $nmoption['imagewidth'] = isset($imageparams[0]) ? $imageparams[0] : 0;
+      $nmoption['imageheight'] = isset($imageparams[1]) ? $imageparams[1] : 0;
+      $nmoption['imagecrop'] = isset($imageparams[2]) ? $imageparams[2] : 0;
+      echo '{',$nmoption['imagewidth'],';',$nmoption['imageheight'],';',$nmoption['imagecrop'],'}';
+    }
+  }
 }
 
 
