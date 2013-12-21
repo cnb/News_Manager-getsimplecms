@@ -195,7 +195,7 @@ function nm_set_pagetype_options($pagetype) {
             nm_set_text($key, $value);
           } else {
             # setting
-            $nmoption[$key] = $value;
+            $nmoption[strtolower($key)] = $value;
           }
         }
       }
@@ -438,6 +438,7 @@ function nm_set_option($option, $value=true) {
 function nm_get_option($option, $default=false) {
   global $nmoption;
   if ($option) {
+    $option = strtolower($option);
     if (isset($nmoption[$option]))
       return $nmoption[$option];
     else
