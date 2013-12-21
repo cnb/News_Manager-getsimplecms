@@ -431,7 +431,7 @@ function nm_post_has_image() {
 // set general option
 function nm_set_option($option, $value=true) {
   global $nmoption;
-  if ($option) $nmoption[$option] = $value;
+  if ($option) $nmoption[strtolower($option)] = $value;
 }
 
 // get option value, return $default if not defined
