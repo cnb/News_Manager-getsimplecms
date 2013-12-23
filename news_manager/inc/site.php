@@ -205,7 +205,7 @@ function nm_set_pagetype_options($pagetype) {
   # html tags
   $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
   $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
-  
+
   # imagesize shorthand
   if (isset($nmoption['imagesize'])) {
     if ($nmoption['imagesize'] == 0 || $nmoption['imagesize'] == 'full') {
@@ -218,6 +218,12 @@ function nm_set_pagetype_options($pagetype) {
       $nmoption['imageheight'] = isset($imageparams[1]) ? $imageparams[1] : 0;
       $nmoption['imagecrop'] = isset($imageparams[2]) ? $imageparams[2] : 0;
     }
+  }
+
+  # custom excerpt length
+  if (isset($nmoption['excerptlength'])) {
+    global $NMEXCERPTLENGTH;
+    $NMEXCERPTLENGTH = $nmoption['excerptlength'];
   }
 }
 
