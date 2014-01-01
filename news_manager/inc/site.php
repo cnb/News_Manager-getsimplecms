@@ -205,6 +205,13 @@ function nm_set_pagetype_options($pagetype) {
   # html tags
   $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
   $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
+  
+  # fields
+  if (isset($nmoption['showfields'])) {
+    $nmoption['fields'] = explode(' ',preg_replace('/  +/', ' ',trim(str_replace(',',' ',$nmoption['showfields']))));
+  } else {
+    $nmoption['fields'] = array('title','date','author','image','content','tags');
+  }
 
   # imagesize shorthand
   if (isset($nmoption['imagesize'])) {
@@ -254,7 +261,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
     if ($single) echo ' nm_post_single';
     echo '">',PHP_EOL;
 
-    foreach (array('title','date','author','image','content','tags') as $field) {
+    foreach ($nmoption['fields'] as $field) {
       switch($field) {
 
         case 'title':
