@@ -246,88 +246,108 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
+
     # save post data?
     $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image') : array();
 
-    if ($showexcerpt) {
-      if ($showexcerpt === 'readmore')
-        $content = nm_create_excerpt($content, $url);
-      elseif ($showexcerpt === 'forcereadmore')
-        $content = nm_create_excerpt($content, $url, true);
-      else
-        $content = nm_create_excerpt($content);
-    }
-    $imageurl = $nmoption['showimages'] ? nm_get_image_url($image) : false;
-    if ($imageurl) {
-      $imghtml = '';
-      if (isset($nmoption['imageclass']))
-        $imghtml .= ' class="'.$nmoption['imageclass'].'"';
-      if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
-        $imghtml .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
-      $imghtml .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
-      $imghtml .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
-      $imghtml = '<img src="'.htmlspecialchars($imageurl).'"'.$imghtml.' />';
-      if ($nmoption['imagelink'])
-        $imghtml = '<a href="'.$url.'">'.$imghtml.'</a>';
-      $imghtml = '<div class="nm_post_image">'.$imghtml.'</div>'.PHP_EOL;
-    } else {
-      $imghtml = '';
-    }
-    if ($nmoption['showauthor']) {
-      $author = stripslashes($post->author);
-      if (empty($author) && $nmoption['defaultauthor'])
-        $author = $nmoption['defaultauthor'];
-      $authorhtml = !empty($author) ? '<p class="nm_post_author">'.i18n_r('news_manager/AUTHOR').' <em>'.$author.'</em></p>'.PHP_EOL : '';
-    } else {
-      $authorhtml = '';
-    }
-    # print post data ?>
-    <<?php echo $nmoption['markuppost']; ?> class="nm_post<?php if ($single) echo ' nm_post_single'; ?>">
-      <<?php echo $nmoption['markuptitle']; ?> class="nm_post_title"><?php 
-        if ($nmoption['titlelink'])
-          echo '<a href="',$url,'">',$title,'</a>';
-        else
-          echo $title;
-        ?></<?php echo $nmoption['markuptitle']; ?>>
-      <p class="nm_post_date"><?php echo i18n_r('news_manager/PUBLISHED'),' ',$date; ?></p>
-      <?php
-        echo $authorhtml;
-        echo $imghtml;
-      ?>
-      <div class="nm_post_content"><?php echo $content; ?></div>
-      <?php
-      # print tags, if any
-      if (!empty($post->tags)) {
-        $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
-        echo '<p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
-        $sep = '';
-        foreach ($tags as $tag) 
-          if (substr($tag, 0, 1) != '_') {
-            echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',$tag,'</a>';
-            if ($sep == '') $sep = $nmoption['tagseparator'];
+    echo '  <',$nmoption['markuppost'],' class="nm_post';
+    if ($single) echo ' nm_post_single';
+    echo '">',PHP_EOL;
+
+    foreach (array('title','date','author','image','content','tags') as $field) {
+      switch($field) {
+
+        case 'title':
+          echo '    <',$nmoption['markuptitle'],' class="nm_post_title">';
+          if ($nmoption['titlelink'])
+            echo '<a href="',$url,'">',$title,'</a>';
+          else
+            echo $title;
+          echo '</',$nmoption['markuptitle'],'>',PHP_EOL;
+          break;
+
+        case 'date':
+          echo '    <p class="nm_post_date">',i18n_r('news_manager/PUBLISHED'),' ',$date,'</p>',PHP_EOL;
+          break;
+
+        case 'content':
+          echo '    <div class="nm_post_content">';
+          if ($showexcerpt) {
+            if ($showexcerpt === 'readmore')
+              echo nm_create_excerpt($content, $url);
+            elseif ($showexcerpt === 'forcereadmore')
+              echo nm_create_excerpt($content, $url, true);
+            else
+              echo nm_create_excerpt($content);
+          } else {
+            echo $content;
           }
-        echo '</p>';
+          echo '</div>',PHP_EOL;
+          break;
+
+        case 'tags':
+          if (!empty($post->tags)) {
+            $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
+            echo '    <p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
+            $sep = '';
+            foreach ($tags as $tag) 
+              if (substr($tag, 0, 1) != '_') {
+                echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',$tag,'</a>';
+                if ($sep == '') $sep = $nmoption['tagseparator'];
+              }
+            echo '</p>',PHP_EOL;
+          }
+          break;
+
+        case 'image':
+          $imageurl = $nmoption['showimages'] ? nm_get_image_url($image) : false;
+          if ($imageurl) {
+            $str = '';
+            if (isset($nmoption['imageclass']))
+              $str .= ' class="'.$nmoption['imageclass'].'"';
+            if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
+              $str .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
+            $str .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
+            $str .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
+            $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
+            if ($nmoption['imagelink'])
+              $str = '<a href="'.$url.'">'.$str.'</a>';
+            echo '    <div class="nm_post_image">',$str,'</div>',PHP_EOL;
+          }
+          break;
+
+        case 'author':          
+          if ($nmoption['showauthor']) {
+            $author = stripslashes($post->author);
+            if (empty($author) && $nmoption['defaultauthor'])
+              $author = $nmoption['defaultauthor'];
+            if (!empty($author))
+                echo '    <p class="nm_post_author">'.i18n_r('news_manager/AUTHOR').' <em>'.$author.'</em></p>'.PHP_EOL;
+          }
+          break;
       }
-      if (isset($nmoption['componentbottompost'])) {
-        get_component($nmoption['componentbottompost']);
-        echo PHP_EOL;
+    }
+     
+    if (isset($nmoption['componentbottompost'])) {
+      get_component($nmoption['componentbottompost']);
+      echo PHP_EOL;
+    }
+    if ($single) {
+      # show "go back" link?
+      if ($nmoption['gobacklink']) {
+        $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
+        echo '    <p class="nm_post_back"><a href="'.$goback.'">';
+        i18n('news_manager/GO_BACK');
+        echo '</a></p>',PHP_EOL;
       }
-      if ($single) {
-        # show "go back" link?
-        if ($nmoption['gobacklink']) {
-          $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
-          echo '<p class="nm_post_back"><a href="'.$goback.'">';
-          i18n('news_manager/GO_BACK');
-          echo '</a></p>';
-        }
-      }
-      ?>
-    </<?php echo $nmoption['markuppost']; ?>>
-    <?php
-      if (isset($nmoption['componentafterpost'])) {
-        get_component($nmoption['componentafterpost']);
-        echo PHP_EOL;
-      }
+    }
+
+    echo '  </',$nmoption['markuppost'],'>',PHP_EOL;
+
+    if (isset($nmoption['componentafterpost'])) {
+      get_component($nmoption['componentafterpost']);
+      echo PHP_EOL;
+    }
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>';
   }
