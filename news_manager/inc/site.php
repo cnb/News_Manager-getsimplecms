@@ -103,7 +103,7 @@ function nm_show_search_results() {
  */
 function nm_show_single($slug) {
   nm_set_pagetype_options('single');
-  nm_show_post($slug);
+  nm_show_post($slug, false, true);
 }
 
 
@@ -232,9 +232,10 @@ function nm_set_pagetype_options($pagetype) {
  * @function nm_show_post
  * @param $slug post slug
  * @param $showexcerpt - if TRUE, print only a short summary (other options: 'readmore', 'forcereadmore')
+ * @param $single post page?
  * @action show the requested post on front-end news page, as defined by $nmoption values
  */
-function nm_show_post($slug, $showexcerpt=false) {
+function nm_show_post($slug, $showexcerpt=false, $single=false) {
   global $nmoption, $nmdata;
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
@@ -245,13 +246,9 @@ function nm_show_post($slug, $showexcerpt=false) {
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
-    # store post data
-    $nmdata = array();
-    $nmdata['slug'] = $slug;
-    $nmdata['url'] = $url;
-    $nmdata['title'] = $title;
-    $nmdata['content'] = $content;
-    $nmdata['image'] = $image;
+    # save post data?
+    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image') : array();
+
     if ($showexcerpt) {
       if ($showexcerpt === 'readmore')
         $content = nm_create_excerpt($content, $url);
@@ -285,7 +282,7 @@ function nm_show_post($slug, $showexcerpt=false) {
       $authorhtml = '';
     }
     # print post data ?>
-    <<?php echo $nmoption['markuppost']; ?> class="nm_post<?php if ($nmoption['pagetype'] == 'single') echo ' nm_post_single'; ?>">
+    <<?php echo $nmoption['markuppost']; ?> class="nm_post<?php if ($single) echo ' nm_post_single'; ?>">
       <<?php echo $nmoption['markuptitle']; ?> class="nm_post_title"><?php 
         if ($nmoption['titlelink'])
           echo '<a href="',$url,'">',$title,'</a>';
@@ -315,8 +312,7 @@ function nm_show_post($slug, $showexcerpt=false) {
         get_component($nmoption['componentbottompost']);
         echo PHP_EOL;
       }
-      # single post page?
-      if ($nmoption['pagetype'] == 'single') {
+      if ($single) {
         # show "go back" link?
         if ($nmoption['gobacklink']) {
           $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
@@ -332,8 +328,6 @@ function nm_show_post($slug, $showexcerpt=false) {
         get_component($nmoption['componentafterpost']);
         echo PHP_EOL;
       }
-      if ($nmoption['pagetype'] != 'single')
-        $nmdata = array(); // clear post data
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>';
   }
