@@ -19,7 +19,7 @@ function nm_list_recent() {
     foreach ($posts as $post) {
       $url = nm_get_url('post') . $post->slug;
       $title = stripslashes($post->title);
-      echo '<li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
+      echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
     }
     echo '</ul>',PHP_EOL;
   }
@@ -82,6 +82,7 @@ function nm_list_tags() {
       else
         echo '<a href="',$url,'">',$tag,'</a> ';
     }
+    echo PHP_EOL;
   }
 }
 
@@ -100,7 +101,7 @@ function nm_tag_list() {
     echo '<ul class="nm_tag_list">',PHP_EOL;
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
-      echo '<li><a href="',$url,'">',$tag,'</a></li>',PHP_EOL;
+      echo '  <li><a href="',$url,'">',$tag,'</a></li>',PHP_EOL;
     }
     echo '</ul>',PHP_EOL;
   }
