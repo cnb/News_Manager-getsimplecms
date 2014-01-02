@@ -99,10 +99,11 @@ function nm_frontend_init() {
     $metad_orig = ($metad == '' ? ' ' : $metad);
     $metad = ' ';
     ob_start();
+    echo PHP_EOL;
     if (isset($_POST['search'])) {
         nm_show_search_results();
     } elseif (isset($_GET['archive'])) {
-      $archive = $_GET['archive'];
+        $archive = $_GET['archive'];
         nm_show_archive($archive);
     } elseif (isset($_GET['tag'])) {
         $tag = rawurldecode($_GET['tag']);

@@ -88,11 +88,11 @@ function nm_show_search_results() {
   nm_set_pagetype_options('search');
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
-    echo '<p>' . i18n_r('news_manager/FOUND') . '</p>';
+    echo '<p>' . i18n_r('news_manager/FOUND') . '</p>',PHP_EOL;
     foreach ($posts as $post)
       nm_show_post($post->slug, $showexcerpt);
   } else {
-    echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>';
+    echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>',PHP_EOL;
   }
 }
 
@@ -356,7 +356,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
       echo PHP_EOL;
     }
   } else {
-    echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>';
+    echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>',PHP_EOL;
   }
 }
 
