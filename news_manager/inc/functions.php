@@ -51,7 +51,7 @@ function nm_get_tags() {
   foreach ($posts as $post) {
     if (!empty($post->tags)) {
       foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag)
-        $tags[$tag][] = $post->slug;
+        $tags[trim($tag)][] = $post->slug;
     }
   }
   ksort($tags);
@@ -249,7 +249,7 @@ function nm_create_slug($str) {
 function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
   global $NMEXCERPTLENGTH;
   $len = intval($NMEXCERPTLENGTH);
-  if ($len == 0) {
+  if ($len < 1) {
     return '';
   } else {
     $ellipsis = i18n_r('news_manager/ELLIPSIS');
@@ -279,9 +279,10 @@ function nm_make_excerpt($content, $len=200, $ellipsis='') {
   $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
   $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
   $content = strip_tags($content);
-  if (strlen($content) > $len) {
+  if (mb_strlen($content, 'UTF-8') > $len) {
     if (function_exists('mb_substr'))
-      $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' '), 'UTF-8');
+      $content = trim(mb_substr($content, 0, mb_strpos($content,' ',$len-1, 'UTF-8'), 'UTF-8'));
+//      $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' '), 'UTF-8');
     else
       $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
     $content .= $ellipsis;
@@ -320,8 +321,8 @@ function nm_sitemap_include() {
   if (strval($page['url']) == $NMPAGEURL) {
     $posts = nm_get_posts();
     foreach ($posts as $post) {
-      $url = nm_get_url('post').$post->slug;
-      $file = NMPOSTPATH.$post->slug.'.xml';
+      $url = nm_get_url('post') . $post->slug;
+      $file = NMPOSTPATH . $post->slug . '.xml';
       $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', filemtime($file)));
       $item = $xml->addChild('url');
       $item->addChild('loc', $url);
