@@ -18,7 +18,8 @@ function nm_edit_post($slug) {
   $title   = @stripslashes($data->title);
   $date    = !empty($data) ? date('Y-m-d', strtotime($data->date)) : '';
   $time    = !empty($data) ? date('H:i', strtotime($data->date)) : '';
-  $tags    = @str_replace(',', ', ', ($data->tags));
+  $tags    = @$data->tags;
+//  $tags    = @str_replace(',', ', ', ($data->tags));
   $private = @$data->private != '' ? 'checked' : '';
   $image   = @stripslashes($data->image);
   $content = @stripslashes($data->content);
