@@ -280,12 +280,16 @@ function nm_make_excerpt($content, $len=200, $ellipsis='') {
   $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
   $content = strip_tags($content);
   $content = preg_replace('/\s+/', ' ', str_replace('&nbsp;', ' ', $content)); // remove whitespace
-  if (strlen($content) > $len) {
-    if (function_exists('mb_substr'))
+  if (function_exists('mb_strlen')) {
+    if (mb_strlen($content) > $len) {
       $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' '), 'UTF-8');
-    else
+      $content .= $ellipsis;
+    }
+  } else {
+    if (strlen($content) > $len) {
       $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
-    $content .= $ellipsis;
+      $content .= $ellipsis;
+    }
   }
   return $content;
 }
