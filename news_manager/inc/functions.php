@@ -278,7 +278,8 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
 function nm_make_excerpt($content, $len=200, $ellipsis='') {
   $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
   $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
-  $content = preg_replace('/\s+/', ' ', str_replace('&nbsp;', ' ', strip_tags($content))); // remove whitespace
+  $content = strip_tags($content);
+  $content = preg_replace('/\s+/', ' ', str_replace('&nbsp;', ' ', $content)); // remove whitespace
   if (strlen($content) > $len) {
     if (function_exists('mb_substr'))
       $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' '), 'UTF-8');
