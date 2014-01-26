@@ -51,7 +51,7 @@ function nm_get_tags() {
   foreach ($posts as $post) {
     if (!empty($post->tags)) {
       foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag)
-        $tags[$tag][] = $post->slug;
+        $tags[trim($tag)][] = $post->slug;
     }
   }
   ksort($tags);
