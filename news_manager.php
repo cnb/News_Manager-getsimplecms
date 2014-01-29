@@ -36,8 +36,10 @@ add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_mana
 add_action('header', 'nm_header_include');
 add_action('index-pretemplate', 'nm_frontend_init');
 //add_filter('content', 'nm_site'); // deprecated
-if (!function_exists('generate_sitemap')) { // exclude GetSimple 3.1+
-  add_action('sitemap-additem', 'nm_sitemap_include');
+if (!function_exists('generate_sitemap')) {
+  add_action('sitemap-additem', 'nm_sitemap_include'); // GetSimple 3.0
+} else {
+  add_filter('sitemap','nm_add_to_sitemap'); // for GetSimple 3.3+
 }
 add_action('plugin-hook', 'nm_patch_plugin_management');
 

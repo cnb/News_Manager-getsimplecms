@@ -318,7 +318,7 @@ function nm_i18n_merge() {
 
 /*******************************************************
  * @function nm_sitemap_include
- * @action add posts to sitemap.xml
+ * @action add posts to sitemap.xml, for GetSimple 3.0 only
  */
 function nm_sitemap_include() {
   global $NMPAGEURL, $page, $xml;
@@ -409,6 +409,36 @@ function nm_lowercase_tags($str) {
     return lowercase($str);
   else
     return $str;
+}
+
+/*******************************************************
+ * @function nm_generate_sitemap
+ * @action trigger Sitemap update only if GetSimple 3.3+
+ * @since 2.5
+ */
+function nm_generate_sitemap() {
+  if (GSVERSION >= '3.3')
+    generate_sitemap();
+}
+
+/*******************************************************
+ * @function nm_sitemap_include
+ * @action add posts to sitemap.xml, GetSimple 3.3+
+ * @since 2.5
+ */
+function nm_add_to_sitemap($xml) {
+  $posts = nm_get_posts();
+  foreach ($posts as $post) {
+    $url = nm_get_url('post').$post->slug;
+    $file = NMPOSTPATH.$post->slug.'.xml';
+    $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', strtotime($post->date)));
+    $item = $xml->addChild('url');
+    $item->addChild('loc', $url);
+    $item->addChild('lastmod', $date);
+    $item->addChild('changefreq', 'monthly');
+    $item->addChild('priority', '0.5');
+  }
+  return $xml;
 }
 
 ?>

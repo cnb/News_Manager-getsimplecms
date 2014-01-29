@@ -64,10 +64,12 @@ function nm_save_settings() {
   $NMSETTING['enablecustomsettings'] = isset($_POST['enablecustomsettings']);
   $NMSETTING['customsettings'] = $_POST['customsettings'];
   # write settings to file
-  if (nm_settings_to_xml())
+  if (nm_settings_to_xml()) {
+    nm_generate_sitemap();
     nm_display_message(i18n_r('news_manager/SUCCESS_SAVE'));
-  else
+  } else {
     nm_display_message(i18n_r('news_manager/ERROR_SAVE'), true);
+  }
   # should we update .htaccess?
   if ($NMPRETTYURLS == 'Y') {
     if ($backup['pretty_urls'] != 'Y' || $backup['page_url'] != $NMPAGEURL)

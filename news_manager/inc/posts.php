@@ -102,10 +102,12 @@ function nm_save_post() {
     $obj->addCData($author);
   }
   # write data to file
-  if (@XMLsave($xml, $file) && nm_update_cache())
+  if (@XMLsave($xml, $file) && nm_update_cache()) {
+    nm_generate_sitemap();
     nm_display_message(i18n_r('news_manager/SUCCESS_SAVE'), false, @$backup);
-  else
+  } else {
     nm_display_message(i18n_r('news_manager/ERROR_SAVE'), true);
+  }
 }
 
 
@@ -122,10 +124,12 @@ function nm_delete_post($slug) {
   } else {
       # delete post
       if (file_exists(NMPOSTPATH . $file)) {
-        if (nm_rename_file(NMPOSTPATH.$file, NMBACKUPPATH.$file) && nm_update_cache())
+        if (nm_rename_file(NMPOSTPATH.$file, NMBACKUPPATH.$file) && nm_update_cache()) {
+          nm_generate_sitemap();
           nm_display_message(i18n_r('news_manager/SUCCESS_DELETE'), false, $slug);
-        else
+        } else {
           nm_display_message(i18n_r('news_manager/ERROR_DELETE'), true);
+        }
       }
   }
 }
@@ -155,10 +159,12 @@ function nm_restore_post($backup) {
           $status = nm_rename_file(NMBACKUPPATH.$backup, NMPOSTPATH.$backup) &&
                     nm_update_cache();
   }
-  if (@$status)
+  if (@$status) {
+    nm_generate_sitemap();
     nm_display_message(i18n_r('news_manager/SUCCESS_RESTORE'));
-  else
+  } else {
     nm_display_message(i18n_r('news_manager/ERROR_RESTORE'), true);
+  }
 }
 
 
