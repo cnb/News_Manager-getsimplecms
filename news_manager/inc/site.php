@@ -12,9 +12,10 @@
  */
 function nm_show_page($index=0) {
   global $NMPOSTSPERPAGE, $nmoption;
+  $index = intval($index);
   $posts = nm_get_posts();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
-  if (is_numeric($index) && $index >= 0 && $index < sizeof($pages))
+  if ($index >= 0 && $index < sizeof($pages))
     $posts = $pages[$index];
   else
     $posts = array();
