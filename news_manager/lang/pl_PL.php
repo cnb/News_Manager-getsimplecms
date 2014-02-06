@@ -79,9 +79,10 @@ $i18n = array(
 "LAST_SAVED"          =>  "Ostatnio zapisane",
 
 # validation
-"FIELD_IS_REQUIRED"   => "This field is required",
+"FIELD_IS_REQUIRED"   => "To pole jest wymagane",
 "ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
 "ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+"ENTER_VALUE_MIN"     => "Proszę o podanie wartości większej bądź równej {0}",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Aby włączyć używanie przyjaznych adresów dla postów, archiwum itp. zmień zawartość pliku <code>.htaccess</code> zna poniższe linie.",

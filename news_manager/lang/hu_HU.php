@@ -82,6 +82,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   => "A mező kitöltése kötelező",
 "ENTER_VALID_DATE"    => "Kérlek, adj meg egy érvényes dátumot / Hagyd üresen az aktuális dátumhoz",
 "ENTER_VALID_TIME"    => "Kérlek, adj meg egy érvényes időpontot / Hagyd üresen az aktuális időponthoz",
+"ENTER_VALUE_MIN"     => "Nem lehet kisebb, mint {0}",
 
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",

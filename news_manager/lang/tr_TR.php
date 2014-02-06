@@ -82,6 +82,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   =>  "Bu alanın girilmesi zorunlu",
 "ENTER_VALID_DATE"    =>  "Lütfen geçerli bir tarih girin / Bugün için boş bırakın",
 "ENTER_VALID_TIME"    =>  "Lütfen geçerli bir zaman girin / Şimdiki zaman için boş bırakın", 
+"ENTER_VALUE_MIN"     =>  "Lütfen {0} değerine eşit ya da daha büyük bir değer giriniz",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Haberler ve arşivler için düzgün URL kullanmak isterseniz, kök dizindeki <code>.htaccess</code> kodlarını aşağıdakilerle değiştirin.",
