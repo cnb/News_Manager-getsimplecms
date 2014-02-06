@@ -187,7 +187,8 @@
 
 <script>
   jQuery.extend(jQuery.validator.messages, {
-    required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>"
+    required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>",
+    min: jQuery.validator.format("<?php i18n('news_manager/ENTER_VALUE_MIN'); ?>")
   });
   
   $(document).ready(function(){
