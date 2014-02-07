@@ -11,14 +11,14 @@ $i18n = array(
 "PLUGIN_NAME"         =>  "News Manager",
 
 # error messages
-"ERROR_ENV"           =>  "Il ya eu une erreur en acc&eacute;dant au dossier des billets et/ou au fichier de configuration. <em>CHMOD 777</em> le dossiers /data, /backups et ses sous-dossiers et r&eacute;essayez.",
+"ERROR_ENV"           =>  "Il y a eu une erreur en acc&eacute;dant au dossier des billets et/ou au fichier de configuration. <em>CHMOD 777</em> le dossiers /data, /backups et ses sous-dossiers et r&eacute;essayez.",
 "ERROR_SAVE"          =>  "<b>Erreur:</b> Impossible d'enregistrer vos modifications. <em>CHMOD 777</em> le dossiers /data, /backups et ses sous-dossiers et r&eacute;essayez.",
 "ERROR_DELETE"        =>  "<b>Erreur:</b> Impossible d'effacer le billet. <em>CHMOD 777</em> le dossiers /data, /backups et ses sous-dossiers et r&eacute;essayez.",
 "ERROR_RESTORE"       =>  "<b>Error:</b> Unable to restore the post. <em>CHMOD 777</em> the folders /data, /backups and their sub-folders and retry.",
 
 # success messages
-"SUCCESS_SAVE"        =>  "Vos modifications ont &eacute;t&eacute; enregistr&eacute;es.",
-"SUCCESS_DELETE"      =>  "Le billet a &eacute;t&eacute; supprim&eacute;.",
+"SUCCESS_SAVE"        =>  "Vos modifications ont été enregistrées.",
+"SUCCESS_DELETE"      =>  "Le billet a été supprimé.",
 "SUCCESS_RESTORE"     =>  "The post has been restored.",
 
 # other messages
