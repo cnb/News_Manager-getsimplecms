@@ -93,37 +93,53 @@ function nm_admin() {
  * @since 2.4
  */
 function nm_frontend_init() {
-  global $NMPAGEURL;
+  global $NMPAGEURL, $nmpagetype;
+  $nmpagetype = array();
   nm_i18n_merge();
   $url = strval(get_page_slug(false));
   if ($url == $NMPAGEURL) {
     global $content, $metad;
     $metad_orig = ($metad == '' ? ' ' : $metad);
     $metad = ' ';
+    $nmpagetype[] = 'site';
     ob_start();
     echo PHP_EOL;
     if (isset($_POST['search'])) {
+        nm_reset_options('search');
         nm_show_search_results();
+        $nmpagetype[] = 'search';
+        
     } elseif (isset($_GET['archive'])) {
-        $archive = $_GET['archive'];
-        nm_show_archive($archive);
+        nm_reset_options('archive');
+        if (nm_show_archive($_GET['archive']))
+          $nmpagetype[] = 'archive';
+        
     } elseif (isset($_GET['tag'])) {
-        $tag = rawurldecode($_GET['tag']);
-        nm_show_tag($tag);
+        nm_reset_options('tag');
+        if (nm_show_tag(rawurldecode($_GET['tag'])))
+          $nmpagetype[] = 'tag';
+        
     } elseif (isset($_GET['post'])) {
-        $slug = $_GET['post'];
-        nm_show_single($slug);
-    } elseif (isset($_GET['page'])) {
-        $index = $_GET['page'];
-        nm_show_page($index);
+        nm_reset_options('single');
+        if (nm_show_single($_GET['post']))
+          $nmpagetype[] = 'single';  
+        
+    } elseif (isset($_GET['page']) && intval($_GET['page']) > 0) {
+        nm_reset_options('main');
+        nm_show_page($_GET['page']);
+        $nmpagetype[] = 'main';
+        
     } else {
         $metad = $metad_orig;
+        nm_reset_options('main');
         nm_show_page();
+        array_push($nmpagetype, 'main', 'home');
     }
     $content = ob_get_contents();
     ob_end_clean();
     $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
   }
+  nm_reset_options();
 }
 
 /*******************************************************

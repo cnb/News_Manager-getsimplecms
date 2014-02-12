@@ -19,8 +19,6 @@ function nm_show_page($index=0) {
     $posts = $pages[$index];
   else
     $posts = array();
-  nm_set_pagetype_options('main');
-  $nmoption['ishome'] = ($index == 0);
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
     foreach ($posts as $post)
@@ -37,17 +35,20 @@ function nm_show_page($index=0) {
  * @function nm_show_archive
  * @param $id - unique archive id
  * @action show posts by archive
+ * @return true if posts shown
  */
 function nm_show_archive($archive) {
   global $NMSETTING;
   $archives = nm_get_archives($NMSETTING['archivesby']);
   if (array_key_exists($archive, $archives)) {
-    nm_set_pagetype_options('archive');
     $showexcerpt = nm_get_option('excerpt');
     $posts = $archives[$archive];
     foreach ($posts as $slug)
       nm_show_post($slug, $showexcerpt);
-   }
+    return true;
+  } else {
+    return false;
+  }
 }
 
 
@@ -55,16 +56,19 @@ function nm_show_archive($archive) {
  * @function nm_show_tag
  * @param $id - unique tag id
  * @action show posts by tag
+ * @return true if posts shown
  */
 function nm_show_tag($tag) {
   $tag = nm_lowercase_tags($tag);
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
-    nm_set_pagetype_options('tag');
     $showexcerpt = nm_get_option('excerpt');
     $posts = $tags[$tag];
     foreach ($posts as $slug)
       nm_show_post($slug, $showexcerpt);
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -86,7 +90,6 @@ function nm_show_search_results() {
     }
     $posts = $match;
   }
-  nm_set_pagetype_options('search');
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
     echo '<p>' . i18n_r('news_manager/FOUND') . '</p>',PHP_EOL;
@@ -101,20 +104,20 @@ function nm_show_search_results() {
  * @function nm_show_single
  * @param $slug post slug
  * @action show single post on news page
+ * @return true if post exists
  */
 function nm_show_single($slug) {
-  nm_set_pagetype_options('single');
-  nm_show_post($slug, false, true);
+  return nm_show_post($slug, false, true);
 }
 
 
 /*******************************************************
- * @function nm_set_pagetype_options
- * @param $pagetype news page type, can be 'single', 'main', 'archive', 'tag' or 'search'
- * @action set page type and default post layout values
+ * @function nm_reset_options
+ * @param $pagetype news page type, can be 'single', 'main', 'archive', 'tag', 'search' or empty
+ * @action set default or specific layout values
  * @since 2.5
  */
-function nm_set_pagetype_options($pagetype) {
+function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
   $nmoption = array();
   
@@ -132,7 +135,7 @@ function nm_set_pagetype_options($pagetype) {
   
   # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
-  
+ 
   # go back link
   if ($pagetype == 'single') {
     if ($NMSETTING['gobacklink'] == 'N') 
@@ -167,10 +170,7 @@ function nm_set_pagetype_options($pagetype) {
   $nmoption['imageexternal'] = false;
   $nmoption['imagedefault'] = '';
   $nmoption['imagesizeattr'] = false;
-  
-  # news page type
-  $nmoption['pagetype'] = $pagetype;
-  
+    
   # custom settings
   if ($NMSETTING['enablecustomsettings'] == '1') {
     # extract settings
@@ -182,12 +182,12 @@ function nm_set_pagetype_options($pagetype) {
           if (in_array($arr[0], array('main','single','archive','tag','search')))
             $customsettings[$arr[0]][$arr[1]] = implode(' ',array_slice($arr,2));
           else
-            $customsettings['site'][$arr[0]] = implode(' ',array_slice($arr,1));
+            $customsettings['default'][$arr[0]] = implode(' ',array_slice($arr,1));
         }
       }
     }
     # process settings and strings
-    foreach(array('site', $nmoption['pagetype']) as $type) {
+    foreach(array('default', $pagetype) as $type) {
       if (isset($customsettings[$type])) {
         foreach($customsettings[$type] as $key=>$value) {
           if (substr($value,0,1) == '"' || substr($value,0,1) == "'") $value = substr($value,1,strlen($value)-2);
@@ -242,6 +242,7 @@ function nm_set_pagetype_options($pagetype) {
  * @param $showexcerpt - if TRUE, print only a short summary (other options: 'readmore', 'forcereadmore')
  * @param $single post page?
  * @action show the requested post on front-end news page, as defined by $nmoption values
+ * @return true if post exists
  */
 function nm_show_post($slug, $showexcerpt=false, $single=false) {
   global $nmoption, $nmdata;
@@ -356,8 +357,10 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
       get_component($nmoption['componentafterpost']);
       echo PHP_EOL;
     }
+    return true;
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>',PHP_EOL;
+    return false;
   }
 }
 
@@ -417,38 +420,38 @@ function nm_post_title($before='', $after='', $echo=true) {
 // conditionals
 
 function nm_is_site() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype']);
+  global $nmpagetype;
+  return in_array('site', $nmpagetype);
 }
 
 function nm_is_single() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'single');
+  global $nmpagetype;
+  return in_array('single', $nmpagetype);
 }
 
 function nm_is_main() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'main');
+  global $nmpagetype;
+  return in_array('main', $nmpagetype);
 }
 
 function nm_is_tag() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'tag');
+  global $nmpagetype;
+  return in_array('tag', $nmpagetype);
 }
 
 function nm_is_archive() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'archive');
+  global $nmpagetype;
+  return in_array('archive', $nmpagetype);
 }
 
 function nm_is_search() {
-  global $nmoption;
-  return (isset($nmoption['pagetype']) && $nmoption['pagetype'] == 'search');
+  global $nmpagetype;
+  return in_array('search', $nmpagetype);
 }
 
 function nm_is_home() {
-  global $nmoption;
-  return (isset($nmoption['ishome']) && $nmoption['ishome']);
+  global $nmpagetype;
+  return in_array('home', $nmpagetype);
 }
 
 function nm_post_has_image() {
