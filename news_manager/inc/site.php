@@ -231,7 +231,7 @@ function nm_reset_options($pagetype='') {
   # custom excerpt length
   if (isset($nmoption['excerptlength'])) {
     global $NMEXCERPTLENGTH;
-    $NMEXCERPTLENGTH = $nmoption['excerptlength'];
+    $NMEXCERPTLENGTH = $nmoption['excerptlength']; // workaround(*)
   }
 }
 
@@ -502,9 +502,9 @@ function nm_post_url($echo=true) {
 }
 
 function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
-  global $nmdata, $NMEXCERPTLENGTH;
+  global $nmdata, $NMEXCERPTLENGTH, $nmoption;
   if (isset($nmdata['content']) && $nmdata['content']) {
-    if (!$len) $len = $NMEXCERPTLENGTH;
+    if (!$len) $len = isset($nmoption['excerptlength']) ? $nmoption['excerptlength'] : $NMEXCERPTLENGTH; // workaround(*)
     if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
     $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis);
     if ($echo) echo $excerpt;
