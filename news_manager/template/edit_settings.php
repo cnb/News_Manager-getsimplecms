@@ -189,7 +189,7 @@
   if ($.validator) {
     jQuery.extend(jQuery.validator.messages, {
       required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>",
-      min: jQuery.validator.format("<?php i18n('news_manager/ENTER_VALUE_MIN'); ?>")
+      min: jQuery.validator.format("<?php echo str_replace('%d', '{0}', i18n_r('news_manager/ENTER_VALUE_MIN')); ?>")
     });
   }
 
