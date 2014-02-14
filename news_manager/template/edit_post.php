@@ -149,7 +149,7 @@ if ($imageinputpos > 0) {
       "<?php i18n('news_manager/ENTER_VALID_TIME'); ?>")
     }
 
-    if ($.validate) {
+    if ($.validator) {
       $("#edit").validate({
         errorClass: "invalid",
         rules: {

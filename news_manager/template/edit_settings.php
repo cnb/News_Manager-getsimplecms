@@ -194,7 +194,7 @@
   }
 
   $(document).ready(function(){
-    if ($.validate) {
+    if ($.validator) {
       $("#settings").validate({
         errorClass: "invalid",
         rules: {
