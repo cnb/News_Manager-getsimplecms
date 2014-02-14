@@ -82,7 +82,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   => "This field is required",
 "ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
 "ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
-"ENTER_VALUE_MIN"     => "Please enter a value greater than or equal to {0}",
+"ENTER_VALUE_MIN"     => "Please enter a value greater than or equal to %d",
 
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",

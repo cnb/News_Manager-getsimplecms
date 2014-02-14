@@ -79,9 +79,10 @@ $i18n = array(
 "LAST_SAVED"          =>  "Derni&egrave;re sauvegarde",
 
 # validation
-"FIELD_IS_REQUIRED"   => "This field is required",
+"FIELD_IS_REQUIRED"   => "Ce champ est obligatoire",
 "ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
 "ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+"ENTER_VALUE_MIN"     => "Veuillez fournir une valeur supérieur ou égal à %d",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Pour activer la redirection d'URLs pour les billets, archives, etc, remplacez le contenu de votre fichier <code>.htaccess</code> avec les lignes ci-dessous.",

@@ -82,7 +82,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   => "Dieses Feld muß ausgefüllt werden",
 "ENTER_VALID_DATE"    => "Geben Sie bitte ein gültiges Datum ein / Leerlassen für aktuelles Datum",
 "ENTER_VALID_TIME"    => "Geben Sie bitte eine gültige Zeit ein / Leerlassen für aktuelle Zeit",
-"ENTER_VALUE_MIN"     => "Geben Sie bitte einen Wert größer oder gleich {0} ein",
+"ENTER_VALUE_MIN"     => "Geben Sie bitte einen Wert größer oder gleich %d ein",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Um Fancy URLs für Beiträge, Archive etc. zu aktivieren, ersetzen Sie den Inhalt der aktiven <code>.htaccess</code> -Datei mit dem unten angezeigten Inhalt.",

@@ -82,7 +82,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   => "Udfyldning af felt påkrævet",
 "ENTER_VALID_DATE"    => "Indtast en gyldig dato / Udfyld ikke for aktuel dato",
 "ENTER_VALID_TIME"    => "Indtast et gyldigt tidspunkt / Udfyld ikke for aktuelt tidspunkt",
-"ENTER_VALUE_MIN"     => "Angiv en værdi der mindst er {0}",
+"ENTER_VALUE_MIN"     => "Angiv en værdi der mindst er %d",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Aktiver forkortet URL for nyhedsposter, -arkiver, etc. ved at erstatte indholdet af <code>.htaccess</code>-filen med linjerne herunder.",
