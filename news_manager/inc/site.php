@@ -135,7 +135,7 @@ function nm_reset_options($pagetype='') {
   
   # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
- 
+
   # go back link
   if ($pagetype == 'single') {
     if ($NMSETTING['gobacklink'] == 'N') 
@@ -145,7 +145,7 @@ function nm_reset_options($pagetype='') {
     else
       $nmoption['gobacklink'] = true;
   }
-  
+
   # tag separator
   $nmoption['tagseparator'] = ' ';
   
@@ -170,7 +170,7 @@ function nm_reset_options($pagetype='') {
   $nmoption['imageexternal'] = false;
   $nmoption['imagedefault'] = '';
   $nmoption['imagesizeattr'] = false;
-    
+
   # custom settings
   if ($NMSETTING['enablecustomsettings'] == '1') {
     # extract settings
@@ -206,7 +206,7 @@ function nm_reset_options($pagetype='') {
   # html tags
   $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
   $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
-  
+
   # fields
   if (isset($nmoption['showfields'])) {
     $nmoption['fields'] = explode(' ',preg_replace('/  +/', ' ',trim(str_replace(',',' ',$nmoption['showfields']))));
@@ -299,7 +299,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
             $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
             echo '    <p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
             $sep = '';
-            foreach ($tags as $tag) 
+            foreach ($tags as $tag)
               if (substr($tag, 0, 1) != '_') {
                 echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',$tag,'</a>';
                 if ($sep == '') $sep = $nmoption['tagseparator'];
@@ -325,7 +325,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
           }
           break;
 
-        case 'author':          
+        case 'author':
           if ($nmoption['showauthor']) {
             $author = stripslashes($post->author);
             if (empty($author) && $nmoption['defaultauthor'])
@@ -336,7 +336,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
           break;
       }
     }
-     
+
     if (isset($nmoption['componentbottompost'])) {
       get_component($nmoption['componentbottompost']);
       echo PHP_EOL;
