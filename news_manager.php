@@ -3,7 +3,7 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 2.5 beta 15b
+Version: 2.5 beta 16
 Author: Rogier Koppejan
 Updated by: Carlos Navarro
 
@@ -17,7 +17,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '2.5 beta 15b',
+  '2.5 beta 16',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
@@ -108,27 +108,27 @@ function nm_frontend_init() {
         nm_reset_options('search');
         nm_show_search_results();
         $nmpagetype[] = 'search';
-        
+
     } elseif (isset($_GET['archive'])) {
         nm_reset_options('archive');
         if (nm_show_archive($_GET['archive']))
           $nmpagetype[] = 'archive';
-        
+
     } elseif (isset($_GET['tag'])) {
         nm_reset_options('tag');
         if (nm_show_tag(rawurldecode($_GET['tag'])))
           $nmpagetype[] = 'tag';
-        
+
     } elseif (isset($_GET['post'])) {
         nm_reset_options('single');
         if (nm_show_single($_GET['post']))
-          $nmpagetype[] = 'single';  
-        
+          $nmpagetype[] = 'single';
+
     } elseif (isset($_GET['page']) && intval($_GET['page']) > 0) {
         nm_reset_options('main');
         nm_show_page($_GET['page']);
         $nmpagetype[] = 'main';
-        
+
     } else {
         $metad = $metad_orig;
         nm_reset_options('main');
