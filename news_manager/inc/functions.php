@@ -417,26 +417,29 @@ function nm_lowercase_tags($str) {
  * @since 2.5
  */
 function nm_generate_sitemap() {
-  if (GSVERSION >= '3.3')
+  if (GSVERSION >= '3.3' && (!defined('NMNOSITEMAP') || !NMNOSITEMAP))
     generate_sitemap();
 }
 
 /*******************************************************
- * @function nm_sitemap_include
+ * @function nm_update_sitemap_xml
  * @action add posts to sitemap.xml, GetSimple 3.3+
+ * @param xmlobj
  * @since 2.5
  */
-function nm_add_to_sitemap($xml) {
-  $posts = nm_get_posts();
-  foreach ($posts as $post) {
-    $url = nm_get_url('post').$post->slug;
-    $file = NMPOSTPATH.$post->slug.'.xml';
-    $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', strtotime($post->date)));
-    $item = $xml->addChild('url');
-    $item->addChild('loc', $url);
-    $item->addChild('lastmod', $date);
-    $item->addChild('changefreq', 'monthly');
-    $item->addChild('priority', '0.5');
+function nm_update_sitemap_xml($xml) {
+  if (!defined('NMNOSITEMAP') || !NMNOSITEMAP) {
+    $posts = nm_get_posts();
+    foreach ($posts as $post) {
+      $url = nm_get_url('post').$post->slug;
+      $file = NMPOSTPATH.$post->slug.'.xml';
+      $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', strtotime($post->date)));
+      $item = $xml->addChild('url');
+      $item->addChild('loc', $url);
+      $item->addChild('lastmod', $date);
+      $item->addChild('changefreq', 'monthly');
+      $item->addChild('priority', '0.5');
+    }
   }
   return $xml;
 }
