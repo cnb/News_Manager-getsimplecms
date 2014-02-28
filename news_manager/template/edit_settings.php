@@ -100,8 +100,8 @@
       <label for="titlelink"><?php i18n('news_manager/TITLE_LINK'); ?>:</label>
       <select class="text" name="titlelink" id="titlelink">
         <option value="Y"<?php if ($NMSETTING['titlelink']=='Y') echo ' selected="selected"'; ?>><?php i18n('YES'); ?></option>
-        <option value="N"<?php if ($NMSETTING['titlelink']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
         <option value="P"<?php if ($NMSETTING['titlelink']=='P') echo ' selected="selected"'; ?>><?php i18n('news_manager/NOT_SINGLE'); ?></option>
+        <option value="N"<?php if ($NMSETTING['titlelink']=='N') echo ' selected="selected"'; ?>><?php i18n('NO'); ?></option>
       </select>
     </p>
   </div>
