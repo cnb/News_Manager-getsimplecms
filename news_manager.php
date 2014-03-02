@@ -109,24 +109,24 @@ function nm_frontend_init() {
         nm_show_search_results();
         $nmpagetype[] = 'search';
 
-    } elseif (isset($_GET['archive'])) {
+    } elseif (isset($_GET[NMPARAMARCHIVE])) {
         nm_reset_options('archive');
-        if (nm_show_archive($_GET['archive']))
+        if (nm_show_archive($_GET[NMPARAMARCHIVE]))
           $nmpagetype[] = 'archive';
 
-    } elseif (isset($_GET['tag'])) {
+    } elseif (isset($_GET[NMPARAMTAG])) {
         nm_reset_options('tag');
-        if (nm_show_tag(rawurldecode($_GET['tag'])))
+        if (nm_show_tag(rawurldecode($_GET[NMPARAMTAG])))
           $nmpagetype[] = 'tag';
 
-    } elseif (isset($_GET['post'])) {
+    } elseif (isset($_GET[NMPARAMPOST])) {
         nm_reset_options('single');
-        if (nm_show_single($_GET['post']))
+        if (nm_show_single($_GET[NMPARAMPOST]))
           $nmpagetype[] = 'single';
 
-    } elseif (isset($_GET['page']) && intval($_GET['page']) > 0) {
+    } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > 0) {
         nm_reset_options('main');
-        nm_show_page($_GET['page']);
+        nm_show_page($_GET[NMPARAMPAGE]);
         $nmpagetype[] = 'main';
 
     } else {

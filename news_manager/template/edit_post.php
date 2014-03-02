@@ -57,7 +57,7 @@ if ($imageinputpos > 0) {
 <div class="edit-nav" >
   <?php
   if (!empty($NMPAGEURL) && $NMPAGEURL != '' && file_exists($file) && $private == '') {
-    $url = nm_get_url('post') . $slug;
+    $url = nm_get_url(NMPARAMPOST).$slug;
     ?>
     <a href="<?php echo $url; ?>" target="_blank">
       <?php i18n('news_manager/VIEW_POST'); ?>

@@ -250,7 +250,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
   if (!empty($post) && $post->private != 'Y') {
-    $url     = nm_get_url('post') . $slug;
+    $url     = nm_get_url(NMPARAMPOST).$slug;
     $title   = stripslashes($post->title);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
@@ -301,7 +301,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
             $sep = '';
             foreach ($tags as $tag)
               if (substr($tag, 0, 1) != '_') {
-                echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',$tag,'</a>';
+                echo $sep,'<a href="',nm_get_url(NMPARAMTAG).rawurlencode($tag),'">',$tag,'</a>';
                 if ($sep == '') $sep = $nmoption['tagseparator'];
               }
             echo '</p>',PHP_EOL;
@@ -372,7 +372,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
  * @action provides links to navigate between subpages
  */
 function nm_show_navigation($index, $total) {
-  $url = nm_get_url('page');
+  $url = nm_get_url(NMPARAMPAGE);
   echo '<div class="nm_page_nav">';
   if ($index < $total - 1) {
     ?>

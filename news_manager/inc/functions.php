@@ -118,6 +118,8 @@ function nm_get_url($query=false) {
     if (function_exists('find_i18n_url')) // I18N?
       $url = find_i18n_url($NMPAGEURL, nm_get_parent(), return_i18n_default_language());
   if ($query) {
+    if ($query == 'post' && NMPARAMPOST != 'post')
+      $query = NMPARAMPOST; // backward support for other plugins/scripts
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
       if (substr($url, -1) != '/')
@@ -325,7 +327,7 @@ function nm_sitemap_include() {
   if (strval($page['url']) == $NMPAGEURL) {
     $posts = nm_get_posts();
     foreach ($posts as $post) {
-      $url = nm_get_url('post').$post->slug;
+      $url = nm_get_url(NMPARAMPOST).$post->slug;
       $file = NMPOSTPATH.$post->slug.'.xml';
       $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', filemtime($file)));
       $item = $xml->addChild('url');
@@ -431,7 +433,7 @@ function nm_update_sitemap_xml($xml) {
   if (!defined('NMNOSITEMAP') || !NMNOSITEMAP) {
     $posts = nm_get_posts();
     foreach ($posts as $post) {
-      $url = nm_get_url('post').$post->slug;
+      $url = nm_get_url(NMPARAMPOST).$post->slug;
       $file = NMPOSTPATH.$post->slug.'.xml';
       $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', strtotime($post->date)));
       $item = $xml->addChild('url');
