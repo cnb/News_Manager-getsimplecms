@@ -17,6 +17,7 @@
       <?php
       if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
       $pages = get_available_pages();
+      $pages = subval_sort($pages,'slug');
       foreach ($pages as $page) {
         $slug = $page['slug'];
         if ($slug == $NMPAGEURL)
