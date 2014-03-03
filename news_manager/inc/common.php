@@ -4,6 +4,7 @@
  * Common variables used by the GetSimple News Manager Plugin.
  */
 
+
 # path definitions
 define('NMPOSTPATH', GSDATAPATH  . 'posts/');
 define('NMBACKUPPATH', GSBACKUPSPATH  . 'posts/');
@@ -12,15 +13,11 @@ define('NMINCPATH', GSPLUGINPATH . 'news_manager/inc/');
 define('NMLANGPATH', GSPLUGINPATH . 'news_manager/lang/');
 define('NMTEMPLATEPATH', GSPLUGINPATH . 'news_manager/template/');
 
+
 # file definitions
 define('NMSETTINGS', NMDATAPATH . 'settings.xml');
 define('NMPOSTCACHE', NMDATAPATH . 'posts.xml');
 
-# URL parameters
-if (!defined('NMPARAMPOST'))    define('NMPARAMPOST', 'post');
-if (!defined('NMPARAMPAGE'))    define('NMPARAMPAGE', 'page');
-if (!defined('NMPARAMARCHIVE')) define('NMPARAMARCHIVE', 'archive');
-if (!defined('NMPARAMTAG'))     define('NMPARAMTAG', 'tag');
 
 # includes
 require_once(NMINCPATH . 'functions.php');

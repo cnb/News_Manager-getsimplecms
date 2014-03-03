@@ -17,7 +17,7 @@ function nm_list_recent() {
     echo '<ul class="nm_recent">',PHP_EOL;
     $posts = array_slice($posts, 0, $NMRECENTPOSTS, true);
     foreach ($posts as $post) {
-      $url = nm_get_url(NMPARAMPOST).$post->slug;
+      $url = nm_get_url('post') . $post->slug;
       $title = stripslashes($post->title);
       echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
     }
@@ -43,7 +43,7 @@ function nm_list_archives($fmt='') {
       foreach ($archives as $archive) {
         $y = $archive;
         $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
-        $url = nm_get_url(NMPARAMARCHIVE).$archive;
+        $url = nm_get_url('archive') . $archive;
         echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
       }
     } else {
@@ -52,7 +52,7 @@ function nm_list_archives($fmt='') {
       foreach ($archives as $archive) {
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
-        $url = nm_get_url(NMPARAMARCHIVE).$archive;
+        $url = nm_get_url('archive') . $archive;
         echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
       }
     }
@@ -76,7 +76,7 @@ function nm_list_tags() {
     $min = min($tags);
     $max = max($tags);
     foreach ($tags as $tag=>$count) {
-      $url = nm_get_url(NMPARAMTAG).rawurlencode($tag);
+      $url = nm_get_url('tag').rawurlencode($tag);
       if ($min < $max && $count/$max > 0.5)
         echo '<a class="large" href="',$url,'">',$tag,'</a>',PHP_EOL;
       else
@@ -100,7 +100,7 @@ function nm_tag_list() {
   if (!empty($tags)) {
     echo '<ul class="nm_tag_list">',PHP_EOL;
     foreach ($tags as $tag=>$count) {
-      $url = nm_get_url(NMPARAMTAG).rawurlencode($tag);
+      $url = nm_get_url('tag').rawurlencode($tag);
       echo '  <li><a href="',$url,'">',$tag,'</a></li>',PHP_EOL;
     }
     echo '</ul>',PHP_EOL;
