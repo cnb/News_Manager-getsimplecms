@@ -16,10 +16,9 @@
       <select class="text" name="page-url" id="page-url">
       <?php
       if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
-      $pages = get_available_pages();
-      $pages = subval_sort($pages,'slug');
+      $pages = glob(GSDATAPAGESPATH.'*.xml');
       foreach ($pages as $page) {
-        $slug = $page['slug'];
+        $slug = substr(basename($page), 0, -4);
         if ($slug == $NMPAGEURL)
           echo "<option value=\"$slug\" selected=\"selected\">$slug</option>\n";
         else
