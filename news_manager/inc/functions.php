@@ -118,6 +118,20 @@ function nm_get_url($query=false) {
     if (function_exists('find_i18n_url')) // I18N?
       $url = find_i18n_url($NMPAGEURL, nm_get_parent(), return_i18n_default_language());
   if ($query) {
+    switch($query) {
+      case 'post':
+        $query = NMPARAMPOST;
+        break;
+      case 'page':
+        $query = NMPARAMPAGE;
+        break;
+      case 'tag':
+        $query = NMPARAMTAG;
+        break;
+      case 'archive':
+        $query = NMPARAMARCHIVE;
+        break;
+    }
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
       $str = $query . '/';
       if (substr($url, -1) != '/')
