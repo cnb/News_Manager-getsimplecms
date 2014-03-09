@@ -123,12 +123,13 @@ function nm_reset_options($pagetype='') {
   
   # full/excerpt, readmore
   if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
+    $nmoption['excerpt'] = true;
     if ($NMSETTING['readmore'] == 'R')
-      $nmoption['excerpt'] = 'readmore';
+      $nmoption['readmore'] = true;
     elseif ($NMSETTING['readmore'] == 'F')
-      $nmoption['excerpt'] = 'forcereadmore';
+      $nmoption['readmore'] = 'a';
     else
-      $nmoption['excerpt'] = true;
+      $nmoption['readmore'] = false;
   } else {
     $nmoption['excerpt'] = false; // full post
   }
@@ -233,13 +234,23 @@ function nm_reset_options($pagetype='') {
     global $NMEXCERPTLENGTH;
     $NMEXCERPTLENGTH = $nmoption['excerptlength']; // workaround(*)
   }
+  
+  # more
+  if (!isset($nmoption['more'])) $nmoption['more'] = false;
+  
+  # readmore
+  if (!isset($nmoption['readmore']))
+    $nmoption['readmore'] = false;
+  else // custom setting - anything beginning with 'a' (all, Always, ...)
+    if (strtolower($nmoption['readmore'][0]) == 'a')
+      $nmoption['readmore'] = 'a';
 }
 
 
 /*******************************************************
  * @function nm_show_post
  * @param $slug post slug
- * @param $showexcerpt - if TRUE, print only a short summary (other options: 'readmore', 'forcereadmore')
+ * @param $showexcerpt - if TRUE, print only a short summary
  * @param $single post page?
  * @action show the requested post on front-end news page, as defined by $nmoption values
  * @return true if post exists
@@ -281,17 +292,37 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
 
         case 'content':
           echo '    <div class="nm_post_content">';
-          if ($showexcerpt) {
-            if ($showexcerpt === 'readmore')
-              echo nm_create_excerpt($content, $url);
-            elseif ($showexcerpt === 'forcereadmore')
-              echo nm_create_excerpt($content, $url, true);
-            else
-              echo nm_create_excerpt($content);
-          } else {
+          if ($single) {
             echo $content;
+          } else {
+            $slice = '';
+            $readmore = $nmoption['readmore'];
+            if ($nmoption['more']) {
+              $morepos = strpos($content, '<hr');
+              if ($morepos !== false) {
+                $slice = substr($content, 0, $morepos);
+                if ($readmore)
+                  $slice .= '      <p class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'.PHP_EOL;
+              }
+            }
+            if ($slice) {
+              echo $slice;
+            } else {
+              if ($showexcerpt) {
+                if (!$readmore)
+                  echo nm_create_excerpt($content);
+                elseif ($readmore === 'a')
+                  echo nm_create_excerpt($content, $url, true);
+                else
+                   echo nm_create_excerpt($content, $url);
+              } else {
+                echo $content;
+                if ($readmore === 'a')
+                  echo '      <p class="nm_readmore"><a href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',PHP_EOL;
+              }
+            }
           }
-          echo '</div>',PHP_EOL;
+          echo '    </div>',PHP_EOL;
           break;
 
         case 'tags':
