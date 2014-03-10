@@ -120,7 +120,7 @@ function nm_show_single($slug) {
 function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
   $nmoption = array();
-  
+
   # full/excerpt, readmore
   if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
     $nmoption['excerpt'] = true;
@@ -133,15 +133,15 @@ function nm_reset_options($pagetype='') {
   } else {
     $nmoption['excerpt'] = false; // full post
   }
-  
+
   # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
 
   # go back link
   if ($pagetype == 'single') {
-    if ($NMSETTING['gobacklink'] == 'N') 
+    if ($NMSETTING['gobacklink'] == 'N')
       $nmoption['gobacklink'] = false;
-    elseif ($NMSETTING['gobacklink'] == 'M') 
+    elseif ($NMSETTING['gobacklink'] == 'M')
       $nmoption['gobacklink'] = 'main';
     else
       $nmoption['gobacklink'] = true;
@@ -149,13 +149,13 @@ function nm_reset_options($pagetype='') {
 
   # tag separator
   $nmoption['tagseparator'] = ' ';
-  
+
   # author
   $nmoption['showauthor'] = false;
   $nmoption['defaultauthor'] = '';
-  
+
   # images
-  if ( $NMSETTING['images'] == 'N' 
+  if ( $NMSETTING['images'] == 'N'
     || ($pagetype == 'single' && $NMSETTING['images'] == 'P')
     || ($pagetype != 'main' && $NMSETTING['images'] == 'M') ) {
     $nmoption['showimages'] = false;
@@ -234,10 +234,10 @@ function nm_reset_options($pagetype='') {
     global $NMEXCERPTLENGTH;
     $NMEXCERPTLENGTH = $nmoption['excerptlength']; // workaround(*)
   }
-  
+
   # more
   if (!isset($nmoption['more'])) $nmoption['more'] = false;
-  
+
   # readmore
   if (!isset($nmoption['readmore']))
     $nmoption['readmore'] = false;
@@ -314,7 +314,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
                 elseif ($readmore === 'a')
                   echo nm_create_excerpt($content, $url, true);
                 else
-                   echo nm_create_excerpt($content, $url);
+                  echo nm_create_excerpt($content, $url);
               } else {
                 echo $content;
                 if ($readmore === 'a')
