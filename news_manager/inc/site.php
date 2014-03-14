@@ -266,9 +266,10 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
+    $tags = !empty($post->tags) ? explode(',', nm_lowercase_tags(strip_decode($post->tags))) : array();
 
     # save post data?
-    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image') : array();
+    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags') : array();
 
     echo '  <',$nmoption['markuppost'],' class="nm_post';
     if ($single) echo ' nm_post_single';
@@ -326,8 +327,7 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
           break;
 
         case 'tags':
-          if (!empty($post->tags)) {
-            $tags = explode(',', nm_lowercase_tags(strip_decode($post->tags)));
+          if ($tags) {
             echo '    <p class="nm_post_meta"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
             $sep = '';
             foreach ($tags as $tag)
@@ -488,6 +488,18 @@ function nm_is_home() {
 function nm_post_has_image() {
   global $nmdata;
   return (isset($nmdata['image']) && $nmdata['image']);
+}
+
+// check if single post has any tag or a certain tag
+function nm_post_has_tag($tag=null) {
+  global $nmdata;
+  if ($nmdata) {
+    if (!isset($tag) && $nmdata['tags'])
+      return true;
+    elseif (in_array($tag, $nmdata['tags']))
+      return true;
+  }
+  return false;
 }
 
 // set general option
