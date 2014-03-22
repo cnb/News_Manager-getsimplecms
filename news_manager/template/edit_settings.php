@@ -17,8 +17,11 @@
       <?php
       if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
       $pages = glob(GSDATAPAGESPATH.'*.xml');
-      foreach ($pages as $page) {
-        $slug = substr(basename($page), 0, -4);
+      foreach ($pages as &$page)
+        $page = substr(basename($page), 0, -4);
+      $pages = array_diff($pages, array('index'));
+      array_unshift($pages, 'index');
+      foreach ($pages as $slug) {
         if ($slug == $NMPAGEURL)
           echo "<option value=\"$slug\" selected=\"selected\">$slug</option>\n";
         else
