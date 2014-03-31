@@ -21,7 +21,7 @@ register_plugin(
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',
   'A blog/news plugin for GetSimple',
-  'pages',
+  'news_manager',
   'nm_admin'
 );
 
@@ -32,6 +32,7 @@ require_once('news_manager/inc/common.php');
 i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 
 # hooks
+add_action('nav-tab', 'createNavTab', array('news_manager', $thisfile, 'News') );
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
 add_action('header', 'nm_header_include');
 add_action('index-pretemplate', 'nm_frontend_init');
