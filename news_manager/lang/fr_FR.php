@@ -116,7 +116,9 @@ $i18n = array(
 "LOCALE"              =>  "fr_FR.utf8,fr.utf8,fr_FR.UTF-8,fr.UTF-8,fr_FR,fr",
 
 # date settings. voir http://php.net/fr/strftime pour la liste des paramètres possibles
-"DATE_FORMAT"         =>  "%e %B %Y"
+"DATE_FORMAT"         =>  "%e %B %Y",
+"MONTHLY_FORMAT"      =>  "%B %Y",
+"YEARLY_FORMAT"       =>  "%Y"
 
 );
 

@@ -115,7 +115,9 @@ $i18n = array(
 "LOCALE"              =>  "cs_CZ.utf8,cs.utf8,cs_CZ.UTF-8,cs.UTF-8,cs_CZ,cs",
 
 # date settings
-"DATE_FORMAT"         =>  "%d.%m.%Y - %H:%M"
+"DATE_FORMAT"         =>  "%d.%m.%Y - %H:%M",
+"MONTHLY_FORMAT"      =>  "%B %Y",
+"YEARLY_FORMAT"       =>  "%Y"
 
 );
 
