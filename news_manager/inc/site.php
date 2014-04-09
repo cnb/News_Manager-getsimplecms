@@ -418,7 +418,7 @@ function nm_show_navigation($index, $total) {
   if ($index > 0) {
     ?>
     <div class="right">
-      <a href="<?php echo ($index > 1) ? $url.($index-1) : substr($url, 0, -6); ?>">
+      <a href="<?php echo ($index > 1) ? $url.($index-1) : nm_get_url(); ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>
