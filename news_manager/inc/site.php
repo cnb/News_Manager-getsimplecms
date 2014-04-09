@@ -105,6 +105,7 @@ function nm_show_search_results() {
  * @param $slug post slug
  * @action show single post on news page
  * @return true if post exists
+ * @since 2.5
  */
 function nm_show_single($slug) {
   return nm_show_post($slug, false, true);
@@ -408,7 +409,7 @@ function nm_show_navigation($index, $total) {
   if ($index < $total - 1) {
     ?>
     <div class="left">
-      <a href="<?php echo $url . ($index+1); ?>">
+      <a href="<?php echo $url.($index+1); ?>">
         <?php i18n('news_manager/OLDER_POSTS'); ?>
       </a>
     </div>
