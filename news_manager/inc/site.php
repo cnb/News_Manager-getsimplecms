@@ -72,6 +72,34 @@ function nm_show_tag($tag) {
   }
 }
 
+/*******************************************************
+ * @function nm_show_tag_page
+ * @param $id - unique tag id
+ * @param $index - page index (pagination)
+ * @action show posts by tag with pagination
+ * @return true if posts shown
+ * @since 2.5
+ */
+function nm_show_tag_page($tag, $index=0) {
+  global $NMPOSTSPERPAGE;
+  $tag = nm_lowercase_tags($tag);
+  $tags = nm_get_tags();
+  if (array_key_exists($tag, $tags)) {
+    $showexcerpt = nm_get_option('excerpt');
+    $posts = $tags[$tag];
+    $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
+    if ($index >= 0 && $index < sizeof($pages)) {
+      $posts = $pages[$index];
+      foreach ($posts as $slug)
+        nm_show_post($slug, $showexcerpt);
+      if (sizeof($pages) > 1)
+        nm_show_tag_navigation($index, sizeof($pages), $tag);
+      return true;
+    }
+  }
+  return false;
+}
+
 
 /*******************************************************
  * @function nm_show_search_results()
@@ -245,6 +273,15 @@ function nm_reset_options($pagetype='') {
   else // custom setting - anything beginning with 'a' (all, Always, ...)
     if (strtolower($nmoption['readmore'][0]) == 'a')
       $nmoption['readmore'] = 'a';
+
+  # tag pagination
+  if (!isset($nmoption['tagpagination'])) {
+    $nmoption['tagpagination'] = false;
+  } else { // anything beginning with 'd' (Default, Dynamic...) or 'f' (Fancy, Folder...)
+    $nmoption['tagpagination'] = strtolower($nmoption['tagpagination'][0]);
+    if (!in_array($nmoption['tagpagination'], array('d','f')))
+      $nmoption['tagpagination'] = false;
+  }
 }
 
 
@@ -419,6 +456,41 @@ function nm_show_navigation($index, $total) {
     ?>
     <div class="right">
       <a href="<?php echo ($index > 1) ? $url.($index-1) : nm_get_url(); ?>">
+        <?php i18n('news_manager/NEWER_POSTS'); ?>
+      </a>
+    </div>
+    <?php
+  }
+  echo '</div>';
+}
+
+/*******************************************************
+ * @function nm_show_tag_navigation
+ * @param $index - current page index
+ * @param $total - total number of subpages
+ * @param $tag - tag to filter by
+ * @action like nm_show_navigation but filtered by tag
+ */
+function nm_show_tag_navigation($index, $total, $tag) {
+  $url = nm_get_url('tag').rawurlencode($tag);
+  if (nm_get_option('tagpagination') == 'f')
+    $page = '/'.NMPARAMPAGE.'/';
+  else
+    $page = '&amp;'.NMPARAMPAGE.'=';
+  echo '<div class="nm_page_nav">';
+  if ($index < $total - 1) {
+    ?>
+    <div class="left">
+      <a href="<?php echo $url.$page.($index+1); ?>">
+        <?php i18n('news_manager/OLDER_POSTS'); ?>
+      </a>
+    </div>
+    <?php
+  }
+  if ($index > 0) {
+    ?>
+    <div class="right">
+      <a href="<?php echo ($index > 1) ? $url.$page.($index-1) : $url; ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>

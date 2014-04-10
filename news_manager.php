@@ -116,8 +116,14 @@ function nm_frontend_init() {
 
     } elseif (isset($_GET[NMPARAMTAG])) {
         nm_reset_options('tag');
-        if (nm_show_tag(rawurldecode($_GET[NMPARAMTAG])))
-          $nmpagetype[] = 'tag';
+        if (nm_get_option('tagpagination')) {
+          $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : 0;
+          if (nm_show_tag_page(rawurldecode($_GET[NMPARAMTAG]), $index))
+            $nmpagetype[] = 'tag';
+        } else {
+          if (nm_show_tag(rawurldecode($_GET[NMPARAMTAG])))
+            $nmpagetype[] = 'tag';
+        }
 
     } elseif (isset($_GET[NMPARAMPOST])) {
         nm_reset_options('single');
