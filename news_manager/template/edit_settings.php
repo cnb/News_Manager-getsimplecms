@@ -15,20 +15,20 @@
       <label for="page-url"><?php i18n('news_manager/PAGE_URL'); ?>:</label>
       <select class="text" name="page-url" id="page-url">
       <?php
-      if ($NMPAGEURL == '') $NMPAGEURL = 'index'; // if not yet selected
       $pages = glob(GSDATAPAGESPATH.'*.xml');
       foreach ($pages as &$page)
         $page = substr(basename($page), 0, -4);
       $pages = array_diff($pages, array('index'));
-      array_unshift($pages, 'index');
+      array_unshift($pages, '', 'index');
       foreach ($pages as $slug) {
-        if ($slug == $NMPAGEURL)
-          echo "<option value=\"$slug\" selected=\"selected\">$slug</option>\n";
-        else
-          echo "<option value=\"$slug\">$slug</option>\n";
+        $option = ($slug != '') ? $slug : '-- '.i18n_r('news_manager/NO_PAGE_SELECTED').' --';
+        echo '<option value="',$slug,'"';
+        if ($slug == $NMPAGEURL) echo ' selected="selected"';
+        echo '>',$option,'</option>',PHP_EOL;
       }
       ?>
       </select>
+      <label id="no-page" class="invalid" <?php if ($NMPAGEURL != '') echo ' style="display:none"'; ?>><?php i18n('news_manager/SELECT_PAGE'); ?></label>
     </p>
   </div>
   <div class="rightsec">
@@ -238,6 +238,14 @@
       $('#customsettings').show();
     } else {
       $('#customsettings').hide();
+    }
+  });
+  
+  $('#page-url').change(function(){
+    if ($('#page-url option:selected').val() == "") {
+      $('#no-page').show();
+    } else {
+      $('#no-page').hide();
     }
   });
 </script>
