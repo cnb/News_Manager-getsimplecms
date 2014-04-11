@@ -40,6 +40,8 @@ $i18n = array(
 "NM_SETTINGS"         =>  "News Manager Instellingen",
 "DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentatie pagina</a>.",
 "PAGE_URL"            =>  "Berichtenpagina",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Taal die gebruikt wordt op de Nieuwspagina",
 "SHOW_POSTS_AS"       =>  "Berichten Weergeven Als",
 "FULL_TEXT"           =>  "Volledige Tekst",

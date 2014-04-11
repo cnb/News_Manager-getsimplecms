@@ -40,6 +40,8 @@ $i18n = array(
 "NM_SETTINGS"         =>  "News Manager Beállítások",
 "DOCUMENTATION"       =>  "További beállításokkal kapcsolatos információkért látogasd meg a <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">dokumentációs oldalt</a>.",
 "PAGE_URL"            =>  "Hír oldal helye",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Hír oldalon használt nyelv",
 "SHOW_POSTS_AS"       =>  "Bejegyzések megjelenítési módja a Hír oldalon",
 "FULL_TEXT"           =>  "Teljse szöveg",

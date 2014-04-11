@@ -40,6 +40,8 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Paramètres de News Manager",
 "DOCUMENTATION"       =>  "Pour plus d'informations sur ces paramètres, visitez la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">page de documentation (en anglais)</a>.",
 "PAGE_URL"            =>  "URL de la page des News",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Langue à utiliser pour la page des News",
 "SHOW_POSTS_AS"       =>  "Afficher les billets de la page des News sous forme de",
 "FULL_TEXT"           =>  "Texte Complet",

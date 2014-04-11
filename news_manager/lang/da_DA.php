@@ -40,6 +40,8 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Indstillinger",
 "DOCUMENTATION"       =>  "For flere oplysninger, besøg siden: <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">Dokumentation</a>.",
 "PAGE_URL"            =>  "Side med nyhedsposter",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Sprog på nyhedsside:",
 "SHOW_POSTS_AS"       =>  "Nyhedsposter vises",
 "FULL_TEXT"           =>  "i fuld længde",

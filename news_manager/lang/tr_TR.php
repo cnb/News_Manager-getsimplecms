@@ -40,6 +40,8 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Haber Yönetim Ayarları",
 "DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
 "PAGE_URL"            =>  "Haberleri görüntüleme şablonu",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Haber sayfası dili:",
 "SHOW_POSTS_AS"       =>  "Haberler şu şekilde görüntülenecek",
 "FULL_TEXT"           =>  "Tam Yazı",

@@ -41,6 +41,8 @@ $i18n = array(
 "DOCUMENTATION"       =>  "Viac informácií o nastavení nájdete (v angličtine) na <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">stránkach s dokumentáciou</a>.",
 "PAGE_URL"            =>  "Stránka na ktorej sa zobrazia príspevky",
 "LANGUAGE"            =>  "Jazyk použitý na stránke Novinky",
+"NO_PAGE_SELECTED"    =>  "No page selected",
+"SELECT_PAGE"         =>  "Select a page",
 "SHOW_POSTS_AS"       =>  "Príspevky sú zobrazené ako",
 "FULL_TEXT"           =>  "Celý text",
 "EXCERPT"             =>  "Výňatok",
