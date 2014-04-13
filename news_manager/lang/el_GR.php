@@ -41,7 +41,6 @@ $i18n = array(
 "DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">σελίδα documentation</a>.",
 "PAGE_URL"            =>  "Σελίδα που θα εμφανίζονται τα Άρθρα",
 "NO_PAGE_SELECTED"    =>  "No page selected",
-"SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Language used on News Page",
 "SHOW_POSTS_AS"       =>  "Τα Άρθρα στη σελίδα Άρθρων εμφανίζονται ως",
 "FULL_TEXT"           =>  "Πλήρες Κείμενο",

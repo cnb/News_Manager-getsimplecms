@@ -41,7 +41,6 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Настройки редактора новостей",
 "DOCUMENTATION"       =>  "В случае вопросов по настройке свяжитесь с администратором",
 "PAGE_URL"            =>  "Адрес страницы новостной ленты",
-"NO_PAGE_SELECTED"    =>  "No page selected",
 "SELECT_PAGE"         =>  "Select a page",
 "LANGUAGE"            =>  "Предпочитаемый язык",
 "SHOW_POSTS_AS"       =>  "Режим отображения новостей",
