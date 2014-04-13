@@ -21,14 +21,14 @@
       $pages = array_diff($pages, array('index'));
       array_unshift($pages, '', 'index');
       foreach ($pages as $slug) {
-        $option = ($slug != '') ? $slug : '-- '.i18n_r('news_manager/NO_PAGE_SELECTED').' --';
+        $option = ($slug != '') ? $slug : '-';
         echo '<option value="',$slug,'"';
         if ($slug == $NMPAGEURL) echo ' selected="selected"';
         echo '>',$option,'</option>',PHP_EOL;
       }
       ?>
       </select>
-      <label id="no-page" class="invalid" <?php if ($NMPAGEURL != '') echo ' style="display:none"'; ?>><?php i18n('news_manager/SELECT_PAGE'); ?></label>
+      <label id="no-page" class="invalid" <?php if ($NMPAGEURL != '') echo ' style="display:none"'; ?>><?php i18n('news_manager/NO_PAGE_SELECTED'); ?></label>
     </p>
   </div>
   <div class="rightsec">
