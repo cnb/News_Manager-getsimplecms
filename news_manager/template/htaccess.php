@@ -7,10 +7,21 @@
 ?>
 
 <h3>.htaccess</h3>
+<?php
+  if ($NMPAGEURL == ''
+    || !in_array(trim($PERMALINK), array('','%parent%/%slug%','%parent%/%slug%/','%slug%','%slug%/'))
+    || count(array_diff(array(NMPARAMPOST,NMPARAMPAGE,NMPARAMTAG,NMPARAMARCHIVE),array('post','page','tag','archive'))) > 0
+    ) {
+?>
+<div class="error">
+  Failed to generate a .htaccess sample for the current site settings
+</div>
+<?php } else { ?>
 <p>
   <?php i18n('news_manager/HTACCESS_HELP'); ?>
   <pre style="padding: 5px; background: #f7f7f7; border: 1px solid #eee;"><?php echo $htaccess; ?></pre>
 </p>
+<?php } ?>
 <form class="largeform" action="load.php?id=news_manager" method="post" accept-charset="utf-8">
   <p class="hint">
     <?php i18n("news_manager/GO_BACK_WHEN_DONE"); ?>
