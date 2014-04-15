@@ -20,6 +20,7 @@ RewriteEngine on
 RewriteBase **PATH**
 
 # News Manager:
+RewriteRule ^**PREFIX**tag/([^/.]+)/page/([^/.]+)/?$ index.php?**PAGE**tag=$1&page=$2 [L]
 RewriteRule ^**PREFIX**tag/([^/.]+)/?$ index.php?**PAGE**tag=$1 [L]
 RewriteRule ^**PREFIX**post/([^/.]+)/?$ index.php?**PAGE**post=$1 [L]
 RewriteRule ^**PREFIX**page/([^/.]+)/?$ index.php?**PAGE**page=$1 [L]
