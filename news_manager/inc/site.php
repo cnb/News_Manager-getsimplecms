@@ -538,9 +538,14 @@ function nm_is_main() {
   return in_array('main', $nmpagetype);
 }
 
-function nm_is_tag() {
+function nm_is_tag($tag=null) {
   global $nmpagetype;
-  return in_array('tag', $nmpagetype);
+  if (in_array('tag', $nmpagetype)) {
+    if (!$tag)
+      return true;
+    else
+      return (isset($_GET[NMPARAMTAG]) && $tag == rawurldecode($_GET[NMPARAMTAG]));
+  }
 }
 
 function nm_is_archive() {
