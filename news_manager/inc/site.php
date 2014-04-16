@@ -648,22 +648,6 @@ function nm_post_image_url($width=null, $height=null, $crop=null, $default=null,
 
 // images
 
-function nm_enable_images() {
-  global $nmoption;
-  $nmoption['showimages'] = true;
-}
-
-function nm_disable_images() {
-  global $nmoption;
-  $nmoption['showimages'] = false;
-}
-
-function nm_set_image_option($option, $value=true) {
-  global $nmoption;
-  if ($option)
-    $nmoption['image'.$option] = $value;
-}
-
 function nm_set_image_size($width=null, $height=null, $crop=false) {
   global $nmoption;
   $nmoption['imagewidth'] = $width;
