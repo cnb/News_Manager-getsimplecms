@@ -40,7 +40,7 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Nastavení Správce novinek",
 "DOCUMENTATION"       =>  "Pro více informaci o těchto nastaveních navštivte <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentation page</a>.",
 "PAGE_URL"            =>  "Stránka pro výpis článků",
-"NO_PAGE_SELECTED"    =>  "No page selected",
+"NO_PAGE_SELECTED"    =>  "Nebyla vybrána žádná stránka",
 "LANGUAGE"            =>  "Jazyk použitý na stránkách článků",
 "SHOW_POSTS_AS"       =>  "Články na stránce s novinkami jsou zobrazeny jako",
 "FULL_TEXT"           =>  "Celý text",
