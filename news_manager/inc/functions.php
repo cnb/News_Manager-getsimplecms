@@ -138,7 +138,7 @@ function nm_get_url($query=false) {
         $str = '/' . $str;
     } else {
       $str = (strpos($url,'?') === false)? '?' : '&amp;';
-      $str .= $query.'='; 
+      $str .= $query.'=';
     }
   }
   return $url . $str;
@@ -320,7 +320,7 @@ function nm_i18n_merge() {
     global $nm_i18n;
     if ($nm_i18n) {
       $nm_i18n = array_merge($i18n, $nm_i18n); // merge custom array
-    } else {    
+    } else {
       $nm_i18n = $i18n;
     }
     global $i18n;

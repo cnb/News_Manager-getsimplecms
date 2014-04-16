@@ -171,7 +171,7 @@
     <label for="enablecustomsettings"><?php i18n('news_manager/CUSTOM_SETTINGS'); ?></label>
     <textarea style="height:150px" name="customsettings" id="customsettings"><?php echo $NMSETTING['customsettings']; ?></textarea>
   </p>
-  
+
   <?php if ( $PRETTYURLS == 1 && (!$PERMALINK || strpos($PERMALINK,'?') === false) )  { ?>
   <p class="inline">
     <input name="pretty-urls" id="pretty-urls" type="checkbox" <?php if ($NMPRETTYURLS == 'Y') echo 'checked'; ?> />&nbsp;
@@ -207,10 +207,10 @@
         }
       });
     }
-    
+
     $('.submit').clone().appendTo('#sidebar');
     $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#settings.largeform input.submit').trigger('click'); });
-    
+
     if ($('#images option:selected').val() == "N"){
       $('#divimagelink').hide();
       $('#divimageoptions').hide();
@@ -222,7 +222,7 @@
       $('#customsettings').hide();
     }
   });
-  
+
   $('#images').change(function(){
     if ($('#images option:selected').val() == "N"){
       $('#divimagelink').hide();
@@ -232,7 +232,7 @@
       $('#divimageoptions').show();
     }
   });
-  
+
   $('#enablecustomsettings').change(function(){
     if ($('#enablecustomsettings').is(':checked')) {
       $('#customsettings').show();
@@ -240,7 +240,7 @@
       $('#customsettings').hide();
     }
   });
-  
+
   $('#page-url').change(function(){
     if ($('#page-url option:selected').val() == "") {
       $('#no-page').show();
