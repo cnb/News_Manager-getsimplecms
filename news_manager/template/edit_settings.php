@@ -64,7 +64,7 @@
   <div class="leftsec">
     <p>
       <label for="show-excerpt"><?php i18n('news_manager/SHOW_POSTS_AS'); ?>:</label>
-      <input name="show-excerpt" id="show-excerpt" type="radio" value="0" <?php if ($NMSHOWEXCERPT != 'Y') echo "checked=\"checked\""; ?> style="vertical-align: middle;" />
+      <input name="show-excerpt" type="radio" value="0" <?php if ($NMSHOWEXCERPT != 'Y') echo "checked=\"checked\""; ?> style="vertical-align: middle;" />
       &nbsp;<?php i18n('news_manager/FULL_TEXT'); ?>
       <span style="margin-left: 30px;">&nbsp;</span>
       <input name="show-excerpt" type="radio" value="1" <?php if ($NMSHOWEXCERPT == 'Y') echo "checked=\"checked\""; ?> style="vertical-align: middle;" />
