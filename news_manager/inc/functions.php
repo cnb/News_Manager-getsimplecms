@@ -295,7 +295,7 @@ function nm_make_excerpt($content, $len=200, $ellipsis='') {
   $content = strip_tags($content);
   $content = preg_replace('/\s+/u', ' ', str_replace('&nbsp;', ' ', $content)); // remove whitespace
   if (function_exists('mb_strlen')) {
-    if (mb_strlen($content) > $len) {
+    if (mb_strlen($content, 'UTF-8') > $len) {
       $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' ', 'UTF-8'), 'UTF-8');
       $content .= $ellipsis;
     }
