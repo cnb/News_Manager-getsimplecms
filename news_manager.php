@@ -145,6 +145,10 @@ function nm_frontend_init() {
     ob_end_clean();
     $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
   }
+  if (nm_get_option('template')) {
+    global $template_file;
+    $template_file = nm_get_option('template');
+  }
   nm_reset_options();
 }
 
