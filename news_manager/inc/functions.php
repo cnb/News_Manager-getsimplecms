@@ -267,14 +267,15 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
     return '';
   } else {
     $ellipsis = i18n_r('news_manager/ELLIPSIS');
+    $break = nm_get_option('breakwords');
     if ($url) {
       $readmorehtml = '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
       if ($forcereadmore)
-        $content = nm_make_excerpt($content, $len, $ellipsis).' '.$readmorehtml;
+        $content = nm_make_excerpt($content, $len, $ellipsis, $break).' '.$readmorehtml;
       else
-        $content = nm_make_excerpt($content, $len, $ellipsis.$readmorehtml);
+        $content = nm_make_excerpt($content, $len, $ellipsis.$readmorehtml, $break);
     } else {
-      $content = nm_make_excerpt($content, $len, $ellipsis);
+      $content = nm_make_excerpt($content, $len, $ellipsis, $break);
     }
     return '<p>'.$content.'</p>';
   }
@@ -286,22 +287,29 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
  * @param $content source string (html/text)
  * @param $len maximum excerpt length
  * @param $ellipsis optional string to be appended at the end (e.g. '...')
- * @return excerpt without html tags and placeholders; words are not truncated
+ * @param $break allow cutting off last word
+ * @return excerpt without html tags and usual GS placeholders
  * @since 2.5
  */
-function nm_make_excerpt($content, $len=200, $ellipsis='') {
+function nm_make_excerpt($content, $len=200, $ellipsis='', $break=false) {
   $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
   $content = preg_replace('/\{%.*?%\}/', '', $content); // remove {% ... %}
   $content = strip_tags($content);
   $content = preg_replace('/\s+/u', ' ', str_replace('&nbsp;', ' ', $content)); // remove whitespace
   if (function_exists('mb_strlen')) {
     if (mb_strlen($content, 'UTF-8') > $len) {
-      $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' ', 'UTF-8'), 'UTF-8');
+      if ($break)
+        $content = mb_substr($content, 0, $len, 'UTF-8');
+      else
+        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' ', 'UTF-8'), 'UTF-8');
       $content .= $ellipsis;
     }
   } else {
     if (strlen($content) > $len) {
-      $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
+      if ($break)
+        $content = substr($content, 0, $len);
+      else
+        $content = substr($content, 0, strrpos(substr($content, 0, $len+1), ' '));
       $content .= $ellipsis;
     }
   }
