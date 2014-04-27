@@ -29,8 +29,9 @@ function nm_list_recent() {
 /*******************************************************
  * @function nm_list_archives
  * @action print a list of archives ordered by month or year
+ * @param $fmt optional custom format (strftime), default "%B %Y" or "%Y" or as defined in language file
  */
-function nm_list_archives() {
+function nm_list_archives($fmt='') {
   global $NMPAGEURL, $NMSETTING;
   if ($NMPAGEURL == '') return;
   $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
@@ -38,7 +39,7 @@ function nm_list_archives() {
     echo '<ul class="nm_archives">',PHP_EOL;
     if ($NMSETTING['archivesby'] == 'y') {
       # annual
-      $fmt = isset($i18n['news_manager/YEARLY_FORMAT']) ? $i18n['news_manager/YEARLY_FORMAT'] : '%Y';
+      if (!$fmt) $fmt = isset($i18n['news_manager/YEARLY_FORMAT']) ? $i18n['news_manager/YEARLY_FORMAT'] : '%Y';
       foreach ($archives as $archive) {
         $y = $archive;
         $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
@@ -47,7 +48,7 @@ function nm_list_archives() {
       }
     } else {
       # monthly
-      $fmt = isset($i18n['news_manager/MONTHLY_FORMAT']) ? $i18n['news_manager/MONTHLY_FORMAT'] : '%B %Y';
+      if (!$fmt) $fmt = isset($i18n['news_manager/MONTHLY_FORMAT']) ? $i18n['news_manager/MONTHLY_FORMAT'] : '%B %Y';
       foreach ($archives as $archive) {
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
