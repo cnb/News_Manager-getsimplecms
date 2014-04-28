@@ -14,12 +14,12 @@ $i18n = array(
 "ERROR_ENV"           =>  "Υπήρξε ένα σφάλμα στην προσπέλαση του φακέλου των άρθων (/posts) και/ή στο config file. Ορίστε δικαιώματα <em>CHMOD 777</em> στον φάκελο /data, /backups και τους υποφακέλους του και ξαναπροσπαθήστε.",
 "ERROR_SAVE"          =>  "<b>Σφάλμα:</b> Δεν ήταν δυνατή η αποθήκευση του άρθρου. Ορίστε δικαιώματα <em>CHMOD 777</em> στον φάκελο /data, /backups και τους υποφακέλους του και ξαναπροσπαθήστε.",
 "ERROR_DELETE"        =>  "<b>Σφάλμα:</b> Δεν ήταν δυνατή η διαγραφή του άρθρου. Ορίστε δικαιώματα <em>CHMOD 777</em> στον φάκελο /data, /backups και τους υποφακέλους του και ξαναπροσπαθήστε.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Unable to restore the post. <em>CHMOD 777</em> the folders /data, /backups and their sub-folders and retry.",
+"ERROR_RESTORE"       =>  "<b>Σφάλμα:</b> Αδύνατη η ανάκτηση του post. ορίστε δικαιώματα <em>CHMOD 777</em> των φακέλων /data, /backups και των υποφακέλων τους και προσπαθήστε ξανά.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Οι αλλαγές έχουν αποθηκευτεί.",
 "SUCCESS_DELETE"      =>  "Το άρθρο έχει διαγραφεί.",
-"SUCCESS_RESTORE"     =>  "The post has been restored.",
+"SUCCESS_RESTORE"     =>  "Το άρθρο έχει ανκτηθεί.",
 
 # other messages
 "UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> !",
@@ -41,12 +41,12 @@ $i18n = array(
 "DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">σελίδα documentation</a>.",
 "PAGE_URL"            =>  "Σελίδα που θα εμφανίζονται τα Άρθρα",
 "NO_PAGE_SELECTED"    =>  "No page selected",
-"LANGUAGE"            =>  "Language used on News Page",
+"LANGUAGE"            =>  "Γλώσσα που χρησιμοποιείται στη Σελίδα των Νέων",
 "SHOW_POSTS_AS"       =>  "Τα Άρθρα στη σελίδα Άρθρων εμφανίζονται ως",
 "FULL_TEXT"           =>  "Πλήρες Κείμενο",
 "EXCERPT"             =>  "Περίληψη",
 "PRETTY_URLS"         =>  "Χρησιμοποιείστε τα Fancy URLs για τα Άρθρα, Archives, κλπ.",
-"PRETTY_URLS_NOTE"    =>  "Αν ενεργοποιήσετε τα Fancy URLs enabled, πρέπει να ενημερώσετε το αρχείο .htaccess μετά την αποθήκευση αυτών των ρυμίσεων.",
+"PRETTY_URLS_NOTE"    =>  "Αν ενεργοποιήσετε τα Fancy URLs enabled, πρέπει να ενημερώσετε το αρχείο .htaccess μετά την αποθήκευση αυτών των ρυθμίσεων.",
 "EXCERPT_LENGTH"      =>  "Μήκος περίληψης (σε χαρακτήρες)",
 "POSTS_PER_PAGE"      =>  "Αριθμός άρθρων που θα εμφανίζονται στη σελίδα Άρθρα",
 "RECENT_POSTS"        =>  "Αριθμός των Νεώτερων Άρθρων (στη Sidebar)",
@@ -73,16 +73,16 @@ $i18n = array(
 "POST_OPTIONS"        =>  "Επιλογές Άρθρου",
 "POST_SLUG"           =>  "Slug/URL",
 "POST_TAGS"           =>  "Tags (χωρίστε τα tags με κόμμα)",
-"POST_DATE"           =>  "Publish date (<i>yyyy-mm-dd</i>)",
-"POST_TIME"           =>  "Publish time (<i>hh:mm</i>)",
+"POST_DATE"           =>  "Ημερομηνία δημοσίευσης (<i>yyyy-mm-dd</i>)",
+"POST_TIME"           =>  "Ώρα δημοσίευσης (<i>hh:mm</i>)",
 "POST_PRIVATE"        =>  "Το Άρθρο είναι Ιδιωτικό (κρυφό)",
 "POST_IMAGE"          =>  "Image",
 "LAST_SAVED"          =>  "Τελευτία Αποθήκευση",
 
 # validation
-"FIELD_IS_REQUIRED"   => "This field is required",
-"ENTER_VALID_DATE"    => "Please enter a valid date / Leave blank for current date",
-"ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
+"FIELD_IS_REQUIRED"   => "Αυτό το πεδίο απαιτείται",
+"ENTER_VALID_DATE"    => "Παρακαλώ εισάγετε μία έγκυρη ημερομηνία / Αφήστε κενό για την τρέχουσα ημερομηνία",
+"ENTER_VALID_TIME"    => "Παρακαλώ εισάγετε μία έγκυρη ώρα / Αφήστε κενό για την τρέχουσα ώρα",
 "ENTER_VALUE_MIN"     => "Παρακαλώ εισάγετε μια τιμή μεγαλύτερη ή ίση του %d",
 
 # htaccess
