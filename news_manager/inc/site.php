@@ -78,7 +78,7 @@ function nm_show_tag($tag) {
  * @param $index - page index (pagination)
  * @action show posts by tag with pagination
  * @return true if posts shown
- * @since 2.5
+ * @since 3.0
  */
 function nm_show_tag_page($tag, $index=0) {
   global $NMPOSTSPERPAGE;
@@ -133,7 +133,7 @@ function nm_show_search_results() {
  * @param $slug post slug
  * @action show single post on news page
  * @return true if post exists
- * @since 2.5
+ * @since 3.0
  */
 function nm_show_single($slug) {
   return nm_show_post($slug, false, true);
@@ -144,7 +144,7 @@ function nm_show_single($slug) {
  * @function nm_reset_options
  * @param $pagetype news page type, can be 'single', 'main', 'archive', 'tag', 'search' or empty
  * @action set default or specific layout values
- * @since 2.5
+ * @since 3.0
  */
 function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
@@ -519,7 +519,10 @@ function nm_post_title($before='', $after='', $echo=true) {
 }
 
 
-/*** frontend functions, since 2.5 ***/
+/***
+frontend functions, since 3.0
+@todo: descriptions
+ ***/
 
 // conditionals
 

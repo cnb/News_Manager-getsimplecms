@@ -89,6 +89,7 @@ function nm_list_tags() {
 /*******************************************************
  * @function nm_tag_list
  * @action display list of unique tags
+ * @since 3.0
  */
 function nm_tag_list() {
   global $NMPAGEURL;

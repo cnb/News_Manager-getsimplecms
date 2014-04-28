@@ -41,7 +41,7 @@ $NMSHOWEXCERPT   = isset($data->show_excerpt) ? $data->show_excerpt : '';
 $NMEXCERPTLENGTH = isset($data->excerpt_length) ? $data->excerpt_length : '350';
 $NMPOSTSPERPAGE  = isset($data->posts_per_page) ? $data->posts_per_page : '8';
 $NMRECENTPOSTS   = isset($data->recent_posts) ? $data->recent_posts : '5';
-# new settings (since 2.5)
+# new settings (since 3.0)
 $NMSETTING = array();
 $NMSETTING['archivesby'] = isset($data->archivesby) ? $data->archivesby : 'm';
 $NMSETTING['readmore'] = isset($data->readmore) ? $data->readmore : 'N';

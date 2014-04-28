@@ -171,7 +171,7 @@ function nm_get_parent() {
  * @function nm_get_image_url
  * @param $pic image URL, full or relative to data/uploads/
  * @return absolute URL of thumbnail/image as defined by $nmoption settings
- * @since 2.5
+ * @since 3.0
  */
 function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=null) {
   global $SITEURL, $nmoption;
@@ -289,7 +289,7 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
  * @param $ellipsis optional string to be appended at the end (e.g. '...')
  * @param $break allow cutting off last word
  * @return excerpt without html tags and usual GS placeholders
- * @since 2.5
+ * @since 3.0
  */
 function nm_make_excerpt($content, $len=200, $ellipsis='', $break=false) {
   $content = preg_replace('/\(%.*?%\)/', '', $content); // remove (% ... %)
@@ -418,13 +418,14 @@ function nm_patch_plugin_management() {
   global $table;
   if ($table)
     $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
+    $table = str_replace('>News Manager<', '>News Manager (E)<', $table);
 }
 
 /*******************************************************
  * @function nm_lowercase_tags
  * @param $str a string containing post tags
  * @action convert string to lowercase if "lowercasetags" enabled
- * @since 2.5
+ * @since 3.0
  */
 function nm_lowercase_tags($str) {
   if (defined('NMLOWERCASETAGS') && NMLOWERCASETAGS)

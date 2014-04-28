@@ -6,7 +6,7 @@
 
 global $NMPAGEURL;
 
-# image input field (since 2.5)
+# image input field (since 3.0)
 global $NMSETTING;
 if (defined('NMIMAGEINPUT')) {
   $imageinputpos = intval(NMIMAGEINPUT);
