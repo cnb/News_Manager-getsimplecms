@@ -40,7 +40,7 @@ $i18n = array(
 "NM_SETTINGS"         =>  "Paramètres de News Manager",
 "DOCUMENTATION"       =>  "Pour plus d'informations sur ces paramètres, visitez la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">page de documentation (en anglais)</a>.",
 "PAGE_URL"            =>  "URL de la page des News",
-"NO_PAGE_SELECTED"    =>  "No page selected",
+"NO_PAGE_SELECTED"    =>  "Aucune page sélectionnée",
 "LANGUAGE"            =>  "Langue à utiliser pour la page des News",
 "SHOW_POSTS_AS"       =>  "Afficher les billets de la page des News sous forme de",
 "FULL_TEXT"           =>  "Texte Complet",
@@ -90,7 +90,7 @@ $i18n = array(
 "GO_BACK_WHEN_DONE"   =>  "Lorsque vous avez terminé avec cette page, cliquez sur le bouton ci-dessous pour retourner au panneau principal.",
 
 # save/cancel/delete
-"SAVE_SETTINGS"       =>  "Enregistrer les paramètres",
+"SAVE_SETTINGS"       =>  "Enregistrer les Paramètres",
 "SAVE_POST"           =>  "Enregistrer le Billet",
 "FINISHED"            =>  "Terminé",
 "CANCEL"              =>  "Annuler",
