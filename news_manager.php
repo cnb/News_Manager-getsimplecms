@@ -26,7 +26,7 @@ register_plugin(
 );
 
 # includes
-require_once('news_manager/inc/common.php');
+require_once(GSPLUGINPATH.'news_manager/inc/common.php');
 
 # language
 i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
