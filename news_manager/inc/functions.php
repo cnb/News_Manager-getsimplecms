@@ -412,7 +412,7 @@ function nm_display_message($msg, $error=false, $backup=null) {
 /*******************************************************
  * @function nm_patch_plugin_management
  * @action hack: replace link to Extend plugin page in Plugin Management
- * @since 2.4.0
+ * @since 2.4
  */
 function nm_patch_plugin_management() {
   global $table;
@@ -465,6 +465,16 @@ function nm_update_sitemap_xml($xml) {
     }
   }
   return $xml;
+}
+
+# since 3.0
+# for templateFile custom setting
+function nm_switch_template_file($tempfile) {
+  global $template_file, $TEMPLATE;
+  $tempfile = nm_get_option('templatefile');
+  # no path traversal and template exists
+  if (strpos(realpath(GSTHEMESPATH.$TEMPLATE."/".$tempfile), realpath(GSTHEMESPATH.$TEMPLATE."/")) === 0 && file_exists(GSTHEMESPATH.$TEMPLATE."/".$tempfile))
+    $template_file = $tempfile;
 }
 
 ?>
