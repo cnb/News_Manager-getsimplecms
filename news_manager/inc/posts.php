@@ -10,23 +10,34 @@
  * @param $slug - post slug
  * @action edit or create posts
  */
-function nm_edit_post($slug) {
-  $file = NMPOSTPATH.$slug.'.xml';
-  if ($slug != '' && dirname(realpath($file)) != realpath(NMPOSTPATH)) die(''); // path traversal
-  # get post data, if it exists
-  $data    = @getXML($file);
-  $title   = @stripslashes($data->title);
-  $date    = !empty($data) ? date('Y-m-d', strtotime($data->date)) : '';
-  $time    = !empty($data) ? date('H:i', strtotime($data->date)) : '';
-  $tags    = @str_replace(',', ', ', ($data->tags));
-  $private = @$data->private != '' ? 'checked' : '';
-  $image   = @stripslashes($data->image);
-  $content = @stripslashes($data->content);
-  if (isset($data->author))
-    $author = stripslashes($data->author);
+function nm_edit_post($slug = '') {
+  $newpost = ($slug === '');
+  if ($newpost) {
+    $title   = '';
+    $date    = '';
+    $time    = '';
+    $tags    = '';
+    $private = '';
+    $image   = '';
+    $content = '';
+  } else {
+    $file = NMPOSTPATH.$slug.'.xml';
+    if (dirname(realpath($file)) != realpath(NMPOSTPATH)) die(''); // path traversal
+    # get post data, if it exists
+    $data    = @getXML($file);
+    $title   = @stripslashes($data->title);
+    $date    = isset($data->date) ? date('Y-m-d', strtotime($data->date)) : '';
+    $time    = isset($data->date) ? date('H:i', strtotime($data->date)) : '';
+    $tags    = @str_replace(',', ', ', ($data->tags));
+    $private = @$data->private != '' ? 'checked' : '';
+    $image   = @stripslashes($data->image);
+    $content = @stripslashes($data->content);
+    if (isset($data->author))
+      $author = stripslashes($data->author);
+  }
   # show edit post form
   include(NMTEMPLATEPATH . 'edit_post.php');
-  if (file_exists($file)) {
+  if (!$newpost) {
     $mtime = date(i18n_r('DATE_AND_TIME_FORMAT'), filemtime($file));
     echo '<small>',i18n_r('news_manager/LAST_SAVED'),': ',$mtime,'</small>';
   }
