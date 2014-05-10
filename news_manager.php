@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: News Manager (E)
+Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
 Version: 3.0 beta 19b
 Author: Rogier Koppejan
@@ -16,7 +16,7 @@ $thisfile = basename(__FILE__, '.php');
 # register plugin
 register_plugin(
   $thisfile,
-  'News Manager (E)',
+  'News Manager',
   '3.0 beta 19b',
   'Rogier Koppejan, Carlos Navarro',
   'http://www.cyberiada.org/cnb/news-manager/',

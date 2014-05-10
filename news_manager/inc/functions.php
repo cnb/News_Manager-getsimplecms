@@ -418,7 +418,6 @@ function nm_patch_plugin_management() {
   global $table;
   if ($table)
     $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
-    $table = str_replace('>News Manager<', '>News Manager (E)<', $table);
 }
 
 /*******************************************************
