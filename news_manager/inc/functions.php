@@ -133,7 +133,10 @@ function nm_get_url($query=false) {
         break;
     }
     if ($PRETTYURLS == 1 && $NMPRETTYURLS == 'Y') {
-      $str = $query . '/';
+      if ($query == NMPARAMPOST && defined('NMNOPARAMPOST') && NMNOPARAMPOST)
+        $str = '';
+      else
+        $str = $query . '/';
       if (substr($url, -1) != '/')
         $str = '/' . $str;
     } else {

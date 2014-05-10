@@ -11,6 +11,7 @@
   if ($NMPAGEURL == ''
     || !in_array(trim($PERMALINK), array('','%parent%/%slug%','%parent%/%slug%/','%slug%','%slug%/'))
     || count(array_diff(array(NMPARAMPOST,NMPARAMPAGE,NMPARAMTAG,NMPARAMARCHIVE),array('post','page','tag','archive'))) > 0
+    || (defined('NMNOPARAMPOST') && NMNOPARAMPOST)
     ) {
 ?>
 <div class="error">
