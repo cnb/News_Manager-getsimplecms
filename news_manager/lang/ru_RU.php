@@ -1,7 +1,7 @@
 <?php
 
 /**
- * News Manager Russian language file by reff http://reff.pp.ua/
+ * News Manager Russian language file - initial translation by reff http://reff.pp.ua/
    Updated thanks to Oleg06
  */
 
@@ -26,7 +26,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Внимание:</b> Вам возможно потребуется обновить файл <a href=\"%s\">.htaccess</a> вручную!",
 
 # admin button (top-right)
-"SETTINGS"            =>  "Установки",
+"SETTINGS"            =>  "Настройки",
 "NEW_POST"            =>  "Создать новую запись",
 
 # admin panel
@@ -39,7 +39,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Настройки редактора новостей",
-"DOCUMENTATION"       =>  "В случае вопросов по настройке свяжитесь с администратором",
+"DOCUMENTATION"       =>  "Дополнительную информацию о настройках плагина можно найти на странице <a href=\"%s\">документации</a>.",
 "PAGE_URL"            =>  "Адрес страницы новостной ленты",
 "NO_PAGE_SELECTED"    =>  "Страница не выбрана",
 "LANGUAGE"            =>  "Предпочитаемый язык",
