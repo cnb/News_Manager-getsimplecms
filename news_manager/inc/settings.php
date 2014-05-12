@@ -50,6 +50,7 @@ function nm_save_settings() {
   $NMEXCERPTLENGTH = intval($_POST['excerpt-length']);
   $NMPOSTSPERPAGE  = intval($_POST['posts-per-page']);
   $NMRECENTPOSTS   = intval($_POST['recent-posts']);
+  # new settings since 3.0
   $NMSETTING = array();
   $NMSETTING['archivesby'] = $_POST['archivesby'];
   $NMSETTING['readmore'] = $_POST['readmore'];
@@ -73,7 +74,7 @@ function nm_save_settings() {
   # should we update .htaccess?
   if ($NMPRETTYURLS == 'Y') {
     if ($backup['pretty_urls'] != 'Y' || $backup['page_url'] != $NMPAGEURL)
-      nm_display_message(i18n_r('news_manager/UPDATE_HTACCESS'), true);
+      nm_display_message(sprintf(i18n_r('news_manager/UPDATE_HTACCESS'), 'load.php?id=news_manager&amp;htaccess'), true);
   }
 }
 
