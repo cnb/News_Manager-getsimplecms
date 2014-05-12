@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Yazı geri yüklendi.", 
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Uyarı:</b> Büyük olasılıkla <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> dosyasını güncellemeniz gerekiyor.",
+"UPDATE_HTACCESS"     =>  "<b>Uyarı:</b> Büyük olasılıkla <a href=\"%s\">.htaccess</a> dosyasını güncellemeniz gerekiyor.",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Ayarlar",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Haber Yönetim Ayarları",
-"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
+"DOCUMENTATION"       =>  "Daha fazla bilgi için <a href=\"%s\" target=\"_blank\">News Manager</a> sayfasını ziyaret edin.",
 "PAGE_URL"            =>  "Haberleri görüntüleme şablonu",
 "NO_PAGE_SELECTED"    =>  "Hiçbir sayfa seçilmedi",
 "LANGUAGE"            =>  "Haber sayfası dili:",

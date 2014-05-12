@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "A bejegyzés sikeresen visszaállítva.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Megjegyzés:</b> Valószínűleg módosítanod kell a <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> fájlt!",
+"UPDATE_HTACCESS"     =>  "<b>Megjegyzés:</b> Valószínűleg módosítanod kell a <a href=\"%s\">.htaccess</a> fájlt!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Beállítások",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Beállítások",
-"DOCUMENTATION"       =>  "További beállításokkal kapcsolatos információkért látogasd meg a <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">dokumentációs oldalt</a>.",
+"DOCUMENTATION"       =>  "További beállításokkal kapcsolatos információkért látogasd meg a <a href=\"%s\" target=\"_blank\">dokumentációs oldalt</a>.",
 "PAGE_URL"            =>  "Hír oldal helye",
 "NO_PAGE_SELECTED"    =>  "No page selected",
 "LANGUAGE"            =>  "Hír oldalon használt nyelv",

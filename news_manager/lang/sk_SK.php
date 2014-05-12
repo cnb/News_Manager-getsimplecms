@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Príspevok bol obnovený.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Upozornenie:</b> Pravdepodobne budete musieť aktualizovať svoj <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> súbor!",
+"UPDATE_HTACCESS"     =>  "<b>Upozornenie:</b> Pravdepodobne budete musieť aktualizovať svoj <a href=\"%s\">.htaccess</a> súbor!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Nastavenia",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager - Nastavenia",
-"DOCUMENTATION"       =>  "Viac informácií o nastavení nájdete (v angličtine) na <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">stránkach s dokumentáciou</a>.",
+"DOCUMENTATION"       =>  "Viac informácií o nastavení nájdete (v angličtine) na <a href=\"%s\" target=\"_blank\">stránkach s dokumentáciou</a>.",
 "PAGE_URL"            =>  "Stránka na ktorej sa zobrazia príspevky",
 "LANGUAGE"            =>  "Jazyk použitý na stránke Novinky",
 "NO_PAGE_SELECTED"    =>  "Nie je zvolená žiadna stránka",

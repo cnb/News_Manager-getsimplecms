@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Το άρθρο έχει ανκτηθεί.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> !",
+"UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"%s\">.htaccess</a> !",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Ρυθμίσεις",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Ρυθμίσεις του News Manager",
-"DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">σελίδα documentation</a>.",
+"DOCUMENTATION"       =>  "Για περισότερες πληροφορίες των ρυθμίσεων, επισκευθείτε τη <a href=\"%s\" target=\"_blank\">σελίδα documentation</a>.",
 "PAGE_URL"            =>  "Σελίδα που θα εμφανίζονται τα Άρθρα",
 "NO_PAGE_SELECTED"    =>  "No page selected",
 "LANGUAGE"            =>  "Γλώσσα που χρησιμοποιείται στη Σελίδα των Νέων",

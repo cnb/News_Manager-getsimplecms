@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "La entrada ha sido restablecida.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Nota:</b> Probablemente se ha de modificar el archivo <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> del sitio.",
+"UPDATE_HTACCESS"     =>  "<b>Nota:</b> Probablemente se ha de modificar el archivo <a href=\"%s\">.htaccess</a> del sitio.",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Configuración",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Configuración de News Manager",
-"DOCUMENTATION"       =>  "Para más información sobre la configuración, visitar la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">página de documentación</a>.",
+"DOCUMENTATION"       =>  "Para más información sobre la configuración, visitar la <a href=\"%s\" target=\"_blank\">página de documentación</a>.",
 "PAGE_URL"            =>  "Página para mostrar entradas",
 "NO_PAGE_SELECTED"    =>  "No se ha seleccionado ninguna página",
 "LANGUAGE"            =>  "Idioma utilizado en la página de noticias",

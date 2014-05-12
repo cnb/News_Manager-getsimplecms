@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Der Beitrag wurde gespeichert.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Achtung:</b> Sie sollten die Datei <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> aktualisieren!",
+"UPDATE_HTACCESS"     =>  "<b>Achtung:</b> Sie sollten die Datei <a href=\"%s\">.htaccess</a> aktualisieren!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Einstellung",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Einstellungen",
-"DOCUMENTATION"       =>  "Mehr Informationen zu den Einstellungen finden Sie in der <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">Dokumentation</a>.",
+"DOCUMENTATION"       =>  "Mehr Informationen zu den Einstellungen finden Sie in der <a href=\"%s\" target=\"_blank\">Dokumentation</a>.",
 "PAGE_URL"            =>  "Seite, auf der die Beiträge angezeigt werden sollen",
 "NO_PAGE_SELECTED"    =>  "Keine Seite ausgewählt",
 "LANGUAGE"            =>  "Sprache auf der News-Seite",

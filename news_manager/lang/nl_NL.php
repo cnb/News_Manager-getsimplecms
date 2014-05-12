@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Het bericht is hersteld.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Let op:</b> Waarschijnlijk moet het <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a> bestand aangepast worden!",
+"UPDATE_HTACCESS"     =>  "<b>Let op:</b> Waarschijnlijk moet het <a href=\"%s\">.htaccess</a> bestand aangepast worden!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Instellingen",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "News Manager Instellingen",
-"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">documentatie pagina</a>.",
+"DOCUMENTATION"       =>  "Voor meer informatie over deze instellingen, bezoek de <a href=\"%s\" target=\"_blank\">documentatie pagina</a>.",
 "PAGE_URL"            =>  "Berichtenpagina",
 "NO_PAGE_SELECTED"    =>  "Geen pagina geselecteerd",
 "LANGUAGE"            =>  "Taal die gebruikt wordt op de Nieuwspagina",

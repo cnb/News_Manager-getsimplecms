@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Indstillinger",
-"DOCUMENTATION"       =>  "For flere oplysninger, besøg siden: <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">Dokumentation</a>.",
+"DOCUMENTATION"       =>  "For flere oplysninger, besøg siden: <a href=\"%s\" target=\"_blank\">Dokumentation</a>.",
 "PAGE_URL"            =>  "Side med nyhedsposter",
 "NO_PAGE_SELECTED"    =>  "No page selected",
 "LANGUAGE"            =>  "Sprog på nyhedsside:",

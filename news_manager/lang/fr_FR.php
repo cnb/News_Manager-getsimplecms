@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Le billet a bien été récupéré.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Avertissement:</b> Vous devez probablement mettre à jour votre fichier <a href=\"load.php?id=news_manager&amp;htaccess\">.htaccess</a>!",
+"UPDATE_HTACCESS"     =>  "<b>Avertissement:</b> Vous devez probablement mettre à jour votre fichier <a href=\"%s\">.htaccess</a>!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Paramètres",
@@ -38,7 +38,7 @@ $i18n = array(
 
 # edit settings
 "NM_SETTINGS"         =>  "Paramètres de News Manager",
-"DOCUMENTATION"       =>  "Pour plus d'informations sur ces paramètres, visitez la <a href=\"http://www.cyberiada.org/cnb/news-manager/\" target=\"_blank\">page de documentation (en anglais)</a>.",
+"DOCUMENTATION"       =>  "Pour plus d'informations sur ces paramètres, visitez la <a href=\"%s\" target=\"_blank\">page de documentation (en anglais)</a>.",
 "PAGE_URL"            =>  "URL de la page des News",
 "NO_PAGE_SELECTED"    =>  "Aucune page sélectionnée",
 "LANGUAGE"            =>  "Langue à utiliser pour la page des News",
