@@ -243,6 +243,8 @@ function nm_reset_options($pagetype='') {
   } else {
     $nmoption['fields'] = array('title','date','author','image','content','tags');
   }
+  if (isset($nmoption['showtags']) && !$nmoption['showtags'])
+    $nmoption['fields'] = array_diff($nmoption['fields'], array('tags'));
 
   # imagesize shorthand
   if (isset($nmoption['imagesize'])) {
