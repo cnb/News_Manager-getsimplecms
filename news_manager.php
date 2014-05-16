@@ -19,7 +19,7 @@ register_plugin(
   'News Manager',
   '3.0 beta 19b',
   'Rogier Koppejan, Carlos Navarro',
-  'http://www.cyberiada.org/cnb/news-manager/',
+  'http://newsmanager.c1b.org/',
   'Extended version of News Manager, a blog/news plugin for GetSimple',
   'pages',
   'nm_admin'
