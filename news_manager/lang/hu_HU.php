@@ -115,7 +115,7 @@ $i18n = array(
 # language localization
 "LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",
 
-# date settings
+# date settings - list of available parameters: http://php.net/strftime
 "DATE_FORMAT"         =>  "%Y %b %e",
 "MONTHLY_FORMAT"      =>  "%B %Y",
 "YEARLY_FORMAT"       =>  "%Y"
