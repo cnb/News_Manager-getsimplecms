@@ -22,7 +22,7 @@ $i18n = array(
 "SUCCESS_RESTORE"     =>  "Posten blev genoprettet.",
 
 # other messages
-"UPDATE_HTACCESS"     =>  "<b>Fejl:</b> Opdater venligst <a href=\"load.php?id=news_manager&htaccess\">.htaccess</a>-filen!",
+"UPDATE_HTACCESS"     =>  "<b>Fejl:</b> Opdater venligst <a href=\"%s\">.htaccess</a>-filen!",
 
 # admin button (top-right)
 "SETTINGS"            =>  "Indstillinger",
