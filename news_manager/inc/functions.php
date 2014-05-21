@@ -469,6 +469,26 @@ function nm_update_sitemap_xml($xml) {
   return $xml;
 }
 
+/*******************************************************
+ * @function nm_update_extend_cache
+ * @action hack to replace Extend API cache file
+ * @uses $site_link_back_url (GetSimple's configuration.php)
+ * @since 3.0
+ */
+function nm_update_extend_cache() {
+  if (!is_frontend()) {
+    $dummy = GSCACHEPATH.'news_manager.tmp';
+    include(GSADMININCPATH.'configuration.php');
+    $cache = GSCACHEPATH.md5($site_link_back_url.'api/extend/?file=news_manager.php').'.txt';
+    if (!file_exists($dummy) || !file_exists($cache) || (filemtime($cache) > filemtime($dummy))) {
+      $data = file_get_contents($site_link_back_url.'api/extend/?id=541');
+      if (!$data) $data = '{"status":-1}';
+      file_put_contents($cache, $data);
+      touch($dummy);
+    }
+  }
+}
+
 # since 3.0
 # for templateFile custom setting
 function nm_switch_template_file($tempfile) {
