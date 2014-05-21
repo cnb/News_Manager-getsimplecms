@@ -20,7 +20,7 @@ register_plugin(
   '3.0 beta 20b',
   'Rogier Koppejan, Carlos Navarro',
   'http://newsmanager.c1b.org/',
-  'Extended version of News Manager, a blog/news plugin for GetSimple',
+  'A blog/news plugin for GetSimple',
   'pages',
   'nm_admin'
 );
