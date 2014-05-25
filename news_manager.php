@@ -42,7 +42,9 @@ if (!function_exists('generate_sitemap')) {
   add_filter('sitemap','nm_update_sitemap_xml'); // for GetSimple 3.3+
 }
 add_action('plugin-hook', 'nm_patch_plugin_management');
-add_action('common', 'nm_update_extend_cache');
+if (!defined('NMNOAPIUPDATE') || !NMNOAPIUPDATE) {
+  add_action('common', 'nm_update_extend_cache');
+}
 
 # scripts (GetSimple 3.1+)
 if (function_exists('register_script')) {
