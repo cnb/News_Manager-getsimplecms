@@ -7,7 +7,7 @@
 ?>
 <h3><?php i18n('news_manager/NM_SETTINGS'); ?></h3>
 <p class="hint">
-  <?php echo sprintf(i18n_r('news_manager/DOCUMENTATION'), 'http://newsmanager.c1b.org/'); ?>
+  <?php echo sprintf(i18n_r('news_manager/DOCUMENTATION'), 'http://newsmanager.c1b.org/documentation/'); ?>
 </p>
 <form class="largeform" id="settings" action="load.php?id=news_manager" method="post" accept-charset="utf-8">
   <div class="leftsec">
