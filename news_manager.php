@@ -9,6 +9,8 @@ Updated by: Carlos Navarro
 
 */
 
+# plugin version
+define('NMVERSION', '3.0 beta 20b');
 
 # get correct id for plugin
 $thisfile = basename(__FILE__, '.php');
@@ -17,7 +19,7 @@ $thisfile = basename(__FILE__, '.php');
 register_plugin(
   $thisfile,
   'News Manager',
-  '3.0 beta 20b',
+  NMVERSION,
   'Rogier Koppejan, Carlos Navarro',
   'http://newsmanager.c1b.org/',
   'A blog/news plugin for GetSimple',
