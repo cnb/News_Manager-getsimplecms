@@ -43,7 +43,6 @@ if (!function_exists('generate_sitemap')) {
 } else {
   add_filter('sitemap','nm_update_sitemap_xml'); // for GetSimple 3.3+
 }
-add_action('plugin-hook', 'nm_patch_plugin_management');
 if (!defined('NMNOAPIUPDATE') || !NMNOAPIUPDATE) {
   add_action('common', 'nm_update_extend_cache');
 }

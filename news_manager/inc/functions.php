@@ -412,16 +412,6 @@ function nm_display_message($msg, $error=false, $backup=null) {
   }
 }
 
-/*******************************************************
- * @function nm_patch_plugin_management
- * @action hack: replace link to Extend plugin page in Plugin Management
- * @since 2.4
- */
-function nm_patch_plugin_management() {
-  global $table;
-  if ($table)
-    $table = str_replace('http://get-simple.info/extend/plugin/news-manager/43/', 'http://get-simple.info/extend/plugin/news-manager-updated/541/', $table);
-}
 
 /*******************************************************
  * @function nm_lowercase_tags
@@ -488,7 +478,7 @@ function nm_update_extend_cache() {
 }
 
 # since 3.0
-# for templateFile custom setting
+# for templateFile custom setting (may be renamed later)
 function nm_switch_template_file($tempfile) {
   global $template_file, $TEMPLATE;
   $tempfile = nm_get_option('templatefile');
