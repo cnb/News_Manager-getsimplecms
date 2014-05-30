@@ -37,6 +37,7 @@ i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
 add_action('header', 'nm_header_include');
 add_action('index-pretemplate', 'nm_frontend_init');
+add_action('theme-header','nm_restore_page_title');
 //add_filter('content', 'nm_site'); // deprecated
 if (!function_exists('generate_sitemap')) {
   add_action('sitemap-additem', 'nm_sitemap_include'); // GetSimple 3.0
@@ -152,6 +153,7 @@ function nm_frontend_init() {
   if (nm_get_option('templatefile'))
     nm_switch_template_file(nm_get_option('templatefile'));
   nm_reset_options();
+  nm_update_page_title();
 }
 
 /*******************************************************

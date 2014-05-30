@@ -667,4 +667,24 @@ function nm_set_text($i18nkey=null, $i18nvalue=null) {
 }
 
 
+// patch for <title> tag
+function nm_update_page_title() {
+  if (!nm_is_single() || !nm_get_option('titletag',true) || function_exists('nmt_set_gstitle')) {
+    return;
+  } else {
+    global $title;
+    $title = nm_post_title('',' - '.$title,false);
+  }
+}
+
+// restore original title - <title> tag patch
+function nm_restore_page_title() {
+  if (!nm_is_single() || !nm_get_option('titletag',true) || function_exists('nmt_set_gstitle')) {
+    return;
+  } else {
+    global $title, $data_index;
+    $title = $data_index->title;
+  }
+}
+
 ?>
