@@ -518,6 +518,85 @@ function nm_post_title($before='', $after='', $echo=true) {
   }
 }
 
+/*******************************************************
+ * @function nm_post_slug
+ * @param $echo Display (true) or return (false)
+ * @action Display or return the post id (slug)
+ * @return slug or false if not on single post page
+ * @since 3.0
+ */
+function nm_post_slug($echo=true) {
+  global $nmdata;
+  if (isset($nmdata['slug']) && $nmdata['slug']) {
+    $slug = $nmdata['slug'];
+    if ($echo) echo $slug;
+    return $slug;
+  } else {
+    return false;
+  }
+}
+
+/*******************************************************
+ * @function nm_post_url
+ * @param $echo Display (true) or return (false)
+ * @action Display or return the post URL
+ * @return URL or false if not on single post page
+ * @since 3.0
+ */
+function nm_post_url($echo=true) {
+  global $nmdata;
+  if (isset($nmdata['url']) && $nmdata['url']) {
+    $url = $nmdata['url'];
+    if ($echo) echo $url;
+    return $url;
+  } else {
+    return false;
+  }
+}
+
+/*******************************************************
+ * @function nm_post_excerpt
+ * @param $len Length or null for default length (settings)
+ * @param $ellipsis Custom string for the ellipsis or null for default
+ * @param $echo Display (true) or return (false)
+ * @action Display or return a post excerpt
+ * @return excerpt or empty string
+ * @since 3.0
+ */
+function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
+  global $nmdata, $NMEXCERPTLENGTH, $nmoption;
+  if (isset($nmdata['content']) && $nmdata['content']) {
+    if (!$len) $len = isset($nmoption['excerptlength']) ? $nmoption['excerptlength'] : $NMEXCERPTLENGTH; // workaround(*)
+    if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
+    $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis);
+    if ($echo) echo $excerpt;
+    return $excerpt;
+  } else {
+    return '';
+  }
+}
+
+/*******************************************************
+ * @function nm_post_image_url
+ * @param $width or null for default width (settings)
+ * @param $height or null for default height (settings)
+ * @param $crop 0, 1, false or true, or null for default crop option (settings)
+ * @param $default URL or filename of image if post has no image
+ * @param $echo Display (true) or return (false)
+ * @action Display or return post image URL
+ * @return image URL or empty string
+ * @since 3.0
+ */
+function nm_post_image_url($width=null, $height=null, $crop=null, $default=null, $echo=true) {
+  global $nmdata;
+  if (isset($nmdata['image']) && $nmdata['image']) {
+    $url = htmlspecialchars(nm_get_image_url($nmdata['image'], $width, $height, $crop, $default));
+    if ($echo) echo $url;
+    return $url;
+  } else {
+    return '';
+  }
+}
 
 /***
 frontend functions, since 3.0
@@ -598,86 +677,6 @@ function nm_get_option($option, $default=false) {
       return $nmoption[$option];
     else
       return $default;
-  }
-}
-
-/*******************************************************
- * @function nm_post_slug
- * @param $echo Display (true) or return (false)
- * @action Display or return the post id (slug)
- * @return slug or false if not on single post page
- * @since 3.0
- */
-function nm_post_slug($echo=true) {
-  global $nmdata;
-  if (isset($nmdata['slug']) && $nmdata['slug']) {
-    $slug = $nmdata['slug'];
-    if ($echo) echo $slug;
-    return $slug;
-  } else {
-    return false;
-  }
-}
-
-/*******************************************************
- * @function nm_post_url
- * @param $echo Display (true) or return (false)
- * @action Display or return the post URL
- * @return URL or false if not on single post page
- * @since 3.0
- */
-function nm_post_url($echo=true) {
-  global $nmdata;
-  if (isset($nmdata['url']) && $nmdata['url']) {
-    $url = $nmdata['url'];
-    if ($echo) echo $url;
-    return $url;
-  } else {
-    return false;
-  }
-}
-
-/*******************************************************
- * @function nm_post_excerpt
- * @param $len Length or null for default length (settings)
- * @param $ellipsis Custom string for the ellipsis or null for default
- * @param $echo Display (true) or return (false)
- * @action Display or return a post excerpt
- * @return excerpt or empty string
- * @since 3.0
- */
-function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
-  global $nmdata, $NMEXCERPTLENGTH, $nmoption;
-  if (isset($nmdata['content']) && $nmdata['content']) {
-    if (!$len) $len = isset($nmoption['excerptlength']) ? $nmoption['excerptlength'] : $NMEXCERPTLENGTH; // workaround(*)
-    if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
-    $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis);
-    if ($echo) echo $excerpt;
-    return $excerpt;
-  } else {
-    return '';
-  }
-}
-
-/*******************************************************
- * @function nm_post_image_url
- * @param $width or null for default width (settings)
- * @param $height or null for default height (settings)
- * @param $crop 0, 1, false or true, or null for default crop option (settings)
- * @param $default URL or filename of image if post has no image
- * @param $echo Display (true) or return (false)
- * @action Display or return post image URL
- * @return image URL or empty string
- * @since 3.0
- */
-function nm_post_image_url($width=null, $height=null, $crop=null, $default=null, $echo=true) {
-  global $nmdata;
-  if (isset($nmdata['image']) && $nmdata['image']) {
-    $url = htmlspecialchars(nm_get_image_url($nmdata['image'], $width, $height, $crop, $default));
-    if ($echo) echo $url;
-    return $url;
-  } else {
-    return '';
   }
 }
 
