@@ -8,9 +8,10 @@
 /*******************************************************
  * @function nm_show_page
  * @param $index - page index (pagination)
+ * @param $filter - if true, apply content filter
  * @action show posts on news page
  */
-function nm_show_page($index=0) {
+function nm_show_page($index=0, $filter=true) {
   global $NMPOSTSPERPAGE, $nmoption;
   $index = intval($index);
   $posts = nm_get_posts();
@@ -21,10 +22,12 @@ function nm_show_page($index=0) {
     $posts = array();
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
+    if ($filter) ob_start();
     foreach ($posts as $post)
-      nm_show_post($post->slug, $showexcerpt);
+      nm_show_post($post->slug, $showexcerpt, false);
     if (sizeof($pages) > 1)
       nm_show_navigation($index, sizeof($pages));
+    if ($filter) echo nm_ob_get_content(true);
   } else {
     echo '<p>' . i18n_r('news_manager/NO_POSTS') . '</p>';
   }
@@ -34,17 +37,20 @@ function nm_show_page($index=0) {
 /*******************************************************
  * @function nm_show_archive
  * @param $id - unique archive id
+ * @param $filter - if true, apply content filter
  * @action show posts by archive
  * @return true if posts shown
  */
-function nm_show_archive($archive) {
+function nm_show_archive($archive, $filter=true) {
   global $NMSETTING;
   $archives = nm_get_archives($NMSETTING['archivesby']);
   if (array_key_exists($archive, $archives)) {
     $showexcerpt = nm_get_option('excerpt');
     $posts = $archives[$archive];
+    if ($filter) ob_start();
     foreach ($posts as $slug)
-      nm_show_post($slug, $showexcerpt);
+      nm_show_post($slug, $showexcerpt, false);
+    if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
     return false;
@@ -54,18 +60,21 @@ function nm_show_archive($archive) {
 
 /*******************************************************
  * @function nm_show_tag
- * @param $id - unique tag id
+ * @param $tag - unique tag id
+ * @param $filter - if true, apply content filter
  * @action show posts by tag
  * @return true if posts shown
  */
-function nm_show_tag($tag) {
+function nm_show_tag($tag, $filter=true) {
   $tag = nm_lowercase_tags($tag);
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
     $showexcerpt = nm_get_option('excerpt');
     $posts = $tags[$tag];
+    if ($filter) ob_start();
     foreach ($posts as $slug)
-      nm_show_post($slug, $showexcerpt);
+      nm_show_post($slug, $showexcerpt, false);
+    if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
     return false;
@@ -74,13 +83,14 @@ function nm_show_tag($tag) {
 
 /*******************************************************
  * @function nm_show_tag_page
- * @param $id - unique tag id
+ * @param $tag - unique tag id
  * @param $index - page index (pagination)
+ * @param $filter - if true, apply content filter
  * @action show posts by tag with pagination
  * @return true if posts shown
  * @since 3.0
  */
-function nm_show_tag_page($tag, $index=0) {
+function nm_show_tag_page($tag, $index=0, $filter=true) {
   global $NMPOSTSPERPAGE;
   $tag = nm_lowercase_tags($tag);
   $tags = nm_get_tags();
@@ -90,10 +100,12 @@ function nm_show_tag_page($tag, $index=0) {
     $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
     if ($index >= 0 && $index < sizeof($pages)) {
       $posts = $pages[$index];
+      if ($filter) ob_start();
       foreach ($posts as $slug)
-        nm_show_post($slug, $showexcerpt);
+        nm_show_post($slug, $showexcerpt, false);
       if (sizeof($pages) > 1)
         nm_show_tag_navigation($index, sizeof($pages), $tag);
+      if ($filter) echo nm_ob_get_content(true);
       return true;
     }
   }
@@ -122,23 +134,11 @@ function nm_show_search_results() {
     $showexcerpt = nm_get_option('excerpt');
     echo '<p>' . i18n_r('news_manager/FOUND') . '</p>',PHP_EOL;
     foreach ($posts as $post)
-      nm_show_post($post->slug, $showexcerpt);
+      nm_show_post($post->slug, $showexcerpt, false);
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>',PHP_EOL;
   }
 }
-
-/*******************************************************
- * @function nm_show_single
- * @param $slug post slug
- * @action show single post on news page
- * @return true if post exists
- * @since 3.0
- */
-function nm_show_single($slug) {
-  return nm_show_post($slug, false, true);
-}
-
 
 /*******************************************************
  * @function nm_reset_options
@@ -289,11 +289,12 @@ function nm_reset_options($pagetype='') {
  * @function nm_show_post
  * @param $slug post slug
  * @param $showexcerpt - if TRUE, print only a short summary
+ * @param $filter - if true, apply content filter
  * @param $single post page?
  * @action show the requested post on front-end news page, as defined by $nmoption values
  * @return true if post exists
  */
-function nm_show_post($slug, $showexcerpt=false, $single=false) {
+function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
   global $nmoption, $nmdata;
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
@@ -308,6 +309,8 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
 
     # save post data?
     $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags') : array();
+
+    if ($filter) ob_start();
 
     echo '  <',$nmoption['markuppost'],' class="nm_post';
     if ($single) echo ' nm_post_single';
@@ -426,6 +429,9 @@ function nm_show_post($slug, $showexcerpt=false, $single=false) {
       get_component($nmoption['componentafterpost']);
       echo PHP_EOL;
     }
+    
+    if ($filter) echo nm_ob_get_content(true);
+    
     return true;
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>',PHP_EOL;
@@ -716,6 +722,17 @@ function nm_restore_page_title() {
     global $title, $data_index;
     $title = $data_index->title;
   }
+}
+
+// get output buffer, optionally apply content filter
+function nm_ob_get_content($filter=true) {
+	$output = ob_get_contents();
+	ob_end_clean();
+	if ($filter) {
+		return exec_filter('content', $output);
+	} else {
+		return $output;
+	}
 }
 
 ?>

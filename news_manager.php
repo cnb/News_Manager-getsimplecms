@@ -3,14 +3,14 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 3.0 beta 21
+Version: 3.0 beta 21b
 Original author: Rogier Koppejan
 Updated by: Carlos Navarro
 
 */
 
 # plugin version
-define('NMVERSION', '3.0 beta 21');
+define('NMVERSION', '3.0 beta 21b');
 
 # get correct id for plugin
 $thisfile = basename(__FILE__, '.php');
@@ -116,38 +116,37 @@ function nm_frontend_init() {
 
     } elseif (isset($_GET[NMPARAMARCHIVE])) {
         nm_reset_options('archive');
-        if (nm_show_archive($_GET[NMPARAMARCHIVE]))
+        if (nm_show_archive($_GET[NMPARAMARCHIVE], false))
           $nmpagetype[] = 'archive';
 
     } elseif (isset($_GET[NMPARAMTAG])) {
         nm_reset_options('tag');
         if (nm_get_option('tagpagination')) {
           $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : 0;
-          if (nm_show_tag_page(rawurldecode($_GET[NMPARAMTAG]), $index))
+          if (nm_show_tag_page(rawurldecode($_GET[NMPARAMTAG]), $index, false))
             $nmpagetype[] = 'tag';
         } else {
-          if (nm_show_tag(rawurldecode($_GET[NMPARAMTAG])))
+          if (nm_show_tag(rawurldecode($_GET[NMPARAMTAG]), false))
             $nmpagetype[] = 'tag';
         }
 
     } elseif (isset($_GET[NMPARAMPOST])) {
         nm_reset_options('single');
-        if (nm_show_single($_GET[NMPARAMPOST]))
+        if (nm_show_post($_GET[NMPARAMPOST], false, false, true))
           $nmpagetype[] = 'single';
 
     } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > 0) {
         nm_reset_options('main');
-        nm_show_page($_GET[NMPARAMPAGE]);
+        nm_show_page($_GET[NMPARAMPAGE], false);
         $nmpagetype[] = 'main';
 
     } else {
         $metad = $metad_orig;
         nm_reset_options('main');
-        nm_show_page();
+        nm_show_page(0, false);
         array_push($nmpagetype, 'main', 'home');
     }
-    $content = ob_get_contents();
-    ob_end_clean();
+    $content = nm_ob_get_content(false);
     $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
   }
   if (nm_get_option('templatefile'))
