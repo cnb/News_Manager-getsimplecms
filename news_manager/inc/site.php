@@ -104,7 +104,7 @@ function nm_show_tag_page($tag, $index=0, $filter=true) {
       foreach ($posts as $slug)
         nm_show_post($slug, $showexcerpt, false);
       if (sizeof($pages) > 1)
-        nm_show_tag_navigation($index, sizeof($pages), $tag);
+        nm_show_navigation($index, sizeof($pages), $tag);
       if ($filter) echo nm_ob_get_content(true);
       return true;
     }
@@ -444,11 +444,20 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
  * @function nm_show_navigation
  * @param $index - current page index
  * @param $total - total number of subpages
- * @action provides links to navigate between subpages
+ * @param $tag - tag to filter by (optional)
+ * @action provides links to navigate between subpages in main news or tag page
  */
-function nm_show_navigation($index, $total) {
-  $page0 = nm_get_url();
-  $page = nm_get_url('page');
+function nm_show_navigation($index, $total, $tag=null) {
+  if (!$tag) {
+    $page0 = nm_get_url();
+    $page = nm_get_url('page');
+  } else {
+    $page0 = nm_get_url('tag').rawurlencode($tag);
+    if (nm_get_option('tagpagination') == 'f')
+      $page = $page0.'/'.NMPARAMPAGE.'/';
+    else
+      $page = $page0.'&amp;'.NMPARAMPAGE.'=';
+  }
   echo '<div class="nm_page_nav">';
   if ($index < $total-1) {
     ?>
@@ -471,40 +480,6 @@ function nm_show_navigation($index, $total) {
   echo '</div>';
 }
 
-/*******************************************************
- * @function nm_show_tag_navigation
- * @param $index - current page index
- * @param $total - total number of subpages
- * @param $tag - tag to filter by
- * @action like nm_show_navigation but filtered by tag
- */
-function nm_show_tag_navigation($index, $total, $tag) {
-  $url = nm_get_url('tag').rawurlencode($tag);
-  if (nm_get_option('tagpagination') == 'f')
-    $page = '/'.NMPARAMPAGE.'/';
-  else
-    $page = '&amp;'.NMPARAMPAGE.'=';
-  echo '<div class="nm_page_nav">';
-  if ($index < $total - 1) {
-    ?>
-    <div class="left">
-      <a href="<?php echo $url.$page.($index+1); ?>">
-        <?php i18n('news_manager/OLDER_POSTS'); ?>
-      </a>
-    </div>
-    <?php
-  }
-  if ($index > 0) {
-    ?>
-    <div class="right">
-      <a href="<?php echo ($index > 1) ? $url.$page.($index-1) : $url; ?>">
-        <?php i18n('news_manager/NEWER_POSTS'); ?>
-      </a>
-    </div>
-    <?php
-  }
-  echo '</div>';
-}
 
 /*******************************************************
  * @function nm_post_title
