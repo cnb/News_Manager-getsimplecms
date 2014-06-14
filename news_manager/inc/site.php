@@ -447,12 +447,13 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
  * @action provides links to navigate between subpages
  */
 function nm_show_navigation($index, $total) {
-  $url = nm_get_url('page');
+  $page0 = nm_get_url();
+  $page = nm_get_url('page');
   echo '<div class="nm_page_nav">';
-  if ($index < $total - 1) {
+  if ($index < $total-1) {
     ?>
     <div class="left">
-      <a href="<?php echo $url.($index+1); ?>">
+      <a href="<?php echo $page.($index+1); ?>">
         <?php i18n('news_manager/OLDER_POSTS'); ?>
       </a>
     </div>
@@ -461,7 +462,7 @@ function nm_show_navigation($index, $total) {
   if ($index > 0) {
     ?>
     <div class="right">
-      <a href="<?php echo ($index > 1) ? $url.($index-1) : nm_get_url(); ?>">
+      <a href="<?php echo ($index > 1) ? $page.($index-1) : $page0 ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>
