@@ -88,7 +88,7 @@ function nm_admin_panel() {
     <script>
     $(document).ready(function() {
       // filter button opens up filter dialog
-      $("#filter-button").live("click", function($e) {
+      $("#filter-button").on("click", function($e) {
         $e.preventDefault();
         $("#filter-search").slideToggle();
         $(this).toggleClass("current");
@@ -101,7 +101,7 @@ function nm_admin_panel() {
         }
       });
       // close filter dialog on cancel
-      $("#filter-search .cancel").live("click", function($e) {
+      $("#filter-search .cancel").on("click", function($e) {
         $e.preventDefault();
         $("#posts tr").show();
         $('#filter-button').toggleClass("current");
