@@ -449,14 +449,14 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
  */
 function nm_show_navigation($index, $total, $tag=null) {
   if (!$tag) {
-    $page0 = nm_get_url();
+    $first = nm_get_url();
     $page = nm_get_url('page');
   } else {
-    $page0 = nm_get_url('tag').rawurlencode($tag);
+    $first = nm_get_url('tag').rawurlencode($tag);
     if (nm_get_option('tagpagination') == 'f')
-      $page = $page0.'/'.NMPARAMPAGE.'/';
+      $page = $first.'/'.NMPARAMPAGE.'/';
     else
-      $page = $page0.'&amp;'.NMPARAMPAGE.'=';
+      $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
   echo '<div class="nm_page_nav">';
   if ($index < $total-1) {
@@ -471,7 +471,7 @@ function nm_show_navigation($index, $total, $tag=null) {
   if ($index > 0) {
     ?>
     <div class="right">
-      <a href="<?php echo ($index > 1) ? $page.($index-1) : $page0 ?>">
+      <a href="<?php echo ($index > 1) ? $page.($index-1) : $first ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>
