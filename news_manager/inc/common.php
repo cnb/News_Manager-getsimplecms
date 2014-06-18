@@ -21,6 +21,7 @@ if (!defined('NMPARAMPOST'))    define('NMPARAMPOST', 'post');
 if (!defined('NMPARAMPAGE'))    define('NMPARAMPAGE', 'page');
 if (!defined('NMPARAMARCHIVE')) define('NMPARAMARCHIVE', 'archive');
 if (!defined('NMPARAMTAG'))     define('NMPARAMTAG', 'tag');
+if (!defined('NMFIRSTPAGE'))    define('NMFIRSTPAGE', 1);
 
 # includes
 require_once(NMINCPATH . 'functions.php');

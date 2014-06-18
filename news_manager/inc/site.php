@@ -11,13 +11,14 @@
  * @param $filter - if true, apply content filter
  * @action show posts on news page
  */
-function nm_show_page($index=0, $filter=true) {
+function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
   global $NMPOSTSPERPAGE, $nmoption;
+  $p1 = intval(NMFIRSTPAGE);
   $index = intval($index);
   $posts = nm_get_posts();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
-  if ($index >= 0 && $index < sizeof($pages))
-    $posts = $pages[$index];
+  if ($index >= $p1 && $index-$p1 < sizeof($pages))
+    $posts = $pages[$index-$p1];
   else
     $posts = array();
   if (!empty($posts)) {
@@ -90,16 +91,18 @@ function nm_show_tag($tag, $filter=true) {
  * @return true if posts shown
  * @since 3.0
  */
-function nm_show_tag_page($tag, $index=0, $filter=true) {
+function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
   global $NMPOSTSPERPAGE;
   $tag = nm_lowercase_tags($tag);
   $tags = nm_get_tags();
   if (array_key_exists($tag, $tags)) {
     $showexcerpt = nm_get_option('excerpt');
     $posts = $tags[$tag];
+    $p1 = intval(NMFIRSTPAGE);
+    $index = intval($index);
     $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
-    if ($index >= 0 && $index < sizeof($pages)) {
-      $posts = $pages[$index];
+    if ($index >= $p1 && $index-$p1 < sizeof($pages)) {
+      $posts = $pages[$index-$p1];
       if ($filter) ob_start();
       foreach ($posts as $slug)
         nm_show_post($slug, $showexcerpt, false);
@@ -448,6 +451,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
  * @action provides links to navigate between subpages in main news or tag page
  */
 function nm_show_navigation($index, $total, $tag=null) {
+  $p1 = intval(NMFIRSTPAGE);
   if (!$tag) {
     $first = nm_get_url();
     $page = nm_get_url('page');
@@ -459,7 +463,7 @@ function nm_show_navigation($index, $total, $tag=null) {
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
   echo '<div class="nm_page_nav">';
-  if ($index < $total-1) {
+  if ($index < $total-1+$p1) {
     ?>
     <div class="left">
       <a href="<?php echo $page.($index+1); ?>">
@@ -468,10 +472,10 @@ function nm_show_navigation($index, $total, $tag=null) {
     </div>
     <?php
   }
-  if ($index > 0) {
+  if ($index > $p1) {
     ?>
     <div class="right">
-      <a href="<?php echo ($index > 1) ? $page.($index-1) : $first ?>">
+      <a href="<?php echo ($index > $p1+1) ? $page.($index-1) : $first ?>">
         <?php i18n('news_manager/NEWER_POSTS'); ?>
       </a>
     </div>

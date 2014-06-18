@@ -122,7 +122,7 @@ function nm_frontend_init() {
     } elseif (isset($_GET[NMPARAMTAG])) {
         nm_reset_options('tag');
         if (nm_get_option('tagpagination')) {
-          $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : 0;
+          $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : NMFIRSTPAGE;
           if (nm_show_tag_page(rawurldecode($_GET[NMPARAMTAG]), $index, false))
             $nmpagetype[] = 'tag';
         } else {
@@ -135,7 +135,7 @@ function nm_frontend_init() {
         if (nm_show_post($_GET[NMPARAMPOST], false, false, true))
           $nmpagetype[] = 'single';
 
-    } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > 0) {
+    } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > NMFIRSTPAGE) {
         nm_reset_options('main');
         nm_show_page($_GET[NMPARAMPAGE], false);
         $nmpagetype[] = 'main';
@@ -143,7 +143,7 @@ function nm_frontend_init() {
     } else {
         $metad = $metad_orig;
         nm_reset_options('main');
-        nm_show_page(0, false);
+        nm_show_page(NMFIRSTPAGE, false);
         array_push($nmpagetype, 'main', 'home');
     }
     $content = nm_ob_get_content(false);
