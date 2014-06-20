@@ -463,7 +463,35 @@ function nm_show_navigation($index, $total, $tag=null) {
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
   echo '<div class="nm_page_nav">';
-  if ($index < $total-1+$p1) {
+  if (!nm_get_option('navoldnew',false)) {
+    
+    if ($index > $p1) {
+      echo '<span class="previous"><a href="';
+      echo $index > $p1+1 ? $page.($index-1) : $first;
+      echo '" title="',i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),'</a></span>';
+    }
+    
+    if (nm_get_option('navnumber',true)) {
+      for ($i = 0; $i < $total; $i++) {
+        if ($i+$p1 == $index) {
+          echo ' <span class="current">',$i+1,'</span>';
+        } else {
+          echo ' <span><a href="';
+          echo $i == 0 ? $first : $page.($i+$p1);
+          echo '">',$i+1,'</a></span>';
+        }
+      }
+    }
+    
+    if ($index < $total-1+$p1) {
+      echo ' <span class="next"><a href="',$page.($index+1);
+      echo '" title="',i18n_r('news_manager/NEXT_TITLE'),'">',i18n_r('news_manager/NEXT_TEXT'),'</a></span>';
+    } 
+      
+  } else {
+  
+  # Older/Newer navigation
+    if ($index < $total-1+$p1) {
     ?>
     <div class="left">
       <a href="<?php echo $page.($index+1); ?>">
@@ -471,8 +499,8 @@ function nm_show_navigation($index, $total, $tag=null) {
       </a>
     </div>
     <?php
-  }
-  if ($index > $p1) {
+    }
+    if ($index > $p1) {
     ?>
     <div class="right">
       <a href="<?php echo ($index > $p1+1) ? $page.($index-1) : $first ?>">
@@ -480,6 +508,7 @@ function nm_show_navigation($index, $total, $tag=null) {
       </a>
     </div>
     <?php
+    }
   }
   echo '</div>';
 }
