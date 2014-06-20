@@ -26,7 +26,7 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
     if ($filter) ob_start();
     foreach ($posts as $post)
       nm_show_post($post->slug, $showexcerpt, false);
-    if (sizeof($pages) > 1)
+    if (sizeof($pages) > 1 && nm_get_option('shownav',true))
       nm_show_navigation($index, sizeof($pages));
     if ($filter) echo nm_ob_get_content(true);
   } else {
@@ -106,7 +106,7 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
       if ($filter) ob_start();
       foreach ($posts as $slug)
         nm_show_post($slug, $showexcerpt, false);
-      if (sizeof($pages) > 1)
+      if (sizeof($pages) > 1 && nm_get_option('shownav',true))
         nm_show_navigation($index, sizeof($pages), $tag);
       if ($filter) echo nm_ob_get_content(true);
       return true;
