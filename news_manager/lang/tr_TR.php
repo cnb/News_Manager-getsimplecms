@@ -111,6 +111,10 @@ $i18n = array(
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Devamını Oku",
 "AUTHOR"              =>  "Yazar:",
+"PREV_TEXT"           =>  "&lt;",
+"PREV_TITLE"          =>  "Önceki sayfa",
+"NEXT_TEXT"           =>  "&gt;",
+"NEXT_TITLE"          =>  "Sonraki sayfa",
 
 # language localization
 "LOCALE"              =>  "tr_TR.utf8,tr.utf8,tr_TR.UTF-8,tr.UTF-8,tr_TR,tr",

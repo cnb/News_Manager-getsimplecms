@@ -111,6 +111,10 @@ $i18n = array(
 "ELLIPSIS"            =>  " [...] ",
 "READ_MORE"           =>  "Read more",
 "AUTHOR"              =>  "Author:",
+"PREV_TEXT"           =>  "&lt;",
+"PREV_TITLE"          =>  "Previous page",
+"NEXT_TEXT"           =>  "&gt;",
+"NEXT_TITLE"          =>  "Next page",
 
 # language localization
 "LOCALE"              =>  "en_US.utf8,en.utf8,en_US.UTF-8,en.UTF-8,en_US,en",
