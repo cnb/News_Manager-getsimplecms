@@ -107,6 +107,7 @@ function nm_settings_to_xml() {
   $obj = $xml->addChild('enablecustomsettings', $NMSETTING['enablecustomsettings']);
   $obj = $xml->addChild('customsettings');
   $obj->addCData($NMSETTING['customsettings']);
+  $obj = $xml->addChild('ver', NMVERSION);
   return @XMLsave($xml, NMSETTINGS);
 }
 
