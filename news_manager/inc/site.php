@@ -464,11 +464,22 @@ function nm_show_navigation($index, $total, $tag=null) {
   }
   echo '<div class="nm_page_nav">';
   if (!nm_get_option('navoldnew',false)) {
-    
-    if ($index > $p1) {
+  
+    $prevnext = nm_get_option('navprevnext', '1');
+    if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
+      $noPrev = '<span class="previous disabled">'.i18n_r('news_manager/PREV_TEXT').'</span>';
+      $noNext = ' <span class="next disabled">'.i18n_r('news_manager/NEXT_TEXT').'</span>';
+    } else {
+      $noPrev = '';
+      $noNext = '';
+    }
+      
+    if ($prevnext && $index > $p1) {
       echo '<span class="previous"><a href="';
       echo $index > $p1+1 ? $page.($index-1) : $first;
       echo '" title="',i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),'</a></span>';
+    } else {
+      echo $noPrev;
     }
     
     if (nm_get_option('navnumber',true)) {
@@ -483,10 +494,12 @@ function nm_show_navigation($index, $total, $tag=null) {
       }
     }
     
-    if ($index < $total-1+$p1) {
+    if ($prevnext && $index < $total-1+$p1) {
       echo ' <span class="next"><a href="',$page.($index+1);
       echo '" title="',i18n_r('news_manager/NEXT_TITLE'),'">',i18n_r('news_manager/NEXT_TEXT'),'</a></span>';
-    } 
+    } else {
+      echo $noNext;
+    }
       
   } else {
   
