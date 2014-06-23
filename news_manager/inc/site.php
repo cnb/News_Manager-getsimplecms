@@ -152,6 +152,14 @@ function nm_show_search_results() {
 function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
   $nmoption = array();
+  
+  # pre 3.0 default settings (plus readmore in common.php)
+  if (defined('NM2COMPAT') && NM2COMPAT) {
+    $nmoption['breakwords'] = true;
+    $nmoption['titletag'] = false;
+    $nmoption['navoldnew'] = true;
+    if (!defined('NMFIRSTPAGE')) define('NMFIRSTPAGE',0);
+  }
 
   # full/excerpt, readmore
   if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
