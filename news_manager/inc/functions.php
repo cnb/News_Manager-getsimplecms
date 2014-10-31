@@ -88,7 +88,7 @@ function nm_get_date($format, $timestamp) {
   $locale = setlocale(LC_TIME, 0);
   // setlocale(LC_TIME, $NMLANG);
   if (array_key_exists('news_manager/LOCALE', $i18n)) {
-    setlocale(LC_TIME, preg_split('/s*,s*/', $i18n['news_manager/LOCALE']));
+    setlocale(LC_TIME, preg_split('/\s*,\s*/', trim($i18n['news_manager/LOCALE']), -1, PREG_SPLIT_NO_EMPTY));
   } else {
     # no locale in language file
     $lg = substr($NMLANG,0,2);
