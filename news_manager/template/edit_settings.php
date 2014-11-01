@@ -169,6 +169,7 @@
   <p class="inline">
     <input name="enablecustomsettings" id="enablecustomsettings" type="checkbox" <?php if ($NMSETTING['enablecustomsettings'] == '1') echo 'checked'; ?> />&nbsp;
     <label for="enablecustomsettings"><?php i18n('news_manager/CUSTOM_SETTINGS'); ?></label>
+    <br />
     <textarea style="height:150px" name="customsettings" id="customsettings"><?php echo $NMSETTING['customsettings']; ?></textarea>
   </p>
 
