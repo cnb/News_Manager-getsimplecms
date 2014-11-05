@@ -42,6 +42,7 @@ function nm_admin_panel() {
       $title = stripslashes($post->title);
       $date = shtDate($post->date);
       $url = nm_get_url('post') . $post->slug;
+      $url = nm_patch_i18n_url($url);
       ?>
       <tr>
         <td class="posttitle">

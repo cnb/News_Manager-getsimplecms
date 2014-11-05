@@ -58,6 +58,7 @@ if ($imageinputpos > 0) {
   <?php
   if (!empty($NMPAGEURL) && $NMPAGEURL != '' && !$newpost && $private == '') {
     $url = nm_get_url('post') . $slug;
+    $url = nm_patch_i18n_url($url);
     ?>
     <a href="<?php echo $url; ?>" target="_blank">
       <?php i18n('news_manager/VIEW_POST'); ?>

@@ -114,9 +114,6 @@ function nm_get_url($query=false) {
   global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
   $str = '';
   $url = find_url($NMPAGEURL, nm_get_parent());
-  if (basename($_SERVER['PHP_SELF']) != 'index.php') // back end only
-    if (function_exists('find_i18n_url')) // I18N?
-      $url = find_i18n_url($NMPAGEURL, nm_get_parent(), return_i18n_default_language());
   if ($query) {
     switch($query) {
       case 'post':
@@ -485,6 +482,12 @@ function nm_switch_template_file($tempfile) {
   # no path traversal and template exists
   if (strpos(realpath(GSTHEMESPATH.$TEMPLATE."/".$tempfile), realpath(GSTHEMESPATH.$TEMPLATE."/")) === 0 && file_exists(GSTHEMESPATH.$TEMPLATE."/".$tempfile))
     $template_file = $tempfile;
+}
+
+# since 3.1
+# fix URLs with special permalink placeholders for the I18N plugin - backend only
+function nm_patch_i18n_url($url) {
+  return str_replace(array('%language%/','%nondefaultlanguage%/','%parents%/'), array('','',''), $url);
 }
 
 ?>
