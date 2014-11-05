@@ -133,7 +133,7 @@ if ($imageinputpos > 0) {
   </p>
 </form>
 
-<script>
+<script type="text/javascript">
   if ($.validator) {
     jQuery.extend(jQuery.validator.messages, {
       required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>",
