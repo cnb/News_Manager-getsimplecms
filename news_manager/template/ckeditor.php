@@ -56,9 +56,9 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
         filebrowserWindowWidth : '730',
         filebrowserWindowHeight : '500'
       });
+      linkdefault = 'url';
     </script>
     <?php
-    //ckeditor_add_page_link(); // "Link to local page" (Link Type dropdown)
   }
 }
 
