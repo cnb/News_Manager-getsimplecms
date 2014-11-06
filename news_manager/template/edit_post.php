@@ -56,7 +56,7 @@ if ($imageinputpos > 0) {
 </h3>
 <div class="edit-nav" >
   <?php
-  if (!empty($NMPAGEURL) && $NMPAGEURL != '' && !$newpost && $private == '') {
+  if (!empty($NMPAGEURL) && $NMPAGEURL != '' && !$newpost) {
     $url = nm_get_url('post') . $slug;
     $url = nm_patch_i18n_url($url);
     ?>

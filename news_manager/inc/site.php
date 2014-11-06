@@ -310,7 +310,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
-  if (!empty($post) && $post->private != 'Y') {
+  if (!empty($post) && ($post->private != 'Y' || ($single && function_exists('is_logged_in') && is_logged_in()))) {
     $url     = nm_get_url('post') . $slug;
     $title   = stripslashes($post->title);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
