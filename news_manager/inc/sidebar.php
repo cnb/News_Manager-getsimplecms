@@ -78,9 +78,9 @@ function nm_list_tags() {
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
       if ($min < $max && $count/$max > 0.5)
-        echo '<a class="large" href="',$url,'">',$tag,'</a>',PHP_EOL;
+        echo '<a class="large" href="',$url,'">',htmlspecialchars($tag),'</a>',PHP_EOL;
       else
-        echo '<a href="',$url,'">',$tag,'</a>',PHP_EOL;
+        echo '<a href="',$url,'">',htmlspecialchars($tag),'</a>',PHP_EOL;
     }
     echo PHP_EOL;
   }
@@ -102,7 +102,7 @@ function nm_tag_list() {
     echo '<ul class="nm_tag_list">',PHP_EOL;
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
-      echo '  <li><a href="',$url,'">',$tag,'</a></li>',PHP_EOL;
+      echo '  <li><a href="',$url,'">',htmlspecialchars($tag),'</a></li>',PHP_EOL;
     }
     echo '</ul>',PHP_EOL;
   }
