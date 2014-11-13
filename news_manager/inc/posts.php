@@ -28,7 +28,7 @@ function nm_edit_post($slug = '') {
     $title   = @stripslashes($data->title);
     $date    = isset($data->date) ? date('Y-m-d', strtotime($data->date)) : '';
     $time    = isset($data->date) ? date('H:i', strtotime($data->date)) : '';
-    $tags    = @str_replace(',', ', ', ($data->tags));
+    $tags    = isset($data->tags) ? str_replace(',', ', ', stripslashes($data->tags)) : '';
     $private = @$data->private != '' ? 'checked' : '';
     $image   = @stripslashes($data->image);
     $content = @stripslashes($data->content);
