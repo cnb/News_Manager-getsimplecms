@@ -757,13 +757,13 @@ function nm_restore_page_title() {
 
 // get output buffer, optionally apply content filter
 function nm_ob_get_content($filter=true) {
-	$output = ob_get_contents();
-	ob_end_clean();
-	if ($filter) {
-		return exec_filter('content', $output);
-	} else {
-		return $output;
-	}
+  $output = ob_get_contents();
+  ob_end_clean();
+  if ($filter) {
+    return exec_filter('content', $output);
+  } else {
+    return $output;
+  }
 }
 
 ?>
