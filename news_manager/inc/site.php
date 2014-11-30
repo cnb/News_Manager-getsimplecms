@@ -161,19 +161,6 @@ function nm_reset_options($pagetype='') {
     if (!defined('NMFIRSTPAGE')) define('NMFIRSTPAGE',0);
   }
 
-  # full/excerpt, readmore
-  if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag'))) {
-    $nmoption['excerpt'] = true;
-    if ($NMSETTING['readmore'] == 'R')
-      $nmoption['readmore'] = true;
-    elseif ($NMSETTING['readmore'] == 'F')
-      $nmoption['readmore'] = 'a';
-    else
-      $nmoption['readmore'] = false;
-  } else {
-    $nmoption['excerpt'] = false; // full post
-  }
-
   # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
 
@@ -278,12 +265,26 @@ function nm_reset_options($pagetype='') {
   # more
   if (!isset($nmoption['more'])) $nmoption['more'] = false;
 
+  # full/excerpt
+  if (!isset($nmoption['excerpt'])) {
+    if ($NMSHOWEXCERPT == 'Y' || in_array($pagetype, array('archive','search','tag')))
+      $nmoption['excerpt'] = true;
+    else
+      $nmoption['excerpt'] = false; // full post
+  }
+
   # readmore
-  if (!isset($nmoption['readmore']))
-    $nmoption['readmore'] = false;
-  else // custom setting - anything beginning with 'a' (all, Always, ...)
-    if (strtolower($nmoption['readmore'][0]) == 'a')
+  if (isset($nmoption['readmore'])) {
+    if (strtolower($nmoption['readmore'][0]) == 'a') // custom setting - anything beginning with 'a' (all, Always, ...)
       $nmoption['readmore'] = 'a';
+  } else {
+    if ($NMSETTING['readmore'] == 'R')
+      $nmoption['readmore'] = true;
+    elseif ($NMSETTING['readmore'] == 'F')
+      $nmoption['readmore'] = 'a';
+    else
+      $nmoption['readmore'] = false;
+  }
 
   # tag pagination
   if (!isset($nmoption['tagpagination'])) {
