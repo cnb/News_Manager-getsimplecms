@@ -34,7 +34,7 @@ if ($imageinputpos > 0) {
       $(function() {
         $('#browse-image').click(function(e) {
           e.preventDefault();
-          window.open('".$SITEURL."plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images".$imagepath."', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
+          window.open('../plugins/news_manager/browser/filebrowser.php?func=fill_image&type=images".$imagepath."', 'browser', 'width=800,height=500,left=100,top=100,scrollbars=yes');
         });
       });
     </script>

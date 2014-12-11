@@ -8,7 +8,7 @@ require('../../../gsconfig.php');
 if (!defined('GSADMIN')) define('GSADMIN', 'admin');
 include('../../../'.GSADMIN.'/inc/common.php');
 $loggedin = cookie_check();
-if (!$loggedin) die;
+if (!$loggedin) die('Not logged in');
 if (isset($_GET['path'])) {
   $subPath = preg_replace('/\.+\//','',$_GET['path']);
   $path = "../../../data/uploads/".$subPath;
@@ -21,11 +21,9 @@ $path = tsl($path);
 
 // check if host uses Linux (used for displaying permissions
 $isUnixHost = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? false : true);
-$path_parts = pathinfo($_SERVER['PHP_SELF']);
-$host = $_SERVER['SERVER_NAME'] . ($_SERVER['SERVER_PORT'] != '80' ? ':'.$_SERVER['SERVER_PORT'] : '');
-$dir = str_replace("/plugins/news_manager/browser", "", $path_parts['dirname']);
-$fullPath = htmlentities("http://".$host.($dir == '/' ? "" : $dir)."/data/uploads/", ENT_QUOTES);
-$sitepath = htmlentities("http://".$host.($dir == '/' ? "" : $dir)."/", ENT_QUOTES);
+
+$fullPath = htmlentities((string) $SITEURL."data/uploads/", ENT_QUOTES);
+$sitepath = htmlentities((string) $SITEURL, ENT_QUOTES);
 
 $func = @$_GET['func'];
 $type = @$_GET['type'];
