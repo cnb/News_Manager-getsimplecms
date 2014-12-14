@@ -63,6 +63,8 @@ $LANG_header = preg_replace('/(?:(?<=([a-z]{2}))).*/', '', $LANG);
 	$totalsize = 0;
 	$filesArray = array();
 	$dirsArray = array();
+	$filesSorted = array();
+	$dirsSorted = array();
 
 	$filenames = getFiles($path);
 	if (count($filenames) != 0) { 
