@@ -735,25 +735,26 @@ function nm_set_text($i18nkey=null, $i18nvalue=null) {
 }
 
 
-// patch for <title> tag
+// patch for <title> tag - single post or tag view
 function nm_update_page_title() {
-  if (!nm_is_single() || !nm_get_option('titletag',true) || function_exists('nmt_set_gstitle')) {
-    return;
-  } else {
-    global $title, $nmpagetitle;
-    $nmpagetitle = $title;
-    $title = nm_post_title('',' - '.$title,false);
+  global $title, $nmpagetitle;
+  $nmpagetitle = false;
+  if (nm_is_site() && nm_get_option('titletag',true) && !function_exists('nmt_set_gstitle')) {
+    if (nm_is_single()) {
+      $nmpagetitle = $title;
+      $title = nm_post_title('', ' - '.$title, false);
+    } elseif (nm_is_tag()) {
+      $nmpagetitle = $title;
+      $title = nm_single_tag_title('', ' - '.$title, false);
+    }
   }
 }
 
 // restore original title - <title> tag patch
 function nm_restore_page_title() {
-  if (!nm_is_single() || !nm_get_option('titletag',true) || function_exists('nmt_set_gstitle')) {
-    return;
-  } else {
-    global $title, $nmpagetitle;
+  global $title, $nmpagetitle;
+  if ($nmpagetitle !== false)
     $title = $nmpagetitle;
-  }
 }
 
 // get output buffer, optionally apply content filter
@@ -764,6 +765,21 @@ function nm_ob_get_content($filter=true) {
     return exec_filter('content', $output);
   } else {
     return $output;
+  }
+}
+
+
+/***** since 3.1 ****/
+
+// display or return current tag, if in single tag view
+function nm_single_tag_title($before='', $after='', $echo=true) {
+  global $nmsingletag;
+  if ($nmsingletag) {
+    $str = $before.htmlspecialchars($nmsingletag).$after;
+    if ($echo) echo $str;
+    return $str;
+  } else {
+    return false;
   }
 }
 
