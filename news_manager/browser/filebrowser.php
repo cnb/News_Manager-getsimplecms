@@ -27,6 +27,11 @@ $sitepath = htmlentities((string) $SITEURL, ENT_QUOTES);
 
 $func = @$_GET['func'];
 $type = @$_GET['type'];
+$sort = @$_GET['sort'];
+if (empty($sort) && defined('NMIMAGESORT'))
+	$sort = NMIMAGESORT; // custom default
+if (!in_array($sort, array('name','size','date')))
+	$sort = 'date'; // default
 
 if(!defined('IN_GS')){ die('you cannot load this page directly.'); }
 global $LANG;
@@ -82,35 +87,51 @@ $LANG_header = preg_replace('/(?:(?<=([a-z]{2}))).*/', '', $LANG);
 				clearstatcache();
 				$ss = @stat($path . $file);
 				$filesArray[$count]['date'] = @date('M j, Y',$ss['ctime']);
+				$filesArray[$count]['sortdate'] = $ss['ctime'];
 				$filesArray[$count]['size'] = fSize($ss['size']);
 				$totalsize = $totalsize + $ss['size'];
 				$count++;
 			}
 		}
-		$filesSorted = subval_sort($filesArray,'name');
+		if ($sort == 'name') {
+			$filesSorted = subval_sort($filesArray,'name');
+		} elseif ($sort =='size') {
+			$filesSorted = subval_sort($filesArray,'size','desc');
+		} else {
+			$filesSorted = subval_sort($filesArray,'sortdate','desc');
+		}
 		$dirsSorted = subval_sort($dirsArray,'name');
 	}
 
 	$pathParts=explode("/",$subPath);
 	$urlPath="";
 
-	echo '<div class="h5">/ <a href="?func='.$func.'&amp;type='.$type.'">uploads</a> / ';
+	echo '<div class="h5">/ <a href="?func='.$func.'&amp;type='.$type.'&amp;sort='.$sort.'">uploads</a> / ';
 	foreach ($pathParts as $pathPart){
 		if ($pathPart!=''){
 			$urlPath.=$pathPart."/";
-			echo '<a href="?path='.$urlPath.'&amp;func='.$func.'&amp;type='.$type.'">'.$pathPart.'</a> / ';
+			echo '<a href="?path='.$urlPath.'&amp;func='.$func.'&amp;type='.$type.'&amp;sort='.$sort.'">'.$pathPart.'</a> / ';
 		}
 	}
 	echo "</div>";
 
 	echo '<table class="highlight" id="imageTable">';
 
+	$linksort = '?path='.$urlPath.'&amp;func='.$func.'&amp;type='.$type.'&sort=';
+	echo '<tr><th class="imgthumb" ></th><th></th><th>';
+	echo ($sort == 'name') ? i18n_r('FILE_NAME') : '<a href="'.$linksort.'name">'.i18n_r('FILE_NAME').'</a>';
+	echo '</th><th style="text-align:right;">';
+	echo ($sort == 'size') ? i18n_r('FILE_SIZE') : '<a href="'.$linksort.'size">'.i18n_r('FILE_SIZE').'</a>';
+	echo '</th><th style="text-align:right;">';
+	echo ($sort == 'date') ? i18n_r('DATE') : '<a href="'.$linksort.'date">'.i18n_r('DATE').'</a>';
+	echo '</th></tr>';
+
 	if (count($dirsSorted) != 0) {       
 		foreach ($dirsSorted as $upload) {
 			echo '<tr class="All" >';  
 			echo '<td class="" colspan="5">';
 			$adm = ($subPath ? $subPath . "/" : "") . $upload['name']; 
-			echo '<img src="../../../'.GSADMIN.'/template/images/folder.png" width="11" /> <a href="filebrowser.php?path='.$adm.'&amp;func='.$func.'&amp;type='.$type.'" title="'. $upload['name'] .'"  ><strong>'.$upload['name'].'</strong></a>';
+			echo '<img src="../../../'.GSADMIN.'/template/images/folder.png" width="11" /> <a href="filebrowser.php?path='.$adm.'&amp;func='.$func.'&amp;type='.$type.'&amp;sort='.$sort.'" title="'. $upload['name'] .'"  ><strong>'.$upload['name'].'</strong></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
