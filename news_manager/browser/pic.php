@@ -8,6 +8,8 @@
 
 define('CACHE_SECONDS', 3600*24); // for how long images should be cached
 
+define('PREFIX', 'nmimage.');
+
 $infile = preg_replace('/\.+\//', '', $_GET['p']);
 $maxWidth = @$_GET['w'];
 $maxHeight = @$_GET['h'];
@@ -16,6 +18,7 @@ $datadir = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), DIRECTORY_SEP
 if (strpos($infile,'/data/thumbs/')) {
   $imagedir = $datadir . 'thumbs/';
   $infile = substr($infile,strpos($infile,'/data/thumbs/')+13);
+  if (strpos(basename($infile), PREFIX) === 0) die('Image not allowed!');
 } else {
   $imagedir = $datadir . 'uploads/';
 }
@@ -29,7 +32,7 @@ if (!$maxWidth && !$maxHeight) {
 } else {
   $pos = strrpos($infile,'/');
   if ($pos === false) $pos = -1;
-  $outfile = substr($infile, 0, $pos+1) . 'nmimage.' . ($crop ? 'C' : '') . ($maxWidth ? $maxWidth.'x' : '0x') . ($maxHeight ? $maxHeight.'.' : '0.') . substr($infile, $pos+1);
+  $outfile = substr($infile, 0, $pos+1) . PREFIX . ($crop ? 'C' : '') . ($maxWidth ? $maxWidth.'x' : '0x') . ($maxHeight ? $maxHeight.'.' : '0.') . substr($infile, $pos+1);
   $outfile = substr($outfile, 0, strrpos($outfile,'.')) . '.jpg';
   $thumbdir = $datadir . 'thumbs/';
   if (!file_exists($thumbdir.$outfile) || @filemtime($thumbdir.$outfile) < @filemtime($imagedir.$infile)) {
