@@ -198,7 +198,8 @@ function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=
         $url = $SITEURL.'data/uploads/'.$pic;
       } else {
         $c = $crop ? '&c=1' : '';
-        $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
+        $gt = $nmoption['imagethumbnail'] ? '&gt=1' : '';
+        $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c.$gt;
       }
     } else {
       if ($nmoption['imageexternal'])

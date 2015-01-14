@@ -198,6 +198,7 @@ function nm_reset_options($pagetype='') {
   $nmoption['imageexternal'] = false;
   $nmoption['imagedefault'] = '';
   $nmoption['imagesizeattr'] = false;
+  $nmoption['imagethumbnail'] = false;
 
   # custom settings
   if ($NMSETTING['enablecustomsettings'] == '1') {

@@ -14,13 +14,26 @@ $infile = preg_replace('/\.+\//', '', $_GET['p']);
 $maxWidth = @$_GET['w'];
 $maxHeight = @$_GET['h'];
 $crop = @$_GET['c'] && $maxWidth && $maxHeight;
+$gsthumb = @$_GET['gt'];
 $datadir = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), DIRECTORY_SEPARATOR.'plugins')) . '/data/';
+$imagedir = $datadir . 'uploads/';
 if (strpos($infile,'/data/thumbs/')) {
   $imagedir = $datadir . 'thumbs/';
   $infile = substr($infile,strpos($infile,'/data/thumbs/')+13);
   if (strpos(basename($infile), PREFIX) === 0) die('Image not allowed!');
 } else {
-  $imagedir = $datadir . 'uploads/';
+  if ($gsthumb) {
+    $pos = strrpos($infile, '/');
+    if ($pos === false) {
+      $thumbfile = 'thumbnail.' . $infile;
+    } else {
+      $thumbfile = substr_replace($infile, '/thumbnail.', $pos, 1);
+    }
+    if (file_exists($datadir . 'thumbs/' . $thumbfile)) {
+      $infile = $thumbfile;
+      $imagedir = $datadir . 'thumbs/';
+    }
+  }
 }
 if (!$maxWidth && !$maxHeight) {
   $info = @getimagesize($imagedir.$infile);
