@@ -188,12 +188,18 @@ function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=
     if (!isset($height)) $height = $nmoption['imageheight'];
     if (!isset($crop)) $crop = $nmoption['imagecrop'];
     $pos = strpos($pic, '/data/uploads/');
-    if ($pos !== false || strpos($pic, '/data/thumbs/') !== false || !strpos($pic, '://')) {
-      if ($pos !== false) $pic = substr($pic, $pos+14);
+    $uploads = ($pos !== false || !strpos($pic, '://'));
+    if ($uploads || strpos($pic, '/data/thumbs/') !== false) {
+      if ($pos !== false)
+        $pic = substr($pic, $pos+14);
       $w = $width ? '&w='.$width : '';
       $h = $height ? '&h='.$height : '';
-      $c = $crop ? '&c=1' : '';
-      $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
+      if ($w == '' && $h == '' && $uploads) {
+        $url = $SITEURL.'data/uploads/'.$pic;
+      } else {
+        $c = $crop ? '&c=1' : '';
+        $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c;
+      }
     } else {
       if ($nmoption['imageexternal'])
         $url = $pic;
