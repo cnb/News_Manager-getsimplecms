@@ -3,7 +3,7 @@
 # | Copyright (c) 2013 Martin Vlcek                                    |
 # | License: GPLv3 (http://www.gnu.org/licenses/gpl-3.0.html)          |
 # +--------------------------------------------------------------------+
-# | Modified by Carlos Navarro (for News Manager)                      |
+# | Modified by Carlos Navarro for News Manager (GetSimple CMS plugin) |
 # +--------------------------------------------------------------------+
 
 define('CACHE_SECONDS', 3600*24); // for how long images should be cached
