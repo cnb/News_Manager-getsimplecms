@@ -35,6 +35,7 @@ if (strpos($infile,'/data/thumbs/')) {
     }
   }
 }
+if (strpos(dirname(realpath($imagedir.$infile)), realpath($imagedir)) !== 0) die('Invalid path!');
 if (!$maxWidth && !$maxHeight) {
   $info = @getimagesize($imagedir.$infile);
   if (!$info) die('File not found or not an image!');
@@ -65,7 +66,7 @@ if (!$maxWidth && !$maxHeight) {
       case IMAGETYPE_PNG: $src = @imagecreatefrompng($imagedir.$infile); break;
       case IMAGETYPE_GIF: $src = @imagecreatefromgif($imagedir.$infile); break;
     }
-    if (!@$src) die('Can\' read image!');
+    if (!@$src) die('Can\'t read image!');
     if ($crop) {
       $px = $py = 0;
       if ($maxWidth*$height > $width*$maxHeight) {
