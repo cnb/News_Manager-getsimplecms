@@ -649,8 +649,8 @@ function nm_is_site() {
 }
 
 function nm_is_single() {
-  global $nmpagetype;
-  return in_array('single', $nmpagetype);
+  global $nmdata;
+  return isset($nmdata['slug']);
 }
 
 function nm_is_main() {
