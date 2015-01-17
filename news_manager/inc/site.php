@@ -784,4 +784,12 @@ function nm_single_tag_title($before='', $after='', $echo=true) {
   }
 }
 
+function nm_update_meta_keywords() {
+  global $metak, $nmdata;
+  $tags = array();
+  foreach ($nmdata['tags'] as $tag)
+    if (substr($tag, 0, 1) != '_') $tags[] = $tag;
+  $metak = htmlspecialchars(implode($tags, ', '), ENT_COMPAT, 'UTF-8');
+}
+
 ?>
