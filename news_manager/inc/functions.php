@@ -449,6 +449,7 @@ function nm_generate_sitemap() {
 function nm_update_sitemap_xml($xml) {
   if (!defined('NMNOSITEMAP') || !NMNOSITEMAP) {
     $posts = nm_get_posts();
+    $tags = array();
     foreach ($posts as $post) {
       $url = nm_get_url('post').$post->slug;
       $file = NMPOSTPATH.$post->slug.'.xml';
@@ -458,6 +459,21 @@ function nm_update_sitemap_xml($xml) {
       $item->addChild('lastmod', $date);
       $item->addChild('changefreq', 'monthly');
       $item->addChild('priority', '0.5');
+      if (!empty($post->tags)) {
+        foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag) {
+          if (substr($tag, 0, 1) != '_') {
+            if (!in_array($tag, $tags)) {
+              $url = nm_get_url('tag').rawurlencode($tag);
+              $item = $xml->addChild('url');
+              $item->addChild('loc', $url);
+              $item->addChild('lastmod', $date);
+              $item->addChild('changefreq', 'monthly');
+              $item->addChild('priority', '0.5');
+              $tags[] = $tag;
+            }
+          }
+        }
+      }
     }
   }
   return $xml;
