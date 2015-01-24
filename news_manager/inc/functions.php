@@ -442,7 +442,7 @@ function nm_generate_sitemap() {
 
 /*******************************************************
  * @function nm_update_sitemap_xml
- * @action add posts to sitemap.xml, GetSimple 3.3+
+ * @action add posts (and tag pages) to sitemap.xml, GetSimple 3.3+
  * @param xmlobj
  * @since 2.5
  */
@@ -450,6 +450,7 @@ function nm_update_sitemap_xml($xml) {
   if (!defined('NMNOSITEMAP') || !NMNOSITEMAP) {
     $posts = nm_get_posts();
     $tags = array();
+    $excludetags = (defined('NMSITEMAPEXCLUDETAGS') && (NMSITEMAPEXCLUDETAGS === true || NMSITEMAPEXCLUDETAGS === 1));
     foreach ($posts as $post) {
       $url = nm_get_url('post').$post->slug;
       $file = NMPOSTPATH.$post->slug.'.xml';
@@ -459,7 +460,7 @@ function nm_update_sitemap_xml($xml) {
       $item->addChild('lastmod', $date);
       $item->addChild('changefreq', 'monthly');
       $item->addChild('priority', '0.5');
-      if (!empty($post->tags)) {
+      if (!$excludetags && !empty($post->tags)) {
         foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag) {
           if (substr($tag, 0, 1) != '_') {
             if (!in_array($tag, $tags)) {
