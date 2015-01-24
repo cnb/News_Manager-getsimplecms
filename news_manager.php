@@ -154,9 +154,9 @@ function nm_frontend_init() {
     }
     $content = nm_ob_get_content(false);
     $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
+    if (nm_get_option('templatefile'))
+      nm_switch_template_file(nm_get_option('templatefile'));
   }
-  if (nm_get_option('templatefile'))
-    nm_switch_template_file(nm_get_option('templatefile'));
   nm_update_page_title();
   nm_reset_options();
 }

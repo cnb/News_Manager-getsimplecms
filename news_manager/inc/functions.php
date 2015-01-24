@@ -498,10 +498,9 @@ function nm_update_extend_cache() {
 }
 
 # since 3.0
-# for templateFile custom setting (may be renamed later)
+# for templateFile custom setting (function may be renamed later)
 function nm_switch_template_file($tempfile) {
   global $template_file, $TEMPLATE;
-  $tempfile = nm_get_option('templatefile');
   # no path traversal and template exists
   if (strpos(realpath(GSTHEMESPATH.$TEMPLATE."/".$tempfile), realpath(GSTHEMESPATH.$TEMPLATE."/")) === 0 && file_exists(GSTHEMESPATH.$TEMPLATE."/".$tempfile))
     $template_file = $tempfile;
