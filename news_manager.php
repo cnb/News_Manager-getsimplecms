@@ -101,8 +101,7 @@ function nm_frontend_init() {
   global $NMPAGEURL, $nmpagetype, $nmsingletag;
   $nmpagetype = array();
   nm_i18n_merge();
-  $url = strval(get_page_slug(false));
-  if ($url == $NMPAGEURL) {
+  if (strval(get_page_slug(false)) == $NMPAGEURL) {
     global $content, $metad;
     $metad_orig = ($metad == '' ? ' ' : $metad);
     $metad = ' ';
