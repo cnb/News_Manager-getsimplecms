@@ -276,7 +276,7 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
     $ellipsis = i18n_r('news_manager/ELLIPSIS');
     $break = nm_get_option('breakwords');
     if ($url) {
-      $readmorehtml = '<span class="nm_readmore"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
+      $readmorehtml = '<span class="'.nm_get_class_option('classpostreadmore','nm_readmore').'"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
       if ($forcereadmore)
         $content = nm_make_excerpt($content, $len, $ellipsis, $break).' '.$readmorehtml;
       else
