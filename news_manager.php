@@ -31,7 +31,9 @@ register_plugin(
 require_once(GSPLUGINPATH.'news_manager/inc/common.php');
 
 # language
-i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
+if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only 
+  i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
+}
 
 # hooks
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
