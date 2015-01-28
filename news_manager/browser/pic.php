@@ -11,8 +11,9 @@ define('CACHE_SECONDS', 3600*24); // for how long images should be cached
 define('PREFIX', 'nmimage.');
 
 $infile = preg_replace('/\.+\//', '', $_GET['p']);
-$maxWidth = @$_GET['w'];
-$maxHeight = @$_GET['h'];
+$maxWidth = strval(@$_GET['w']);
+$maxHeight = strval(@$_GET['h']);
+if ((!empty($maxWidth) && !ctype_digit($maxWidth)) || (!empty($maxHeight) && !ctype_digit($maxHeight))) die('Invalid size!');
 $crop = @$_GET['c'] && $maxWidth && $maxHeight;
 $gsthumb = @$_GET['gt'];
 $datadir = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), DIRECTORY_SEPARATOR.'plugins')) . '/data/';
