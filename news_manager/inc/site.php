@@ -305,6 +305,7 @@ function nm_reset_options($pagetype='') {
     'classpostimage'    => 'nm_post_image',
     'classpostcontent'  => 'nm_post_content',
     'classpostreadmore' => 'nm_readmore',
+    'classpostreadmorelink' => 'nm_readmore_link',
     'classposttags'     => 'nm_post_meta',
     'classpostback'     => 'nm_post_back',
     'classpagenav'      => 'nm_page_nav',    
@@ -374,7 +375,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
               if ($morepos !== false) {
                 $slice = substr($content, 0, $morepos);
                 if ($readmore)
-                  $slice .= '      <p class="'.$nmclasses['classpostreadmore'].'"><a href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'.PHP_EOL;
+                  $slice .= '      <p class="'.$nmclasses['classpostreadmore'].'"><a class="'.$nmclasses['classpostreadmorelink'].'" href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'.PHP_EOL;
               }
             }
             if ($slice) {
@@ -390,7 +391,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
               } else {
                 echo $content;
                 if ($readmore === 'a')
-                  echo '      <p class="'.$nmclasses['classpostreadmore'].'"><a href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',PHP_EOL;
+                  echo '      <p class="'.$nmclasses['classpostreadmore'].'"><a class="'.$nmclasses['classpostreadmorelink'].'" href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',PHP_EOL;
               }
             }
           }
