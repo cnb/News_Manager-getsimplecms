@@ -300,6 +300,7 @@ function nm_reset_options($pagetype='') {
   $nmclasses = array(
     'classpost'         => 'nm_post'.($pagetype == 'single' ? ' nm_post_single' : ''),
     'classposttitle'    => 'nm_post_title',
+    'classposttitlelink' => '',
     'classpostdate'     => 'nm_post_date',
     'classpostauthor'   => 'nm_post_author',
     'classpostimage'    => 'nm_post_image',
@@ -308,6 +309,7 @@ function nm_reset_options($pagetype='') {
     'classreadmorelink' => '',
     'classposttags'     => 'nm_post_meta',
     'classgoback'       => 'nm_post_back',
+    'classgobacklink'   => '',
     'classpagenav'      => 'nm_page_nav',    
   );
   # append custom classes
@@ -352,10 +354,12 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
         case 'title':
           echo '    <',$nmoption['markuptitle'],' class="'.$nmclasses['classposttitle'].'">';
-          if ($nmoption['titlelink'])
-            echo '<a href="',$url,'">',$title,'</a>';
-          else
+          if ($nmoption['titlelink']) {
+            $class = $nmclasses['classposttitlelink'] ? ' class="'.$nmclasses['classposttitlelink'].'"' : '';
+            echo '<a',$class,' href="',$url,'">',$title,'</a>';
+          } else {
             echo $title;
+          }
           echo '</',$nmoption['markuptitle'],'>',PHP_EOL;
           break;
 
@@ -451,7 +455,8 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
       # show "go back" link?
       if ($nmoption['gobacklink']) {
         $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
-        echo '    <p class="'.$nmclasses['classgoback'].'"><a href="'.$goback.'">';
+        $class = $nmclasses['classgobacklink'] ? ' class="'.$nmclasses['classgobacklink'].'"' : '';
+        echo '    <p class="'.$nmclasses['classgoback'].'"><a',$class,' href="'.$goback.'">';
         i18n('news_manager/GO_BACK');
         echo '</a></p>',PHP_EOL;
       }
