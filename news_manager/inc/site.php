@@ -304,10 +304,10 @@ function nm_reset_options($pagetype='') {
     'classpostauthor'   => 'nm_post_author',
     'classpostimage'    => 'nm_post_image',
     'classpostcontent'  => 'nm_post_content',
-    'classpostreadmore' => 'nm_readmore',
-    'classpostreadmorelink' => '',
+    'classreadmore'     => 'nm_readmore',
+    'classreadmorelink' => '',
     'classposttags'     => 'nm_post_meta',
-    'classgoback'     => 'nm_post_back',
+    'classgoback'       => 'nm_post_back',
     'classpagenav'      => 'nm_page_nav',    
   );
   # append custom classes
@@ -372,13 +372,13 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             $class = '';
             $readmore = $nmoption['readmore'];
             if ($readmore)
-              $class = $nmclasses['classpostreadmorelink'] ? ' class="'.$nmclasses['classpostreadmorelink'].'"' : '';
+              $class = $nmclasses['classreadmorelink'] ? ' class="'.$nmclasses['classreadmorelink'].'"' : '';
             if ($nmoption['more']) {
               $morepos = strpos($content, '<hr');
               if ($morepos !== false) {
                 $slice = substr($content, 0, $morepos);
                 if ($readmore)
-                  $slice .= '      <p class="'.$nmclasses['classpostreadmore'].'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'.PHP_EOL;
+                  $slice .= '      <p class="'.$nmclasses['classreadmore'].'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'.PHP_EOL;
               }
             }
             if ($slice) {
@@ -394,7 +394,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
               } else {
                 echo $content;
                 if ($readmore === 'a')
-                  echo '      <p class="',$nmclasses['classpostreadmore'],'"><a',$class,' href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',PHP_EOL;
+                  echo '      <p class="',$nmclasses['classreadmore'],'"><a',$class,' href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',PHP_EOL;
               }
             }
           }
