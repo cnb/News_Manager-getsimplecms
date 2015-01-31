@@ -298,19 +298,19 @@ function nm_reset_options($pagetype='') {
 
   # classes for layout elements
   $nmclasses = array(
-    'classpost'         => 'nm_post'.($pagetype == 'single' ? ' nm_post_single' : ''),
-    'classposttitle'    => 'nm_post_title',
-    'classposttitlelink' => '',
-    'classpostdate'     => 'nm_post_date',
-    'classpostauthor'   => 'nm_post_author',
-    'classpostimage'    => 'nm_post_image',
-    'classpostcontent'  => 'nm_post_content',
-    'classreadmore'     => 'nm_readmore',
-    'classreadmorelink' => '',
-    'classposttags'     => 'nm_post_meta',
-    'classgoback'       => 'nm_post_back',
-    'classgobacklink'   => '',
-    'classpagenav'      => 'nm_page_nav',    
+    'classpost'           => 'nm_post'.($pagetype == 'single' ? ' nm_post_single' : ''),
+    'classposttitle'      => 'nm_post_title',
+    'classposttitlelink'  => '',
+    'classpostdate'       => 'nm_post_date',
+    'classpostauthor'     => 'nm_post_author',
+    'classpostimage'      => 'nm_post_image',
+    'classpostcontent'    => 'nm_post_content',
+    'classreadmore'       => 'nm_readmore',
+    'classreadmorelink'   => '',
+    'classposttags'       => 'nm_post_meta',
+    'classgoback'         => 'nm_post_back',
+    'classgobacklink'     => '',
+    'classpagenav'        => 'nm_page_nav',
   );
   # append custom classes
   foreach (array_keys($nmclasses) as $option)
