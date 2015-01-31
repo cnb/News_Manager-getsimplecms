@@ -498,7 +498,7 @@ function nm_show_navigation($index, $total, $tag=null) {
     else
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
-  echo '<div class="'.nm_get_class_option('classpagenav').'">';
+  echo '<div class="'.nm_get_class_option('classpagenav').'">',PHP_EOL;
   if (!nm_get_option('navoldnew',false)) {
   
     $prevnext = nm_get_option('navprevnext', '1');
@@ -538,28 +538,21 @@ function nm_show_navigation($index, $total, $tag=null) {
     }
       
   } else {
-  
-  # Older/Newer navigation
+
+    # Older/Newer navigation
     if ($index < $total-1+$p1) {
-    ?>
-    <div class="left">
-      <a href="<?php echo $page.($index+1); ?>">
-        <?php i18n('news_manager/OLDER_POSTS'); ?>
-      </a>
-    </div>
-    <?php
+      echo '<div class="left">';
+      echo '<a href="',$page.($index+1),'">',i18n_r('news_manager/OLDER_POSTS'),'</a>';
+      echo '</div>',PHP_EOL;
     }
     if ($index > $p1) {
-    ?>
-    <div class="right">
-      <a href="<?php echo ($index > $p1+1) ? $page.($index-1) : $first ?>">
-        <?php i18n('news_manager/NEWER_POSTS'); ?>
-      </a>
-    </div>
-    <?php
+      echo '<div class="right">';
+      echo '<a href="',(($index > $p1+1) ? $page.($index-1) : $first),'">',i18n_r('news_manager/NEWER_POSTS'),'</a>';
+      echo '</div>',PHP_EOL;
     }
+
   }
-  echo '</div>';
+  echo '</div>',PHP_EOL;
 }
 
 
