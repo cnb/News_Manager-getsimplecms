@@ -275,10 +275,10 @@ function nm_create_excerpt($content, $url=false, $forcereadmore=false) {
   } else {
     $ellipsis = i18n_r('news_manager/ELLIPSIS');
     $break = nm_get_option('breakwords');
-    $class = nm_get_class_option('classreadmorelink');
+    $class = nm_get_option('classreadmorelink');
     $class = $class ? ' class="'.$class.'"' : '';
     if ($url) {
-      $readmorehtml = '<span class="'.nm_get_class_option('classreadmore','nm_readmore').'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
+      $readmorehtml = '<span class="'.nm_get_option('classreadmore','nm_readmore').'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></span>';
       if ($forcereadmore)
         $content = nm_make_excerpt($content, $len, $ellipsis, $break).' '.$readmorehtml;
       else
