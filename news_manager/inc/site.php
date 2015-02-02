@@ -310,7 +310,7 @@ function nm_reset_options($pagetype='') {
     'classposttags'       => 'nm_post_meta',
     'classgoback'         => 'nm_post_back',
     'classgobacklink'     => '',
-    'classpagenav'        => 'nm_page_nav',
+    'classnav'            => 'nm_page_nav',
   );
   # append custom classes
   foreach ($classes as $key=>$value)
@@ -497,7 +497,7 @@ function nm_show_navigation($index, $total, $tag=null) {
     else
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
-  echo '<div class="'.nm_get_option('classpagenav').'">',PHP_EOL;
+  echo '<div class="'.nm_get_option('classnav').'">',PHP_EOL;
   if (!nm_get_option('navoldnew',false)) {
   
     $prevnext = nm_get_option('navprevnext', '1');
