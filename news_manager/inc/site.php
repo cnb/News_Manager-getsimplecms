@@ -517,8 +517,8 @@ function nm_show_navigation($index, $total, $tag=null) {
     $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
     if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
-      $noPrev = "<$item class=\"$clprev $cldisabled\">".i18n_r('news_manager/PREV_TEXT')."</$item>";
-      $noNext = "<$item class=\"$clnext $cldisabled\">".i18n_r('news_manager/NEXT_TEXT')."</$item>";
+      $noPrev = "<$item class=\"$clprev $cldisabled\"><span>".i18n_r('news_manager/PREV_TEXT')."</span></$item>";
+      $noNext = "<$item class=\"$clnext $cldisabled\"><span>".i18n_r('news_manager/NEXT_TEXT')."</span></$item>";
     } else {
       $noPrev = '';
       $noNext = '';
@@ -535,7 +535,7 @@ function nm_show_navigation($index, $total, $tag=null) {
     if (nm_get_option('navnumber',true)) {
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
-          echo " <$item class=\"$clcurrent\">",$i+1,"</$item>";
+          echo " <$item class=\"$clcurrent\"><span>",$i+1,"</span></$item>";
         } else {
           echo " <$item><a href=\"";
           echo $i == 0 ? $first : $page.($i+$p1);
