@@ -497,22 +497,37 @@ function nm_show_navigation($index, $total, $tag=null) {
     else
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
-  echo '<div class="'.nm_get_option('classnav').'">',PHP_EOL;
+  
+  $container = nm_get_option('markupnavcontainer','');
+  $nav = nm_get_option('markupnav','div');
+  
+  $clcontainer =  nm_get_option('classnavcontainer','');
+  $clnav =        nm_get_option('classnav');
+  $clprev =       nm_get_option('classnavitemprev','previous');
+  $clnext =       nm_get_option('classnavitemnext','next');
+  $cldisabled =   nm_get_option('classnavitemdisabled','disabled');
+  $clcurrent =    nm_get_option('classnavitemcurrent','current');
+  
+  if ($container)
+    echo "<$container",($clcontainer ? " class=\"$clcontainer\"" :  ""),">",PHP_EOL;
+  echo "<$nav class=\"$clnav\">",PHP_EOL;
+  
   if (!nm_get_option('navoldnew',false)) {
   
+    $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
     if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
-      $noPrev = '<span class="previous disabled">'.i18n_r('news_manager/PREV_TEXT').'</span>';
-      $noNext = ' <span class="next disabled">'.i18n_r('news_manager/NEXT_TEXT').'</span>';
+      $noPrev = "<$item class=\"$clprev $cldisabled\">".i18n_r('news_manager/PREV_TEXT')."</$item>";
+      $noNext = "<$item class=\"$clnext $cldisabled\">".i18n_r('news_manager/NEXT_TEXT')."</$item>";
     } else {
       $noPrev = '';
       $noNext = '';
     }
       
     if ($prevnext && $index > $p1) {
-      echo '<span class="previous"><a href="';
+      echo "<$item class=\"$clprev\"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
-      echo '" title="',i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),'</a></span>';
+      echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>";
     } else {
       echo $noPrev;
     }
@@ -520,18 +535,18 @@ function nm_show_navigation($index, $total, $tag=null) {
     if (nm_get_option('navnumber',true)) {
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
-          echo ' <span class="current">',$i+1,'</span>';
+          echo " <$item class=\"$clcurrent\">",$i+1,"</$item>";
         } else {
-          echo ' <span><a href="';
+          echo " <$item><a href=\"";
           echo $i == 0 ? $first : $page.($i+$p1);
-          echo '">',$i+1,'</a></span>';
+          echo "\">",$i+1,"</a></$item>";
         }
       }
     }
     
     if ($prevnext && $index < $total-1+$p1) {
-      echo ' <span class="next"><a href="',$page.($index+1);
-      echo '" title="',i18n_r('news_manager/NEXT_TITLE'),'">',i18n_r('news_manager/NEXT_TEXT'),'</a></span>';
+      echo " <$item class=\"$clnext\"><a href=\"",$page.($index+1);
+      echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>";
     } else {
       echo $noNext;
     }
@@ -539,19 +554,24 @@ function nm_show_navigation($index, $total, $tag=null) {
   } else {
 
     # Older/Newer navigation
+    $item = nm_get_option('markupnavitem','div');
+    $clold = nm_get_option('classnavitemold','left');
+    $clnew = nm_get_option('classnavitemnew','right');
+    
     if ($index < $total-1+$p1) {
-      echo '<div class="left">';
-      echo '<a href="',$page.($index+1),'">',i18n_r('news_manager/OLDER_POSTS'),'</a>';
-      echo '</div>',PHP_EOL;
+      echo "<$item class=\"$clold\">";
+      echo "<a href=\"",$page.($index+1),"\">",i18n_r('news_manager/OLDER_POSTS'),"</a>";
+      echo "</$item>",PHP_EOL;
     }
     if ($index > $p1) {
-      echo '<div class="right">';
-      echo '<a href="',(($index > $p1+1) ? $page.($index-1) : $first),'">',i18n_r('news_manager/NEWER_POSTS'),'</a>';
-      echo '</div>',PHP_EOL;
+      echo "<$item class=\"$clnew\">";
+      echo "<a href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",i18n_r('news_manager/NEWER_POSTS'),"</a>";
+      echo "</$item>",PHP_EOL;
     }
 
   }
-  echo '</div>',PHP_EOL;
+  echo "</$nav>",PHP_EOL;
+  if ($container) echo "</$container>",PHP_EOL;
 }
 
 
