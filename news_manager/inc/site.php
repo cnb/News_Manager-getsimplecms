@@ -152,7 +152,7 @@ function nm_show_search_results() {
 function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
   $nmoption = array();
-  
+
   # pre 3.0 default settings (plus readmore in common.php)
   if (defined('NM2COMPAT') && NM2COMPAT) {
     $nmoption['breakwords'] = true;
@@ -315,7 +315,7 @@ function nm_reset_options($pagetype='') {
   # append custom classes
   foreach ($classes as $key=>$value)
     $nmoption[$key] = !isset($nmoption[$key]) ? $value : $value.' '.$nmoption[$key];
-  
+
 }
 
 
@@ -467,9 +467,9 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
       get_component($nmoption['componentafterpost']);
       echo PHP_EOL;
     }
-    
+
     if ($filter) echo nm_ob_get_content(true);
-    
+
     return true;
   } else {
     echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>',PHP_EOL;
@@ -497,23 +497,23 @@ function nm_show_navigation($index, $total, $tag=null) {
     else
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
-  
+
   $container = nm_get_option('markupnavcontainer','');
   $nav = nm_get_option('markupnav','div');
-  
+
   $clcontainer =  nm_get_option('classnavcontainer','');
   $clnav =        nm_get_option('classnav');
   $clprev =       nm_get_option('classnavitemprev','previous');
   $clnext =       nm_get_option('classnavitemnext','next');
   $cldisabled =   nm_get_option('classnavitemdisabled','disabled');
   $clcurrent =    nm_get_option('classnavitemcurrent','current');
-  
+
   if ($container)
     echo "<$container",($clcontainer ? " class=\"$clcontainer\"" :  ""),">",PHP_EOL;
   echo "<$nav class=\"$clnav\">",PHP_EOL;
-  
+
   if (!nm_get_option('navoldnew',false)) {
-  
+
     $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
     if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
@@ -523,7 +523,7 @@ function nm_show_navigation($index, $total, $tag=null) {
       $noPrev = '';
       $noNext = '';
     }
-      
+
     if ($prevnext && $index > $p1) {
       echo "<$item class=\"$clprev\"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
@@ -531,7 +531,7 @@ function nm_show_navigation($index, $total, $tag=null) {
     } else {
       echo $noPrev;
     }
-    
+
     if (nm_get_option('navnumber',true)) {
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
@@ -543,21 +543,21 @@ function nm_show_navigation($index, $total, $tag=null) {
         }
       }
     }
-    
+
     if ($prevnext && $index < $total-1+$p1) {
       echo " <$item class=\"$clnext\"><a href=\"",$page.($index+1);
       echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>";
     } else {
       echo $noNext;
     }
-      
+
   } else {
 
     # Older/Newer navigation
     $item = nm_get_option('markupnavitem','div');
     $clold = nm_get_option('classnavitemold','left');
     $clnew = nm_get_option('classnavitemnew','right');
-    
+
     if ($index < $total-1+$p1) {
       echo "<$item class=\"$clold\">";
       echo "<a href=\"",$page.($index+1),"\">",i18n_r('news_manager/OLDER_POSTS'),"</a>";

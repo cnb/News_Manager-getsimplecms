@@ -10,7 +10,7 @@ Updated by: Carlos Navarro
 */
 
 # plugin version
-define('NMVERSION', '3.1 beta 25');
+define('NMVERSION', '3.1 beta 25-26');
 
 # get correct id for plugin
 $thisfile = basename(__FILE__, '.php');
@@ -31,7 +31,7 @@ register_plugin(
 require_once(GSPLUGINPATH.'news_manager/inc/common.php');
 
 # language
-if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only 
+if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only
   i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
 }
 
@@ -139,7 +139,8 @@ function nm_frontend_init() {
         nm_reset_options('single');
         if (nm_show_post($_GET[NMPARAMPOST], false, false, true)) {
           $nmpagetype[] = 'single';
-          if (nm_get_option('metakeywordstags')) nm_update_meta_keywords();
+          if (nm_get_option('metakeywordstags'))
+            nm_update_meta_keywords();
         }
 
     } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > NMFIRSTPAGE) {
