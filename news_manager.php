@@ -141,6 +141,8 @@ function nm_frontend_init() {
           $nmpagetype[] = 'single';
           if (nm_get_option('metakeywordstags'))
             nm_update_meta_keywords();
+          if (nm_get_option('autometad'))
+            $metad = nm_post_excerpt(150, null, false);
         }
 
     } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > NMFIRSTPAGE) {
