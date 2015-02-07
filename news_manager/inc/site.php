@@ -436,7 +436,10 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
         case 'author':
           if ($nmoption['showauthor']) {
+            global $NMAUTHOR;
             $author = stripslashes($post->author);
+            if (isset($NMAUTHOR[$author]))
+              $author = $NMAUTHOR[$author]; // custom authors array
             if (empty($author) && $nmoption['defaultauthor'])
               $author = $nmoption['defaultauthor'];
             if (!empty($author))
