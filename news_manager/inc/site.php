@@ -233,8 +233,17 @@ function nm_reset_options($pagetype='') {
   }
 
   # html tags
-  $nmoption['markuppost'] = isset($nmoption['markuppost']) ? str_replace(array('<','>'),'',$nmoption['markuppost']) : 'div';
-  $nmoption['markuptitle'] = isset($nmoption['markuptitle']) ? str_replace(array('<','>'),'',$nmoption['markuptitle']) : 'h3';
+  foreach (array(
+    'markuppost'        => 'div',
+    'markupposttitle'   => isset($nmoption['markuptitle']) ? $nmoption['markuptitle'] : 'h3', // backwards NM 3.0
+    'markuppostdate'    => 'p',
+    'markuppostauthor'  => 'p',
+    'markuppostimage'   => 'div',
+    'markuppostcontent' => 'div',
+    'markupposttags'    => 'p',
+    'markupgoback'      => 'p',
+    ) as $key=>$value)
+      $nmoption[$key] = isset($nmoption[$key]) ? str_replace(array('<','>'),'',$nmoption[$key]) : $value;
 
   # fields
   if (isset($nmoption['showfields'])) {
@@ -346,28 +355,28 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
     if ($filter) ob_start();
 
-    echo '  <',$nmoption['markuppost'],' class="'.$nmoption['classpost'].'">',PHP_EOL;
+    echo '  <',$nmoption['markuppost'],' class="',$nmoption['classpost'],'">',PHP_EOL;
 
     foreach ($nmoption['fields'] as $field) {
       switch($field) {
 
         case 'title':
-          echo '    <',$nmoption['markuptitle'],' class="'.$nmoption['classposttitle'].'">';
+          echo '    <',$nmoption['markupposttitle'],' class="',$nmoption['classposttitle'],'">';
           if ($nmoption['titlelink']) {
             $class = $nmoption['classposttitlelink'] ? ' class="'.$nmoption['classposttitlelink'].'"' : '';
             echo '<a',$class,' href="',$url,'">',$title,'</a>';
           } else {
             echo $title;
           }
-          echo '</',$nmoption['markuptitle'],'>',PHP_EOL;
+          echo '</',$nmoption['markupposttitle'],'>',PHP_EOL;
           break;
 
         case 'date':
-          echo '    <p class="'.$nmoption['classpostdate'].'">',i18n_r('news_manager/PUBLISHED'),' ',$date,'</p>',PHP_EOL;
+          echo '    <',$nmoption['markuppostdate'],' class="',$nmoption['classpostdate'],'">',i18n_r('news_manager/PUBLISHED'),' ',$date,'</',$nmoption['markuppostdate'],'>',PHP_EOL;
           break;
 
         case 'content':
-          echo '    <div class="'.$nmoption['classpostcontent'].'">';
+          echo '    <',$nmoption['markuppostcontent'],' class="',$nmoption['classpostcontent'],'">';
           if ($single) {
             echo $content;
           } else {
@@ -401,19 +410,19 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
               }
             }
           }
-          echo '    </div>',PHP_EOL;
+          echo '    </',$nmoption['markuppostcontent'],'>',PHP_EOL;
           break;
 
         case 'tags':
           if ($tags) {
-            echo '    <p class="'.$nmoption['classposttags'].'"><b>' . i18n_r('news_manager/TAGS') . ':</b> ';
+            echo '    <',$nmoption['markupposttags'],' class="',$nmoption['classposttags'],'"><b>',i18n_r('news_manager/TAGS'),':</b> ';
             $sep = '';
             foreach ($tags as $tag)
               if (substr($tag, 0, 1) != '_') {
                 echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',htmlspecialchars($tag),'</a>';
                 if ($sep == '') $sep = $nmoption['tagseparator'];
               }
-            echo '</p>',PHP_EOL;
+            echo '</',$nmoption['markupposttags'],'>',PHP_EOL;
           }
           break;
 
@@ -430,7 +439,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
             if ($nmoption['imagelink'])
               $str = '<a href="'.$url.'">'.$str.'</a>';
-            echo '    <div class="'.$nmoption['classpostimage'].'">',$str,'</div>',PHP_EOL;
+            echo '    <',$nmoption['markuppostimage'],' class="',$nmoption['classpostimage'],'">',$str,'</',$nmoption['markuppostimage'],'>',PHP_EOL;
           }
           break;
 
@@ -443,7 +452,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             if (empty($author) && $nmoption['defaultauthor'])
               $author = $nmoption['defaultauthor'];
             if (!empty($author))
-                echo '    <p class="'.$nmoption['classpostauthor'].'">'.i18n_r('news_manager/AUTHOR').' <em>'.$author.'</em></p>'.PHP_EOL;
+                echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <em>',$author,'</em></',$nmoption['markuppostauthor'],'>',PHP_EOL;
           }
           break;
       }
@@ -458,9 +467,9 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
       if ($nmoption['gobacklink']) {
         $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
         $class = $nmoption['classgobacklink'] ? ' class="'.$nmoption['classgobacklink'].'"' : '';
-        echo '    <p class="'.$nmoption['classgoback'].'"><a',$class,' href="'.$goback.'">';
+        echo '    <',$nmoption['markupgoback'],' class="'.$nmoption['classgoback'].'"><a',$class,' href="'.$goback.'">';
         i18n('news_manager/GO_BACK');
-        echo '</a></p>',PHP_EOL;
+        echo '</a></',$nmoption['markupgoback'],'>',PHP_EOL;
       }
     }
 
