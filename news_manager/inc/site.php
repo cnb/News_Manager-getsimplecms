@@ -834,6 +834,7 @@ function nm_single_tag_title($before='', $after='', $echo=true) {
   }
 }
 
+// set post tags as meta keywords
 function nm_update_meta_keywords() {
   global $metak, $nmdata;
   $tags = array();
