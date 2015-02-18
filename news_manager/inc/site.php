@@ -529,8 +529,8 @@ function nm_show_navigation($index, $total, $tag=null) {
     $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
     if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
-      $noPrev = "<$item class=\"$clprev $cldisabled\"><span>".i18n_r('news_manager/PREV_TEXT')."</span></$item>";
-      $noNext = "<$item class=\"$clnext $cldisabled\"><span>".i18n_r('news_manager/NEXT_TEXT')."</span></$item>";
+      $noPrev = " <$item class=\"$clprev $cldisabled\"><span>".i18n_r('news_manager/PREV_TEXT')."</span></$item>".PHP_EOL;
+      $noNext = " <$item class=\"$clnext $cldisabled\"><span>".i18n_r('news_manager/NEXT_TEXT')."</span></$item>".PHP_EOL;
     } else {
       $noPrev = '';
       $noNext = '';
@@ -539,7 +539,7 @@ function nm_show_navigation($index, $total, $tag=null) {
     if ($prevnext && $index > $p1) {
       echo "<$item class=\"$clprev\"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
-      echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>";
+      echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>",PHP_EOL;
     } else {
       echo $noPrev;
     }
@@ -547,18 +547,18 @@ function nm_show_navigation($index, $total, $tag=null) {
     if (nm_get_option('navnumber',true)) {
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
-          echo " <$item class=\"$clcurrent\"><span>",$i+1,"</span></$item>";
+          echo " <$item class=\"$clcurrent\"><span>",$i+1,"</span></$item>",PHP_EOL;
         } else {
           echo " <$item><a href=\"";
           echo $i == 0 ? $first : $page.($i+$p1);
-          echo "\">",$i+1,"</a></$item>";
+          echo "\">",$i+1,"</a></$item>",PHP_EOL;
         }
       }
     }
 
     if ($prevnext && $index < $total-1+$p1) {
       echo " <$item class=\"$clnext\"><a href=\"",$page.($index+1);
-      echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>";
+      echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>",PHP_EOL;
     } else {
       echo $noNext;
     }
