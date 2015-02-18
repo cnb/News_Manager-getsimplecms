@@ -528,20 +528,14 @@ function nm_show_navigation($index, $total, $tag=null) {
 
     $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
-    if (strtolower($prevnext[0]) == 'a') { // navPrevNext a[lways]
-      $noPrev = " <$item class=\"$clprev $cldisabled\"><span>".i18n_r('news_manager/PREV_TEXT')."</span></$item>".PHP_EOL;
-      $noNext = " <$item class=\"$clnext $cldisabled\"><span>".i18n_r('news_manager/NEXT_TEXT')."</span></$item>".PHP_EOL;
-    } else {
-      $noPrev = '';
-      $noNext = '';
-    }
-
+    $showalways = (strtolower($prevnext[0]) == 'a'); // navPrevNext a[lways]
     if ($prevnext && $index > $p1) {
       echo "<$item class=\"$clprev\"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
       echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>",PHP_EOL;
     } else {
-      echo $noPrev;
+      if ($showalways)
+        echo " <$item class=\"$clprev $cldisabled\"><span>",i18n_r('news_manager/PREV_TEXT'),"</span></$item>",PHP_EOL;
     }
 
     if (nm_get_option('navnumber',true)) {
@@ -560,7 +554,8 @@ function nm_show_navigation($index, $total, $tag=null) {
       echo " <$item class=\"$clnext\"><a href=\"",$page.($index+1);
       echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>",PHP_EOL;
     } else {
-      echo $noNext;
+      if ($showalways)
+        echo " <$item class=\"$clnext $cldisabled\"><span>",i18n_r('news_manager/NEXT_TEXT'),"</span></$item>",PHP_EOL;
     }
 
   } else {
