@@ -512,6 +512,7 @@ function nm_show_navigation($index, $total, $tag=null) {
 
   $container = nm_get_option('markupnavcontainer','');
   $nav = nm_get_option('markupnav','div');
+  $item = nm_get_option('markupnavitem','span');
 
   $clcontainer =  nm_get_option('classnavcontainer','');
   $clnav =        nm_get_option('classnav');
@@ -526,7 +527,6 @@ function nm_show_navigation($index, $total, $tag=null) {
 
   if (!nm_get_option('navoldnew',false)) {
 
-    $item = nm_get_option('markupnavitem','span');
     $prevnext = nm_get_option('navprevnext', '1');
     $showalways = (strtolower($prevnext[0]) == 'a'); // navPrevNext a[lways]
     if ($prevnext && $index > $p1) {
@@ -561,7 +561,6 @@ function nm_show_navigation($index, $total, $tag=null) {
   } else {
 
     # Older/Newer navigation
-    $item = nm_get_option('markupnavitem','div');
     $clold = nm_get_option('classnavitemold','left');
     $clnew = nm_get_option('classnavitemnew','right');
 
