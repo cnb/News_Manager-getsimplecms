@@ -520,26 +520,26 @@ function nm_show_navigation($index, $total, $tag=null) {
   $clcurrent =    nm_get_option('classnavitemcurrent','current');
 
   if ($container)
-    echo "<$container",($clcontainer ? " class=\"$clcontainer\"" :  ""),">",PHP_EOL;
-  echo "<$nav class=\"$clnav\">",PHP_EOL;
+    echo "<$container",nm_class_attr($clcontainer),">",PHP_EOL;
+  echo "<$nav",nm_class_attr($clnav),">",PHP_EOL;
 
   if (!nm_get_option('navoldnew',false)) {
 
     $prevnext = nm_get_option('navprevnext', '1');
     $showalways = (strtolower($prevnext[0]) == 'a'); // navPrevNext a[lways]
     if ($prevnext && $index > $p1) {
-      echo "<$item class=\"$clprev\"><a href=\"";
+      echo "<$item",nm_class_attr($clprev),"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
       echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>",PHP_EOL;
     } else {
       if ($showalways)
-        echo " <$item class=\"$clprev $cldisabled\"><span>",i18n_r('news_manager/PREV_TEXT'),"</span></$item>",PHP_EOL;
+        echo " <$item",nm_class_attr($clprev.' '.$cldisabled),"><span>",i18n_r('news_manager/PREV_TEXT'),"</span></$item>",PHP_EOL;
     }
 
     if (nm_get_option('navnumber',true)) {
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
-          echo " <$item class=\"$clcurrent\"><span>",$i+1,"</span></$item>",PHP_EOL;
+          echo " <$item",nm_class_attr($clcurrent),"><span>",$i+1,"</span></$item>",PHP_EOL;
         } else {
           echo " <$item><a href=\"";
           echo $i == 0 ? $first : $page.($i+$p1);
@@ -549,11 +549,11 @@ function nm_show_navigation($index, $total, $tag=null) {
     }
 
     if ($prevnext && $index < $total-1+$p1) {
-      echo " <$item class=\"$clnext\"><a href=\"",$page.($index+1);
+      echo " <$item",nm_class_attr($clnext),"><a href=\"",$page.($index+1);
       echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>",PHP_EOL;
     } else {
       if ($showalways)
-        echo " <$item class=\"$clnext $cldisabled\"><span>",i18n_r('news_manager/NEXT_TEXT'),"</span></$item>",PHP_EOL;
+        echo " <$item",nm_class_attr($clnext.' '.$cldisabled),"><span>",i18n_r('news_manager/NEXT_TEXT'),"</span></$item>",PHP_EOL;
     }
 
   } else {
@@ -563,12 +563,12 @@ function nm_show_navigation($index, $total, $tag=null) {
     $clnew = nm_get_option('classnavitemnew','right');
 
     if ($index < $total-1+$p1) {
-      echo "<$item class=\"$clold\">";
+      echo "<$item",nm_class_attr($clold),">";
       echo "<a href=\"",$page.($index+1),"\">",i18n_r('news_manager/OLDER_POSTS'),"</a>";
       echo "</$item>",PHP_EOL;
     }
     if ($index > $p1) {
-      echo "<$item class=\"$clnew\">";
+      echo "<$item",nm_class_attr($clnew),">";
       echo "<a href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",i18n_r('news_manager/NEWER_POSTS'),"</a>";
       echo "</$item>",PHP_EOL;
     }
@@ -833,6 +833,10 @@ function nm_update_meta_keywords() {
   foreach ($nmdata['tags'] as $tag)
     if (substr($tag, 0, 1) != '_') $tags[] = $tag;
   $metak = htmlspecialchars(implode($tags, ', '), ENT_COMPAT, 'UTF-8');
+}
+
+function nm_class_attr($str='') {
+  return $str ? ' class="'.trim($str).'"' : '';
 }
 
 ?>
