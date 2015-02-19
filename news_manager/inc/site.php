@@ -305,8 +305,8 @@ function nm_reset_options($pagetype='') {
       $nmoption['tagpagination'] = false;
   }
 
-  # classes for layout elements
-  $classes = array(
+  # append custom classes for layout elements
+  foreach (array(
     'classpost'           => 'nm_post'.($pagetype == 'single' ? ' nm_post_single' : ''),
     'classposttitle'      => 'nm_post_title',
     'classposttitlelink'  => '',
@@ -320,9 +320,7 @@ function nm_reset_options($pagetype='') {
     'classgoback'         => 'nm_post_back',
     'classgobacklink'     => '',
     'classnav'            => 'nm_page_nav',
-  );
-  # append custom classes
-  foreach ($classes as $key=>$value)
+    ) as $key=>$value)
     $nmoption[$key] = !isset($nmoption[$key]) ? $value : $value.' '.$nmoption[$key];
 
 }
