@@ -235,7 +235,7 @@ function nm_reset_options($pagetype='') {
   # html tags
   foreach (array(
     'markuppost'        => 'div',
-    'markupposttitle'   => isset($nmoption['markuptitle']) ? $nmoption['markuptitle'] : 'h3', // backwards NM 3.0
+    'markupposttitle'   => isset($nmoption['markuptitle']) ? nm_clean_markup($nmoption['markuptitle']) : 'h3', // backwards NM 3.0
     'markuppostdate'    => 'p',
     'markuppostauthor'  => 'p',
     'markuppostimage'   => 'div',
@@ -243,7 +243,7 @@ function nm_reset_options($pagetype='') {
     'markupposttags'    => 'p',
     'markupgoback'      => 'p',
     ) as $key=>$value)
-      $nmoption[$key] = isset($nmoption[$key]) ? str_replace(array('<','>'),'',$nmoption[$key]) : $value;
+      $nmoption[$key] = isset($nmoption[$key]) ? nm_clean_markup($nmoption[$key]) : $value;
 
   # fields
   if (isset($nmoption['showfields'])) {
@@ -321,7 +321,7 @@ function nm_reset_options($pagetype='') {
     'classgobacklink'     => '',
     'classnav'            => 'nm_page_nav',
     ) as $key=>$value)
-    $nmoption[$key] = !isset($nmoption[$key]) ? $value : $value.' '.$nmoption[$key];
+    $nmoption[$key] = !isset($nmoption[$key]) ? $value : nm_clean_classes($value.' '.$nmoption[$key]);
 
 }
 
@@ -508,16 +508,16 @@ function nm_show_navigation($index, $total, $tag=null) {
       $page = $first.'&amp;'.NMPARAMPAGE.'=';
   }
 
-  $container = nm_get_option('markupnavcontainer','');
-  $nav = nm_get_option('markupnav','div');
-  $item = nm_get_option('markupnavitem','span');
+  $container  = nm_clean_markup(nm_get_option('markupnavcontainer',''));
+  $nav        = nm_clean_markup(nm_get_option('markupnav','div'));
+  $item       = nm_clean_markup(nm_get_option('markupnavitem','span'));
 
-  $clcontainer =  nm_get_option('classnavcontainer','');
-  $clnav =        nm_get_option('classnav');
-  $clprev =       nm_get_option('classnavitemprev','previous');
-  $clnext =       nm_get_option('classnavitemnext','next');
-  $cldisabled =   nm_get_option('classnavitemdisabled','disabled');
-  $clcurrent =    nm_get_option('classnavitemcurrent','current');
+  $clcontainer  = nm_clean_classes(nm_get_option('classnavcontainer',''));
+  $clnav        = nm_clean_classes(nm_get_option('classnav'));
+  $clprev       = nm_clean_classes(nm_get_option('classnavitemprev','previous'));
+  $clnext       = nm_clean_classes(nm_get_option('classnavitemnext','next'));
+  $cldisabled   = nm_clean_classes(nm_get_option('classnavitemdisabled','disabled'));
+  $clcurrent    = nm_clean_classes(nm_get_option('classnavitemcurrent','current'));
 
   if ($container)
     echo "<$container",nm_class_attr($clcontainer),">",PHP_EOL;
@@ -559,8 +559,8 @@ function nm_show_navigation($index, $total, $tag=null) {
   } else {
 
     # Older/Newer navigation
-    $clold = nm_get_option('classnavitemold','left');
-    $clnew = nm_get_option('classnavitemnew','right');
+    $clold = nm_clean_classes(nm_get_option('classnavitemold','left'));
+    $clnew = nm_clean_classes(nm_get_option('classnavitemnew','right'));
 
     if ($index < $total-1+$p1) {
       echo "<$item",nm_class_attr($clold),">";
@@ -837,6 +837,19 @@ function nm_update_meta_keywords() {
 
 function nm_class_attr($str='') {
   return $str ? ' class="'.trim($str).'"' : '';
+}
+
+// remove some special chars from custom markup
+function nm_clean_markup($str) {
+  return str_replace(array('<','>','"','\'',' '), '', $str);
+}
+
+// remove invalid chars in custom CSS class selectors
+function nm_clean_classes($str) {
+  return trim(str_replace(array(
+    '~','!','@','$','%','^','&','*','(',')','+','=',',','.','/',
+    '\'',';',':','"','?','>','<','[',']','\\','{','}','|','`','#'
+    ), '', $str));
 }
 
 ?>
