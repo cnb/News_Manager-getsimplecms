@@ -158,6 +158,7 @@ function nm_reset_options($pagetype='') {
     $nmoption['breakwords'] = true;
     $nmoption['titletag'] = false;
     $nmoption['navoldnew'] = true;
+    $nmoption['markupnavitem'] = 'div';
     if (!defined('NMFIRSTPAGE')) define('NMFIRSTPAGE',0);
   }
 
