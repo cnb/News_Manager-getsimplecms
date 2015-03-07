@@ -123,12 +123,13 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
 function nm_show_search_results() {
   $keywords = @explode(' ', $_POST['keywords']);
   $posts = nm_get_posts();
+  $mb = function_exists('mb_stripos');
   foreach ($keywords as $keyword) {
     $match = array();
     foreach ($posts as $post) {
       $data = getXML(NMPOSTPATH.$post->slug.'.xml');
       $content = $data->title . $data->content;
-      if (stripos($content, $keyword) !== false)
+      if (($mb && mb_stripos($content, $keyword, 0, 'UTF-8') !== false) || (!$mb && stripos($content, $keyword) !== false))
         $match[] = $post;
     }
     $posts = $match;
