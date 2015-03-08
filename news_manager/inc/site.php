@@ -121,7 +121,7 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
  * @action search posts by keyword(s)
  */
 function nm_show_search_results() {
-  $keywords = @explode(' ', $_POST['keywords']);
+  $keywords = preg_split('/\s+/u',trim($_POST['keywords'])); 
   $posts = nm_get_posts();
   $mb = function_exists('mb_stripos');
   foreach ($keywords as $keyword) {
