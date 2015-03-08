@@ -121,18 +121,22 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
  * @action search posts by keyword(s)
  */
 function nm_show_search_results() {
-  $keywords = preg_split('/\s+/u',trim($_POST['keywords'])); 
-  $posts = nm_get_posts();
-  $mb = function_exists('mb_stripos');
-  foreach ($keywords as $keyword) {
-    $match = array();
-    foreach ($posts as $post) {
-      $data = getXML(NMPOSTPATH.$post->slug.'.xml');
-      $content = $data->title . $data->content;
-      if (($mb && mb_stripos($content, $keyword, 0, 'UTF-8') !== false) || (!$mb && stripos($content, $keyword) !== false))
-        $match[] = $post;
+  $keywords = preg_split('/\s+/u',trim($_POST['keywords']),null,PREG_SPLIT_NO_EMPTY);
+  if (empty($keywords)) {
+    $posts = array();
+  } else {
+    $posts = nm_get_posts();
+    $mb = function_exists('mb_stripos');
+    foreach ($keywords as $keyword) {
+      $match = array();
+      foreach ($posts as $post) {
+        $data = getXML(NMPOSTPATH.$post->slug.'.xml');
+        $content = $data->title . $data->content;
+        if (($mb && mb_stripos($content, $keyword, 0, 'UTF-8') !== false) || (!$mb && stripos($content, $keyword) !== false))
+          $match[] = $post;
+      }
+      $posts = $match;
     }
-    $posts = $match;
   }
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
