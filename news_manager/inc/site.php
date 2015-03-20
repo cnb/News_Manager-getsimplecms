@@ -244,6 +244,7 @@ function nm_reset_options($pagetype='') {
     'markupposttitle'   => isset($nmoption['markuptitle']) ? nm_clean_markup($nmoption['markuptitle']) : 'h3', // backwards NM 3.0
     'markuppostdate'    => 'p',
     'markuppostauthor'  => 'p',
+    'markuppostauthorname' => 'em',
     'markuppostimage'   => 'div',
     'markuppostcontent' => 'div',
     'markupposttags'    => 'p',
@@ -456,7 +457,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             if (empty($author) && $nmoption['defaultauthor'])
               $author = $nmoption['defaultauthor'];
             if (!empty($author))
-                echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <em>',$author,'</em></',$nmoption['markuppostauthor'],'>',PHP_EOL;
+                echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <',$nmoption['markuppostauthorname'],'>',$author,'</',$nmoption['markuppostauthorname'],'></',$nmoption['markuppostauthor'],'>',PHP_EOL;
           }
           break;
       }
