@@ -515,4 +515,13 @@ function nm_patch_i18n_url($url) {
   return str_replace(array('%language%/','%nondefaultlanguage%/','%parents%/'), array('','',''), $url);
 }
 
+## since 3.2
+
+function nm_get_fallback_lang() {
+  global $LANG;
+  $files = glob(NMLANGPATH.substr($LANG,0,2).'*.php');
+  $fallback = reset($files);
+  return $fallback ? basename($fallback, '.php') : 'en_US';
+}
+
 ?>

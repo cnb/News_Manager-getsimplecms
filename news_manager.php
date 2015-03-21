@@ -32,7 +32,7 @@ require_once(GSPLUGINPATH.'news_manager/inc/common.php');
 
 # language
 if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only
-  i18n_merge('news_manager') || i18n_merge('news_manager', 'en_US');
+  i18n_merge('news_manager') || i18n_merge('news_manager', nm_get_fallback_lang());
 }
 
 # hooks
