@@ -11,6 +11,11 @@
  * @return array with posts
  */
 function nm_get_posts($all=false) {
+  if (!$all) {
+    static $posts = null; // lazy initialization
+    if ($posts !== null)
+      return $posts; // if already loaded, return
+  }
   if (!file_exists(NMPOSTCACHE))
     nm_update_cache();
   $data = @getXML(NMPOSTCACHE);
