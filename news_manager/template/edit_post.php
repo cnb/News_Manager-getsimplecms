@@ -108,6 +108,7 @@ if ($imageinputpos > 0) {
         <input class="text short" id="post-time" name="post-time" type="text" value="<?php echo $time; ?>" />
       </p>
     </div>
+    <style>#post-private { width:auto !important; } /* properly align checkbox - fix for GetSimple 3.1+ */</style>
     <div class="leftopt">
       <p class="inline" id="post-private-wrap">
         <label for="post-private"><?php i18n('news_manager/POST_PRIVATE'); ?></label>
@@ -170,5 +171,20 @@ if ($imageinputpos > 0) {
 
     $('.submit').clone().appendTo('#sidebar');
     $('#sidebar .submit').css({'margin-left': '14px'}).click(function() { $('form#edit.largeform input.submit').trigger('click'); });
+    
+    /* highlight private post label - fix for GetSimple 3.1+ */
+    $("#post-private").change(function(){
+      if ($("#post-private").is(":checked")) { 
+        $("#post-private-wrap label").css("color", '#cc0000');
+      } else {
+        $("#post-private-wrap label").css("color", '#333333'); 
+      }
+    });
+    if ($("#post-private").is(":checked")) { 
+      $("#post-private-wrap label").css("color", '#cc0000');
+    } else {
+      $("#post-private-wrap label").css("color", '#333333'); 
+    }
+
   });
 </script>
