@@ -111,9 +111,8 @@ if ($imageinputpos > 0) {
     <style>#post-private { width:auto !important; } /* properly align checkbox - fix for GetSimple 3.1+ */</style>
     <div class="leftopt">
       <p class="inline" id="post-private-wrap">
+        <input type="checkbox" id="post-private" name="post-private" <?php echo $private; ?> />&nbsp;
         <label for="post-private"><?php i18n('news_manager/POST_PRIVATE'); ?></label>
-        &nbsp;&nbsp;
-        <input type="checkbox" id="post-private" name="post-private" <?php echo $private; ?> />
       </p>
     </div>
     <div class="clear"></div>
