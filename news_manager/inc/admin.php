@@ -12,6 +12,14 @@
 function nm_admin_panel() {
   global $NMPAGEURL;
   $posts = nm_get_posts(true);
+  if (nm_post_files_differ($posts)) {
+    nm_update_cache();
+    $posts = nm_get_posts(true);
+    if (nm_post_files_differ($posts))
+      nm_display_message('<b>Warning:</b> Post files/cache mismatch', true);
+    else
+      nm_display_message('Post cache file has been updated', false);
+  }
   ?>
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
   <div class="edit-nav clearfix">

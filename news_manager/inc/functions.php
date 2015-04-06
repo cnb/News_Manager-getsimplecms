@@ -529,4 +529,13 @@ function nm_get_fallback_lang() {
   return $fallback ? basename($fallback, '.php') : 'en_US';
 }
 
+function nm_post_files_differ(&$posts) {
+  $slugs = $files = array();
+  foreach ($posts as $post)
+    $slugs[] = (string)$post->slug;
+  foreach (glob(NMPOSTPATH.'*.xml') as $file)
+    $files[] = basename($file, '.xml');
+  return (count($files) != count($slugs) || count(array_diff($slugs, $files)) > 0);
+}
+
 ?>
