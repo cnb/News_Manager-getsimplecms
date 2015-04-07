@@ -16,9 +16,9 @@ function nm_admin_panel() {
     nm_update_cache();
     $posts = nm_get_posts(true);
     if (nm_post_files_differ($posts))
-      nm_display_message('<b>Warning:</b> Post files/cache mismatch', true);
+      nm_display_message('<b>Warning:</b> Post files/cache mismatch', true); // not translated
     else
-      nm_display_message('Post cache file has been updated', false);
+      nm_display_message('Post cache file has been updated', false); // not translated
   }
   ?>
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
