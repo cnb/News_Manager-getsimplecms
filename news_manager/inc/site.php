@@ -450,10 +450,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
         case 'author':
           if ($nmoption['showauthor']) {
-            global $NMAUTHOR;
-            $author = stripslashes($post->author);
-            if (isset($NMAUTHOR[$author]))
-              $author = $NMAUTHOR[$author]; // custom authors array
+            $author = nm_get_author_name_html(stripslashes($post->author));
             if (empty($author) && $nmoption['defaultauthor'])
               $author = $nmoption['defaultauthor'];
             if (!empty($author))
@@ -864,6 +861,25 @@ function nm_clean_classes($str) {
     '~','!','@','$','%','^','&','*','(',')','+','=',',','.','/',
     '\'',';',':','"','?','>','<','[',']','\\','{','}','|','`','#'
     ), '', $str));
+}
+
+/***** since 3.2 ****/
+
+// returns display name for specified user, ready to be echoed
+// (loads user file if name not in global array $NMAUTHOR)
+function nm_get_author_name_html($author='') {
+  global $NMAUTHOR;
+  if (!$NMAUTHOR) $NMAUTHOR = array();
+  if (isset($NMAUTHOR[$author])) {
+    $name = $NMAUTHOR[$author];
+  } elseif (file_exists(GSUSERSPATH.$author.'.xml')) {
+      $userxml = getXML(GSUSERSPATH.$author.'.xml');
+      $name = !empty($userxml->NAME) ? htmlspecialchars($userxml->NAME) : $author;
+      $NMAUTHOR[$author] = $name;
+  } else {
+    $name = $author;
+  }
+  return $name;
 }
 
 ?>
