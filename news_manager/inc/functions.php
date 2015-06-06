@@ -175,11 +175,13 @@ function nm_get_parent() {
 /*******************************************************
  * @function nm_get_image_url
  * @param $pic image URL, full or relative to data/uploads/
- * @return absolute URL of thumbnail/image as defined by $nmoption settings
+ * @return absolute URL of thumbnail/image as defined by $nmoption settings / registers allowed sizes since 3.2
  * @since 3.0
  */
 function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=null) {
-  global $SITEURL, $nmoption;
+  global $SITEURL, $nmoption, $nmimagesizes;
+  if (!$nmimagesizes)
+    $nmimagesizes = array();
   $url = '';
   if (empty($pic)) {
     if ($default)
@@ -205,6 +207,15 @@ function nm_get_image_url($pic, $width=null, $height=null, $crop=null, $default=
         $c = $crop ? '&c=1' : '';
         $gt = $nmoption['imagethumbnail'] ? '&gt=1' : '';
         $url = $SITEURL.'plugins/news_manager/browser/pic.php?p='.$pic.$w.$h.$c.$gt;
+        # register image size for pic.php - since 3.2
+        $size = array('w' => $width, 'h' => $height, 'c' => $crop);
+        if (!in_array($size, $nmimagesizes)) {
+          $nmimagesizes[] = $size;
+          $file = NMDATAPATH.'images.'.($crop && $width && $height ? 'C' : '').($width ? $width.'x' : '0x').($height ? $height : '0').'.txt';
+          if (!file_exists($file)) {
+            file_put_contents($file, '');
+          }
+        }
       }
     } else {
       if ($nmoption['imageexternal'])

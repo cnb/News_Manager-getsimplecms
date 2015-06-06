@@ -3,7 +3,7 @@
 # | Copyright (c) 2013 Martin Vlcek                                    |
 # | License: GPLv3 (http://www.gnu.org/licenses/gpl-3.0.html)          |
 # +--------------------------------------------------------------------+
-# | Modified by Carlos Navarro for News Manager (GetSimple CMS plugin) |
+# | Modified by Carlos Navarro for News Manager 3.2 (GetSimple plugin) |
 # +--------------------------------------------------------------------+
 
 define('CACHE_SECONDS', 3600*24); // for how long images should be cached
@@ -47,10 +47,12 @@ if (!$maxWidth && !$maxHeight) {
 } else {
   $pos = strrpos($infile,'/');
   if ($pos === false) $pos = -1;
-  $outfile = substr($infile, 0, $pos+1) . PREFIX . ($crop ? 'C' : '') . ($maxWidth ? $maxWidth.'x' : '0x') . ($maxHeight ? $maxHeight.'.' : '0.') . substr($infile, $pos+1);
+  $strSize = ($crop ? 'C' : '') . ($maxWidth ? $maxWidth.'x' : '0x') . ($maxHeight ? $maxHeight.'.' : '0.');
+  $outfile = substr($infile, 0, $pos+1) . PREFIX . $strSize . substr($infile, $pos+1);
   $outfile = substr($outfile, 0, strrpos($outfile,'.')) . '.jpg';
   $thumbdir = $datadir . 'thumbs/';
   if (!file_exists($thumbdir.$outfile) || @filemtime($thumbdir.$outfile) < @filemtime($imagedir.$infile)) {
+    if (!file_exists($datadir.'other/news_manager/images.'.$strSize.'txt')) die('Invalid dimensions!');
     if (!file_exists($imagedir.$infile)) die('File not found!');
     $info = @getimagesize($imagedir.$infile);
     if (!$info) die('Not an image!');

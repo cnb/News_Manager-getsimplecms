@@ -78,6 +78,8 @@ function nm_save_settings() {
     if ($backup['pretty_urls'] != 'Y' || $backup['page_url'] != $NMPAGEURL)
       nm_display_message(sprintf(i18n_r('news_manager/UPDATE_HTACCESS'), 'load.php?id=news_manager&amp;htaccess'), true);
   }
+  # clear registered image sizes for pic.php - since 3.2
+  foreach (glob(NMDATAPATH.'images.*.txt') as $file) unlink ($file);
 }
 
 
