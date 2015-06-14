@@ -3,14 +3,14 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 3.2 beta
+Version: 3.2
 Original author: Rogier Koppejan
 Updated by: Carlos Navarro
 
 */
 
 # plugin version
-define('NMVERSION', '3.2 beta 27');
+define('NMVERSION', '3.2');
 
 # get correct id for plugin
 $thisfile = basename(__FILE__, '.php');
