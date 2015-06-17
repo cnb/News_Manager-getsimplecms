@@ -25,7 +25,7 @@ $isUnixHost = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? false : true);
 $fullPath = htmlentities((string) $SITEURL."data/uploads/", ENT_QUOTES);
 $sitepath = htmlentities((string) $SITEURL, ENT_QUOTES);
 
-$func = @$_GET['func'];
+$func = preg_replace('/[^\w]/', '', @$_GET['func']);
 $type = @$_GET['type'];
 $sort = @$_GET['sort'];
 if (empty($sort) && defined('NMIMAGESORT'))
