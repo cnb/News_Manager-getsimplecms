@@ -59,6 +59,8 @@ if (function_exists('register_script')) {
       register_script('jquery-validate',$SITEURL.'plugins/news_manager/js/jquery.validate.min.js', '1.10.0', false);
     }
     queue_script('jquery-validate', GSBACK);
+    register_script('jquery-areyousure', $SITEURL.'plugins/news_manager/js/jquery.are-you-sure.js', '1.9.0', false);
+    queue_script('jquery-areyousure', GSBACK);
   }
 }
 

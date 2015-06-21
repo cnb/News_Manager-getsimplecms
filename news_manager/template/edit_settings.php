@@ -222,6 +222,9 @@
     } else {
       $('#customsettings').hide();
     }
+    
+    $('form').areYouSure({'message':'<?php i18n('UNSAVED_INFORMATION'); ?>'});
+
   });
 
   $('#images').change(function(){
