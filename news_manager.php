@@ -103,6 +103,7 @@ function nm_admin() {
  */
 function nm_frontend_init() {
   global $NMPAGEURL, $nmpagetype, $nmsingletag;
+  if (function_exists('i18n_init')) i18n_init(); // I18N plugin
   $nmpagetype = array();
   nm_i18n_merge();
   if (strval(get_page_slug(false)) == $NMPAGEURL) {
