@@ -14,14 +14,14 @@ function nm_list_recent() {
   if ($NMPAGEURL == '') return;
   $posts = nm_get_posts();
   if (!empty($posts)) {
-    echo '<ul class="nm_recent">',PHP_EOL;
+    echo '<ul class="nm_recent">',"\n";
     $posts = array_slice($posts, 0, $NMRECENTPOSTS, true);
     foreach ($posts as $post) {
       $url = nm_get_url('post') . $post->slug;
       $title = stripslashes($post->title);
-      echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
+      echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
     }
-    echo '</ul>',PHP_EOL;
+    echo '</ul>',"\n";
   }
 }
 
@@ -36,7 +36,7 @@ function nm_list_archives($fmt='') {
   if ($NMPAGEURL == '') return;
   $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
   if (!empty($archives)) {
-    echo '<ul class="nm_archives">',PHP_EOL;
+    echo '<ul class="nm_archives">',"\n";
     if ($NMSETTING['archivesby'] == 'y') {
       # annual
       if (!$fmt) $fmt = isset($i18n['news_manager/YEARLY_FORMAT']) ? $i18n['news_manager/YEARLY_FORMAT'] : '%Y';
@@ -44,7 +44,7 @@ function nm_list_archives($fmt='') {
         $y = $archive;
         $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
         $url = nm_get_url('archive') . $archive;
-        echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
+        echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
       }
     } else {
       # monthly
@@ -53,10 +53,10 @@ function nm_list_archives($fmt='') {
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
         $url = nm_get_url('archive') . $archive;
-        echo '  <li><a href="',$url,'">',$title,'</a></li>',PHP_EOL;
+        echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
       }
     }
-    echo '</ul>',PHP_EOL;
+    echo '</ul>',"\n";
   }
 }
 
@@ -78,11 +78,11 @@ function nm_list_tags() {
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
       if ($min < $max && $count/$max > 0.5)
-        echo '<a class="large" href="',$url,'">',htmlspecialchars($tag),'</a>',PHP_EOL;
+        echo '<a class="large" href="',$url,'">',htmlspecialchars($tag),'</a>',"\n";
       else
-        echo '<a href="',$url,'">',htmlspecialchars($tag),'</a>',PHP_EOL;
+        echo '<a href="',$url,'">',htmlspecialchars($tag),'</a>',"\n";
     }
-    echo PHP_EOL;
+    echo "\n";
   }
 }
 
@@ -99,12 +99,12 @@ function nm_tag_list() {
     if (substr($tag, 0, 1) != '_')
       $tags[$tag] = count($posts);
   if (!empty($tags)) {
-    echo '<ul class="nm_tag_list">',PHP_EOL;
+    echo '<ul class="nm_tag_list">',"\n";
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
-      echo '  <li><a href="',$url,'">',htmlspecialchars($tag),'</a></li>',PHP_EOL;
+      echo '  <li><a href="',$url,'">',htmlspecialchars($tag),'</a></li>',"\n";
     }
-    echo '</ul>',PHP_EOL;
+    echo '</ul>',"\n";
   }
 }
 

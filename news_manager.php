@@ -112,7 +112,7 @@ function nm_frontend_init() {
     $metad = ' ';
     $nmpagetype[] = 'site';
     ob_start();
-    echo PHP_EOL;
+    echo "\n";
     if (isset($_POST['search'])) {
         nm_reset_options('search');
         nm_show_search_results();

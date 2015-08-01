@@ -24,7 +24,7 @@
         $option = ($slug != '') ? $slug : '-';
         echo '<option value="',$slug,'"';
         if ($slug == $NMPAGEURL) echo ' selected="selected"';
-        echo '>',$option,'</option>',PHP_EOL;
+        echo '>',$option,'</option>',"\n";
       }
       ?>
       </select>
