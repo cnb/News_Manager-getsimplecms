@@ -90,10 +90,24 @@ function nm_list_tags() {
  * @function nm_tag_list
  * @action display list of unique tags
  * @since 3.0
+ * @param $args (since 3.3) array with optional parameters
  */
-function nm_tag_list() {
+function nm_tag_list($args = null) {
   global $NMPAGEURL;
   if ($NMPAGEURL == '') return;
+  $defaults = array(
+    'classcurrent' => false
+  );
+  if (!$args || !is_array($args))
+    $args = $defaults;
+  else
+    $args = array_merge($defaults, $args);
+  if ($args['classcurrent']) {
+    $classcurrent = $args['classcurrent'];
+    $currenttag = nm_single_tag_title('', '', false);
+  } else {
+    $classcurrent = false;
+  }
   $tags = array();
   foreach (nm_get_tags() as $tag=>$posts)
     if (substr($tag, 0, 1) != '_')
@@ -102,7 +116,11 @@ function nm_tag_list() {
     echo '<ul class="nm_tag_list">',"\n";
     foreach ($tags as $tag=>$count) {
       $url = nm_get_url('tag').rawurlencode($tag);
-      echo '  <li><a href="',$url,'">',htmlspecialchars($tag),'</a></li>',"\n";
+      if ($classcurrent && $tag == $currenttag)
+        echo '  <li class="',htmlspecialchars($classcurrent),'">';
+      else
+        echo '  <li>';
+      echo '<a href="',$url,'">',htmlspecialchars($tag),'</a></li>',"\n";
     }
     echo '</ul>',"\n";
   }
