@@ -96,6 +96,7 @@ function nm_tag_list($args = null) {
   global $NMPAGEURL;
   if ($NMPAGEURL == '') return;
   $defaults = array(
+    'showcount' => false,
     'classcurrent' => false
   );
   if (!$args || !is_array($args))
@@ -120,7 +121,10 @@ function nm_tag_list($args = null) {
         echo '  <li class="',htmlspecialchars($classcurrent),'">';
       else
         echo '  <li>';
-      echo '<a href="',$url,'">',htmlspecialchars($tag),'</a></li>',"\n";
+      echo '<a href="',$url,'">',htmlspecialchars($tag),'</a>';
+      if ($args['showcount'])
+        echo '&nbsp;(',$count,')';
+      echo '</li>',"\n";
     }
     echo '</ul>',"\n";
   }
