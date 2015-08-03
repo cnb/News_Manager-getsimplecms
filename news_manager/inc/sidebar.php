@@ -29,11 +29,23 @@ function nm_list_recent() {
 /*******************************************************
  * @function nm_list_archives
  * @action print a list of archives ordered by month or year
- * @param $fmt optional custom format (strftime), default "%B %Y" or "%Y" or as defined in language file
+ * @param $args (since 3.3) array with optional parameters, or
+                (since 3.0, deprecated) optional custom format (strftime), default "%B %Y" or "%Y" or as defined in language file
  */
-function nm_list_archives($fmt='') {
+function nm_list_archives($args = '') {
   global $NMPAGEURL, $NMSETTING;
   if ($NMPAGEURL == '') return;
+  $defaults = array(
+    'dateformat' => ''
+  );
+  if (!$args) {
+    $args = $defaults;
+  } else {
+    if (!is_array($args)) // backwards NM 3.0 - deprecate
+      $args = array('dateformat' => strval($args));
+    $args = array_merge($defaults, $args);
+  }
+  $fmt = $args['dateformat'];
   $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',"\n";
