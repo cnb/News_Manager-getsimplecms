@@ -46,27 +46,28 @@ function nm_list_archives($args = '') {
     $args = array_merge($defaults, $args);
   }
   $fmt = $args['dateformat'];
-  $archives = array_keys(nm_get_archives($NMSETTING['archivesby']));
+  $archivesby = $NMSETTING['archivesby'];
+  $archives = array_keys(nm_get_archives($archivesby));
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',"\n";
-    if ($NMSETTING['archivesby'] == 'y') {
-      # annual
-      if (!$fmt) $fmt = isset($i18n['news_manager/YEARLY_FORMAT']) ? $i18n['news_manager/YEARLY_FORMAT'] : '%Y';
-      foreach ($archives as $archive) {
+    if (!$fmt) {
+      if ($archivesby == 'y')
+        $fmt = isset($i18n['news_manager/YEARLY_FORMAT']) ? $i18n['news_manager/YEARLY_FORMAT'] : '%Y';
+      else
+        $fmt = isset($i18n['news_manager/MONTHLY_FORMAT']) ? $i18n['news_manager/MONTHLY_FORMAT'] : '%B %Y';
+    }
+    foreach ($archives as $archive) {
+      if ($archivesby == 'y') {
+        # annual
         $y = $archive;
         $title = nm_get_date($fmt, mktime(0, 0, 0, 1, 1, $y));
-        $url = nm_get_url('archive') . $archive;
-        echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
-      }
-    } else {
-      # monthly
-      if (!$fmt) $fmt = isset($i18n['news_manager/MONTHLY_FORMAT']) ? $i18n['news_manager/MONTHLY_FORMAT'] : '%B %Y';
-      foreach ($archives as $archive) {
+      } else {
+        # monthly
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
-        $url = nm_get_url('archive') . $archive;
-        echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
       }
+      $url = nm_get_url('archive') . $archive;
+      echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
     }
     echo '</ul>',"\n";
   }
