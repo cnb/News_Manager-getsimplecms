@@ -36,6 +36,7 @@ function nm_list_archives($args = '') {
   global $NMPAGEURL, $NMSETTING;
   if ($NMPAGEURL == '') return;
   $defaults = array(
+    'showcount' => false,
     'dateformat' => ''
   );
   if (!$args) {
@@ -46,8 +47,12 @@ function nm_list_archives($args = '') {
     $args = array_merge($defaults, $args);
   }
   $fmt = $args['dateformat'];
+  $showcount = $args['showcount'];
   $archivesby = $NMSETTING['archivesby'];
-  $archives = array_keys(nm_get_archives($archivesby));
+  $archives = array();
+  foreach (nm_get_archives($archivesby) as $archive=>$slugs)
+    $archives[$archive] = count($slugs);
+
   if (!empty($archives)) {
     echo '<ul class="nm_archives">',"\n";
     if (!$fmt) {
@@ -56,7 +61,7 @@ function nm_list_archives($args = '') {
       else
         $fmt = isset($i18n['news_manager/MONTHLY_FORMAT']) ? $i18n['news_manager/MONTHLY_FORMAT'] : '%B %Y';
     }
-    foreach ($archives as $archive) {
+    foreach ($archives as $archive=>$count) {
       if ($archivesby == 'y') {
         # annual
         $y = $archive;
@@ -67,7 +72,9 @@ function nm_list_archives($args = '') {
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
       }
       $url = nm_get_url('archive') . $archive;
-      echo '  <li><a href="',$url,'">',$title,'</a></li>',"\n";
+      echo '  <li><a href="',$url,'">',$title,'</a>';
+      if ($showcount) echo '&nbsp;(',$count,')'; 
+      echo '</li>',"\n";
     }
     echo '</ul>',"\n";
   }
