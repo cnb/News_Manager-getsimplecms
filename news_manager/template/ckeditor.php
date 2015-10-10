@@ -23,8 +23,7 @@ if ($EDTOOL == 'advanced') {
 }
 
 global $HTMLEDITOR, $TEMPLATE, $SITEURL;
-if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
-  if (isset ($HTMLEDITOR) && $HTMLEDITOR != '') {
+if (isset($HTMLEDITOR) && $HTMLEDITOR != '') {
     ?>
     <script type="text/javascript" src="template/js/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
@@ -59,7 +58,6 @@ if (isset($_GET['id']) and $_GET['id'] == "news_manager") {
       linkdefault = 'url';
     </script>
     <?php
-  }
 }
 
 ?>
