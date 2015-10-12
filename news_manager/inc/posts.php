@@ -11,6 +11,7 @@
  * @action edit or create posts
  */
 function nm_edit_post($slug = '') {
+  global $HTMLEDITOR;
   $newpost = ($slug === '');
   if ($newpost) {
     $title   = '';
@@ -41,7 +42,9 @@ function nm_edit_post($slug = '') {
     $mtime = date(i18n_r('DATE_AND_TIME_FORMAT'), filemtime($file));
     echo '<small>',i18n_r('news_manager/LAST_SAVED'),': ',$mtime,'</small>';
   }
-  include(NMTEMPLATEPATH . 'ckeditor.php');
+  # wysiwyg editor
+  if (isset($HTMLEDITOR) && $HTMLEDITOR != '')
+    include(NMTEMPLATEPATH . 'ckeditor.php');
 }
 
 

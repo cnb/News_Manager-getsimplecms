@@ -4,6 +4,7 @@
  * CKEditor template
  */
 
+global $TEMPLATE, $SITEURL;
 
 $EDHEIGHT = defined('GSEDITORHEIGHT') ? GSEDITORHEIGHT.'px' : '300px';
 $EDTOOL = defined('GSEDITORTOOL') ? GSEDITORTOOL : 'basic';
@@ -22,9 +23,7 @@ if ($EDTOOL == 'advanced') {
   $TOOLBAR = GSEDITORTOOL;
 }
 
-global $HTMLEDITOR, $TEMPLATE, $SITEURL;
-if (isset($HTMLEDITOR) && $HTMLEDITOR != '') {
-    ?>
+?>
     <script type="text/javascript" src="template/js/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
       var editor = CKEDITOR.replace('post-content', {
@@ -57,7 +56,3 @@ if (isset($HTMLEDITOR) && $HTMLEDITOR != '') {
       });
       linkdefault = 'url';
     </script>
-    <?php
-}
-
-?>
