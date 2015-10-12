@@ -43,16 +43,13 @@ if ($EDTOOL == 'advanced') {
         uiColor : '#FFFFFF',
         height: '<?php echo $EDHEIGHT; ?>',
         baseHref : '<?php echo $SITEURL; ?>',
-        toolbar :
-        [
-        <?php echo $TOOLBAR; ?>
-        ]
-        <?php echo $EDOPTIONS; ?>,
         tabSpaces:10,
         filebrowserBrowseUrl : 'filebrowser.php?type=all',
         filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
         filebrowserWindowWidth : '730',
-        filebrowserWindowHeight : '500'
+        filebrowserWindowHeight : '500',
+        toolbar : [ <?php echo $TOOLBAR; ?> ]
+        <?php echo $EDOPTIONS; ?>
       });
       linkdefault = 'url';
     </script>
