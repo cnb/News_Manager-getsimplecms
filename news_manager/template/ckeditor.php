@@ -12,15 +12,17 @@ $EDLANG = defined('GSEDITORLANG') ? GSEDITORLANG : i18n_r('CKEDITOR_LANG');
 $EDOPTIONS = defined('GSEDITOROPTIONS') && trim(GSEDITOROPTIONS) != '' ? ', '.GSEDITOROPTIONS : '';
 
 if ($EDTOOL == 'advanced') {
-  $TOOLBAR = "
+  $TOOLBAR = "[
     ['Bold', 'Italic', 'Underline', 'NumberedList', 'BulletedList', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock', 'Table', 'TextColor', 'BGColor', 'Link', 'Unlink', 'Image', 'RemoveFormat', 'Source'],
     '/',
     ['Styles','Format','Font','FontSize']
-  ";
+  ]";
 } elseif ($EDTOOL == 'basic') {
-  $TOOLBAR = "['Bold', 'Italic', 'Underline', 'NumberedList', 'BulletedList', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock', 'Link', 'Unlink', 'Image', 'RemoveFormat', 'Source']";
+  $TOOLBAR = "[['Bold', 'Italic', 'Underline', 'NumberedList', 'BulletedList', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock', 'Link', 'Unlink', 'Image', 'RemoveFormat', 'Source']]";
+} elseif (strpos($EDTOOL, '[') === false) {
+  $TOOLBAR = "'$EDTOOL'";
 } else {
-  $TOOLBAR = GSEDITORTOOL;
+  $TOOLBAR = "[$EDTOOL]";
 }
 
 ?>
@@ -48,7 +50,7 @@ if ($EDTOOL == 'advanced') {
         filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
         filebrowserWindowWidth : '730',
         filebrowserWindowHeight : '500',
-        toolbar : [ <?php echo $TOOLBAR; ?> ]
+        toolbar : <?php echo $TOOLBAR; ?>
         <?php echo $EDOPTIONS; ?>
       });
       linkdefault = 'url';
