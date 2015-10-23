@@ -72,6 +72,8 @@ function nm_show_tag($tag, $filter=true) {
   if (array_key_exists($tag, $tags)) {
     $showexcerpt = nm_get_option('excerpt');
     $posts = $tags[$tag];
+    $max = intval(nm_get_option('maxposts'));
+    if ($max) $posts = array_slice($posts, 0, $max);
     if ($filter) ob_start();
     foreach ($posts as $slug)
       nm_show_post($slug, $showexcerpt, false);
