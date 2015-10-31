@@ -581,4 +581,20 @@ function nm_post_files_differ(&$posts) {
   return (count($files) != count($slugs) || count(array_diff($slugs, $files)) > 0);
 }
 
+## since 3.3
+
+function nm_add_mu_permissions() {
+  if (function_exists('add_mu_permission')) {
+    add_mu_permission('news_manager_settings',i18n_r('news_manager/NM_SETTINGS')); // test cnb
+  }
+}
+
+function nm_allow_settings() {
+  global $USR;
+  if (function_exists('check_user_permission'))
+    return check_user_permission($USR, 'news_manager_settings');
+  else
+    return true;
+}
+
 ?>

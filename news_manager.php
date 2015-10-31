@@ -38,6 +38,7 @@ if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only
 # hooks
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
 add_action('header', 'nm_header_include');
+add_action('header', 'nm_add_mu_permissions');
 add_action('index-pretemplate', 'nm_frontend_init');
 add_action('theme-header','nm_restore_page_title');
 //add_filter('content', 'nm_site'); // deprecated

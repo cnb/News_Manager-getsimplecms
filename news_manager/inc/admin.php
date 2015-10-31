@@ -25,7 +25,9 @@ function nm_admin_panel() {
   <div class="edit-nav clearfix">
     <a href="#" id="filter-button" ><?php i18n('FILTER'); ?></a>
     <a href="load.php?id=news_manager&amp;edit"><?php i18n('news_manager/NEW_POST'); ?></a>
-    <a href="load.php?id=news_manager&amp;settings"><?php i18n('news_manager/SETTINGS'); ?></a>
+    <?php if (nm_allow_settings()) { ?>
+      <a href="load.php?id=news_manager&amp;settings"><?php i18n('news_manager/SETTINGS'); ?></a>
+    <?php } ?>
   </div>
   <?php
   if (!empty($posts)) {

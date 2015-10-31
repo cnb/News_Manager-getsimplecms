@@ -30,9 +30,13 @@ function nm_env_check() {
 function nm_edit_settings() {
   global $PRETTYURLS, $PERMALINK, $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT,
          $NMEXCERPTLENGTH, $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
-  if (defined('GSCANONICAL') && GSCANONICAL)
-    nm_display_message('<b>Warning:</b> This plugin may not work properly if GSCANONICAL is enabled (gsconfig.php)', true); // not translated
-  include(NMTEMPLATEPATH . 'edit_settings.php');
+  if (nm_allow_settings()) {
+    if (defined('GSCANONICAL') && GSCANONICAL)
+      nm_display_message('<b>Warning:</b> This plugin may not work properly if GSCANONICAL is enabled (gsconfig.php)', true); // not translated
+    include(NMTEMPLATEPATH . 'edit_settings.php');
+  } else {
+    echo 'Access not allowed!';
+  }
 }
 
 
@@ -43,6 +47,7 @@ function nm_edit_settings() {
 function nm_save_settings() {
   global $NMPAGEURL, $NMPRETTYURLS, $NMLANG, $NMSHOWEXCERPT, $NMEXCERPTLENGTH,
          $NMPOSTSPERPAGE, $NMRECENTPOSTS, $NMSETTING;
+  if (!nm_allow_settings()) die('Forbidden!');
   $backup = array('page_url' => $NMPAGEURL, 'pretty_urls' => $NMPRETTYURLS);
   # parse $_POST
   $NMPAGEURL       = $_POST['page-url'];
