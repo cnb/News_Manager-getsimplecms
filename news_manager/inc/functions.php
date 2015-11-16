@@ -375,23 +375,40 @@ function nm_make_excerpt($content, $len=200, $ellipsis='', $break=false) {
 
 /*******************************************************
  * @function nm_i18n_merge
- * @action update the $i18n language array (frontend)
+ * @action update the $i18n language array
+ * @param $backend (since 3.3) if true, use current GS language - else use NM front-end language
  */
-function nm_i18n_merge() {
-  global $NMLANG;
-  if (isset($NMLANG) && $NMLANG != '') {
-    if (dirname(realpath(NMLANGPATH.$NMLANG.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
-    include(NMLANGPATH.$NMLANG.'.php');
-    global $nm_i18n;
-    if ($nm_i18n) {
-      $nm_i18n = array_merge($i18n, $nm_i18n); // merge custom array
+function nm_i18n_merge($backend = false) {
+  if ($backend) {
+    global $LANG;
+    if (file_exists(NMLANGPATH.$LANG.'.php')) {
+      $lang = $LANG;
     } else {
-      $nm_i18n = $i18n;
+      $files = glob(NMLANGPATH.substr($LANG,0,2).'*.php');
+      $fallback = reset($files);
+      $lang = $fallback ? basename($fallback, '.php') : 'en_US';
     }
-    global $i18n;
-    foreach ($nm_i18n as $code=>$text)
-      $i18n['news_manager/' . $code] = $text;
+  } else {
+    # frontend
+    global $NMLANG;
+    $lang = $NMLANG ? $NMLANG : null;
   }
+  if ($lang && file_exists(NMLANGPATH.$lang.'.php')) {
+    if (dirname(realpath(NMLANGPATH.$lang.'.php')) != realpath(NMLANGPATH)) die(''); // path traversal
+    include(NMLANGPATH.$lang.'.php');
+  } else {
+    $i18n = array();
+  }
+  global $nm_i18n;
+  if ($nm_i18n) {
+    $nm_i18n = array_merge($i18n, $nm_i18n);
+  } else {
+    $nm_i18n = $i18n;
+  }
+  # add to global $i18n array
+  global $i18n;
+  foreach ($nm_i18n as $code=>$text)
+    $i18n['news_manager/'.$code] = $text;
 }
 
 
@@ -564,13 +581,6 @@ function nm_patch_i18n_url($url) {
 }
 
 ## since 3.2
-
-function nm_get_fallback_lang() {
-  global $LANG;
-  $files = glob(NMLANGPATH.substr($LANG,0,2).'*.php');
-  $fallback = reset($files);
-  return $fallback ? basename($fallback, '.php') : 'en_US';
-}
 
 function nm_post_files_differ(&$posts) {
   $slugs = $files = array();
