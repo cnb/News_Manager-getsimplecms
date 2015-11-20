@@ -91,7 +91,6 @@ function nm_get_languages() {
 function nm_get_date($format, $timestamp) {
   global $NMLANG, $i18n;
   $locale = setlocale(LC_TIME, 0);
-  // setlocale(LC_TIME, $NMLANG);
   if (array_key_exists('news_manager/LOCALE', $i18n)) {
     setlocale(LC_TIME, preg_split('/\s*,\s*/', trim($i18n['news_manager/LOCALE']), -1, PREG_SPLIT_NO_EMPTY));
   } else {
