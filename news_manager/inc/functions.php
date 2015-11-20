@@ -90,6 +90,9 @@ function nm_get_languages() {
  */
 function nm_get_date($format, $timestamp) {
   global $NMLANG, $i18n;
+  static $win = null;
+  if ($win === null)
+    $win = strtoupper(substr(PHP_OS, 0, 3)) == 'WIN';
   $locale = setlocale(LC_TIME, 0);
   if (array_key_exists('news_manager/LOCALE', $i18n)) {
     setlocale(LC_TIME, preg_split('/\s*,\s*/', trim($i18n['news_manager/LOCALE']), -1, PREG_SPLIT_NO_EMPTY));
@@ -98,7 +101,7 @@ function nm_get_date($format, $timestamp) {
     $lg = substr($NMLANG,0,2);
     setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
   }
-  if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+  if ($win) {
     # fixes for Windows
     $format = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $format); // strftime %e parameter not supported
     $date = utf8_encode(strftime($format, $timestamp)); // strftime returns ISO-8859-1 encoded string
