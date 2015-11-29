@@ -108,6 +108,7 @@ if ($imageinputpos > 0) {
         <input class="text short" id="post-time" name="post-time" type="text" value="<?php echo $time; ?>" />
       </p>
     </div>
+    <div class="clear"></div>
     <style>#post-private { width:auto !important; } /* properly align checkbox - fix for GetSimple 3.1+ */</style>
     <div class="leftopt">
       <p class="inline" id="post-private-wrap">
