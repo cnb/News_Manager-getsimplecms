@@ -10,11 +10,11 @@ $i18n = array(
 # general
 "PLUGIN_NAME"         =>  "News Manager",
 
-# Fehler messages
+# error messages
 "ERROR_ENV"           =>  "Der Ordner mit den Beiträgen und/oder die Konfigurationsdatei konnte nicht aufgerufen werden. Passen Sie bitte die Dateirechte an: <em>CHMOD 777</em> für den Order /data, /backups sowie die Unterordner und versuchen Sie es noch einmal.",
-"ERROR_SAVE"          =>  "<b>Fehler:</b> Die Änderungen konnten nicht geschrieben werden. <em>CHMOD 777</em> Sie bitte die Rechte für den Ordner /data, /backups und seine Unterordner und versuchen Sie es noch einmal.",
-"ERROR_DELETE"        =>  "<b>Fehler:</b> Der Beitrag kann nicht gelöscht werden. <em>CHMOD 777</em> Sie bitte die Rechte für den Ordner /data, /backups und seine Unterordner und versuchen Sie es noch einmal.",
-"ERROR_RESTORE"       =>  "<b>Error:</b> Unable to restore the post. <em>CHMOD 777</em> the folders /data, /backups and their sub-folders and retry.",
+"ERROR_SAVE"          =>  "<b>Fehler:</b> Die Änderungen konnten nicht geschrieben werden. Passen Sie bitte die Dateirechte an: <em>CHMOD 777</em> für den Order /data, /backups und seine Unterordner und versuchen Sie es noch einmal.",
+"ERROR_DELETE"        =>  "<b>Fehler:</b> Der Beitrag konnte nicht gelöscht werden.  Passen Sie bitte die Dateirechte an: <em>CHMOD 777</em> für den Order /data, /backups und seine Unterordner und versuchen Sie es noch einmal.",
+"ERROR_RESTORE"       =>  "<b>Fehler:</b> Der Beitrag konnte nicht wiederhergestellt werden. Passen Sie bitte die Dateirechte an: <em>CHMOD 777</em> für den Order /data, /backups und seine Unterordner und versuchen Sie es noch einmal.",
 
 # success messages
 "SUCCESS_SAVE"        =>  "Die Änderungen wurden gespeichert.",
