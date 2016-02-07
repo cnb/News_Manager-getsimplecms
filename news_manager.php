@@ -119,25 +119,33 @@ function nm_frontend_init() {
         nm_show_search_results();
         $nmpagetype[] = 'search';
 
-    } elseif (isset($_GET[NMPARAMARCHIVE])) {
-        nm_reset_options('archive');
-        if (nm_show_archive($_GET[NMPARAMARCHIVE], false))
-          $nmpagetype[] = 'archive';
-
     } elseif (isset($_GET[NMPARAMTAG])) {
         $tag = rawurldecode($_GET[NMPARAMTAG]);
         $result = false;
-        nm_reset_options('tag');
-        if (nm_get_option('tagpagination')) {
-          $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : NMFIRSTPAGE;
-          $result = nm_show_tag_page($tag, $index, false);
+        if (isset($_GET[NMPARAMARCHIVE])) {
+          nm_reset_options('archive');
+          if (nm_get_option('tagarchives')) {
+            $result = nm_show_tag_archive($tag, $_GET[NMPARAMARCHIVE], false);
+            if ($result) $nmpagetype[] = 'archive';
+          }
         } else {
-          $result = nm_show_tag($tag, false);
+          nm_reset_options('tag');
+          if (nm_get_option('tagpagination')) {
+            $index = isset($_GET[NMPARAMPAGE]) ? intval($_GET[NMPARAMPAGE]) : NMFIRSTPAGE;
+            $result = nm_show_tag_page($tag, $index, false);
+          } else {
+            $result = nm_show_tag($tag, false);
+          }
         }
         if ($result) {
           $nmpagetype[] = 'tag';
           $nmsingletag = $tag;
         }
+
+    } elseif (isset($_GET[NMPARAMARCHIVE])) {
+        nm_reset_options('archive');
+        if (nm_show_archive($_GET[NMPARAMARCHIVE], false))
+          $nmpagetype[] = 'archive';
 
     } elseif (isset($_GET[NMPARAMPOST])) {
         nm_reset_options('single');

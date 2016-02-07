@@ -37,7 +37,8 @@ function nm_list_archives($args = '') {
   if ($NMPAGEURL == '') return;
   $defaults = array(
     'showcount' => false,
-    'dateformat' => ''
+    'dateformat' => '',
+    'tag' => null
   );
   if (!$args) {
     $args = $defaults;
@@ -49,8 +50,18 @@ function nm_list_archives($args = '') {
   $fmt = $args['dateformat'];
   $showcount = $args['showcount'];
   $archivesby = $NMSETTING['archivesby'];
+  $tag = $args['tag'];
+  if (!$tag) {
+    $url = nm_get_url('archive');
+  } else {
+    $url = nm_get_url('tag').rawurlencode($tag);
+    if (nm_get_option('tagarchives') == 'f')
+      $url .= '/'.NMPARAMARCHIVE.'/';
+    else
+      $url .= '&amp;'.NMPARAMARCHIVE.'=';
+  }
   $archives = array();
-  foreach (nm_get_archives($archivesby) as $archive=>$slugs)
+  foreach (nm_get_archives($archivesby, $tag) as $archive=>$slugs)
     $archives[$archive] = count($slugs);
 
   if (!empty($archives)) {
@@ -71,8 +82,7 @@ function nm_list_archives($args = '') {
         list($y, $m) = str_split($archive, 4);
         $title = nm_get_date($fmt, mktime(0, 0, 0, $m, 1, $y));
       }
-      $url = nm_get_url('archive') . $archive;
-      echo '  <li><a href="',$url,'">',$title,'</a>';
+      echo '  <li><a href="',$url.$archive,'">',$title,'</a>';
       if ($showcount) echo '&nbsp;(',$count,')'; 
       echo '</li>',"\n";
     }

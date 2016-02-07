@@ -37,7 +37,7 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
 
 /*******************************************************
  * @function nm_show_archive
- * @param $id - unique archive id
+ * @param $archive - unique archive id
  * @param $filter - if true, apply content filter
  * @action show posts by archive
  * @return true if posts shown
@@ -45,6 +45,31 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
 function nm_show_archive($archive, $filter=true) {
   global $NMSETTING;
   $archives = nm_get_archives($NMSETTING['archivesby']);
+  if (array_key_exists($archive, $archives)) {
+    $showexcerpt = nm_get_option('excerpt');
+    $posts = $archives[$archive];
+    if ($filter) ob_start();
+    foreach ($posts as $slug)
+      nm_show_post($slug, $showexcerpt, false);
+    if ($filter) echo nm_ob_get_content(true);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+/*******************************************************
+ * @function nm_show_tag_archive
+ * @param $tag - tag to filter by
+ * @param $archive - unique archive id
+ * @param $filter - if true, apply content filter
+ * @action show tagged posts by archive
+ * @return true if posts shown
+ * @since 3.3
+ */
+function nm_show_tag_archive($tag=null, $archive, $filter=true) {
+  global $NMSETTING;
+  $archives = nm_get_archives($NMSETTING['archivesby'], $tag);
   if (array_key_exists($archive, $archives)) {
     $showexcerpt = nm_get_option('excerpt');
     $posts = $archives[$archive];
@@ -312,6 +337,15 @@ function nm_reset_options($pagetype='') {
     $nmoption['tagpagination'] = strtolower($nmoption['tagpagination'][0]);
     if (!in_array($nmoption['tagpagination'], array('d','f')))
       $nmoption['tagpagination'] = false;
+  }
+
+  # tag archives
+  if (!isset($nmoption['tagarchives'])) {
+    $nmoption['tagarchives'] = false;
+  } else { // anything beginning with 'd' (Default, Dynamic...) or 'f' (Fancy, Folder...)
+    $nmoption['tagarchives'] = strtolower($nmoption['tagarchives'][0]);
+    if (!in_array($nmoption['tagarchives'], array('d','f')))
+      $nmoption['tagarchives'] = false;
   }
 
   # append custom classes for layout elements
