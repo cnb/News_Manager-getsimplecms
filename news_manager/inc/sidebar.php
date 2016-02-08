@@ -90,6 +90,25 @@ function nm_list_archives($args = '') {
   }
 }
 
+/*******************************************************
+ * @function nm_list_tag_archives
+ * @action print a list of archives for given or current tag
+ * @param $args array with optional parameters (like nm_list_archives)
+ * @since 3.3
+ */
+function nm_list_tag_archives($args = array()) {
+  if (!is_array($args)) $args = array();
+  if (isset($args['tag'])) {
+    # if tag is specified, do the same as...
+    nm_list_archives($args);
+  } else {
+    # use current tag
+    if (nm_is_tag()) {
+      $args['tag'] = nm_single_tag_title('','',false);
+      nm_list_archives($args);
+    }
+  }
+}
 
 /*******************************************************
  * @function nm_list_tags
