@@ -20,6 +20,21 @@ function nm_admin_panel() {
     else
       nm_display_message('Post cache file has been updated', false); // not translated
   }
+
+  $totalposts = count($posts);
+  if (defined('NMPAGINATION'))
+    $postsperpage = (intval(NMPAGINATION) > 0) ? intval(NMPAGINATION) : $totalposts;
+  else
+    $postsperpage = 15;
+  if (isset($_GET['showall']) || $postsperpage >= $totalposts) {
+    $showall = true;
+  } else {
+    $showall = false;
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $posts = array_slice($posts, ($page-1)*$postsperpage, $postsperpage);
+    $last = ceil($totalposts/$postsperpage);
+  }
+
   ?>
   <h3 class="floated"><?php i18n('news_manager/PLUGIN_NAME'); ?></h3>
   <div class="edit-nav clearfix">
@@ -91,9 +106,35 @@ function nm_admin_panel() {
     }
     ?>
     </table>
+    <?php
+      if (!$showall) {
+    ?>
+    <p class="nm_pagination">
+    <?php
+        if ($page > 1) echo '<span class="prev"><a href="load.php?id=news_manager&amp;page=',$page-1,'">',i18n('news_manager/PREV_TEXT'),'</a></span> ';
+        for ($i = 1; $i <= $last; $i++) {
+          if ($i == $page) 
+            echo '<span class="current">',$i,'</span> ';
+          else
+            echo '<span><a href="load.php?id=news_manager&amp;page=',$i,'">',$i,'</a></span> ';
+        }
+        if ($page < $last)
+          echo ' <span class="next"><a href="load.php?id=news_manager&amp;page=',$page+1,'">',i18n('news_manager/NEXT_TEXT'),'</a></span>';
+    ?>
+    </p>
+    <?php
+      }
+    ?>
     <p>
-      <b><?php echo count($posts); ?></b>
-      <?php i18n('news_manager/POSTS'); ?>
+      <b><?php
+        if ($postsperpage >= $totalposts)
+          echo $totalposts;
+        elseif ($showall)
+          echo '<a href="load.php?id=news_manager">',$postsperpage,'</a> / ',$totalposts;
+        else
+          echo count($posts),' / <a href="load.php?id=news_manager&amp;showall">',$totalposts,'</a>';
+      ?></b>
+      <?php i18n('news_manager/POSTS'); ?> 
     </p>
 
     <script>
