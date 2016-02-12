@@ -478,8 +478,12 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             $str .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
             $str .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
             $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
-            if ($nmoption['imagelink'])
-              $str = '<a href="'.$url.'">'.$str.'</a>';
+            if ($nmoption['imagelink']) {
+              if ($nmoption['imagelink'] !== 'full')
+                $str = '<a href="'.$url.'">'.$str.'</a>';
+              else
+                $str = '<a href="'.htmlspecialchars(nm_get_image_url($image,0,0)).'">'.$str.'</a>';
+            }
             echo '    <',$nmoption['markuppostimage'],' class="',$nmoption['classpostimage'],'">',$str,'</',$nmoption['markuppostimage'],'>',"\n";
           }
           break;
