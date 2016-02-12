@@ -10,7 +10,7 @@ Updated by: Carlos Navarro
 */
 
 # plugin version
-define('NMVERSION', '3.3 beta 30');
+define('NMVERSION', '3.3 beta 31');
 
 # get correct id for plugin
 $thisfile = basename(__FILE__, '.php');
