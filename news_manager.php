@@ -23,7 +23,7 @@ register_plugin(
   'Rogier Koppejan, Carlos Navarro',
   'http://newsmanager.c1b.org/',
   'A blog/news plugin for GetSimple',
-  'pages',
+  'news_manager',
   'nm_admin'
 );
 
@@ -36,6 +36,7 @@ if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only
 }
 
 # hooks
+add_action('nav-tab', 'createNavTab', array('news_manager', $thisfile, 'News') );
 add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
 add_action('header', 'nm_header_include');
 add_action('header', 'nm_add_mu_permissions');
