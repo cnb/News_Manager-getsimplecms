@@ -356,6 +356,7 @@ function nm_reset_options($pagetype='') {
     'classpostdate'       => 'nm_post_date',
     'classpostauthor'     => 'nm_post_author',
     'classpostimage'      => 'nm_post_image',
+    'classpostimagelink'  => '',
     'classpostcontent'    => 'nm_post_content',
     'classreadmore'       => 'nm_readmore',
     'classreadmorelink'   => '',
@@ -480,9 +481,13 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
             if ($nmoption['imagelink']) {
               if ($nmoption['imagelink'] !== 'full')
-                $str = '<a href="'.$url.'">'.$str.'</a>';
+                $str = $url.'">'.$str.'</a>';
               else
-                $str = '<a href="'.htmlspecialchars(nm_get_image_url($image,0,0)).'">'.$str.'</a>';
+                $str = htmlspecialchars(nm_get_image_url($image,0,0)).'">'.$str.'</a>';
+              if ($nmoption['classpostimagelink'])
+                $str = '<a class="'.$nmoption['classpostimagelink'].'" href="'.$str;
+              else
+                $str = '<a href="'.$str;
             }
             echo '    <',$nmoption['markuppostimage'],' class="',$nmoption['classpostimage'],'">',$str,'</',$nmoption['markuppostimage'],'>',"\n";
           }
