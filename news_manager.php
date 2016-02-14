@@ -39,7 +39,7 @@ if (basename($_SERVER['PHP_SELF']) != 'index.php') { // back end only
 
 # hooks
 if ($nmtab == 'news_manager') {
-  $nmtablabel = isset($i18n['news_manager/PLUGIN_TAB']) ? i18n_r('news_manager/PLUGIN_TAB') : i18n_r('news_manager/PLUGIN_NAME');
+  $nmtablabel = isset($i18n['news_manager/NEWS_TAB']) ? i18n_r('news_manager/NEWS_TAB') : i18n_r('news_manager/PLUGIN_NAME');
   add_action('nav-tab', 'createNavTab', array('news_manager', $thisfile, $nmtablabel) );
 } else {
   add_action('pages-sidebar', 'createSideMenu', array($thisfile, i18n_r('news_manager/PLUGIN_NAME')));
