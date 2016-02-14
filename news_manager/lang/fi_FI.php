@@ -25,6 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS" => "<b>Huomio:</b> Sinun täytyy todennäköisesti päivittää <a href=\"%s\">.htaccess</a>-tiedostosi!",
 
 # admin button (top-right)
+"NEWS_TAB" =>  "News",
 "SETTINGS" => "Asetukset",
 "NEW_POST" => "Kirjoita uusi uutinen",
 

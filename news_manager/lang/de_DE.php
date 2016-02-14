@@ -25,6 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Achtung:</b> Sie sollten die Datei <a href=\"%s\">.htaccess</a> aktualisieren!",
 
 # admin button (top-right)
+"NEWS_TAB"            =>  "News",
 "SETTINGS"            =>  "Einstellung",
 "NEW_POST"            =>  "Neuen Beitrag erstellen",
 

@@ -25,6 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Nota:</b> Probablemente se ha de modificar el archivo <a href=\"%s\">.htaccess</a> del sitio.",
 
 # admin button (top-right)
+"NEWS_TAB"            =>  "News",
 "SETTINGS"            =>  "Configuración",
 "NEW_POST"            =>  "Entrada nueva",
 

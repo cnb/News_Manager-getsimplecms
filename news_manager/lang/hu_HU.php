@@ -25,6 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Megjegyzés:</b> Valószínűleg módosítanod kell a <a href=\"%s\">.htaccess</a> fájlt!",
 
 # admin button (top-right)
+"NEWS_TAB"            =>  "News",
 "SETTINGS"            =>  "Beállítások",
 "NEW_POST"            =>  "Új bejegyzés",
 

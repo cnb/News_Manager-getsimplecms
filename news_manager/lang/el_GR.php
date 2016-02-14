@@ -25,6 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Σημείωση:</b> Πιθανόν πρέπει να ανανεώσετε το αρχείο <a href=\"%s\">.htaccess</a> !",
 
 # admin button (top-right)
+"NEWS_TAB"            =>  "News",
 "SETTINGS"            =>  "Ρυθμίσεις",
 "NEW_POST"            =>  "Δημιουργία Νέου Άρθρου",
 

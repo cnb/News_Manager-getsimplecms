@@ -26,6 +26,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Внимание:</b> Скопируйте код <a href=\"%s\">.htaccess</a> и замените его вручную!",
 
 # admin button (top-right)
+"NEWS_TAB"            =>  "Новости",
 "SETTINGS"            =>  "Настройки",
 "NEW_POST"            =>  "Создать новую запись",
 
