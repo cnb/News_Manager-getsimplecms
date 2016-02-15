@@ -114,7 +114,7 @@ function nm_admin_panel() {
         if ($page > 1) echo '<span class="prev"><a href="load.php?id=news_manager&amp;page=',$page-1,'">',i18n('news_manager/PREV_TEXT'),'</a></span> ';
         for ($i = 1; $i <= $last; $i++) {
           if ($i == $page) 
-            echo '<span class="current">',$i,'</span> ';
+            echo '<span class="current"><span>',$i,'</span></span> ';
           else
             echo '<span><a href="load.php?id=news_manager&amp;page=',$i,'">',$i,'</a></span> ';
         }
