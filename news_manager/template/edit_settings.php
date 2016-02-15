@@ -222,8 +222,10 @@
     } else {
       $('#customsettings').hide();
     }
-    
+
+<?php if (!defined('NMWARNUNSAVED') || NMWARNUNSAVED) { ?>
     $('form').areYouSure({'message':'<?php i18n('UNSAVED_INFORMATION'); ?>'});
+<?php } ?>
 
   });
 

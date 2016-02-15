@@ -143,6 +143,7 @@ if ($imageinputpos > 0) {
 
 <script type="text/javascript">
 
+<?php if (!defined('NMWARNUNSAVED') || NMWARNUNSAVED) { ?>
   $('form').areYouSure( {'silent':true} );
   var warnme = false;
   var notsubmit = true;
@@ -161,6 +162,7 @@ if ($imageinputpos > 0) {
   $('#edit').submit(function(){
     notsubmit = false;
   });
+<?php } ?>
 
   if ($.validator) {
     jQuery.extend(jQuery.validator.messages, {
