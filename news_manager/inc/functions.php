@@ -607,7 +607,7 @@ function nm_post_files_differ(&$posts) {
 
 function nm_add_mu_permissions() {
   if (function_exists('add_mu_permission')) {
-    add_mu_permission('news_manager_settings',i18n_r('news_manager/NM_SETTINGS')); // test cnb
+    add_mu_permission('news_manager_settings',i18n_r('news_manager/NM_SETTINGS'));
   }
 }
 
