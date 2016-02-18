@@ -619,4 +619,19 @@ function nm_allow_settings() {
     return true;
 }
 
+// patch for Multi User 1.8.2
+function nm_update_mu_landing_dropdown() {
+  if (function_exists('mm_admin'))
+    if (basename($_SERVER['PHP_SELF']) == 'load.php' && isset($_GET['id']) && $_GET['id'] == 'user-managment') {
+      ?>
+      <script>
+      $('select[id="userland"]').append($('<option>', {
+         text: '<?php i18n('news_manager/PLUGIN_NAME'); ?>',
+         value: 'load.php?id=news_manager'
+      }));
+      </script>
+      <?php
+  }
+}
+
 ?>

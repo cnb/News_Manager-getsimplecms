@@ -46,6 +46,7 @@ if ($nmtab == 'news_manager') {
 }
 add_action('header', 'nm_header_include');
 add_action('header', 'nm_add_mu_permissions');
+add_action('footer', 'nm_update_mu_landing_dropdown');
 add_action('index-pretemplate', 'nm_frontend_init');
 add_action('theme-header','nm_restore_page_title');
 //add_filter('content', 'nm_site'); // deprecated
