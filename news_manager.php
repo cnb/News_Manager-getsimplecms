@@ -10,7 +10,7 @@ Updated by: Carlos Navarro
 */
 
 # plugin version
-define('NMVERSION', '3.3 beta 31');
+define('NMVERSION', '3.3 beta 32');
 
 $nmtab = (defined('NMTAB') && NMTAB) ? 'news_manager' : 'pages';
 
