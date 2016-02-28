@@ -128,6 +128,7 @@ function nm_frontend_init() {
         nm_reset_options('search');
         nm_show_search_results();
         $nmpagetype[] = 'search';
+        $result = true;
 
     } elseif (isset($_GET[NMPARAMTAG])) {
         $tag = rawurldecode($_GET[NMPARAMTAG]);
@@ -154,12 +155,14 @@ function nm_frontend_init() {
 
     } elseif (isset($_GET[NMPARAMARCHIVE])) {
         nm_reset_options('archive');
-        if (nm_show_archive($_GET[NMPARAMARCHIVE], false))
+        $result = nm_show_archive($_GET[NMPARAMARCHIVE], false);
+        if ($result)
           $nmpagetype[] = 'archive';
 
     } elseif (isset($_GET[NMPARAMPOST])) {
         nm_reset_options('single');
-        if (nm_show_post($_GET[NMPARAMPOST], false, false, true)) {
+        $result = nm_show_post($_GET[NMPARAMPOST], false, false, true);
+        if ($result) {
           $nmpagetype[] = 'single';
           if (nm_get_option('metakeywordstags'))
             nm_update_meta_keywords();
@@ -167,19 +170,23 @@ function nm_frontend_init() {
             $metad = nm_post_excerpt(150, null, false);
         }
 
-    } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) > NMFIRSTPAGE) {
+    } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) != NMFIRSTPAGE) {
         nm_reset_options('main');
-        nm_show_page($_GET[NMPARAMPAGE], false);
-        $nmpagetype[] = 'main';
+        $result = nm_show_page($_GET[NMPARAMPAGE], false);
+        if ($result)
+          $nmpagetype[] = 'main';
 
     } else {
         $metad = $metad_orig;
         nm_reset_options('main');
         nm_show_page(NMFIRSTPAGE, false);
         array_push($nmpagetype, 'main', 'home');
+        $result = true;
     }
     $content = nm_ob_get_content(false);
     $content = addslashes(htmlspecialchars($content, ENT_QUOTES, 'UTF-8'));
+    if (!$result) 
+      header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
     if (nm_get_option('templatefile'))
       nm_switch_template_file(nm_get_option('templatefile'));
   }

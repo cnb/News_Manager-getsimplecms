@@ -29,8 +29,10 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
     if (sizeof($pages) > 1 && nm_get_option('shownav',true))
       nm_show_navigation($index, sizeof($pages));
     if ($filter) echo nm_ob_get_content(true);
+    return true;
   } else {
-    echo '<p>' . i18n_r('news_manager/NO_POSTS') . '</p>';
+    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+    return false;
   }
 }
 
@@ -54,6 +56,7 @@ function nm_show_archive($archive, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
+    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -79,6 +82,7 @@ function nm_show_tag_archive($tag=null, $archive, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
+    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -105,6 +109,7 @@ function nm_show_tag($tag, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
+    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -139,6 +144,7 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
       return true;
     }
   }
+  echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
   return false;
 }
 
