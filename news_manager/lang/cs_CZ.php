@@ -25,7 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Poznámka:</b> Pravděpodobně musíte zaktualizovat soubor <a href=\"%s\">.htaccess</a>!",
 
 # admin button (top-right)
-"NEWS_TAB"            =>  "News",
+"NEWS_TAB"            =>  "Články",
 "SETTINGS"            =>  "Nastavení",
 "NEW_POST"            =>  "Napsat článek",
 

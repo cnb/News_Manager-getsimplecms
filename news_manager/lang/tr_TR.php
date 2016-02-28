@@ -25,7 +25,7 @@ $i18n = array(
 "UPDATE_HTACCESS"     =>  "<b>Uyarı:</b> Büyük olasılıkla <a href=\"%s\">.htaccess</a> dosyasını güncellemeniz gerekiyor.",
 
 # admin button (top-right)
-"NEWS_TAB"            =>  "News",
+"NEWS_TAB"            =>  "Haberler",
 "SETTINGS"            =>  "Ayarlar",
 "NEW_POST"            =>  "Yeni Haber Yaz",
 
