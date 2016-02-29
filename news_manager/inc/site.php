@@ -393,13 +393,14 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
   if (!empty($post) && ($post->private != 'Y' || ($single && function_exists('is_logged_in') && is_logged_in()))) {
     $url     = nm_get_url('post') . $slug;
     $title   = stripslashes($post->title);
-    $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), strtotime($post->date));
+    $unixtime = strtotime($post->date);
+    $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), $unixtime);
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
     $tags = !empty($post->tags) ? explode(',', nm_lowercase_tags(strip_decode($post->tags))) : array();
 
     # save post data?
-    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags') : array();
+    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags', 'unixtime') : array();
 
     if ($filter) ob_start();
 
@@ -931,6 +932,21 @@ function nm_get_author_name_html($author='') {
     $name = $author;
   }
   return $name;
+}
+
+/***** since 3.3 *****/
+
+function nm_post_date($fmt='', $echo=true) {
+  global $nmdata;
+  if (isset($nmdata['unixtime']) && $nmdata['unixtime']) {
+    if (empty($fmt))
+      $fmt = i18n_r('news_manager/DATE_FORMAT');
+    $date = nm_get_date($fmt, $nmdata['unixtime']);
+    if ($echo) echo $date;
+    return $date;
+  } else {
+    return false;
+  }
 }
 
 ?>
