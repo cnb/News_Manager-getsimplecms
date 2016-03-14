@@ -836,8 +836,8 @@ function nm_set_image_size($width=null, $height=null, $crop=false) {
 
 function nm_set_text($i18nkey=null, $i18nvalue=null) {
   global $i18n;
-  if ($i18nkey && $i18nvalue)
-    $i18n['news_manager/'.$i18nkey] = $i18nvalue;
+  if ($i18nkey && $i18nvalue !== null)
+    $i18n['news_manager/'.$i18nkey] = strval($i18nvalue);
 }
 
 
