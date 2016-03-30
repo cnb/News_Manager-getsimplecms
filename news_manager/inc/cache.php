@@ -21,23 +21,25 @@ function nm_update_cache() {
  */
 function nm_get_cache_data() {
   $posts = array();
-  $files = getFiles(NMPOSTPATH);
-  # collect all post data
-  foreach ($files as $file) {
-    if (isFile($file, NMPOSTPATH, 'xml')) {
-      $data = getXML(NMPOSTPATH . $file);
-      $time = strtotime($data->date);
-      while (array_key_exists($time, $posts)) $time++;
-      $posts[$time]['slug'] = basename($file, '.xml');
-      $posts[$time]['title'] = strval($data->title);
-      $posts[$time]['date'] = strval($data->date);
-      $posts[$time]['tags'] = strval($data->tags);
-      $posts[$time]['private'] = strval($data->private);
-      $posts[$time]['image'] = strval($data->image);
-      $posts[$time]['author'] = strval($data->author);
+  if (file_exists(NMPOSTPATH)) {
+    $files = getFiles(NMPOSTPATH);
+    # collect all post data
+    foreach ($files as $file) {
+      if (isFile($file, NMPOSTPATH, 'xml')) {
+        $data = getXML(NMPOSTPATH . $file);
+        $time = strtotime($data->date);
+        while (array_key_exists($time, $posts)) $time++;
+        $posts[$time]['slug'] = basename($file, '.xml');
+        $posts[$time]['title'] = strval($data->title);
+        $posts[$time]['date'] = strval($data->date);
+        $posts[$time]['tags'] = strval($data->tags);
+        $posts[$time]['private'] = strval($data->private);
+        $posts[$time]['image'] = strval($data->image);
+        $posts[$time]['author'] = strval($data->author);
+      }
     }
+    krsort($posts);
   }
-  krsort($posts);
   return $posts;
 }
 
