@@ -560,7 +560,7 @@ function nm_lowercase_tags($str) {
  * @since 2.5
  */
 function nm_generate_sitemap() {
-  if (GSVERSION >= '3.3' && (!defined('NMNOSITEMAP') || !NMNOSITEMAP))
+  if (version_compare(GSVERSION, '3.3', '>=') && (!defined('NMNOSITEMAP') || !NMNOSITEMAP))
     generate_sitemap();
 }
 
