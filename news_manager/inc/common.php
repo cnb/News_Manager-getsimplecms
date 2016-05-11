@@ -45,7 +45,7 @@ $NMRECENTPOSTS   = isset($data->recent_posts) ? $data->recent_posts : '5';
 # new settings (since 3.0)
 $NMSETTING = array();
 $NMSETTING['archivesby'] = isset($data->archivesby) ? $data->archivesby : 'm';
-$NMSETTING['readmore'] = isset($data->readmore) ? $data->readmore : ((defined('NM2COMPAT') && NM2COMPAT) ? 'N' : 'R');
+$NMSETTING['readmore'] = isset($data->readmore) ? $data->readmore : 'R';
 $NMSETTING['titlelink'] = isset($data->titlelink) ? $data->titlelink : 'Y';
 $NMSETTING['gobacklink'] = isset($data->gobacklink) ? $data->gobacklink : 'B';
 $NMSETTING['images'] = isset($data->images) ? $data->images : 'N';

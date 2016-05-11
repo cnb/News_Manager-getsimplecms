@@ -191,15 +191,6 @@ function nm_reset_options($pagetype='') {
   global $nmoption, $NMSETTING, $NMSHOWEXCERPT;
   $nmoption = array();
 
-  # pre 3.0 default settings (plus readmore in common.php)
-  if (defined('NM2COMPAT') && NM2COMPAT) {
-    $nmoption['breakwords'] = true;
-    $nmoption['titletag'] = false;
-    $nmoption['navoldnew'] = true;
-    $nmoption['markupnavitem'] = 'div';
-    if (!defined('NMFIRSTPAGE')) define('NMFIRSTPAGE',0);
-  }
-
   # title link
   $nmoption['titlelink'] = ($NMSETTING['titlelink']=='Y' || ($NMSETTING['titlelink']=='P' && $pagetype != 'single'));
 
