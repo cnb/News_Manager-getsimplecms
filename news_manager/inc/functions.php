@@ -37,9 +37,9 @@ function nm_get_posts($all=false) {
  */
 function nm_get_archives($by='m', $tag=null) {
   $archives = array();
-  $posts = nm_get_posts();
   $datefmt = ($by == 'y') ? 'Y' : 'Ym';
   if ($tag) {
+    $posts = nm_get_posts();
     foreach ($posts as $post) {
       if (in_array($tag, explode(',', nm_lowercase_tags(strip_decode($post->tags))))) {
         $archive = date($datefmt, strtotime($post->date));
@@ -47,6 +47,7 @@ function nm_get_archives($by='m', $tag=null) {
       }
     }
   } else {
+    $posts = nm_get_posts_default();
     foreach ($posts as $post) {
       $archive = date($datefmt, strtotime($post->date));
       $archives[$archive][] = $post->slug;
@@ -676,6 +677,32 @@ function nm_update_mu_landing_dropdown() {
       }));
       </script>
       <?php
+  }
+}
+
+# since 3.4
+
+# returns array excluding posts having certain tags
+# - to be used in non-tag pages -main, archives- and some sidebar functions
+# - temporary solution, will eventually be replaced/refactored
+function nm_get_posts_default() {
+  if (!defined('NMDEFAULTEXCLUDETAGGED')) {
+    return nm_get_posts();
+  } else {
+    static $posts = null; // lazy init...
+    if ($posts === null) {
+      $posts = nm_get_posts();
+      $tags = nm_lowercase_tags(NMDEFAULTEXCLUDETAGGED);
+      $tags = explode(',', trim(preg_replace(array('/\s+/','/\s*,\s*/','/,+/'),array(' ',',',','), $tags), ' ,'));
+      foreach ($posts as $k => $post)
+        foreach (explode(',', nm_lowercase_tags(strip_decode($post->tags))) as $tag)
+          if (in_array($tag, $tags)) {
+            unset($posts[$k]);
+            break;
+          }
+
+    }
+    return $posts;
   }
 }
 

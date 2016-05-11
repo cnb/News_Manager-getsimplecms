@@ -12,7 +12,7 @@
 function nm_list_recent() {
   global $NMPAGEURL, $NMRECENTPOSTS;
   if ($NMPAGEURL == '') return;
-  $posts = nm_get_posts();
+  $posts = nm_get_posts_default();
   if (!empty($posts)) {
     echo '<ul class="nm_recent">',"\n";
     $posts = array_slice($posts, 0, $NMRECENTPOSTS, true);

@@ -15,7 +15,7 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
   global $NMPOSTSPERPAGE, $nmoption;
   $p1 = intval(NMFIRSTPAGE);
   $index = intval($index);
-  $posts = nm_get_posts();
+  $posts = nm_get_posts_default();
   $pages = array_chunk($posts, intval($NMPOSTSPERPAGE), true);
   if ($index >= $p1 && $index-$p1 < sizeof($pages))
     $posts = $pages[$index-$p1];
