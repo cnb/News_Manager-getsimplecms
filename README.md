@@ -7,7 +7,7 @@
  
  - PHP 5.2+
  - Apache server
- - GetSimple CMS 3.0 or later
+ - GetSimple CMS 3.1 or later
 
 Instructions, etc:   
 http://www.cyberiada.org/cnb/news-manager/
