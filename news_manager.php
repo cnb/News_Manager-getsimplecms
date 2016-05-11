@@ -50,28 +50,22 @@ add_action('header', 'nm_add_mu_permissions');
 add_action('index-pretemplate', 'nm_frontend_init');
 add_action('theme-header','nm_restore_page_title');
 //add_filter('content', 'nm_site'); // deprecated
-if (!function_exists('generate_sitemap')) {
-  add_action('sitemap-additem', 'nm_sitemap_include'); // GetSimple 3.0
-} else {
-  add_filter('sitemap','nm_update_sitemap_xml'); // for GetSimple 3.3+
-}
+add_filter('sitemap','nm_update_sitemap_xml'); // for GetSimple 3.3+
 if (!defined('NMNOAPIUPDATE') || !NMNOAPIUPDATE) {
   add_action('common', 'nm_update_extend_cache');
 }
 
-# scripts (GetSimple 3.1+)
-if (function_exists('register_script')) {
-  if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit']) || isset($_GET['settings']))) {
-    if (!defined('GSNOCDN') || !GSNOCDN) {
-      register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
-    } else {
-      register_script('jquery-validate',$SITEURL.'plugins/news_manager/js/jquery.validate.min.js', '1.10.0', false);
-    }
-    queue_script('jquery-validate', GSBACK);
-    if (!defined('NMWARNUNSAVED') || NMWARNUNSAVED) {
-      register_script('jquery-areyousure', $SITEURL.'plugins/news_manager/js/jquery.are-you-sure.js', '1.9.0', false);
-      queue_script('jquery-areyousure', GSBACK);
-    }
+# scripts
+if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit']) || isset($_GET['settings']))) {
+  if (!defined('GSNOCDN') || !GSNOCDN) {
+    register_script('jquery-validate','//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js', '1.10.0', false);
+  } else {
+    register_script('jquery-validate',$SITEURL.'plugins/news_manager/js/jquery.validate.min.js', '1.10.0', false);
+  }
+  queue_script('jquery-validate', GSBACK);
+  if (!defined('NMWARNUNSAVED') || NMWARNUNSAVED) {
+    register_script('jquery-areyousure', $SITEURL.'plugins/news_manager/js/jquery.are-you-sure.js', '1.9.0', false);
+    queue_script('jquery-areyousure', GSBACK);
   }
 }
 

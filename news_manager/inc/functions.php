@@ -471,37 +471,11 @@ function nm_i18n_merge($backend = false) {
 
 
 /*******************************************************
- * @function nm_sitemap_include
- * @action add posts to sitemap.xml, for GetSimple 3.0 only
- */
-function nm_sitemap_include() {
-  global $NMPAGEURL, $page, $xml;
-  if (strval($page['url']) == $NMPAGEURL) {
-    $posts = nm_get_posts();
-    foreach ($posts as $post) {
-      $url = nm_get_url('post').$post->slug;
-      $file = NMPOSTPATH.$post->slug.'.xml';
-      $date = makeIso8601TimeStamp(date('Y-m-d H:i:s', filemtime($file)));
-      $item = $xml->addChild('url');
-      $item->addChild('loc', $url);
-      $item->addChild('lastmod', $date);
-      $item->addChild('changefreq', 'monthly');
-      $item->addChild('priority', '0.5');
-    }
-  }
-}
-
-
-/*******************************************************
  * @function nm_header_include
  * @action insert necessary script/style sections into site header
  */
 function nm_header_include() {
   if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit']) || isset($_GET['settings']))) {
-    if (!function_exists('register_script')) {
-      // for GetSimple 3.0
-      echo '<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>';
-    }
   ?>
   <style>
     .invalid {
