@@ -118,7 +118,7 @@ $i18n = array(
 "NEXT_TITLE"          =>  "Następna strona",
 
 # language localization
-"LOCALE"              =>  "pl_PL.utf8,pl.utf8,pl_PL.UTF-8,pl.UTF-8,pl_PL,pl",
+"LOCALE"              =>  "pl_PL.utf8,pl.utf8,pl_PL.UTF-8,pl.UTF-8,pl_PL,plk,pl",
 
 # date settings - list of available parameters: http://php.net/strftime
 "DATE_FORMAT"         =>  "%e %b %Y",

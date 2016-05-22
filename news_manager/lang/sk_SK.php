@@ -118,7 +118,7 @@ $i18n = array(
 "NEXT_TITLE"          =>  "Ďalšia strana",
 
 # language localization
-"LOCALE"              =>  "sk_SK.utf8,sk.utf8,sk_SK.UTF-8,sk.UTF-8,sk_SK,sk",
+"LOCALE"              =>  "sk_SK.utf8,sk.utf8,sk_SK.UTF-8,sk.UTF-8,sk_SK,sky,sk",
 
 # date settings - list of available parameters: http://php.net/strftime
 "DATE_FORMAT"         =>  "%d.%m.%Y - %H:%M",

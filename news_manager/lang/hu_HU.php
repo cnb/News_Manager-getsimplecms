@@ -118,7 +118,7 @@ $i18n = array(
 "NEXT_TITLE"          =>  "Következő oldal",
 
 # language localization
-"LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hu",
+"LOCALE"              =>  "hu_HU.utf8,hu.utf8,hu_HU.UTF-8,hu.UTF-8,hu_HU,hun,hu",
 
 # date settings - list of available parameters: http://php.net/strftime
 "DATE_FORMAT"         =>  "%Y %b %e",
