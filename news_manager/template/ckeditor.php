@@ -25,9 +25,12 @@ if ($EDTOOL == 'advanced') {
   $TOOLBAR = "[$EDTOOL]";
 }
 
+$cketimestamp = defined('GSCKETSTAMP') ? GSCKETSTAMP : false;
+
 ?>
-    <script type="text/javascript" src="template/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="template/js/ckeditor/ckeditor.js<?php if ($cketimestamp) echo '?t=',$cketimestamp; ?>"></script>
     <script type="text/javascript">
+      <?php if ($cketimestamp) echo "CKEDITOR.timestamp = '$cketimestamp';\n"; ?>
       var editor = CKEDITOR.replace('post-content', {
         skin : 'getsimple',
         forcePasteAsPlainText : true,
