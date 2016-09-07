@@ -95,76 +95,92 @@ function nm_get_languages() {
 
 /*******************************************************
  * @function nm_get_date
- * @param $format date format
+ * @param $format strftime or date format
  * @param $timestamp UNIX timestamp
- * @return date formatted according to $NMLANG
+ * @return date formatted according to $NMLANG (if strftime)
  */
 function nm_get_date($format, $timestamp) {
-  global $NMLANG, $i18n;
+  if (strpos($format, '%') !== false) {
 
-  static $win = null;
-  if ($win === null)
-    $win = strtoupper(substr(PHP_OS, 0, 3)) == 'WIN';
-  
-  static $months = null;
-  if ($months === null) {
-    if (isset($i18n['news_manager/MONTHLIST'])) {
-      $months = explode(',',$i18n['news_manager/MONTHLIST']);
-      if (count($months) != 12) $months = false;
-    } else {
-        $months = false;
-    }
-  }
-  static $months_alt = null;
-  if ($months_alt === null) {
-    if (isset($i18n['news_manager/MONTHLIST_ALT'])) {
-      $months_alt = explode(',',$i18n['news_manager/MONTHLIST_ALT']);
-      if (count($months_alt) != 12) $months_alt = false;
-    } else {
-        $months_alt = false;
-    }
-  }
-  
-  $alt = strpos($format, '%EB') !== false;
-  if ($alt) {
-    $format = str_replace('%EB', '%B', $format);
-    $custom = !empty($months_alt);
-  } else {
-    $custom = !empty($months) && strpos($format, '%B') !== false;
-  }
+    # strftime format
     
-  $locale = setlocale(LC_TIME, 0);
-  if (array_key_exists('news_manager/LOCALE', $i18n)) {
-    setlocale(LC_TIME, preg_split('/\s*,\s*/', trim($i18n['news_manager/LOCALE']), -1, PREG_SPLIT_NO_EMPTY));
-  } else {
-    # no locale in language file
-    $lg = substr($NMLANG,0,2);
-    setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
-  }
-  if ($win) {
-    # fixes for Windows
-    $format = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $format); // strftime %e parameter not supported
-    $date = utf8_encode(strftime($format, $timestamp)); // strftime returns ISO-8859-1 encoded string
-  } else {
-    $date = strftime($format, $timestamp);
-  }
-  
-  if ($custom) {
-    $m = intval(strftime('%m', $timestamp));
-    if ($m > 0 && $m < 13) {
-      $orig = $win ? utf8_encode(strftime('%B', $timestamp)) : strftime('%B', $timestamp);
-    } else {
-      $custom = false;
+    global $NMLANG, $i18n;
+    static $win = null;
+    if ($win === null)
+      $win = strtoupper(substr(PHP_OS, 0, 3)) == 'WIN';
+    
+    static $months = null;
+    if ($months === null) {
+      if (isset($i18n['news_manager/MONTHLIST'])) {
+        $months = explode(',',$i18n['news_manager/MONTHLIST']);
+        if (count($months) != 12) $months = false;
+      } else {
+          $months = false;
+      }
     }
-  }
+    static $months_alt = null;
+    if ($months_alt === null) {
+      if (isset($i18n['news_manager/MONTHLIST_ALT'])) {
+        $months_alt = explode(',',$i18n['news_manager/MONTHLIST_ALT']);
+        if (count($months_alt) != 12) $months_alt = false;
+      } else {
+          $months_alt = false;
+      }
+    }
+    
+    $alt = strpos($format, '%EB') !== false;
+    if ($alt) {
+      $format = str_replace('%EB', '%B', $format);
+      $custom = !empty($months_alt);
+    } else {
+      $custom = !empty($months) && strpos($format, '%B') !== false;
+    }
+      
+    $locale = setlocale(LC_TIME, 0);
+    if (array_key_exists('news_manager/LOCALE', $i18n)) {
+      setlocale(LC_TIME, preg_split('/\s*,\s*/', trim($i18n['news_manager/LOCALE']), -1, PREG_SPLIT_NO_EMPTY));
+    } else {
+      # no locale in language file
+      $lg = substr($NMLANG,0,2);
+      setlocale(LC_TIME, $NMLANG.'.utf8', $lg.'.utf8', $NMLANG.'.UTF-8', $lg.'.UTF-8', $NMLANG, $lg);
+    }
+    if ($win) {
+      # fixes for Windows
+      $format = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $format); // strftime %e parameter not supported
+      $date = utf8_encode(strftime($format, $timestamp)); // strftime returns ISO-8859-1 encoded string
+    } else {
+      $date = strftime($format, $timestamp);
+    }
+    
+    if ($custom) {
+      $m = intval(strftime('%m', $timestamp));
+      if ($m > 0 && $m < 13) {
+        $orig = $win ? utf8_encode(strftime('%B', $timestamp)) : strftime('%B', $timestamp);
+      } else {
+        $custom = false;
+      }
+    }
 
-  setlocale(LC_TIME, $locale);
+    setlocale(LC_TIME, $locale);
+    
+    if ($custom) {
+      $replace = $alt ? $months_alt[$m-1] : $months[$m-1];
+      $date = str_replace($orig, $replace, $date);
+    }
+
+  } else {
+
+    # date() format
   
-  if ($custom) {
-    $replace = $alt ? $months_alt[$m-1] : $months[$m-1];
-    $date = str_replace($orig, $replace, $date);
-  }
+    global $TIMEZONE;
+    if ($TIMEZONE != '') {
+      if (function_exists('date_default_timezone_set')) {
+        date_default_timezone_set($TIMEZONE);
+      }
+    }
+    $date = date($format, $timestamp);
 
+  }
   return $date;
 }
 
