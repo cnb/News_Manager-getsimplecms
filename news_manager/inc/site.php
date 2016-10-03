@@ -724,7 +724,8 @@ function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
   if (isset($nmdata['content']) && $nmdata['content']) {
     if (!$len) $len = isset($nmoption['excerptlength']) ? $nmoption['excerptlength'] : $NMEXCERPTLENGTH; // workaround(*)
     if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
-    $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis);
+    $break = nm_get_option('breakwords');
+    $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis, $break);
     if ($echo) echo $excerpt;
     return $excerpt;
   } else {
