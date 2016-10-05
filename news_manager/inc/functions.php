@@ -173,11 +173,7 @@ function nm_get_date($format, $timestamp) {
     # date() format
   
     global $TIMEZONE;
-    if ($TIMEZONE != '') {
-      if (function_exists('date_default_timezone_set')) {
-        date_default_timezone_set($TIMEZONE);
-      }
-    }
+    if ($TIMEZONE != '') date_default_timezone_set($TIMEZONE);
     $date = date($format, $timestamp);
 
   }
