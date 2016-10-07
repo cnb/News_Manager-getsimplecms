@@ -3,14 +3,14 @@
 /*
 Plugin Name: News Manager
 Description: A blog/news plugin for GetSimple
-Version: 3.4 beta
+Version: 3.4
 Original author: Rogier Koppejan
 Updated by: Carlos Navarro
 
 */
 
 # plugin version
-define('NMVERSION', '3.4 beta35');
+define('NMVERSION', '3.4');
 
 $nmtab = (defined('NMTAB') && NMTAB) ? 'news_manager' : 'pages';
 
