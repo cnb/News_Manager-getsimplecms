@@ -84,7 +84,7 @@ $i18n = array(
 "FIELD_IS_REQUIRED"   => "Toto pole je potrebné vyplniť",
 "ENTER_VALID_DATE"    => "Vložte požadovaný dátum / Ponechajte prázdne pre aktuálny dátum",
 "ENTER_VALID_TIME"    => "Vložte požadovaný čas / Ponechajte prázdne pre aktuálny čas",
-"ENTER_VALUE_MIN"     => "Please enter a value greater than or equal to %d",
+"ENTER_VALUE_MIN"     => "Prosím, vložte hodnotu väčšiu alebo rovnú ako %d",
 
 # htaccess
 "HTACCESS_HELP"       =>  "Ak chcete povoliť Fancy URL adresy príspevkov, archívov, atď., nahraďte obsah vášho <code>.htaccess</code> súboru riadkami uvedenými nižšie.",
