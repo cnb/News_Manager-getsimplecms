@@ -49,7 +49,6 @@ add_action('header', 'nm_header_include');
 add_action('header', 'nm_add_mu_permissions');
 add_action('index-pretemplate', 'nm_frontend_init');
 add_action('theme-header','nm_restore_page_title');
-//add_filter('content', 'nm_site'); // deprecated
 add_filter('sitemap','nm_update_sitemap_xml'); // for GetSimple 3.3+
 if (!defined('NMNOAPIUPDATE') || !NMNOAPIUPDATE) {
   add_action('common', 'nm_update_extend_cache');
@@ -186,11 +185,4 @@ function nm_frontend_init() {
   }
   nm_update_page_title();
   nm_reset_options();
-}
-
-/*******************************************************
- * @deprecated as of 2.4+
- */
-function nm_site($content) {
-  return '[deprecated]';
 }
