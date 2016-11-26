@@ -182,5 +182,3 @@ function nm_restore_post($backup) {
   }
 }
 
-
-?>

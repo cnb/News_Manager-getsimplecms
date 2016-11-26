@@ -60,4 +60,3 @@ $NMSETTING['customsettings'] = isset($data->customsettings) ? $data->customsetti
 # other globals
 $NMPARENTURL = '?'; // to be assigned elsewhere
 
-?>

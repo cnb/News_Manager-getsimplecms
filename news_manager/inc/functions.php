@@ -692,4 +692,3 @@ function nm_get_posts_default() {
   }
 }
 
-?>

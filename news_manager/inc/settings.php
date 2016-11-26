@@ -149,5 +149,3 @@ function nm_generate_htaccess() {
   include(NMTEMPLATEPATH . 'htaccess.php');
 }
 
-
-?>

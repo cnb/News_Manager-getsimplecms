@@ -963,4 +963,3 @@ function nm_post_date($fmt='', $echo=true) {
   }
 }
 
-?>

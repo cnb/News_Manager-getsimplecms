@@ -126,5 +126,3 @@ $i18n = array(
 "YEARLY_FORMAT"       =>  "%Y"
 
 );
-
-?>

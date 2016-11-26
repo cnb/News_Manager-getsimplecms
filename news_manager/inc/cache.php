@@ -71,5 +71,3 @@ function nm_cache_to_xml($posts) {
   }
   return @XMLsave($xml, NMPOSTCACHE);
 }
-
-?>

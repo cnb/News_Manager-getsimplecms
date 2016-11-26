@@ -186,5 +186,3 @@ function nm_admin_panel() {
   }
 }
 
-
-?>

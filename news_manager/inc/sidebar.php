@@ -199,5 +199,3 @@ function nm_search() {
   <?php
 }
 
-
-?>
