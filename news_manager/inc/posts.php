@@ -86,6 +86,7 @@ function nm_save_post() {
   $timestamp = strtotime($_POST['post-date'] . ' ' . $_POST['post-time']);
   $date      = $timestamp ? date('r', $timestamp) : date('r');
   $tags      = nm_lowercase_tags(trim(preg_replace(array('/\s+/','/\s*,\s*/','/,+/'),array(' ',',',','),safe_slash_html(trim($_POST['post-tags']))),','));
+  $tags      = implode(',', array_unique(explode(',', $tags))); // remove dupe tags
   $private   = isset($_POST['post-private']) ? 'Y' : '';
   $image     = safe_slash_html($_POST['post-image']);
   $content   = safe_slash_html($_POST['post-content']);
