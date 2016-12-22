@@ -188,7 +188,10 @@ function nm_get_date($format, $timestamp) {
 function nm_get_url($query=false) {
   global $PRETTYURLS, $NMPAGEURL, $NMPRETTYURLS;
   $str = '';
-  $url = find_url($NMPAGEURL, nm_get_parent());
+  $parent = nm_get_parent();
+  $url = find_url($NMPAGEURL, $parent);
+  if (strpos($url, '%parents%/') !== false) // I18N plugin's placeholder for multilevel URLs
+    $url = str_replace('%parents%/', (empty($parent) ? '' : $parent.'/'), $url);
   if ($query) {
     switch($query) {
       case 'post':
@@ -610,7 +613,7 @@ function nm_switch_template_file($tempfile) {
 # since 3.1
 # fix URLs with special permalink placeholders for the I18N plugin - backend only
 function nm_patch_i18n_url($url) {
-  return str_replace(array('%language%/','%nondefaultlanguage%/','%parents%/'), array('','',''), $url);
+   return str_replace(array('%language%/','%nondefaultlanguage%/'), array('',''), $url);
 }
 
 ## since 3.2
