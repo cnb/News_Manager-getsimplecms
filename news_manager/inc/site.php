@@ -364,6 +364,9 @@ function nm_reset_options($pagetype='') {
     ) as $key=>$value)
     $nmoption[$key] = !isset($nmoption[$key]) ? $value : nm_clean_classes($value.' '.$nmoption[$key]);
 
+  # force full content if single post
+  $nmoption['fullcontent'] = ($pagetype == 'single');
+
 }
 
 
@@ -417,7 +420,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
         case 'content':
           echo '    <',$nmoption['markuppostcontent'],' class="',$nmoption['classpostcontent'],'">';
-          if ($single) {
+          if ($nmoption['fullcontent']) {
             echo $content;
           } else {
             $slice = '';
