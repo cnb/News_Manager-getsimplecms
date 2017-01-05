@@ -386,7 +386,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
     $post = @getXML($file);
   if (!empty($post) && ($post->private != 'Y' || ($single && function_exists('is_logged_in') && is_logged_in()))) {
     $url     = nm_get_url('post') . $slug;
-    $title   = stripslashes($post->title);
+    $title   = strip_decode($post->title);
     $unixtime = strtotime($post->date);
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), $unixtime);
     $content = strip_decode($post->content);
@@ -407,9 +407,9 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
           echo '    <',$nmoption['markupposttitle'],' class="',$nmoption['classposttitle'],'">';
           if ($nmoption['titlelink']) {
             $class = $nmoption['classposttitlelink'] ? ' class="'.$nmoption['classposttitlelink'].'"' : '';
-            echo '<a',$class,' href="',$url,'">',$title,'</a>';
+            echo '<a',$class,' href="',$url,'">',htmlspecialchars($title),'</a>';
           } else {
-            echo $title;
+            echo htmlspecialchars($title);
           }
           echo '</',$nmoption['markupposttitle'],'>',"\n";
           break;
@@ -669,7 +669,7 @@ function nm_show_navigation($index, $total, $tag=null) {
 function nm_post_title($before='', $after='', $echo=true) {
   global $nmdata;
   if (isset($nmdata['title']) && $nmdata['title']) {
-    $title = $before.$nmdata['title'].$after;
+    $title = $before.htmlspecialchars($nmdata['title'], ENT_QUOTES).$after;
     if ($echo) echo $title;
     return $title;
   } else {
