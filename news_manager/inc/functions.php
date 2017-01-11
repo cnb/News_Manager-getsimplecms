@@ -613,7 +613,7 @@ function nm_switch_template_file($tempfile) {
 # since 3.1
 # fix URLs with special permalink placeholders for the I18N plugin - backend only
 function nm_patch_i18n_url($url) {
-   return str_replace(array('%language%/','%nondefaultlanguage%/'), array('',''), $url);
+  return str_replace(array('%language%/','%nondefaultlanguage%/'), array('',''), $url);
 }
 
 ## since 3.2
