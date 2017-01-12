@@ -9,7 +9,7 @@
 <h3>.htaccess</h3>
 <?php
   if ($NMPAGEURL == ''
-    || !in_array(trim($PERMALINK), array('','%parent%/%slug%','%parent%/%slug%/','%slug%','%slug%/','%parents%/%slug%/','%parents%/%slug%'))
+    || !in_array(trim($PERMALINK), array('','%parent%/%slug%','%parent%/%slug%/','%slug%','%slug%/','%parents%/%slug%','%parents%/%slug%/'))
     || count(array_diff(array(NMPARAMPOST,NMPARAMPAGE,NMPARAMTAG,NMPARAMARCHIVE),array('post','page','tag','archive'))) > 0
     || (defined('NMNOPARAMPOST') && NMNOPARAMPOST)
     ) {
