@@ -927,7 +927,7 @@ function nm_clean_markup($str) {
 // remove invalid chars in custom CSS class selectors
 function nm_clean_classes($str) {
   return trim(str_replace(array(
-    '~','!','@','$','%','^','&','*','(',')','+','=',',','.','/',
+    '~','@','^','&','*','+','=',',','.','/', // '!','$','%','(',')',
     '\'',';',':','"','?','>','<','[',']','\\','{','}','|','`','#'
     ), '', $str));
 }
