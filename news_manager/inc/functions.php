@@ -631,16 +631,23 @@ function nm_post_files_differ(&$posts) {
 
 function nm_add_mu_permissions() {
   if (function_exists('add_mu_permission')) {
-    add_mu_permission('news_manager_settings',i18n_r('news_manager/NM_SETTINGS'));
+    if (defined('NMMULTIUSERCUSTOMPERMS') && NMMULTIUSERCUSTOMPERMS) {
+      add_mu_permission('news_manager_settings',i18n_r('news_manager/NM_SETTINGS'));
+    }
   }
 }
 
 function nm_allow_settings() {
   global $USR;
-  if (function_exists('check_user_permission'))
-    return check_user_permission($USR, 'news_manager_settings');
-  else
+  if (function_exists('check_user_permission')) {
+    if (defined('NMMULTIUSERCUSTOMPERMS') && NMMULTIUSERCUSTOMPERMS) {
+      return check_user_permission($USR, 'news_manager_settings');
+    } else { // workaround for MU 1.8.x bug
+      return check_user_permission($USR, 'THEME') || check_user_permission($USR, 'PLUGINS');
+    }
+  } else {
     return true;
+  }
 }
 
 // patch for Multi User 1.8.2
