@@ -966,3 +966,30 @@ function nm_post_date($fmt='', $echo=true) {
   }
 }
 
+/***** since 3.5 *****/
+
+function nm_get_header() {
+  nm_fix_get_header_full();
+}
+
+function nm_get_i18n_header($full=true, $omit=null) {
+  nm_fix_get_header_full('get_i18n_header', $omit);
+}
+
+function nm_fix_get_header_full($function='get_header', $param2=null) {
+  // TODO: paginated, etc.
+  $canonical = false;
+  if (nm_is_single())
+    $canonical = nm_post_url(false);
+  elseif (nm_is_tag())
+    $canonical = nm_get_url('tag').rawurlencode(nm_single_tag_title('','',false));
+  elseif (nm_is_archive())
+    $canonical = nm_get_url('archive').intval($_GET[NMPARAMARCHIVE]);
+  if ($canonical) {
+    $function(false, $param2);
+    echo "\n",'<link rel="canonical" href="',$canonical,'" />';
+  } else {
+    $function(true, $param2);
+  }
+}
+
