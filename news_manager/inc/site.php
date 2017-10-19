@@ -698,14 +698,14 @@ function nm_post_slug($echo=true) {
 /*******************************************************
  * @function nm_post_url
  * @param $echo Display (true) or return (false)
- * @action Display or return the post URL
+ * @action Display or return the post URL (ampersands escaped since 3.5)
  * @return URL or false if not on single post page
  * @since 3.0
  */
 function nm_post_url($echo=true) {
   global $nmdata;
   if (isset($nmdata['url']) && $nmdata['url']) {
-    $url = $nmdata['url'];
+    $url = htmlspecialchars($nmdata['url']);
     if ($echo) echo $url;
     return $url;
   } else {
