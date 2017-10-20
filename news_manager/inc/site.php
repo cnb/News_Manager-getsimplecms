@@ -987,7 +987,7 @@ function nm_fix_get_header_full($function='get_header', $param2=null) {
     $canonical = nm_get_url('archive').intval($_GET[NMPARAMARCHIVE]);
   if ($canonical) {
     $function(false, $param2);
-    echo "\n",'<link rel="canonical" href="',$canonical,'" />';
+    echo '<link rel="canonical" href="',$canonical,'" />',"\n";
   } else {
     $function(true, $param2);
   }
