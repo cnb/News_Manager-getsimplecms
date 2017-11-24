@@ -612,7 +612,7 @@ function nm_show_navigation($index, $total, $tag=null) {
             $gap = false;
           } else {
             if (!$gap) {
-              echo " <$item",nm_class_attr($clellipsis),">$ellipsis</$item>\n";
+              echo " <$item",nm_class_attr($clellipsis.' '.$cldisabled),"><span>$ellipsis</span></$item>\n";
               $gap = true;
             }
           }
