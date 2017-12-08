@@ -252,7 +252,7 @@
 .xdsoft_datetimepicker .xdsoft_label > .xdsoft_select.xdsoft_yearselect{ right: 2px }
 .xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option:hover {
 	color: #fff;
-	background: #ff8000;
+	background: #c00;
 }
 
 .xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option {
@@ -261,7 +261,7 @@
 }
 
 .xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option.xdsoft_current {
-	background: #33aaff;
+	background: #0E1316;
 	box-shadow: #178fe5 0 1px 3px 0 inset;
 	color: #fff;
 	font-weight: 700;
@@ -317,7 +317,7 @@
 }
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
-	color: #33aaff;
+	color: #0E1316;
 }
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_highlighted_default {
@@ -334,7 +334,7 @@
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default,
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div.xdsoft_current {
-	background: #33aaff;
+	background: #0E1316;
 	box-shadow: #178fe5 0 1px 3px 0 inset;
 	color: #fff;
 	font-weight: 700;
@@ -356,13 +356,13 @@
 .xdsoft_datetimepicker .xdsoft_calendar td:hover,
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover {
 	color: #fff !important;
-	background: #ff8000 !important;
+	background: #c00 !important;
 	box-shadow: none !important;
 }
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current.xdsoft_disabled:hover,
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current.xdsoft_disabled:hover {
-	background: #33aaff !important;
+	background: #0E1316 !important;
 	box-shadow: #178fe5 0 1px 3px 0 inset !important;
 	color: #fff !important;
 }
