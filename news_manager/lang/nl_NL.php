@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Vul een geldige tijd in / Laat leeg voor de huidige tijd",
 "ENTER_VALUE_MIN"     => "Vul hier een waarde in groter dan of gelijk aan %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Vervang voor het gebruik van Fancy URLs voor berichten, archieven, etc. de inhoud van het <code>.htaccess</code> bestand met onderstaande regels.",
 "GO_BACK_WHEN_DONE"   =>  "Klik op onderstaande knop om terug te gaan naar het berichten paneel.",

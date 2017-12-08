@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Indtast et gyldigt tidspunkt / Udfyld ikke for aktuelt tidspunkt",
 "ENTER_VALUE_MIN"     => "Angiv en værdi der mindst er %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Aktiver forkortet URL for nyhedsposter, -arkiver, etc. ved at erstatte indholdet af <code>.htaccess</code>-filen med linjerne herunder.",
 "GO_BACK_WHEN_DONE"   =>  "Klik på knappen her under for at vende tilbage til hovedmenuen.",

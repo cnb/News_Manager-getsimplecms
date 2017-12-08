@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Introducir una hora válida / Dejar vacío para hora actual",
 "ENTER_VALUE_MIN"     => "Introducir un valor mayor o igual que %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Para activar las URLs amigables para entradas, archivos, etc., reemplazar el contenido del archivo <code>.htaccess</code> por las líneas siguientes:",
 "GO_BACK_WHEN_DONE"   =>  "Hacer clic en el botón de abajo para volver al panel principal.",

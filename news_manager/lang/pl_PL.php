@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 "ENTER_VALUE_MIN"     => "Proszę o podanie wartości większej bądź równej %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Aby włączyć używanie przyjaznych adresów dla postów, archiwum itp. zmień zawartość pliku <code>.htaccess</code> zna poniższe linie.",
 "GO_BACK_WHEN_DONE"   =>  "Gdy skończysz kliknij przycisk poniżej aby wrócić do głównego panelu.",

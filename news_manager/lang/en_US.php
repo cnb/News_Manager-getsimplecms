@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Please enter a valid time / Leave blank for current time",
 "ENTER_VALUE_MIN"     => "Please enter a value greater than or equal to %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "0",
+
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",
 "GO_BACK_WHEN_DONE"   =>  "When you are done with this page, click the button below to go back to the main panel.",

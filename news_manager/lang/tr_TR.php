@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    =>  "Lütfen geçerli bir zaman girin / Şimdiki zaman için boş bırakın", 
 "ENTER_VALUE_MIN"     =>  "Lütfen %d değerine eşit ya da daha büyük bir değer giriniz",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Haberler ve arşivler için düzgün URL kullanmak isterseniz, kök dizindeki <code>.htaccess</code> kodlarını aşağıdakilerle değiştirin.",
 "GO_BACK_WHEN_DONE"   =>  "Bu sayfayla işiniz bittiğinde, aşağıdaki düğmeye basarak ana panele geri dönebilirsiniz.",

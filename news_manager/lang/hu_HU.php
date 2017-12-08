@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Kérlek, adj meg egy érvényes időpontot / Hagyd üresen az aktuális időponthoz",
 "ENTER_VALUE_MIN"     => "Nem lehet kisebb, mint %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "To enable Fancy URLs for posts, archives, etc., replace the contents of your <code>.htaccess</code> file with the lines below.",
 "GO_BACK_WHEN_DONE"   =>  "When you are done with this page, click the button below to go back to the main panel.",

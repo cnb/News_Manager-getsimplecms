@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME" => "Anna kunnollinen kellonaika / Jätä tyhjäksi, jolloin käytetään tämänhetkistä kellonaikaa",
 "ENTER_VALUE_MIN" => "Anna arvo joka on suurempi tai yhtä suuri kuin %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP" => "Voidaksi käyttää uutisissa, arkistossa jne. muotoiltuja URL-osoitteita, korvaa <code>.htaccess</code>-tiedoston sisältö allaolevilla riveillä.",
 "GO_BACK_WHEN_DONE" => "Kun olet valmis, klikkaa allaolevaa nappia palataksesi pääpaneeliin",

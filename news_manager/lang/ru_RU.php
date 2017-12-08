@@ -87,6 +87,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Пожалуйста, укажите желаемое время, либо оставьте пустым для отображения теущего времени",
 "ENTER_VALUE_MIN"     => "Пожалуйста, введите число, большее или равное %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Для включения ЧПУ (<a href='http://ru.wikipedia.org/wiki/%D0%A7%D0%9F%D0%A3_(%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82)'>человеко-понятный</a> URL) замените содержимое файла <code>.htaccess</code> следующим текстом.",
 "GO_BACK_WHEN_DONE"   =>  "Сохранить и вернуться.",

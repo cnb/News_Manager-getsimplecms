@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Vložte požadovaný čas / Ponechajte prázdne pre aktuálny čas",
 "ENTER_VALUE_MIN"     => "Prosím, vložte hodnotu väčšiu alebo rovnú ako %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Ak chcete povoliť Fancy URL adresy príspevkov, archívov, atď., nahraďte obsah vášho <code>.htaccess</code> súboru riadkami uvedenými nižšie.",
 "GO_BACK_WHEN_DONE"   =>  "Ak budete s touto stránkou hotový, kliknite na tlačidlo nižšie a vrátite sa do hlavného panelu.",

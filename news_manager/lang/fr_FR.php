@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Veuillez svp entrer une heure valide / Laissez ce champ vide pour utiliser l'heure actuelle",
 "ENTER_VALUE_MIN"     => "Veuillez fournir une valeur supérieure ou égale à %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Pour activer la redirection d'URLs pour les billets, archives, etc, remplacez le contenu de votre fichier <code>.htaccess</code> par les lignes ci-dessous:",
 "GO_BACK_WHEN_DONE"   =>  "Lorsque vous avez terminé avec cette page, cliquez sur le bouton ci-dessous pour retourner au panneau principal.",

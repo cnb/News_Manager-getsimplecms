@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Si prega di inserire un'orario valido / Lasciare vuoto per l'orario corrente",
 "ENTER_VALUE_MIN"     => "Inserisci un valore maggiore o uguale a %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Per abilitare i Fancy URLs per posts, archivi, ecc., sostituisci il contenuto del tuo file <code>.htaccess</code> file con le seguenti linee.",
 "GO_BACK_WHEN_DONE"   =>  "Quando hai finito con questa pagina, fai clic sul bottone qua sotto per tornare al pannello principale.",

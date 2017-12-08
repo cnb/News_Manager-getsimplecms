@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Παρακαλώ εισάγετε μία έγκυρη ώρα / Αφήστε κενό για την τρέχουσα ώρα",
 "ENTER_VALUE_MIN"     => "Παρακαλώ εισάγετε μια τιμή μεγαλύτερη ή ίση του %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Για να ερνεργοποιήσετε τα Fancy URLs για τα Άρθρα, Αrchives, κλπ., αντικαταστήστε τα περιεχόμενα του αρχείου <code>.htaccess</code> με τις γραμμές παρκάτω.",
 "GO_BACK_WHEN_DONE"   =>  "Όταν τελειώσετε με αυτή τη σελίδα, πατήστε το κουμπί παρακάτων για να πάτε στο main panel.",

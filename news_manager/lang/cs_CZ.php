@@ -86,6 +86,9 @@ $i18n = array(
 "ENTER_VALID_TIME"    => "Prosím zadejte správný čas / Nechte prázdné pro aktuální čas",
 "ENTER_VALUE_MIN"     => "Prosím zadejte hodnotu větší nebo rovnu %d",
 
+# date picker - first day of week (0=Sunday, 1=Monday, ... 6=Saturday)
+"DAY_OF_WEEK_START"   => "1",
+
 # htaccess
 "HTACCESS_HELP"       =>  "Abyste povolili Fancy URLs pro články, archivy, atd., nahraďte obsah vašeho <code>.htaccess</code> souboru řádky níže.",
 "GO_BACK_WHEN_DONE"   =>  "Až budete s touto stránkou hotovi, klikněte na tlačítko níže pro navrácení na hlavní panel.",
