@@ -66,6 +66,12 @@ if (isset($_GET['id']) && $_GET['id'] == 'news_manager' && (isset($_GET['edit'])
     register_script('jquery-areyousure', $SITEURL.'plugins/news_manager/js/jquery.are-you-sure.js', '1.9.0', false);
     queue_script('jquery-areyousure', GSBACK);
   }
+  if (!defined('NMDATETIMEPICKER') || NMDATETIMEPICKER) {
+    register_script('jquery-datetimepicker', $SITEURL.'plugins/news_manager/js/datetimepicker/jquery.datetimepicker.full.min.js', '2.5.14', false);
+    queue_script('jquery-datetimepicker', GSBACK);
+    register_style('jquery-datetimepicker', $SITEURL.'plugins/news_manager/js/datetimepicker/jquery.datetimepicker.css', NMVERSION, 'screen');
+    queue_style('jquery-datetimepicker', GSBACK);
+  }
 }
 
 /*******************************************************

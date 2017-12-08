@@ -164,28 +164,42 @@ if ($imageinputpos > 0) {
   });
 <?php } ?>
 
+<?php
+# date/time picker, validation
+$datetimepicker = !defined('NMDATETIMEPICKER') || NMDATETIMEPICKER;
+if (!defined('NMDATETIMEVALIDATION') && $datetimepicker)
+  $datetimevalidation = false; // by default, date/time validation disabled if datetimepicker enabled
+else
+  $datetimevalidation = !defined('NMDATETIMEVALIDATION') || NMDATETIMEVALIDATION;
+?>
   if ($.validator) {
     jQuery.extend(jQuery.validator.messages, {
-      required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>",
-      dateISO: "<?php i18n('news_manager/ENTER_VALID_DATE'); ?>"
+<?php if ($datetimevalidation) { ?>
+      dateISO: "<?php i18n('news_manager/ENTER_VALID_DATE'); ?>",
+<?php } ?>
+      required: "<?php i18n('news_manager/FIELD_IS_REQUIRED'); ?>"
     });
   }
   
   $(document).ready(function(){
+    
+<?php if ($datetimevalidation) { ?>
     if ($.validator) {
       $.validator.addMethod("time", function(value, element) {
           return this.optional(element) || /^([01]?[0-9]|2[0-3]):[0-5][0-9]/.test(value);
       },
       "<?php i18n('news_manager/ENTER_VALID_TIME'); ?>")
     }
-
+<?php } ?>
     if ($.validator) {
       $("#edit").validate({
-        errorClass: "invalid",
+<?php if ($datetimevalidation) { ?>
         rules: {
           "post-date": { dateISO: true },
           "post-time": { time: true }
-        }
+        },
+<?php } ?>
+        errorClass: "invalid"
       })
     }
 
@@ -209,4 +223,22 @@ if ($imageinputpos > 0) {
     }
 
   });
+<?php
+if ($datetimepicker) {
+  global $LANG;
+?>
+  jQuery.datetimepicker.setLocale('<?php echo substr($LANG, 0, 2); ?>');
+  jQuery('#post-date').datetimepicker({
+    format: 'Y-m-d',
+    timepicker: false,
+    dayOfWeekStart: <?php echo intval(i18n_r('news_manager/DAY_OF_WEEK_START')); ?> 
+  });
+  jQuery('#post-time').datetimepicker({
+    format: 'H:i',
+    datepicker: false
+  });
+<?php 
+}
+?>
+
 </script>
