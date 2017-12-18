@@ -19,6 +19,7 @@ function nm_edit_post($slug = '') {
     $time    = '';
     $tags    = '';
     $private = '';
+    $metad   = '';
     $image   = '';
     $content = '';
   } else {
@@ -31,6 +32,7 @@ function nm_edit_post($slug = '') {
     $time    = isset($data->date) ? date('H:i', strtotime($data->date)) : '';
     $tags    = isset($data->tags) ? str_replace(',', ', ', stripslashes($data->tags)) : '';
     $private = @$data->private != '' ? 'checked' : '';
+    $metad   = @stripslashes($data->metad);
     $image   = @stripslashes($data->image);
     $content = @stripslashes($data->content);
     if (isset($data->author))
@@ -88,6 +90,7 @@ function nm_save_post() {
   $tags      = nm_lowercase_tags(trim(preg_replace(array('/\s+/','/\s*,\s*/','/,+/'),array(' ',',',','),safe_slash_html(trim($_POST['post-tags']))),','));
   $tags      = implode(',', array_unique(explode(',', $tags))); // remove dupe tags
   $private   = isset($_POST['post-private']) ? 'Y' : '';
+  $metad     = safe_slash_html($_POST['post-metad']);
   $image     = safe_slash_html($_POST['post-image']);
   $content   = safe_slash_html($_POST['post-content']);
   if (defined('NMSAVEAUTHOR') && NMSAVEAUTHOR) {
@@ -108,6 +111,8 @@ function nm_save_post() {
   $obj->addCData($tags);
   $obj = $xml->addChild('private');
   $obj->addCData($private);
+  $obj = $xml->addChild('metad');
+  $obj->addCData($metad);
   $obj = $xml->addChild('image');
   $obj->addCData($image);
   $obj = $xml->addChild('content');

@@ -391,10 +391,11 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
     $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), $unixtime);
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
+    $metad   = stripslashes($post->metad);
     $tags = !empty($post->tags) ? explode(',', nm_lowercase_tags(strip_decode($post->tags))) : array();
 
     # save post data?
-    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags', 'unixtime') : array();
+    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags', 'unixtime', 'metad') : array();
 
     if ($filter) ob_start();
 
@@ -993,3 +994,16 @@ function nm_fix_get_header_full($function='get_header', $param2=null) {
   }
 }
 
+/***** since 3.6 *****/
+
+// set GS meta description
+function nm_update_meta_description() {
+  global $metad, $nmdata;
+  if ($nmdata['metad']) {
+    $metad = htmlspecialchars($nmdata['metad']);
+  } else {
+    if (nm_get_option('autometad')) {
+      $metad = nm_post_excerpt(150, null, false);
+    }
+  }
+}

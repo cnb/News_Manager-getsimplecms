@@ -116,6 +116,12 @@ if ($imageinputpos > 0) {
         <label for="post-private"><?php i18n('news_manager/POST_PRIVATE'); ?></label>
       </p>
     </div>
+    <div class="rightopt">
+      <p>
+        <label for="post-metad"><?php i18n('META_DESC'); ?>: <span id="countdownwrap"><strong id="countdown"></strong> <?php i18n('REMAINING'); ?></span></label>
+				<textarea class="text" id="post-metad" name="post-metad" ><?php echo $metad; ?></textarea>
+			</p>
+    </div>
     <div class="clear"></div>
     <?php if ($imageinputpos == 2) echo $imageinputcode; ?>
   </div>
