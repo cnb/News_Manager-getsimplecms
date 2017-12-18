@@ -166,7 +166,7 @@ function nm_frontend_init() {
           if (nm_get_option('metakeywordstags'))
             nm_update_meta_keywords();
           if (nm_get_option('autometad'))
-            $metad = nm_post_excerpt(320, null, false);
+            $metad = nm_post_excerpt(150, null, false);
         }
 
     } elseif (isset($_GET[NMPARAMPAGE]) && intval($_GET[NMPARAMPAGE]) != NMFIRSTPAGE) {
