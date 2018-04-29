@@ -691,3 +691,26 @@ function nm_get_posts_default() {
   }
 }
 
+# since 3.7
+
+function nm_return_component_code($id) {
+  global $components;
+  if (!$components) {
+    if (file_exists(GSDATAOTHERPATH.'components.xml')) {
+      $data = getXML(GSDATAOTHERPATH.'components.xml');
+      $components = $data->item;
+    } else {
+      $components = array();
+    }
+  }
+  $str = false;
+  if (count($components) > 0) {
+    foreach ($components as $component) {
+      if ($id == $component->slug) {
+          $str = $component->value;
+          break;
+      }
+    }
+  }
+  return $str;
+}

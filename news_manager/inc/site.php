@@ -202,6 +202,8 @@ function nm_reset_options($pagetype='') {
       $nmoption['gobacklink'] = 'main';
     else
       $nmoption['gobacklink'] = true;
+  } else {
+    $nmoption['gobacklink'] = false;
   }
 
   # tag separator
@@ -366,7 +368,22 @@ function nm_reset_options($pagetype='') {
 
   # force full content if single post
   $nmoption['fullcontent'] = ($pagetype == 'single');
-
+  
+  if (isset($nmoption['templateshowpost'])) {
+    global $TEMPLATE;
+    $tempfile = realpath(GSTHEMESPATH.$TEMPLATE."/".$nmoption['templateshowpost']);
+    # check if template exists and it's in the current theme (no path traversal)
+    if (strpos($tempfile, realpath(GSTHEMESPATH.$TEMPLATE."/")) == 0 && file_exists($tempfile)) {
+      global $nmposttemplate;
+      $nmposttemplate = $tempfile;
+    }
+  }
+  
+  if (isset($nmoption['componentshowpost'])) {
+    global $nmrenderpostcode;
+    $nmrenderpostcode = strip_decode(nm_return_component_code($nmoption['componentshowpost']));
+  }
+  
 }
 
 
@@ -380,156 +397,109 @@ function nm_reset_options($pagetype='') {
  * @return true if post exists
  */
 function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
-  global $nmoption, $nmdata;
+  global $nmoption, $nmdata, $nmcurrentpost, $nmrenderpostcode, $nmposttemplate;
   $file = NMPOSTPATH.$slug.'.xml';
   if (dirname(realpath($file)) == realpath(NMPOSTPATH)) // no path traversal
     $post = @getXML($file);
   if (!empty($post) && ($post->private != 'Y' || ($single && function_exists('is_logged_in') && is_logged_in()))) {
-    $url     = nm_get_url('post') . $slug;
+    $url     = htmlspecialchars_decode(nm_get_url('post').$slug);
     $title   = strip_decode($post->title);
     $unixtime = strtotime($post->date);
-    $date    = nm_get_date(i18n_r('news_manager/DATE_FORMAT'), $unixtime);
     $content = strip_decode($post->content);
     $image   = stripslashes($post->image);
+    $author  = stripslashes($post->author);
     $metad   = stripslashes($post->metad);
     $tags = !empty($post->tags) ? explode(',', nm_lowercase_tags(strip_decode($post->tags))) : array();
 
-    # save post data?
-    $nmdata = ($single) ? compact('slug', 'url', 'title', 'content', 'image', 'tags', 'unixtime', 'metad') : array();
+    $nmcurrentpost = compact('slug', 'url', 'title', 'content', 'image', 'tags', 'unixtime', 'author', 'metad');
+    $nmdata = ($single) ? $nmcurrentpost : array(); // save post data if single post view
 
     if ($filter) ob_start();
 
-    echo '  <',$nmoption['markuppost'],' class="',$nmoption['classpost'],'">',"\n";
+    if ($nmposttemplate) {
+      include $nmposttemplate;
+    } elseif ($nmrenderpostcode) {
+      eval('?>'.$nmrenderpostcode.'<?php ');
+    } else {
+      // default layout:
+      
+      echo '  <',$nmoption['markuppost'],' class="',$nmoption['classpost'],'">',"\n";
 
-    foreach ($nmoption['fields'] as $field) {
-      switch($field) {
+      foreach ($nmoption['fields'] as $field) {
+        switch($field) {
 
-        case 'title':
-          echo '    <',$nmoption['markupposttitle'],' class="',$nmoption['classposttitle'],'">';
-          if ($nmoption['titlelink']) {
-            $class = $nmoption['classposttitlelink'] ? ' class="'.$nmoption['classposttitlelink'].'"' : '';
-            echo '<a',$class,' href="',$url,'">',htmlspecialchars($title),'</a>';
-          } else {
-            echo htmlspecialchars($title);
-          }
-          echo '</',$nmoption['markupposttitle'],'>',"\n";
-          break;
+          case 'title':
+            echo '    <',$nmoption['markupposttitle'],' class="',$nmoption['classposttitle'],'">';
+            nm_render_title();
+            echo '</',$nmoption['markupposttitle'],'>',"\n";
+            break;
 
-        case 'date':
-          echo '    <',$nmoption['markuppostdate'],' class="',$nmoption['classpostdate'],'">',i18n_r('news_manager/PUBLISHED'),' ',$date,'</',$nmoption['markuppostdate'],'>',"\n";
-          break;
+          case 'date':
+            echo '    <',$nmoption['markuppostdate'],' class="',$nmoption['classpostdate'],'">',i18n_r('news_manager/PUBLISHED'),' ';
+            nm_render_date();
+            echo '</',$nmoption['markuppostdate'],'>',"\n";
+            break;
 
-        case 'content':
-          echo '    <',$nmoption['markuppostcontent'],' class="',$nmoption['classpostcontent'],'">';
-          if ($nmoption['fullcontent']) {
-            echo $content;
-          } else {
-            $slice = '';
-            $class = '';
-            $readmore = $nmoption['readmore'];
-            if ($readmore)
-              $class = $nmoption['classreadmorelink'] ? ' class="'.$nmoption['classreadmorelink'].'"' : '';
-            if ($nmoption['more']) {
-              $morepos = strpos($content, '<hr');
-              if ($morepos !== false) {
-                $slice = substr($content, 0, $morepos);
-                if ($readmore)
-                  $slice .= '      <p class="'.$nmoption['classreadmore'].'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'."\n";
-              }
+          case 'content':
+            echo '    <',$nmoption['markuppostcontent'],' class="',$nmoption['classpostcontent'],'">';
+            nm_render_content();
+            echo '    </',$nmoption['markuppostcontent'],'>',"\n";
+            break;
+
+          case 'tags':
+            if (nm_has_tags()) {
+              echo '    <',$nmoption['markupposttags'],' class="',$nmoption['classposttags'],'"><b>',i18n_r('news_manager/TAGS'),':</b> ';
+              nm_render_tags();
+              echo '</',$nmoption['markupposttags'],'>',"\n";
             }
-            if ($slice) {
-              echo $slice;
-            } else {
-              if ($showexcerpt) {
-                if (!$readmore)
-                  echo nm_create_excerpt($content);
-                elseif ($readmore === 'a')
-                  echo nm_create_excerpt($content, $url, true);
-                else
-                  echo nm_create_excerpt($content, $url);
-              } else {
-                echo $content;
-                if ($readmore === 'a')
-                  echo '      <p class="',$nmoption['classreadmore'],'"><a',$class,' href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',"\n";
-              }
+            break;
+
+          case 'image':
+            if (nm_must_render_image()) {
+              echo '    <',$nmoption['markuppostimage'],' class="',$nmoption['classpostimage'],'">';
+              nm_render_image();
+              echo '</',$nmoption['markuppostimage'],'>',"\n";
             }
-          }
-          echo '    </',$nmoption['markuppostcontent'],'>',"\n";
-          break;
+            break;
 
-        case 'tags':
-          if ($tags) {
-            echo '    <',$nmoption['markupposttags'],' class="',$nmoption['classposttags'],'"><b>',i18n_r('news_manager/TAGS'),':</b> ';
-            $sep = '';
-            foreach ($tags as $tag)
-              if (substr($tag, 0, 1) != '_') {
-                echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',htmlspecialchars($tag),'</a>';
-                if ($sep == '') $sep = $nmoption['tagseparator'];
-              }
-            echo '</',$nmoption['markupposttags'],'>',"\n";
-          }
-          break;
-
-        case 'image':
-          $imageurl = $nmoption['showimages'] ? nm_get_image_url($image) : false;
-          if ($imageurl) {
-            $str = '';
-            if (isset($nmoption['imageclass']))
-              $str .= ' class="'.$nmoption['imageclass'].'"';
-            if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
-              $str .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
-            $str .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
-            $str .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
-            $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
-            if ($nmoption['imagelink']) {
-              if ($nmoption['imagelink'] !== 'full')
-                $str = $url.'">'.$str.'</a>';
-              else
-                $str = htmlspecialchars(nm_get_image_url($image,0,0)).'">'.$str.'</a>';
-              if ($nmoption['classpostimagelink'])
-                $str = '<a class="'.$nmoption['classpostimagelink'].'" href="'.$str;
-              else
-                $str = '<a href="'.$str;
+          case 'author':
+            if (nm_must_render_author()) {
+              echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <',$nmoption['markuppostauthorname'],'>';
+              nm_render_author();
+              echo '</',$nmoption['markuppostauthorname'],'></',$nmoption['markuppostauthor'],'>',"\n";
             }
-            echo '    <',$nmoption['markuppostimage'],' class="',$nmoption['classpostimage'],'">',$str,'</',$nmoption['markuppostimage'],'>',"\n";
-          }
-          break;
-
-        case 'author':
-          if ($nmoption['showauthor']) {
-            $author = nm_get_author_name_html(stripslashes($post->author));
-            if (empty($author) && $nmoption['defaultauthor'])
-              $author = $nmoption['defaultauthor'];
-            if (!empty($author))
-                echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <',$nmoption['markuppostauthorname'],'>',$author,'</',$nmoption['markuppostauthorname'],'></',$nmoption['markuppostauthor'],'>',"\n";
-          }
-          break;
+            break;
+        }
       }
-    }
 
-    if (isset($nmoption['componentbottompost'])) {
-      get_component($nmoption['componentbottompost']);
-      echo "\n";
-    }
-    if ($single) {
-      # show "go back" link?
-      if ($nmoption['gobacklink']) {
-        $goback = ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
-        $class = $nmoption['classgobacklink'] ? ' class="'.$nmoption['classgobacklink'].'"' : '';
-        echo '    <',$nmoption['markupgoback'],' class="'.$nmoption['classgoback'].'"><a',$class,' href="'.$goback.'">';
-        i18n('news_manager/GO_BACK');
-        echo '</a></',$nmoption['markupgoback'],'>',"\n";
+      if (isset($nmoption['componentbottompost'])) {
+        get_component($nmoption['componentbottompost']);
+        echo "\n";
       }
-    }
+      if ($single) {
+        # show "go back" link?
+        if (nm_has_goback_link()) {
+          echo '    <',$nmoption['markupgoback'],' class="'.$nmoption['classgoback'].'">';
+          echo '<a',($nmoption['classgobacklink'] ? ' class="'.$nmoption['classgobacklink'].'"' : ''),' href="';
+          nm_goback_link();
+          echo '">';
+          i18n('news_manager/GO_BACK');
+          echo '</a></',$nmoption['markupgoback'],'>',"\n";
+        }
+      }
 
-    echo '  </',$nmoption['markuppost'],'>',"\n";
+      echo '  </',$nmoption['markuppost'],'>',"\n";
 
-    if (isset($nmoption['componentafterpost'])) {
-      get_component($nmoption['componentafterpost']);
-      echo "\n";
+      if (isset($nmoption['componentafterpost'])) {
+        get_component($nmoption['componentafterpost']);
+        echo "\n";
+      }
+      // end default layout
     }
 
     if ($filter) echo nm_ob_get_content(true);
+
+    $nmcurrentpost = array(); // clear
 
     return true;
   } else {
@@ -1006,4 +976,201 @@ function nm_update_meta_description() {
       $metad = nm_post_excerpt(150, null, false);
     }
   }
+}
+
+/***** since 3.7 ??? *****/
+
+function nm_return_url() {
+  global $nmcurrentpost;
+  return isset($nmcurrentpost['url']) ? $nmcurrentpost['url'] : '';
+}
+
+function nm_return_title() {
+  global $nmcurrentpost;
+  return isset($nmcurrentpost['title']) ? $nmcurrentpost['title'] : '';
+}
+
+function nm_return_content() {
+  global $nmcurrentpost;
+  return isset($nmcurrentpost['content']) ? $nmcurrentpost['content'] : '';
+}
+
+function nm_return_excerpt($length=150, $ellipsis='...', $break=false) {
+  global $nmcurrentpost;
+  return isset($nmcurrentpost['content']) ? nm_make_excerpt($nmcurrentpost['content'], $length, $ellipsis, $break) : '';
+}
+
+function nm_return_date($format='Y-m-d') {
+  global $nmcurrentpost;
+  return isset($nmcurrentpost['unixtime']) ? nm_get_date($format, $nmcurrentpost['unixtime']) : '';
+}
+
+function nm_return_tags() {
+  global $nmcurrentpost;
+  $tags = array();
+  foreach ($nmcurrentpost['tags'] as $tag)
+    if (substr($tag, 0, 1) != '_') {
+      $tags[] = $tag;
+    }
+  return $tags;
+}
+
+function nm_return_image($width=0, $height=0, $crop=false, $default='') {
+  global $nmcurrentpost;
+  return nm_get_image_url($nmcurrentpost['image'], $width, $height, $crop, $default);
+}
+
+// ====
+
+function nm_put_url() {
+  echo htmlspecialchars(nm_return_url());
+}
+
+function nm_put_title() {
+  echo htmlspecialchars(nm_return_title(), ENT_QUOTES);
+}
+
+function nm_put_content() {
+  echo nm_return_content();
+}
+
+function nm_put_excerpt($length=150, $ellipsis='...', $break=false) {
+  echo htmlspecialchars(nm_return_excerpt($length, $ellipsis, $break), ENT_QUOTES);
+}
+
+function nm_put_date($format='Y-m-d') {
+  echo nm_return_date($format);
+}
+
+#TODO function nm_put_tags()
+
+function nm_put_image($width=0, $height=0, $crop=false, $default='') {
+  echo htmlspecialchars(nm_return_image($width, $height, $crop, $default));
+}
+
+// ====
+
+function nm_render_title() {
+  global $nmoption;
+  $title = nm_return_title();
+  if ($nmoption['titlelink']) {
+    $url = nm_return_url();
+    $class = $nmoption['classposttitlelink'] ? ' class="'.$nmoption['classposttitlelink'].'"' : '';
+    echo '<a',$class,' href="',htmlspecialchars($url),'">',htmlspecialchars($title),'</a>';
+  } else {
+    echo htmlspecialchars($title);
+  }
+}
+
+function nm_render_date() {
+  nm_put_date(i18n_r('news_manager/DATE_FORMAT'));
+}
+
+function nm_render_content() {
+  global $nmoption;
+  $content = nm_return_content();
+  if ($nmoption['fullcontent']) {
+    echo $content;
+  } else {
+    $slice = '';
+    $class = '';
+    $url = nm_return_url();
+    $readmore = $nmoption['readmore'];
+    if ($readmore)
+      $class = $nmoption['classreadmorelink'] ? ' class="'.$nmoption['classreadmorelink'].'"' : '';
+    if ($nmoption['more']) {
+      $morepos = strpos($content, '<hr');
+      if ($morepos !== false) {
+        $slice = substr($content, 0, $morepos);
+        if ($readmore)
+          $slice .= '      <p class="'.$nmoption['classreadmore'].'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'."\n";
+      }
+    }
+    if ($slice) {
+      echo $slice;
+    } else {
+      if ($nmoption['excerpt']) {
+        if (!$readmore)
+          echo nm_create_excerpt($content);
+        elseif ($readmore === 'a')
+          echo nm_create_excerpt($content, $url, true);
+        else
+          echo nm_create_excerpt($content, $url);
+      } else {
+        echo $content;
+        if ($readmore === 'a')
+          echo '      <p class="',$nmoption['classreadmore'],'"><a',$class,' href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',"\n";
+      }
+    }
+  }
+}
+
+function nm_has_tags() { // TODO? nm_has_tag($tag)  ...and what about hidden tags?
+  global $nmcurrentpost;
+  return !empty($nmcurrentpost['tags']);
+}
+
+function nm_render_tags() {
+  global $nmoption;
+  $sep = '';
+  foreach (nm_return_tags() as $tag) {
+    echo $sep,'<a href="',nm_get_url('tag').rawurlencode($tag),'">',htmlspecialchars($tag),'</a>';
+    if ($sep == '') $sep = $nmoption['tagseparator'];
+  }
+}
+
+function nm_must_render_image() {
+  global $nmoption, $nmcurrentpost;
+  return $nmoption['showimages'] && (!empty($nmcurrentpost['image']) || $nmoption['imagedefault']);
+}
+
+function nm_render_image() {
+  global $nmoption, $nmcurrentpost;
+  $imageurl = nm_get_image_url($nmcurrentpost['image']);
+  if ($imageurl) {
+    $title = $nmcurrentpost['title'];
+    $str = '';
+    if (isset($nmoption['imageclass']))
+      $str .= ' class="'.$nmoption['imageclass'].'"';
+    if ($nmoption['imagesizeattr'] && $nmoption['imagewidth'] && $nmoption['imageheight'])
+      $str .= ' width="'.$nmoption['imagewidth'].'" height="'.$nmoption['imageheight'].'"';
+    $str .= $nmoption['imagealt']   ? ' alt="'.htmlspecialchars($title, ENT_COMPAT).'"' : ' alt=""';
+    $str .= $nmoption['imagetitle'] ? ' title="'.htmlspecialchars($title, ENT_COMPAT).'"' : '';
+    $str = '<img src="'.htmlspecialchars($imageurl).'"'.$str.' />';
+    if ($nmoption['imagelink']) {
+      if ($nmoption['imagelink'] !== 'full')
+        $str = $nmcurrentpost['url'].'">'.$str.'</a>';
+      else
+        $str = htmlspecialchars(nm_get_image_url($nmcurrentpost['image'],0,0)).'">'.$str.'</a>';
+      if ($nmoption['classpostimagelink'])
+        $str = '<a class="'.$nmoption['classpostimagelink'].'" href="'.$str;
+      else
+        $str = '<a href="'.$str;
+    }
+  echo $str;
+  }
+}
+
+function nm_must_render_author() {
+  global $nmoption, $nmcurrentpost;
+  return $nmoption['showauthor'] && (!empty($nmcurrentpost['author']) || $nmoption['defaultauthor']);
+}
+
+function nm_render_author() {
+  global $nmoption, $nmcurrentpost;
+  $author = nm_get_author_name_html($nmcurrentpost['author']);
+  if (!empty($author))
+    echo $author;
+  elseif ($nmoption['defaultauthor'])
+    echo $nmoption['defaultauthor'];
+}
+
+function nm_has_goback_link() {
+  global $nmoption;
+  return $nmoption['gobacklink'] != false;
+}
+
+function nm_goback_link() {
+  global $nmoption;
+  echo ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
 }
