@@ -1174,3 +1174,23 @@ function nm_goback_link() {
   global $nmoption;
   echo ($nmoption['gobacklink'] === 'main') ? nm_get_url() : 'javascript:history.back()';
 }
+
+// ====
+
+function nm_r($str = null) {
+  global $i18n;
+  if (!empty($str)) {
+    if (isset($i18n['news_manager/'.$str])) {
+      return $i18n['news_manager/'.$str];
+    } else {
+      return '{'.$str.'}';
+    }
+  } else {
+    return '';
+  }
+}
+
+function nm_e($str = null) {
+  echo nm_r($str);
+}
+
