@@ -31,7 +31,7 @@ function nm_show_page($index=NMFIRSTPAGE, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
-    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+    echo '<p>',nm_r('NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -56,7 +56,7 @@ function nm_show_archive($archive, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
-    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+    echo '<p>',nm_r('NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -82,7 +82,7 @@ function nm_show_tag_archive($tag=null, $archive, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
-    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+    echo '<p>',nm_r('NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -109,7 +109,7 @@ function nm_show_tag($tag, $filter=true) {
     if ($filter) echo nm_ob_get_content(true);
     return true;
   } else {
-    echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+    echo '<p>',nm_r('NO_POSTS'),'</p>';
     return false;
   }
 }
@@ -144,7 +144,7 @@ function nm_show_tag_page($tag, $index=NMFIRSTPAGE, $filter=true) {
       return true;
     }
   }
-  echo '<p>',i18n_r('news_manager/NO_POSTS'),'</p>';
+  echo '<p>',nm_r('NO_POSTS'),'</p>';
   return false;
 }
 
@@ -173,11 +173,11 @@ function nm_show_search_results() {
   }
   if (!empty($posts)) {
     $showexcerpt = nm_get_option('excerpt');
-    echo '<p>' . i18n_r('news_manager/FOUND') . '</p>',"\n";
+    echo '<p>' . nm_r('FOUND') . '</p>',"\n";
     foreach ($posts as $post)
       nm_show_post($post->slug, $showexcerpt, false);
   } else {
-    echo '<p>' . i18n_r('news_manager/NOT_FOUND') . '</p>',"\n";
+    echo '<p>' . nm_r('NOT_FOUND') . '</p>',"\n";
   }
 }
 
@@ -435,7 +435,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
             break;
 
           case 'date':
-            echo '    <',$nmoption['markuppostdate'],' class="',$nmoption['classpostdate'],'">',i18n_r('news_manager/PUBLISHED'),' ';
+            echo '    <',$nmoption['markuppostdate'],' class="',$nmoption['classpostdate'],'">',nm_r('PUBLISHED'),' ';
             nm_render_date();
             echo '</',$nmoption['markuppostdate'],'>',"\n";
             break;
@@ -448,7 +448,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
           case 'tags':
             if (nm_has_tags()) {
-              echo '    <',$nmoption['markupposttags'],' class="',$nmoption['classposttags'],'"><b>',i18n_r('news_manager/TAGS'),':</b> ';
+              echo '    <',$nmoption['markupposttags'],' class="',$nmoption['classposttags'],'"><b>',nm_r('TAGS'),':</b> ';
               nm_render_tags();
               echo '</',$nmoption['markupposttags'],'>',"\n";
             }
@@ -464,7 +464,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
           case 'author':
             if (nm_must_render_author()) {
-              echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',i18n_r('news_manager/AUTHOR'),' <',$nmoption['markuppostauthorname'],'>';
+              echo '    <',$nmoption['markuppostauthor'],' class="',$nmoption['classpostauthor'],'">',nm_r('AUTHOR'),' <',$nmoption['markuppostauthorname'],'>';
               nm_render_author();
               echo '</',$nmoption['markuppostauthorname'],'></',$nmoption['markuppostauthor'],'>',"\n";
             }
@@ -483,7 +483,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
           echo '<a',($nmoption['classgobacklink'] ? ' class="'.$nmoption['classgobacklink'].'"' : ''),' href="';
           nm_goback_link();
           echo '">';
-          i18n('news_manager/GO_BACK');
+          nm_e('GO_BACK');
           echo '</a></',$nmoption['markupgoback'],'>',"\n";
         }
       }
@@ -503,7 +503,7 @@ function nm_show_post($slug, $showexcerpt=false, $filter=true, $single=false) {
 
     return true;
   } else {
-    echo '<p>' . i18n_r('news_manager/NOT_EXIST') . '</p>',"\n";
+    echo '<p>' . nm_r('NOT_EXIST') . '</p>',"\n";
     return false;
   }
 }
@@ -551,10 +551,10 @@ function nm_show_navigation($index, $total, $tag=null) {
     if ($prevnext && $index > $p1) {
       echo " <$item",nm_class_attr($clprev),"><a href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
-      echo "\" title=\"",i18n_r('news_manager/PREV_TITLE'),'">',i18n_r('news_manager/PREV_TEXT'),"</a></$item>\n";
+      echo "\" title=\"",nm_r('PREV_TITLE'),'">',nm_r('PREV_TEXT'),"</a></$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clprev.' '.$cldisabled),"><span>",i18n_r('news_manager/PREV_TEXT'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clprev.' '.$cldisabled),"><span>",nm_r('PREV_TEXT'),"</span></$item>\n";
     }
 
     if (nm_get_option('navnumber',true)) {
@@ -593,10 +593,10 @@ function nm_show_navigation($index, $total, $tag=null) {
 
     if ($prevnext && $index < $total-1+$p1) {
       echo " <$item",nm_class_attr($clnext),"><a href=\"",$page.($index+1);
-      echo "\" title=\"",i18n_r('news_manager/NEXT_TITLE'),"\">",i18n_r('news_manager/NEXT_TEXT'),"</a></$item>\n";
+      echo "\" title=\"",nm_r('NEXT_TITLE'),"\">",nm_r('NEXT_TEXT'),"</a></$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clnext.' '.$cldisabled),"><span>",i18n_r('news_manager/NEXT_TEXT'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clnext.' '.$cldisabled),"><span>",nm_r('NEXT_TEXT'),"</span></$item>\n";
     }
 
   } else {
@@ -608,19 +608,19 @@ function nm_show_navigation($index, $total, $tag=null) {
     $showalways = (strtolower(substr(nm_get_option('navoldnew'),0,1)) == 'a'); // navOldNew a[lways]
     if ($index < $total-1+$p1) {
       echo "<$item",nm_class_attr($clold),">";
-      echo "<a href=\"",$page.($index+1),"\">",i18n_r('news_manager/OLDER_POSTS'),"</a>";
+      echo "<a href=\"",$page.($index+1),"\">",nm_r('OLDER_POSTS'),"</a>";
       echo "</$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clold.' '.$cldisabled),"><span>",i18n_r('news_manager/OLDER_POSTS'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clold.' '.$cldisabled),"><span>",nm_r('OLDER_POSTS'),"</span></$item>\n";
     }
     if ($index > $p1) {
       echo "<$item",nm_class_attr($clnew),">";
-      echo "<a href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",i18n_r('news_manager/NEWER_POSTS'),"</a>";
+      echo "<a href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",nm_r('NEWER_POSTS'),"</a>";
       echo "</$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clnew.' '.$cldisabled),"><span>",i18n_r('news_manager/NEWER_POSTS'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clnew.' '.$cldisabled),"><span>",nm_r('NEWER_POSTS'),"</span></$item>\n";
     }
 
   }
@@ -697,7 +697,7 @@ function nm_post_excerpt($len=null, $ellipsis=null, $echo=true) {
   global $nmdata, $NMEXCERPTLENGTH, $nmoption;
   if (isset($nmdata['content']) && $nmdata['content']) {
     if (!$len) $len = isset($nmoption['excerptlength']) ? $nmoption['excerptlength'] : $NMEXCERPTLENGTH; // workaround(*)
-    if (!$ellipsis && $ellipsis !== '') $ellipsis = i18n_r('news_manager/ELLIPSIS');
+    if (!$ellipsis && $ellipsis !== '') $ellipsis = nm_r('ELLIPSIS');
     $break = nm_get_option('breakwords');
     $excerpt = nm_make_excerpt($nmdata['content'], $len, $ellipsis, $break);
     if ($echo) echo $excerpt;
@@ -928,7 +928,7 @@ function nm_post_date($fmt='', $echo=true) {
   global $nmdata;
   if (isset($nmdata['unixtime']) && $nmdata['unixtime']) {
     if (empty($fmt))
-      $fmt = i18n_r('news_manager/DATE_FORMAT');
+      $fmt = nm_r('DATE_FORMAT');
     $date = nm_get_date($fmt, $nmdata['unixtime']);
     if ($echo) echo $date;
     return $date;
@@ -978,7 +978,7 @@ function nm_update_meta_description() {
   }
 }
 
-/***** since 3.7 ??? *****/
+/***** since 3.7 *****/
 
 function nm_return_url() {
   global $nmcurrentpost;
@@ -1063,7 +1063,7 @@ function nm_render_title() {
 }
 
 function nm_render_date() {
-  nm_put_date(i18n_r('news_manager/DATE_FORMAT'));
+  nm_put_date(nm_r('DATE_FORMAT'));
 }
 
 function nm_render_content() {
@@ -1083,7 +1083,7 @@ function nm_render_content() {
       if ($morepos !== false) {
         $slice = substr($content, 0, $morepos);
         if ($readmore)
-          $slice .= '      <p class="'.$nmoption['classreadmore'].'"><a'.$class.' href="'.$url.'">'.i18n_r('news_manager/READ_MORE').'</a></p>'."\n";
+          $slice .= '      <p class="'.$nmoption['classreadmore'].'"><a'.$class.' href="'.$url.'">'.nm_r('READ_MORE').'</a></p>'."\n";
       }
     }
     if ($slice) {
@@ -1099,7 +1099,7 @@ function nm_render_content() {
       } else {
         echo $content;
         if ($readmore === 'a')
-          echo '      <p class="',$nmoption['classreadmore'],'"><a',$class,' href="',$url,'">',i18n_r('news_manager/READ_MORE'),'</a></p>',"\n";
+          echo '      <p class="',$nmoption['classreadmore'],'"><a',$class,' href="',$url,'">',nm_r('READ_MORE'),'</a></p>',"\n";
       }
     }
   }
