@@ -539,6 +539,8 @@ function nm_show_navigation($index, $total, $tag=null) {
   $clnext       = nm_clean_classes(nm_get_option('classnavitemnext','next'));
   $cldisabled   = nm_clean_classes(nm_get_option('classnavitemdisabled','disabled'));
   $clcurrent    = nm_clean_classes(nm_get_option('classnavitemcurrent','current'));
+  $clitem       = nm_clean_classes(nm_get_option('classnavitem',''));
+  $cllink       = nm_clean_classes(nm_get_option('classnavlink',''));
 
   if ($container)
     echo "<$container",nm_class_attr($clcontainer),">\n";
@@ -549,12 +551,12 @@ function nm_show_navigation($index, $total, $tag=null) {
     $prevnext = nm_get_option('navprevnext', '1');
     $showalways = (strtolower($prevnext[0]) == 'a'); // navPrevNext a[lways]
     if ($prevnext && $index > $p1) {
-      echo " <$item",nm_class_attr($clprev),"><a href=\"";
+      echo " <$item",nm_class_attr($clitem.' '.$clprev),"><a",nm_class_attr($cllink)," href=\"";
       echo $index > $p1+1 ? $page.($index-1) : $first;
       echo "\" title=\"",nm_r('PREV_TITLE'),'">',nm_r('PREV_TEXT'),"</a></$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clprev.' '.$cldisabled),"><span>",nm_r('PREV_TEXT'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clitem.' '.$clprev.' '.$cldisabled),"><span>",nm_r('PREV_TEXT'),"</span></$item>\n";
     }
 
     if (nm_get_option('navnumber',true)) {
@@ -573,17 +575,17 @@ function nm_show_navigation($index, $total, $tag=null) {
       $gap = false;
       for ($i = 0; $i < $total; $i++) {
         if ($i+$p1 == $index) {
-          echo " <$item",nm_class_attr($clcurrent),"><span>",$i+1,"</span></$item>\n";
+          echo " <$item",nm_class_attr($clitem.' '.$clcurrent),"><span>",$i+1,"</span></$item>\n";
           $gap = false;
         } else {
           if ( ($i+$p1 >= $index-$mid && $i+$p1 <= $index+$mid) || $i <= $end-1 || $i >= $total-$end) {
-            echo " <$item><a href=\"";
+            echo " <$item",nm_class_attr($clitem),"><a",nm_class_attr($cllink)," href=\"";
             echo $i == 0 ? $first : $page.($i+$p1);
             echo "\">",$i+1,"</a></$item>\n";
             $gap = false;
           } else {
             if (!$gap) {
-              echo " <$item",nm_class_attr($clellipsis.' '.$cldisabled),"><span>$ellipsis</span></$item>\n";
+              echo " <$item",nm_class_attr($clitem.' '.$clellipsis.' '.$cldisabled),"><span>$ellipsis</span></$item>\n";
               $gap = true;
             }
           }
@@ -592,11 +594,11 @@ function nm_show_navigation($index, $total, $tag=null) {
     }
 
     if ($prevnext && $index < $total-1+$p1) {
-      echo " <$item",nm_class_attr($clnext),"><a href=\"",$page.($index+1);
+      echo " <$item",nm_class_attr($clitem.' '.$clnext),"><a",nm_class_attr($cllink)," href=\"",$page.($index+1);
       echo "\" title=\"",nm_r('NEXT_TITLE'),"\">",nm_r('NEXT_TEXT'),"</a></$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clnext.' '.$cldisabled),"><span>",nm_r('NEXT_TEXT'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clitem.' '.$clnext.' '.$cldisabled),"><span>",nm_r('NEXT_TEXT'),"</span></$item>\n";
     }
 
   } else {
@@ -607,20 +609,20 @@ function nm_show_navigation($index, $total, $tag=null) {
 
     $showalways = (strtolower(substr(nm_get_option('navoldnew'),0,1)) == 'a'); // navOldNew a[lways]
     if ($index < $total-1+$p1) {
-      echo "<$item",nm_class_attr($clold),">";
-      echo "<a href=\"",$page.($index+1),"\">",nm_r('OLDER_POSTS'),"</a>";
+      echo "<$item",nm_class_attr($clitem.' '.$clold),">";
+      echo "<a",nm_class_attr($cllink)," href=\"",$page.($index+1),"\">",nm_r('OLDER_POSTS'),"</a>";
       echo "</$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clold.' '.$cldisabled),"><span>",nm_r('OLDER_POSTS'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clitem.' '.$clold.' '.$cldisabled),"><span>",nm_r('OLDER_POSTS'),"</span></$item>\n";
     }
     if ($index > $p1) {
-      echo "<$item",nm_class_attr($clnew),">";
-      echo "<a href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",nm_r('NEWER_POSTS'),"</a>";
+      echo "<$item",nm_class_attr($clitem.' '.$clnew),">";
+      echo "<a",nm_class_attr($cllink)," href=\"",(($index > $p1+1) ? $page.($index-1) : $first),"\">",nm_r('NEWER_POSTS'),"</a>";
       echo "</$item>\n";
     } else {
       if ($showalways)
-        echo " <$item",nm_class_attr($clnew.' '.$cldisabled),"><span>",nm_r('NEWER_POSTS'),"</span></$item>\n";
+        echo " <$item",nm_class_attr($clitem.' '.$clnew.' '.$cldisabled),"><span>",nm_r('NEWER_POSTS'),"</span></$item>\n";
     }
 
   }
