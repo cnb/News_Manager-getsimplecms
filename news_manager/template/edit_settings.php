@@ -224,7 +224,7 @@
     }
 
 <?php if (!defined('NMWARNUNSAVED') || NMWARNUNSAVED) { ?>
-    $('form').areYouSure({'message':'<?php i18n('UNSAVED_INFORMATION'); ?>'});
+    $('form').areYouSure({'message':'<?php echo addcslashes(i18n_r('UNSAVED_INFORMATION'), "'"); ?>'});
 <?php } ?>
 
   });
