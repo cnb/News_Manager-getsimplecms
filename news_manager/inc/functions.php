@@ -314,11 +314,11 @@ function nm_rename_file($oldfile,$newfile) {
   if (!rename($oldfile,$newfile)) {
     if (copy ($oldfile,$newfile)) {
       unlink($oldfile);
-      return TRUE;
+      return true;
     }
-    return FALSE;
+    return false;
   }
-  return TRUE;
+  return true;
 }
 
 /*******************************************************
