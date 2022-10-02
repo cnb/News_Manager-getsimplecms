@@ -70,7 +70,7 @@ function nm_show_archive($archive, $filter=true) {
  * @return true if posts shown
  * @since 3.3
  */
-function nm_show_tag_archive($tag=null, $archive, $filter=true) {
+function nm_show_tag_archive($tag=null, $archive=null, $filter=true) {
   global $NMSETTING;
   $archives = nm_get_archives($NMSETTING['archivesby'], $tag);
   if (array_key_exists($archive, $archives)) {
