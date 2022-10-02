@@ -108,6 +108,12 @@ if ($imageinputpos > 0) {
         <input class="text short" id="post-time" name="post-time" type="text" value="<?php echo $time; ?>" />
       </p>
     </div>
+	<div class="leftopt">
+      <p>
+        <label for="end-date"><?php i18n('news_manager/END_DATE'); ?>:</label>
+        <input class="text short" id="end-date" name="end-date" type="text" value="<?php echo $enddate; ?>" />
+      </p>
+    </div>
     <div class="clear"></div>
     <style>#post-private { width:auto !important; } /* properly align checkbox - fix for GetSimple 3.1+ */</style>
     <div class="leftopt">
