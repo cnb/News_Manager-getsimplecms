@@ -420,7 +420,7 @@ function nm_make_excerpt($content, $len=200, $ellipsis='', $break=false) {
       if ($break)
         $content = mb_substr($content, 0, $len, 'UTF-8');
       else
-        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' ', 'UTF-8'), 'UTF-8');
+        $content = mb_substr($content, 0, mb_strrpos(mb_substr($content, 0, $len+1, 'UTF-8'), ' ', 0, 'UTF-8'), 'UTF-8');
       $content .= $ellipsis;
     }
   } else {
