@@ -33,7 +33,7 @@ function nm_list_recent() {
                 (since 3.0, deprecated) optional custom format (strftime), default "%B %Y" or "%Y" or as defined in language file
  */
 function nm_list_archives($args = '') {
-  global $NMPAGEURL, $NMSETTING;
+  global $NMPAGEURL, $NMSETTING, $i18n;
   if ($NMPAGEURL == '') return;
   $defaults = array(
     'showcount' => false,
