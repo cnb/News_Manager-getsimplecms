@@ -12,6 +12,5 @@
 Instructions, etc:   
 http://www.cyberiada.org/cnb/news-manager/
  
-Support forum thread:   
-http://get-simple.info/forums/showthread.php?tid=3972
- 
+Old support forum thread (archived by The Wayback Machine):
+https://web.archive.org/web/20240228134722/http://get-simple.info/forums/showthread.php?tid=3972 
