@@ -29,6 +29,7 @@ function nm_edit_post($slug = '') {
     $data    = @getXML($file);
     $title   = @stripslashes($data->title);
     $date    = isset($data->date) ? date('Y-m-d', strtotime($data->date)) : '';
+	$enddate = isset($data->enddate) ? date('Y-m-d', strtotime($data->enddate)) : '';
     $time    = isset($data->date) ? date('H:i', strtotime($data->date)) : '';
     $tags    = isset($data->tags) ? str_replace(',', ', ', stripslashes($data->tags)) : '';
     $private = @$data->private != '' ? 'checked' : '';
@@ -86,7 +87,9 @@ function nm_save_post() {
   # collect $_POST data
   $title     = safe_slash_html($_POST['post-title']);
   $timestamp = strtotime($_POST['post-date'] . ' ' . $_POST['post-time']);
+  $timestamp_end = strtotime($_POST['end-date'] . ' ' . $_POST['post-time']);
   $date      = $timestamp ? date('r', $timestamp) : date('r');
+  $end_date = $timestamp_end ? date('r', $timestamp_end) : date('r');
   $tags      = nm_lowercase_tags(trim(preg_replace(array('/\s+/','/\s*,\s*/','/,+/'),array(' ',',',','),safe_slash_html(trim($_POST['post-tags']))),','));
   $tags      = implode(',', array_unique(explode(',', $tags))); // remove dupe tags
   $private   = isset($_POST['post-private']) ? 'Y' : '';
@@ -107,6 +110,8 @@ function nm_save_post() {
   $obj->addCData($title);
   $obj = $xml->addChild('date');
   $obj->addCData($date);
+  $obj = $xml->addChild('enddate');
+  $obj->addCData($end_date);
   $obj = $xml->addChild('tags');
   $obj->addCData($tags);
   $obj = $xml->addChild('private');
